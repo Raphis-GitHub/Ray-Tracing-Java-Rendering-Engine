@@ -3,6 +3,7 @@ package primitives;
 /**
  * Class Point that uses Double3 to store 3 doubles in the form (x, y, z) and contains methods
  * that add, subtract, calculates distances and esc.
+ *
  * @author Raphael
  */
 public class Point {
@@ -15,6 +16,7 @@ public class Point {
 
     /**
      * a constructor that takes a singe parameter and assigns it to the xyz field
+     *
      * @param otherXyz is an object of Double3 and is set as the field xyz.
      */
     protected Point(Double3 otherXyz) {
@@ -22,8 +24,9 @@ public class Point {
     }
 
     /**
-     *  a constructor that takes in 3 doubles and assigns them to
+     * a constructor that takes in 3 doubles and assigns them to
      * be the corresponding values in a 3 Dimensional point.
+     *
      * @param x double representing the X-value
      * @param y double representing the Y-value
      * @param z double representing the Z-value
@@ -34,6 +37,7 @@ public class Point {
 
     /**
      * a method that takes in a vector and adds it to the point. it uses add function from Double3
+     *
      * @param obj Vector used for addition
      * @return a new point
      */
@@ -44,6 +48,7 @@ public class Point {
     /**
      * a method that computes the difference between a Point and a Vector.
      * if the point shares the same vales as the vector or vise-versa, it throws an error.
+     *
      * @param otherPoint an object of Point used
      * @return a new Vector which is the difference between the vector and the point
      */
@@ -57,6 +62,7 @@ public class Point {
     /**
      * a method that finds out the squared distance between 2 points
      * using the formula: (x2-x1)^2 + (y2-y1)^2
+     *
      * @param otherPoint the second point in the equation
      * @return a double representing output of the formula( the distance between 2 points squared)
      */
@@ -66,6 +72,7 @@ public class Point {
 
     /**
      * a method that roots the product of distanceSquared
+     *
      * @param otherPoint the second point in the equation
      * @return a double representing the distance between 2 points
      */

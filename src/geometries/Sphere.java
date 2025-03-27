@@ -5,6 +5,7 @@ import primitives.Vector;
 
 /**
  * Represents a sphere in 3D space.
+ *
  * @author Raphael
  */
 public class Sphere extends RadialGeometry {

@@ -6,6 +6,7 @@ import primitives.Vector;
 
 /**
  * Represents a tube in 3D space.
+ *
  * @author Raphael
  */
 public class Tube extends RadialGeometry {

@@ -3,12 +3,14 @@ package primitives;
 /**
  * Class Vector represents a vector in three-dimensional space.
  * Extends the Point class to inherit x, y, and z coordinates.
+ *
  * @author Raphael
  */
 public class Vector extends Point {
 
     /**
      * Constructs a Vector with the specified x, y, and z coordinates.
+     *
      * @param x The x-coordinate of the vector.
      * @param y The y-coordinate of the vector.
      * @param z The z-coordinate of the vector.
@@ -23,6 +25,7 @@ public class Vector extends Point {
 
     /**
      * Constructs a Vector with the specified Double3 object.
+     *
      * @param xyz The Double3 object containing x, y, and z coordinates.
      */
     public Vector(Double3 xyz) {
@@ -31,6 +34,7 @@ public class Vector extends Point {
 
     /**
      * Adds another Vector to this Vector.
+     *
      * @param other The Vector to add.
      * @return The resulting Vector after addition.
      * @throws IllegalArgumentException if attempting to create a zero vector.
@@ -44,6 +48,7 @@ public class Vector extends Point {
 
     /**
      * Scales this Vector by a scalar value.
+     *
      * @param scalar The scalar value to scale the Vector.
      * @return The resulting scaled Vector.
      */
@@ -53,6 +58,7 @@ public class Vector extends Point {
 
     /**
      * Computes the dot product of this Vector with another Vector.
+     *
      * @param other The Vector to compute the dot product with.
      * @return The dot product of the two Vectors.
      */
@@ -62,6 +68,7 @@ public class Vector extends Point {
 
     /**
      * Computes the cross product of this Vector with another Vector.
+     *
      * @param other The Vector to compute the cross product with.
      * @return The cross product Vector.
      */
@@ -76,6 +83,7 @@ public class Vector extends Point {
     /**
      * Computes the squared length of this Vector.
      * using the formula V dotproduct V = |V|^2
+     *
      * @return The squared length of the Vector.
      */
     public double lengthSquared() {
@@ -84,6 +92,7 @@ public class Vector extends Point {
 
     /**
      * Computes the length of this Vector by finding the square root of lengthSquared method
+     *
      * @return The length of the Vector.
      */
     public double length() {
@@ -92,6 +101,7 @@ public class Vector extends Point {
 
     /**
      * Normalizes this Vector to have unit length.
+     *
      * @return The normalized Vector.
      */
     public Vector normalize() {
@@ -100,6 +110,7 @@ public class Vector extends Point {
 
     /**
      * Checks if this Vector is equal to another Object.
+     *
      * @param obj The Object to compare with.
      * @return true if the Objects are equal, false otherwise.
      */
@@ -111,6 +122,7 @@ public class Vector extends Point {
 
     /**
      * Returns a string representation of this Vector.
+     *
      * @return The string representation of the Vector.
      */
     @Override

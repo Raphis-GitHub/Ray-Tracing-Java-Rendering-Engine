@@ -6,6 +6,7 @@ import primitives.Vector;
 
 /**
  * Represents a cylinder in 3D space.
+ *
  * @author Raphael
  */
 public class Cylinder extends Tube {
@@ -19,7 +20,7 @@ public class Cylinder extends Tube {
      * @param height  the height of the cylinder
      */
     public Cylinder(Ray axisRay, double radius, double height) {
-        super( axisRay, radius);
+        super(axisRay, radius);
         this.height = height;
     }
 

@@ -5,6 +5,7 @@ import primitives.Point;
 /**
  * Represents a triangle in 3D space.
  * Inherits from Polygon.
+ *
  * @author Raphael
  */
 public class Triangle extends Polygon {

@@ -5,6 +5,7 @@ import primitives.Vector;
 
 /**
  * Represents a geometric plane in 3D space.
+ *
  * @author Raphael
  */
 public class Plane implements Geometry {
@@ -21,10 +22,10 @@ public class Plane implements Geometry {
     /**
      * Constructs a plane using three points.
      * First, two vectors are created from the three points:
-     *  Vector `v1` from `p1` to `p2` by subtracting `p1` from `p2`.
-     *  Vector `v2` from `p1` to `p3` by subtracting `p1` from `p3`.
+     * Vector `v1` from `p1` to `p2` by subtracting `p1` from `p2`.
+     * Vector `v2` from `p1` to `p3` by subtracting `p1` from `p3`.
      * Next, the cross product of these two vectors is calculated to get a vector
-     *  that is orthogonal (perpendicular) to the plane defined by the three points.
+     * that is orthogonal (perpendicular) to the plane defined by the three points.
      * Finally, the resulting orthogonal vector is normalized to ensure it has a length of 1,
      * making it a unit normal vector.
      *
@@ -41,14 +42,13 @@ public class Plane implements Geometry {
      * Constructs a plane using a point and a normal vector.
      * The normal vector is normalized before storing.
      *
-     * @param point the reference point
+     * @param point  the reference point
      * @param normal the normal vector
      */
     public Plane(Point point, Vector normal) {
         this.point = point;
         this.normal = normal.normalize();
     }
-
 
 
     @Override
