@@ -21,8 +21,8 @@ public class Plane implements Geometry {
 
     /**
      * Constructs a plane using three points.
-     * First, two vectors are created from the three points:
-     * Vector `v1` from `p1` to `p2` by subtracting `p1` from `p2`.
+     * First, two vectors are created from the <b><i>three</i></b> points:
+     * Vector `v1` from `p1` to `p2` by subtracting P<sub>1</sub> from `p2`.
      * Vector `v2` from `p1` to `p3` by subtracting `p1` from `p3`.
      * Next, the cross product of these two vectors is calculated to get a vector
      * that is orthogonal (perpendicular) to the plane defined by the three points.
@@ -32,6 +32,8 @@ public class Plane implements Geometry {
      * @param p1 the first point
      * @param p2 the second point
      * @param p3 the third point
+     *
+     * @throws IllegalArgumentException when the points are co-lined
      */
     public Plane(Point p1, Point p2, Point p3) {
         this.point = p1;
@@ -50,18 +52,13 @@ public class Plane implements Geometry {
         this.normal = normal.normalize();
     }
 
-
     @Override
     public Vector getNormal(Point point) {
         return normal;
     }
 
-    /**
-     * Returns the normal vector of the plane.
-     *
-     * @return the normal vector of the plane
-     */
     public Vector getNormal() {
         return normal;
     }
+
 }

@@ -4,14 +4,14 @@ package geometries;
  * Abstract class representing radial geometric shapes.
  * Implements the Geometry interface.
  *
- * @author Raphael and Orel
+ * @author Raphael
  */
 public abstract class RadialGeometry implements Geometry {
     /**
      * The radius of the radial geometry.
      */
     protected final double radius;
-
+    //TODO: radius squared
     /**
      * Constructs a RadialGeometry with the given radius.
      *

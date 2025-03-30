@@ -3,7 +3,7 @@ package geometries;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
+//TODO: write javadocs
 /**
  * Represents a cylinder in 3D space.
  *
@@ -23,7 +23,6 @@ public class Cylinder extends Tube {
         super(axisRay, radius);
         this.height = height;
     }
-
 
     @Override
     public Vector getNormal(Point point) {
