@@ -11,7 +11,7 @@ import primitives.Vector;
  */
 public class Tube extends RadialGeometry {
     /**
-     * The central axis ray of the tube.
+     * The central  axis ray of the tube.
      */
     protected final Ray axisRay;
 
