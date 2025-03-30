@@ -7,6 +7,10 @@ package primitives;
  * @author Raphael
  */
 public class Point {
+
+    /**
+     * A constant representing the origin point (0, 0, 0).
+     */
     public static final Point ZERO = new Point(0, 0, 0);
     /**
      * An object of Double3, obj xyz is a collection of 3 doubles

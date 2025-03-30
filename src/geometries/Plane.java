@@ -52,11 +52,21 @@ public class Plane implements Geometry {
         this.normal = normal.normalize();
     }
 
+    /**
+     * Constructs a plane using a point and a normal vector.
+     * The normal vector is normalized before storing.
+     *
+     * @param point  the reference point
+     */
     @Override
     public Vector getNormal(Point point) {
         return normal;
     }
 
+    /**
+     * Returns the point on the plane.
+     * @return the point on the plane
+     */
     public Vector getNormal() {
         return normal;
     }

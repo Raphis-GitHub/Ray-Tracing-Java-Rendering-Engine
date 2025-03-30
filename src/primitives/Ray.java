@@ -8,6 +8,8 @@ package primitives;
 public class Ray {
     /** Direction vector of the ray */
     final Vector direction;
+
+    /** Origin point of the ray */
     final Point origin; // Origin point of the ray
 
     /**
