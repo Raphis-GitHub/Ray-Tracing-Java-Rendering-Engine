@@ -63,7 +63,9 @@ public class Vector extends Point {
      * @return The dot product of the two Vectors.
      */
     public double dotProduct(Vector other) {
-        return (this.xyz.d1 * other.xyz.d1 + this.xyz.d2 * other.xyz.d2 + this.xyz.d3 * other.xyz.d3);
+        return (this.xyz.d1 * other.xyz.d1 +
+                this.xyz.d2 * other.xyz.d2 +
+                this.xyz.d3 * other.xyz.d3);
     }
 
     /**
