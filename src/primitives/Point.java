@@ -53,9 +53,6 @@ public class Point {
      * @return a new Vector which is the difference between the vector and the point
      */
     public Vector subtract(Point otherPoint) {
-        if (this.xyz.equals(otherPoint.xyz)) {
-            throw new IllegalArgumentException("You may not create a ZERO vector.");
-        }
         return new Vector(xyz.subtract(otherPoint.xyz));
     }
 

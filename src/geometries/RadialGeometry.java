@@ -11,7 +11,13 @@ public abstract class RadialGeometry implements Geometry {
      * The radius of the radial geometry.
      */
     protected final double radius;
-    //TODO: radius squared
+
+    /**
+     * The square of the radius of the radial geometry.
+     * This is precomputed for efficiency in calculations.
+     */
+    protected final double radiusSquared;
+
     /**
      * Constructs a RadialGeometry with the given radius.
      *
@@ -19,5 +25,6 @@ public abstract class RadialGeometry implements Geometry {
      */
     public RadialGeometry(double radius) {
         this.radius = radius;
+        this.radiusSquared = radius * radius;
     }
 }
