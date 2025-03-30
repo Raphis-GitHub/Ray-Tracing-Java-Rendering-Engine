@@ -10,7 +10,7 @@ import primitives.Vector;
  * @author Raphael
  */
 public class Cylinder extends Tube {
-    private final double height;
+     private final double height;
 
     /**
      * Constructs a cylinder with a central axis ray, radius, and height.
