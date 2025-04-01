@@ -7,10 +7,10 @@ package primitives;
  */
 public class Ray {
     /** Direction vector of the ray */
-    final Vector direction;
+    final public Vector direction;
 
     /** Origin point of the ray */
-    final Point origin; // Origin point of the ray
+    final public Point origin; // Origin point of the ray
 
     /**
      * Constructs a Ray with the specified direction vector and origin point.

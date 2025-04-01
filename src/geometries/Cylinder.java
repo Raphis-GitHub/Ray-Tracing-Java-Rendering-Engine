@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 //TODO: write javadocs
 /**
@@ -24,9 +25,40 @@ public class Cylinder extends Tube {
         this.height = height;
     }
 
+
+    /**
+     * Returns the normal vector to the cylinder at the given point.
+     * The normal vector depends on where the point is located:
+     * - If the point is on the bottom base, the normal points in the negative direction of the axis
+     * - If the point is on the top base, the normal points in the positive direction of the axis
+     * - If the point is on the side, the normal is perpendicular to the axis and points outward
+     *
+     * @param point the point on the cylinder's surface
+     * @return the normalized normal vector at the given point
+     */
     @Override
     public Vector getNormal(Point point) {
-        // This implementation will return null for now as per instructions.
-        return null;
+        // Calculate vector from cylinder's origin to the point
+        Vector v = point.subtract(axisRay.origin);
+
+        // Calculate projection of this vector onto the axis direction
+        double t = axisRay.direction.dotProduct(v);
+
+        // Check if the point is on the bottom base (t ≈ 0)
+        if (Util.isZero(t)) {
+            return axisRay.direction.scale(-1); // Normal points opposite to the axis direction
+        }
+
+        // Check if the point is on the top base (t ≈ height)
+        if (Util.isZero(t - height)) {
+            return axisRay.direction; // Normal points in the axis direction
+        }
+
+        // For points on the side of the cylinder:
+        // Find the closest point on the axis
+        Point closestPoint = axisRay.origin.add(axisRay.direction.scale(t));
+
+        // Calculate normal as vector from axis to surface
+        return point.subtract(closestPoint).normalize();
     }
 }
