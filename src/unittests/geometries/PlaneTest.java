@@ -79,5 +79,24 @@ class PlaneTest {
             assertEquals(normal.normalize(), plane.getNormal(), "Plane constructor with point and vector failed to set normal correctly");
         }, "Plane constructor with point and vector threw an unexpected exception");
     }
+    /** Test method for {@link Plane#getNormal(Point)}. */
+    @Test
+    void testGetNormal() {
+        Point P0 = new Point(0, 0, 1);
+        Point P1 = new Point(1, 0, 1);
+        Point P2 = new Point(0, 1, 1);
 
+        Plane plane = new Plane(P0, P1, P2);
+        Vector normal = plane.getNormal(new Point(0, 0, 1));
+
+        // Check length is 1
+        assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
+
+        // Check orthogonality to two edges
+        Vector v1 = P1.subtract(P0);
+        Vector v2 = P2.subtract(P0);
+
+        assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
+        assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
+    }
 }
