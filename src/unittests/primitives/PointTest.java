@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  * Testing Points
  * @author Raphael
  */
-class PointTests {
+class PointTest {
 
     private static final double DELTA = 0.000001;
 

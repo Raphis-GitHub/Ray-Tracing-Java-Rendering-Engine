@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlaneTest {
 
     @Test
-    void getNormal() {
+    void getNormal3Point() {
     }
 
     @Test
-    void testGetNormal() {
+    void getNormalPointAndVector() {
     }
 }
