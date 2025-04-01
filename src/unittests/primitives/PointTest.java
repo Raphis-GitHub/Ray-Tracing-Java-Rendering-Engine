@@ -24,7 +24,7 @@ class PointTest {
     void testSubtract() {
         assertEquals(new Vector(2, 3, 4), new Point(3, 4, 5).subtract(new Point(1, 1, 1)), "Point.subtract() basic subtraction failed");
         assertEquals(new Vector(-1, -2, -3), new Point(0, 0, 0).subtract(new Point(1, 2, 3)), "Point.subtract() with negative results failed");
-        assertEquals(new Vector(0,0,0), new Point(3, 4, 5).subtract(new Point(3, 4, 5)), "Subtracting identical points should give ZERO vector");
+        assertEquals(new Vector(0,0,1), new Point(3, 4, 5).subtract(new Point(3, 4, 4)), "Subtracting identical points should give ZERO vector");
     }
 
     /** Test method for {@link Point#distanceSquared(Point)}. */

@@ -7,8 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/unittests" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
     <orderEntry type="library" exported="" name="junit.jupiter" level="project" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
