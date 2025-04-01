@@ -9,13 +9,13 @@ import primitives.Vector;
  *
  * @author Raphael
  */
-public interface Geometry {
+public abstract class Geometry {
     /**
      * Returns the normal vector to the geometry at a given point on the geometry's surface
      *
      * @param point the point on the geometry
      * @return the normal vector at the given point
      */
-    Vector getNormal(Point point);
+    abstract Vector getNormal(Point point);
 
 }

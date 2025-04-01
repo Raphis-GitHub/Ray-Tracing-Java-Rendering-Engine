@@ -8,7 +8,7 @@ import primitives.Vector;
  *
  * @author Raphael
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     /**
      * a point in which the plane sits on and from where
      * the direction vector sits.
