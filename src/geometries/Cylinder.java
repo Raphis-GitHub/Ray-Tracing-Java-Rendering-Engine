@@ -25,6 +25,7 @@ public class Cylinder extends Tube {
         this.height = height;
     }
 
+
     /**
      * Returns the normal vector to the cylinder at the given point.
      * The normal vector depends on where the point is located:
