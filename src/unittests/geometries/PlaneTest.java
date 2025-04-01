@@ -6,11 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlaneTest {
 
+
     @Test
-    void getNormal3Point() {
+    void constructor3Point() {
     }
 
     @Test
-    void getNormalPointAndVector() {
+    void constructorPointAndVector() {
+    }
+    @Test
+    void getNormalWithPoint() {
+    }
+    @Test
+    void getNormal() {
     }
 }
