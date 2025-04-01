@@ -141,20 +141,129 @@ class VectorTest {
         assertEquals(28.0, V1.dotProduct(new Vector(2, 4, 6)), DELTA, "Dot product failed for parallel vectors");
 
     }
-
     @Test
     void crossProduct() {
+        // =================EP====================
+
+        // EP Test Case 1: Cross product of two typical vectors
+        assertEquals(new Vector(-3, 6, -3), V1.crossProduct(V2), "Cross product of typical vectors failed");
+
+        // EP Test Case 2: Cross product of a vector with a negative vector
+        assertEquals(new Vector(-3, 0, 1), V1.crossProduct(V3), "Cross product with negative vector failed");
+
+        // EP Test Case 3: Cross product of orthogonal vectors
+        assertEquals(new Vector(0, 0, 1), new Vector(1, 0, 0).crossProduct(new Vector(0, 1, 0)),
+                "Cross product of orthogonal vectors failed");
+
+        // =================BVA===================
+
+        // BVA Test Case 1: Cross product orthogonality property
+        Vector result = V1.crossProduct(V2);
+        assertEquals(0, result.dotProduct(V1), DELTA, "Cross product not orthogonal to first vector");
+        assertEquals(0, result.dotProduct(V2), DELTA, "Cross product not orthogonal to second vector");
+
+        // BVA Test Case 2: Cross product of vectors with mixed signs
+        assertEquals(new Vector(-1, -1, 2), V7.crossProduct(ONE), "Cross product of vectors with mixed signs failed");
+
+        // BVA Test Case 3: Cross product of parallel vectors should throw exception
+        Vector v = new Vector(2, 4, 6); // Parallel to V1
+        assertThrows(IllegalArgumentException.class, () -> V1.crossProduct(v),
+                "Cross product of parallel vectors should throw an exception due to zero vector result");
     }
 
     @Test
     void lengthSquared() {
+        // =================EP====================
+
+        // EP Test Case 1: Length squared of a typical vector
+        assertEquals(14, V1.lengthSquared(), DELTA, "Length squared calculation failed for a typical vector");
+
+        // EP Test Case 2: Length squared of a unit vector
+        assertEquals(1, new Vector(0, 1, 0).lengthSquared(), DELTA, "Length squared of a unit vector should be 1");
+
+        // EP Test Case 3: Length squared for a negative vector
+        assertEquals(11, V3.lengthSquared(), DELTA, "Length squared calculation failed for a negative vector");
+
+        // =================BVA===================
+
+        // BVA Test Case 1: Length squared for a vector with extreme values
+        assertEquals(3 * Math.pow(1e10, 2), V4.lengthSquared(), DELTA, "Length squared calculation failed for extreme values");
+
+        // BVA Test Case 2: Length squared for a vector with values close to zero
+        assertEquals(3 * Math.pow(1e-10, 2), V8.lengthSquared(), DELTA, "Length squared calculation failed for values close to zero");
+
+        // BVA Test Case 3: Length squared of a vector with mixed components
+        assertEquals(2, V7.lengthSquared(), DELTA, "Length squared calculation failed for mixed component vector");
     }
 
     @Test
     void length() {
+        // =================EP====================
+
+        // EP Test Case 1: Length of a typical vector
+        assertEquals(Math.sqrt(14), V1.length(), DELTA, "Length calculation failed for a typical vector");
+
+        // EP Test Case 2: Length of a unit vector
+        assertEquals(1, new Vector(0, 1, 0).length(), DELTA, "Length of a unit vector should be 1");
+
+        // EP Test Case 3: Length for a negative vector
+        assertEquals(Math.sqrt(11), V3.length(), DELTA, "Length calculation failed for a negative vector");
+
+        // =================BVA===================
+
+        // BVA Test Case 1: Length for a vector with extreme values
+        double expectedLength = Math.sqrt(3) * 1e10;
+        // Use a proportional delta for large values
+        double largeDelta = expectedLength * 1e-10; // Allows 0.0000000001% error
+        assertEquals(expectedLength, V4.length(), largeDelta,
+                "Length calculation failed for extreme values");
+
+        // BVA Test Case 2: Length for a vector with values close to zero
+        assertEquals(Math.sqrt(3) * 1e-10, V8.length(), DELTA, "Length calculation failed for values close to zero");
+
+        // BVA Test Case 3: Length of a vector with mixed components
+        assertEquals(Math.sqrt(2), V7.length(), DELTA, "Length calculation failed for mixed component vector");
     }
 
     @Test
     void normalize() {
+        // =================EP====================
+
+        // EP Test Case 1: Normalize a typical vector
+        Vector normalizedV1 = V1.normalize();
+        assertEquals(1, normalizedV1.length(), DELTA, "Normalized vector should have length 1");
+        assertEquals(new Vector(1/Math.sqrt(14), 2/Math.sqrt(14), 3/Math.sqrt(14)), normalizedV1,
+                "Normalized vector direction is incorrect");
+
+        // EP Test Case 2: Normalize already a unit vector
+        Vector unitVector = new Vector(0, 1, 0);
+        assertEquals(unitVector, unitVector.normalize(), "Normalizing a unit vector should return the same vector");
+
+        // EP Test Case 3: Normalize vector with negative components
+        Vector normalizedV3 = V3.normalize();
+        assertEquals(1, normalizedV3.length(), DELTA, "Normalized negative vector should have length 1");
+        assertEquals(new Vector(-1/Math.sqrt(11), -1/Math.sqrt(11), -3/Math.sqrt(11)), normalizedV3,
+                "Normalized negative vector direction is incorrect");
+
+        // =================BVA===================
+
+        // BVA Test Case 1: Normalize a vector with extreme values
+        Vector normalizedV4 = V4.normalize();
+        assertEquals(1, normalizedV4.length(), DELTA, "Normalized vector with extreme values should have length 1");
+        assertEquals(new Vector(1/Math.sqrt(3), -1/Math.sqrt(3), 1/Math.sqrt(3)), normalizedV4,
+                "Normalized vector with extreme values direction is incorrect");
+
+        // BVA Test Case 2: Normalize a vector with values close to zero
+        Vector normalizedV8 = V8.normalize();
+        assertEquals(1, normalizedV8.length(), DELTA, "Normalized vector with values close to zero should have length 1");
+        assertEquals(new Vector(1/Math.sqrt(3), 1/Math.sqrt(3), 1/Math.sqrt(3)), normalizedV8,
+                "Normalized vector with values close to zero direction is incorrect");
+
+        // BVA Test Case 3: Normalize a vector with mixed components
+        Vector normalizedV7 = V7.normalize();
+        assertEquals(1, normalizedV7.length(), DELTA, "Normalized vector with mixed components should have length 1");
+        assertEquals(new Vector(1/Math.sqrt(2), -1/Math.sqrt(2), 0), normalizedV7,
+                "Normalized vector with mixed components direction is incorrect");
     }
+
 }
