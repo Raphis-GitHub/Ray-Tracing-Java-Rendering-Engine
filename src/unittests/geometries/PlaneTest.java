@@ -1,18 +1,24 @@
 package geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Vector;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing Planes
- * @author Raphael & Eitan
+ * these authors are Raphael and Eitan
  */
 class PlaneTest {
-
+    /**
+     * accuracy check
+     */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link Plane#Plane(Point, Point, Point)}. */
+    /**
+     * Test method for {@link Plane#Plane(Point, Point, Point)}.
+     */
     @Test
     void testConstructorThreePoints() {
         Point P0 = new Point(0, 0, 0);
@@ -67,7 +73,9 @@ class PlaneTest {
                 "Plane constructor allowed collinear points");
     }
 
-    /** Test method for {@link Plane#Plane(Point, Vector)}. */
+    /**
+     * Test method for {@link Plane#Plane(Point, Vector)}.
+     */
     @Test
     void testConstructorPointVector() {
         Point P0 = new Point(0, 0, 0);
@@ -79,7 +87,10 @@ class PlaneTest {
             assertEquals(normal.normalize(), plane.getNormal(), "Plane constructor with point and vector failed to set normal correctly");
         }, "Plane constructor with point and vector threw an unexpected exception");
     }
-    /** Test method for {@link Plane#getNormal(Point)}. */
+
+    /**
+     * Test method for {@link Plane#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         Point P0 = new Point(0, 0, 1);

@@ -32,7 +32,6 @@ public class Plane extends Geometry {
      * @param p1 the first point
      * @param p2 the second point
      * @param p3 the third point
-     *
      * @throws IllegalArgumentException when the points are co-lined
      */
     public Plane(Point p1, Point p2, Point p3) {
@@ -56,7 +55,7 @@ public class Plane extends Geometry {
      * Constructs a plane using a point and a normal vector.
      * The normal vector is normalized before storing.
      *
-     * @param point  the reference point
+     * @param point the reference point
      */
     @Override
     public Vector getNormal(Point point) {
@@ -65,6 +64,7 @@ public class Plane extends Geometry {
 
     /**
      * Returns the point on the plane.
+     *
      * @return the point on the plane
      */
     public Vector getNormal() {

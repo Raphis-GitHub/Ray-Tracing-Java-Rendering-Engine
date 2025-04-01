@@ -8,22 +8,61 @@ import static org.junit.jupiter.api.Assertions.*;
  * tests for vector
  */
 class VectorTest {
+    /**
+     * nothing
+     */
     private static final double DELTA = 0.000001;
+    /**
+     * nothing
+     */
     private static final Vector ONE = new Vector(1, 1, 1);
+    /**
+     * nothing
+     */
     private static final Vector V1 = new Vector(1, 2, 3);
+    /**
+     * nothing
+     */
     private static final Vector V2 = new Vector(4, 5, 6);
+    /**
+     * nothing
+     */
     private static final Vector V3 = new Vector(-1, -1, -3);
+    /**
+     * nothing
+     */
     private static final Vector V4 = new Vector(1e10, -1e10, 1e10);
+    /**
+     * nothing
+     */
     private static final Vector V5 = new Vector(-1e10, 1e10 + 1, -1e10);
+    /**
+     * nothing
+     */
     private static final Vector V6 = new Vector(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    /**
+     * nothing
+     */
     private static final Vector V7 = new Vector(1, -1, 0);
+    /**
+     * nothing
+     */
     private static final Vector V8 = new Vector(1e-10, 1e-10, 1e-10);
+    /**
+     * nothing
+     */
     private static final Vector V9 = new Vector(-1e-10 + 0.000001, -1e-10, -1e-10);
+    /**
+     * nothing
+     */
     private static final Vector V10 = new Vector(1e-10, 0, -1e-10);
+    /**
+     * nothing
+     */
     private static final Vector V11 = new Vector(-1e-10, 1e-10, 1e-10);
 
     /**
-     *
+     * test for cinstructor double 3
      */
     @Test
     void constructor3double() {
@@ -34,15 +73,16 @@ class VectorTest {
         assertDoesNotThrow(() -> new Vector(-1, -2, -3), "Failed to create a valid vector with negative values");
         assertDoesNotThrow(() -> V4, "Failed to create a valid vector with extreme values");
         assertDoesNotThrow(() -> new Vector(0.1, 0.2, 0.3), "Failed to create a valid vector with decimal values");
-        
+
         //================================BVA===========================
         assertThrows(IllegalArgumentException.class, () -> new Point(1, 1, 1).subtract(new Point(1, 1, 1)),
                 "Constructed a ZERO vector");
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0), //
                 "Constructed a ZERO vector");
     }
+
     /**
-     *
+     * tests for other constructpr
      */
     @Test
     void constructorDouble3() {
@@ -61,7 +101,6 @@ class VectorTest {
         assertThrows(IllegalArgumentException.class, () -> new Vector(new Double3(0, 0, 0)), //
                 "Constructed a ZERO vector");
     }
-
 
 
     /**
@@ -120,7 +159,7 @@ class VectorTest {
         assertEquals(new Vector(smallValue, smallValue, smallValue), ONE.scale(smallValue), "Scaling near minimum positive double value failed");
 
         // BVA Test Case 3: Scale a unit vector with scalar -1 to get its inverse direction
-        assertEquals(new Vector(0, 0, -1), new Vector(0,0,1).scale(-1), "Scaling a unit vector by -1 failed");
+        assertEquals(new Vector(0, 0, -1), new Vector(0, 0, 1).scale(-1), "Scaling a unit vector by -1 failed");
 
         // =================INVALID CASE===================
 
@@ -159,6 +198,7 @@ class VectorTest {
         assertEquals(28.0, V1.dotProduct(new Vector(2, 4, 6)), DELTA, "Dot product failed for parallel vectors");
 
     }
+
     /**
      * Tests the {@link Vector#crossProduct(Vector)} method to ensure its correctness.
      */
@@ -193,7 +233,8 @@ class VectorTest {
     }
 
     /**
-     * Tests the {@link Vector#lengthSquared()} method to ensure its correctness in computing the*/
+     * Tests the {@link Vector#lengthSquared()} method to ensure its correctness in computing the
+     */
     @Test
     void lengthSquared() {
         // =================EP====================
@@ -261,7 +302,7 @@ class VectorTest {
         // EP Test Case 1: Normalize a typical vector
         Vector normalizedV1 = V1.normalize();
         assertEquals(1, normalizedV1.length(), DELTA, "Normalized vector should have length 1");
-        assertEquals(new Vector(1/Math.sqrt(14), 2/Math.sqrt(14), 3/Math.sqrt(14)), normalizedV1,
+        assertEquals(new Vector(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14)), normalizedV1,
                 "Normalized vector direction is incorrect");
 
         // EP Test Case 2: Normalize already a unit vector
@@ -271,7 +312,7 @@ class VectorTest {
         // EP Test Case 3: Normalize vector with negative components
         Vector normalizedV3 = V3.normalize();
         assertEquals(1, normalizedV3.length(), DELTA, "Normalized negative vector should have length 1");
-        assertEquals(new Vector(-1/Math.sqrt(11), -1/Math.sqrt(11), -3/Math.sqrt(11)), normalizedV3,
+        assertEquals(new Vector(-1 / Math.sqrt(11), -1 / Math.sqrt(11), -3 / Math.sqrt(11)), normalizedV3,
                 "Normalized negative vector direction is incorrect");
 
         // =================BVA===================
@@ -279,19 +320,19 @@ class VectorTest {
         // BVA Test Case 1: Normalize a vector with extreme values
         Vector normalizedV4 = V4.normalize();
         assertEquals(1, normalizedV4.length(), DELTA, "Normalized vector with extreme values should have length 1");
-        assertEquals(new Vector(1/Math.sqrt(3), -1/Math.sqrt(3), 1/Math.sqrt(3)), normalizedV4,
+        assertEquals(new Vector(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)), normalizedV4,
                 "Normalized vector with extreme values direction is incorrect");
 
         // BVA Test Case 2: Normalize a vector with values close to zero
         Vector normalizedV8 = V8.normalize();
         assertEquals(1, normalizedV8.length(), DELTA, "Normalized vector with values close to zero should have length 1");
-        assertEquals(new Vector(1/Math.sqrt(3), 1/Math.sqrt(3), 1/Math.sqrt(3)), normalizedV8,
+        assertEquals(new Vector(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)), normalizedV8,
                 "Normalized vector with values close to zero direction is incorrect");
 
         // BVA Test Case 3: Normalize a vector with mixed components
         Vector normalizedV7 = V7.normalize();
         assertEquals(1, normalizedV7.length(), DELTA, "Normalized vector with mixed components should have length 1");
-        assertEquals(new Vector(1/Math.sqrt(2), -1/Math.sqrt(2), 0), normalizedV7,
+        assertEquals(new Vector(1 / Math.sqrt(2), -1 / Math.sqrt(2), 0), normalizedV7,
                 "Normalized vector with mixed components direction is incorrect");
     }
 

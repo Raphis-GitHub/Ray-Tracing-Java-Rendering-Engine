@@ -28,8 +28,6 @@ public class Tube extends RadialGeometry {
         this.axisRay = axisRay;
     }
 
-
-    @Override
     /**
      * Returns the normal vector to the tube at the given point.
      * The normal vector is perpendicular to the axis of the tube and points outward.
@@ -39,10 +37,11 @@ public class Tube extends RadialGeometry {
      * @param point the point on the tube's surface
      * @return the normalized normal vector at the given point
      */
+    @Override
     public Vector getNormal(Point point) {
         Vector u = point.subtract(this.axisRay.origin);
         double t = u.dotProduct(axisRay.direction);
-        if(isZero(t))
+        if (isZero(t))
             return ((point.subtract(axisRay.origin)).normalize());
         Point o = axisRay.origin.add(axisRay.direction.scale(t));
         return point.subtract(o).normalize();

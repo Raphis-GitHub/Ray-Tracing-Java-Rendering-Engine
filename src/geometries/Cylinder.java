@@ -5,18 +5,19 @@ import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
 //TODO: write javadocs
+
 /**
  * Represents a cylinder in 3D space.
  *
  * @author Raphael
  */
 public class Cylinder extends Tube {
-     /**
-      * The height of the cylinder.
-      * Represents the length of the cylinder along its central axis.
-      * This value is immutable and defined during the construction of the cylinder.
-      */
-     private final double height;
+    /**
+     * The height of the cylinder.
+     * Represents the length of the cylinder along its central axis.
+     * This value is immutable and defined during the construction of the cylinder.
+     */
+    private final double height;
 
     /**
      * Constructs a cylinder with a central axis ray, radius, and height.
