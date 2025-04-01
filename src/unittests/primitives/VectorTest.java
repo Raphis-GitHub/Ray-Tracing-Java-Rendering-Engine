@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * tests for vector
+ */
 class VectorTest {
     private static final double DELTA = 0.000001;
     private static final Vector ONE = new Vector(1, 1, 1);
@@ -19,6 +22,9 @@ class VectorTest {
     private static final Vector V10 = new Vector(1e-10, 0, -1e-10);
     private static final Vector V11 = new Vector(-1e-10, 1e-10, 1e-10);
 
+    /**
+     *
+     */
     @Test
     void constructor3double() {
         // =================EP=============
@@ -35,6 +41,9 @@ class VectorTest {
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0), //
                 "Constructed a ZERO vector");
     }
+    /**
+     *
+     */
     @Test
     void constructorDouble3() {
         // =================EP=============
@@ -55,6 +64,9 @@ class VectorTest {
 
 
 
+    /**
+     * Tests the {@link Vector#add(Vector)} method to ensure its correctness.
+     */
     @Test
     void add() {
         // =================EP====================
@@ -81,6 +93,9 @@ class VectorTest {
         assertEquals(new Vector(0, 1e-10, 0), V10.add(V11), "Add operation failed for values close to zero");
     }
 
+    /**
+     * Tests the {@link Vector#scale(double)} method to ensure its correctness.
+     */
     @Test
     void scale() {
         // =================EP====================
@@ -113,6 +128,9 @@ class VectorTest {
         assertThrows(IllegalArgumentException.class, () -> V1.scale(0), "Scaling by zero should throw an exception");
     }
 
+    /**
+     * Tests the {@link Vector#dotProduct(Vector)} method to ensure its correctness.
+     */
     @Test
     void dotProduct() {
         // =================EP====================
@@ -141,6 +159,9 @@ class VectorTest {
         assertEquals(28.0, V1.dotProduct(new Vector(2, 4, 6)), DELTA, "Dot product failed for parallel vectors");
 
     }
+    /**
+     * Tests the {@link Vector#crossProduct(Vector)} method to ensure its correctness.
+     */
     @Test
     void crossProduct() {
         // =================EP====================
@@ -171,6 +192,8 @@ class VectorTest {
                 "Cross product of parallel vectors should throw an exception due to zero vector result");
     }
 
+    /**
+     * Tests the {@link Vector#lengthSquared()} method to ensure its correctness in computing the*/
     @Test
     void lengthSquared() {
         // =================EP====================
@@ -196,6 +219,9 @@ class VectorTest {
         assertEquals(2, V7.lengthSquared(), DELTA, "Length squared calculation failed for mixed component vector");
     }
 
+    /**
+     * Tests the {@link Vector#length()} method to ensure its accuracy in computing the length of a vector.
+     */
     @Test
     void length() {
         // =================EP====================
@@ -225,6 +251,9 @@ class VectorTest {
         assertEquals(Math.sqrt(2), V7.length(), DELTA, "Length calculation failed for mixed component vector");
     }
 
+    /**
+     * Tests the {@link Vector#normalize()} method to ensure its correctness.
+     */
     @Test
     void normalize() {
         // =================EP====================

@@ -11,6 +11,11 @@ import primitives.Vector;
  * @author Raphael
  */
 public class Cylinder extends Tube {
+     /**
+      * The height of the cylinder.
+      * Represents the length of the cylinder along its central axis.
+      * This value is immutable and defined during the construction of the cylinder.
+      */
      private final double height;
 
     /**
