@@ -7,11 +7,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SphereTest {
 
+
+    /**
+     * Test method for {@link Sphere#getNormal(Point)}.
+     */
     @Test
     void getNormal() {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
-        Point p = new Point(1, 0, 0); // נקודה על פני הכדור
 
-        assertNull(sphere.getNormal(p), "Expected getNormal to return null as it's not implemented yet");
+        // EP: point on +X axis
+        assertEquals(new Vector(1, 0, 0), sphere.getNormal(new Point(1, 0, 0)), "Incorrect normal for point on +X axis");
+
+        // EP: point on -X axis
+        assertEquals(new Vector(-1, 0, 0), sphere.getNormal(new Point(-1, 0, 0)), "Incorrect normal for point on -X axis");
+
+        // EP: point on +Y axis
+        assertEquals(new Vector(0, 1, 0), sphere.getNormal(new Point(0, 1, 0)), "Incorrect normal for point on +Y axis");
+
+        // EP: point on -Y axis
+        assertEquals(new Vector(0, -1, 0), sphere.getNormal(new Point(0, -1, 0)), "Incorrect normal for point on -Y axis");
+
+        // EP: point on +Z axis
+        assertEquals(new Vector(0, 0, 1), sphere.getNormal(new Point(0, 0, 1)), "Incorrect normal for point on +Z axis");
+
+        // EP: point on -Z axis
+        assertEquals(new Vector(0, 0, -1), sphere.getNormal(new Point(0, 0, -1)), "Incorrect normal for point on -Z axis");
     }
 }
