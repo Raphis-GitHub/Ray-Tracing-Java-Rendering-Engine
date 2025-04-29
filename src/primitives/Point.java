@@ -16,7 +16,7 @@ public class Point {
      * An object of Double3, obj xyz is a collection of 3 doubles
      * representing the xyz in a cartesian coordinate system.
      */
-    protected Double3 xyz;
+    protected final Double3 xyz;
 
     /**
      * a constructor that takes a singe parameter and assigns it to the xyz field
@@ -68,7 +68,10 @@ public class Point {
      * @return a double representing output of the formula( the distance between 2 points squared)
      */
     public double distanceSquared(Point otherPoint) {
-        return ((otherPoint.xyz.d1 - this.xyz.d1) * (otherPoint.xyz.d1 - this.xyz.d1) + (otherPoint.xyz.d2 - this.xyz.d2) * (otherPoint.xyz.d2 - this.xyz.d2) + (otherPoint.xyz.d3 - this.xyz.d3) * (otherPoint.xyz.d3 - this.xyz.d3));
+        double d1 = xyz.d1 - otherPoint.xyz.d1;
+        double d2 = xyz.d2 - otherPoint.xyz.d2;
+        double d3 = xyz.d3 - otherPoint.xyz.d3;
+        return d1 * d1 + d2 * d2 + d3 * d3;
     }
 
     /**
