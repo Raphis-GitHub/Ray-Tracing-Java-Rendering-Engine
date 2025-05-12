@@ -4,7 +4,6 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
-//TODO: write javadocs
 
 /**
  * Represents a cylinder in 3D space.
