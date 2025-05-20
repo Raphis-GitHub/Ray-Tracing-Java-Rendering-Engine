@@ -1,9 +1,7 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
+import java.util.List;
 
 /**
  * Represents a cylinder in 3D space.
@@ -66,4 +64,19 @@ public class Cylinder extends Tube {
         // Calculate normal as vector from axis to surface
         return point.subtract(closestPoint).normalize();
     }
+
+    /**
+     * Finds intersection points between the ray and the geometry.
+     * <p>
+     * If no intersections are found, the method returns {@code null} (not an empty list).
+     *
+     * @param ray the ray to test for intersection
+     * @return a list of intersection points, or {@code null} if there are none
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
+
+
 }

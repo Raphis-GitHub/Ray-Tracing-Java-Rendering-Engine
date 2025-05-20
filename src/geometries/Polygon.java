@@ -1,6 +1,5 @@
 package geometries;
 
-import static java.lang.Double.*;
 import java.util.List;
 import static primitives.Util.*;
 import primitives.*;
@@ -79,5 +78,19 @@ public class Polygon extends Geometry {
 
    @Override
    public Vector getNormal(Point point) { return plane.getNormal(point); }
+
+   /**
+    * Finds intersection points between the ray and the geometry.
+    * <p>
+    * If no intersections are found, the method returns {@code null} (not an empty list).
+    *
+    * @param ray the ray to test for intersection
+    * @return a list of intersection points, or {@code null} if there are none
+    */
+   @Override
+   public List<Point> findIntersections(Ray ray) {
+      return null;
+   }
+
 
 }

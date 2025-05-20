@@ -1,8 +1,8 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -110,4 +110,46 @@ class PlaneTest {
         assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
         assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
     }
+
+    @Test
+    void testFindIntersections() {
+        Plane plane = new Plane(
+                new Point(0, 0, 1),
+                new Vector(0, 0, 1)
+        );
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC01: Ray intersects the plane (1 point)
+        Ray ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
+        List<Point> result = plane.findIntersections(ray);
+        assertNotNull(result, "TC01: Expected 1 intersection point");
+        assertEquals(1, result.size(), "TC01: Wrong number of points");
+        assertEquals(new Point(0, 0, 1), result.get(0), "TC01: Incorrect intersection point");
+
+        // TC02: Ray does not intersect the plane
+        ray = new Ray(new Vector(0, 1, 0), new Point(0, 0, 0));
+        assertNull(plane.findIntersections(ray), "TC02: Ray parallel and outside plane");
+
+        // =============== Boundary Values Tests ==================
+
+        // TC11: Ray is orthogonal to plane and starts before (1 point)
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
+        result = plane.findIntersections(ray);
+        assertNotNull(result, "TC11: Expected 1 point");
+        assertEquals(new Point(0, 0, 1), result.get(0), "TC11: Incorrect intersection");
+
+        // TC12: Ray is orthogonal to plane and starts on plane (0 points)
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 1));
+        assertNull(plane.findIntersections(ray), "TC12: Ray starts on plane");
+
+        // TC13: Ray is orthogonal and starts after plane (0 points)
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 2));
+        assertNull(plane.findIntersections(ray), "TC13: Ray after plane");
+
+        // TC14: Ray is in the plane (0 points)
+        ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 1));
+        assertNull(plane.findIntersections(ray), "TC14: Ray in the plane");
+    }
+
 }
