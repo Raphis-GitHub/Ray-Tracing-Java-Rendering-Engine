@@ -35,9 +35,8 @@ public class Triangle extends Polygon {
         List<Point> planeIntersections = plane.findIntersections(ray);
         if (planeIntersections == null) return null;
 
-        Point p0 = ray.origin;
         Vector v = ray.direction;
-        Point p = planeIntersections.get(0);
+        Point p = planeIntersections.getFirst();
 
         Point v1 = vertices.get(0);
         Point v2 = vertices.get(1);
@@ -47,9 +46,15 @@ public class Triangle extends Polygon {
         Vector v2v3 = v3.subtract(v2);
         Vector v3v1 = v1.subtract(v3);
 
-        Vector n1 = v1v2.crossProduct(p.subtract(v1));
-        Vector n2 = v2v3.crossProduct(p.subtract(v2));
-        Vector n3 = v3v1.crossProduct(p.subtract(v3));
+        Vector n1, n2, n3;
+        try {
+            n1 = v1v2.crossProduct(p.subtract(v1));
+            n2 = v2v3.crossProduct(p.subtract(v2));
+            n3 = v3v1.crossProduct(p.subtract(v3));
+        } catch (IllegalArgumentException e) {
+            // One of the vectors was ZERO => point is on edge or vertex → no intersection
+            return null;
+        }
 
         double sign1 = alignZero(v.dotProduct(n1));
         double sign2 = alignZero(v.dotProduct(n2));

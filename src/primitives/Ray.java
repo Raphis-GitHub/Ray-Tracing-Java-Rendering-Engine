@@ -28,6 +28,17 @@ public class Ray {
     }
 
     /**
+     * Calculates a point along the ray at a given distance from the origin.
+     *
+     * @param t the distance from the ray's origin
+     * @return the point at distance t along the ray direction
+     */
+    public Point getPoint(double t) {
+        return origin.add(direction.scale(t));
+    }
+
+
+    /**
      * Returns a string representation of the ray.
      *
      * @return The string representation of the ray.
