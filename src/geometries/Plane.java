@@ -1,8 +1,13 @@
 package geometries;
 
-import primitives.*;
-import static primitives.Util.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Represents a geometric plane in 3D space.
@@ -83,8 +88,8 @@ public class Plane extends Geometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point p0 = ray.origin;
-        Vector v = ray.direction;
+        Point p0 = ray.origin();
+        Vector v = ray.direction();
 
         // Plane normal
         Vector n = this.normal;
@@ -107,7 +112,6 @@ public class Plane extends Geometry {
         // Calculate intersection point
         return List.of(p0.add(v.scale(t)));
     }
-
 
 
 }

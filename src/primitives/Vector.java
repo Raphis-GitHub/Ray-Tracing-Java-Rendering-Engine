@@ -44,9 +44,6 @@ public class Vector extends Point {
      * @throws IllegalArgumentException if attempting to create a zero vector.
      */
     public Vector add(Vector other) {
-        if (this.xyz.equals(other.xyz.scale(-1))) {
-            throw new IllegalArgumentException("You may not create a ZERO vector.");
-        }
         return new Vector(xyz.add(other.xyz));
     }
 

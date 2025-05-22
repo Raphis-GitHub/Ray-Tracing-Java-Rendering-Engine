@@ -1,8 +1,12 @@
 package geometries;
 
-import primitives.*;
-import static primitives.Util.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 import java.util.List;
+
+import static primitives.Util.alignZero;
 
 /**
  * Represents a sphere in 3D space.
@@ -40,6 +44,7 @@ public class Sphere extends RadialGeometry {
         // Calculate vector from center to the point on the surface
         return point.subtract(center).normalize();
     }
+
     /**
      * Calculates the intersection points between a ray and the sphere.
      * <p>
@@ -53,8 +58,8 @@ public class Sphere extends RadialGeometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point p0 = ray.origin;
-        Vector v = ray.direction;
+        Point p0 = ray.origin();
+        Vector v = ray.direction();
         Point o = this.center;
 
         Vector u;

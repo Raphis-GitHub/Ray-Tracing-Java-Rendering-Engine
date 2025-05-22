@@ -16,7 +16,7 @@ public class Point {
      * An object of Double3, obj xyz is a collection of 3 doubles
      * representing the xyz in a cartesian coordinate system.
      */
-    public final Double3 xyz;
+    protected final Double3 xyz;
 
     /**
      * a constructor that takes a singe parameter and assigns it to the xyz field

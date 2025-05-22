@@ -9,12 +9,12 @@ public class Ray {
     /**
      * Direction vector of the ray
      */
-    final public Vector direction;
+    final private Vector direction;
 
     /**
      * Origin point of the ray
      */
-    final public Point origin; // Origin point of the ray
+    final private Point origin; // Origin point of the ray
 
     /**
      * Constructs a Ray with the specified direction vector and origin point.
@@ -46,5 +46,13 @@ public class Ray {
     @Override
     public String toString() {
         return "Ray [direction=" + direction + ", origin=" + origin + "]";
+    }
+
+    public Point origin() {
+        return origin;
+    }
+
+    public Vector direction() {
+        return direction;
     }
 }

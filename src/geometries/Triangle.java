@@ -1,8 +1,12 @@
 package geometries;
 
-import primitives.*;
-import static primitives.Util.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 import java.util.List;
+
+import static primitives.Util.alignZero;
 
 /**
  * Represents a triangle in 3D space.
@@ -35,7 +39,7 @@ public class Triangle extends Polygon {
         List<Point> planeIntersections = plane.findIntersections(ray);
         if (planeIntersections == null) return null;
 
-        Vector v = ray.direction;
+        Vector v = ray.direction();
         Point p = planeIntersections.getFirst();
 
         Point v1 = vertices.get(0);

@@ -291,6 +291,7 @@ class VectorTest {
         // BVA Test Case 3: Length of a vector with mixed components
         assertEquals(Math.sqrt(2), V7.length(), DELTA, "Length calculation failed for mixed component vector");
     }
+    //TODO: add subctract for vector
 
     /**
      * Tests the {@link Vector#normalize()} method to ensure its correctness.

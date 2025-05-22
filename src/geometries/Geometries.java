@@ -1,8 +1,9 @@
 package geometries;
 
-import primitives.Ray;
 import primitives.Point;
+import primitives.Ray;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,16 +14,15 @@ public class Geometries implements Intersectable {
 
     private final List<Intersectable> geometries = new LinkedList<>();
 
-    public Geometries() {}
+    public Geometries() {
+    }
 
     public Geometries(Intersectable... geometries) {
         add(geometries);
     }
 
     public void add(Intersectable... geometries) {
-        for (Intersectable g : geometries) {
-            this.geometries.add(g);
-        }
+        Collections.addAll(this.geometries, geometries);
     }
 
     @Override

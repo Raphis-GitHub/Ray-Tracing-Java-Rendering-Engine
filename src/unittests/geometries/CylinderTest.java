@@ -11,6 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * tests for cylinder
  */
 class CylinderTest {
+    /**
+     * Empty explicit default constructor to make javadoc generator happy
+     */
+    CylinderTest() {
+    }
 
     /**
      * Test method for {@link Cylinder#getNormal(Point)}.
