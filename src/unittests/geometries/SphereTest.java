@@ -1,13 +1,13 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -48,7 +48,7 @@ class SphereTest {
     @Test
     void testFindIntersections_noIntersection() {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
-        Ray ray = new Ray(new Vector(1, 0, 0),new Point(2, 2, 2));
+        Ray ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
         assertEquals(null, sphere.findIntersections(ray), "Ray outside sphere should return null");
     }
 
@@ -63,7 +63,7 @@ class SphereTest {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Ray's line is outside the sphere (0 points)
-        Ray ray = new Ray(new Vector(1, 1, 0),new Point(-1, 0, 0));
+        Ray ray = new Ray(new Vector(1, 1, 0), new Point(-1, 0, 0));
         assertNull(sphere.findIntersections(ray), "TC01: Ray outside sphere");
 
         // TC02: Ray starts before and crosses the sphere (2 points)
@@ -75,44 +75,44 @@ class SphereTest {
         assertTrue(result.contains(new Point(2, 0, 0)), "TC02: Missing second expected point");
 
         // TC03: Ray starts inside the sphere (1 point)
-        ray = new Ray(new Vector(0, 1, 0),new Point(1, 0.5, 0));
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC03: Expected 1 intersection point");
         assertEquals(1, result.size(), "TC03: Wrong number of points");
-        assertEquals(new Point(1, Math.sqrt(0.75), 0), result.get(0), "TC03: Intersection point incorrect");
+        assertEquals(new Point(1, 1, 0), result.getFirst(), "TC03: Intersection point incorrect");
 
         // TC04: Ray starts after the sphere (0 points)
-        ray = new Ray(new Vector(1, 0, 0),new Point(3, 0, 0));
+        ray = new Ray(new Vector(1, 0, 0), new Point(3, 0, 0));
         assertNull(sphere.findIntersections(ray), "TC04: Ray starts after sphere");
 
         // =============== Boundary Values Tests ==================
 
         // TC11: Ray starts at sphere and goes inside (1 point)
-        ray = new Ray(new Vector(1, 0, 0),new Point(0, 0, 0));
+        ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC11: Expected 1 intersection point");
         assertEquals(1, result.size(), "TC11: Wrong number of points");
 
         // TC12: Ray starts at sphere and goes outside (0 points)
-        ray = new Ray(new Vector(-1, 0, 0),new Point(0, 0, 0));
+        ray = new Ray(new Vector(-1, 0, 0), new Point(0, 0, 0));
         assertNull(sphere.findIntersections(ray), "TC12: Ray goes away from sphere");
 
         // TC13: Ray starts at center (1 point)
-        ray = new Ray(new Vector(1, 0, 0),new Point(1, 0, 0));
+        ray = new Ray(new Vector(1, 0, 0), new Point(1, 0, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC13: Expected 1 intersection point");
         assertEquals(1, result.size(), "TC13: Wrong number of points");
 
         // TC14: Ray is tangent and starts before (0 points)
-        ray = new Ray(new Vector(0, 0, 1),new Point(0, 1, -1));
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, -1));
         assertNull(sphere.findIntersections(ray), "TC14: Tangent, before");
 
         // TC15: Ray is tangent and starts at point of contact (0 points)
-        ray = new Ray(new Vector(0, 0, 1),new Point(0, 1, 0));
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, 0));
         assertNull(sphere.findIntersections(ray), "TC15: Tangent, on");
 
         // TC16: Ray is tangent and starts after contact (0 points)
-        ray = new Ray(new Vector(0, 0, 1),new Point(0, 1, 1));
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, 1));
         assertNull(sphere.findIntersections(ray), "TC16: Tangent, after");
     }
 

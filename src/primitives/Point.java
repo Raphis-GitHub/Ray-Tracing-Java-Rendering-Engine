@@ -12,6 +12,11 @@ public class Point {
      * A constant representing the origin point (0, 0, 0).
      */
     public static final Point ZERO = new Point(0, 0, 0);
+
+    public Double3 getXyz() {
+        return xyz;
+    }
+
     /**
      * An object of Double3, obj xyz is a collection of 3 doubles
      * representing the xyz in a cartesian coordinate system.
