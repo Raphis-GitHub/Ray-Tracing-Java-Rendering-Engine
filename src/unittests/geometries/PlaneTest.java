@@ -1,7 +1,10 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -111,6 +114,9 @@ class PlaneTest {
         assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
     }
 
+    /**
+     * Test method for {@link Plane#findIntersections(Ray)}.
+     */
     @Test
     void testFindIntersections() {
         Plane plane = new Plane(

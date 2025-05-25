@@ -1,9 +1,6 @@
 package primitives;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Unit tests for Ray.getPoint
  */
 public class RayTest {
-
+    /**
+     * Test method for {@link Ray#getPoint(double)}.
+     */
     @Test
     void testGetPoint() {
         Ray ray = new Ray(new Vector(1, 0, 0), new Point(1, 2, 3));

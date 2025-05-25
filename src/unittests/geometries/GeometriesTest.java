@@ -1,10 +1,9 @@
 package geometries;
 
-import geometries.*;
+import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -14,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for Geometries.findIntersections
  */
 public class GeometriesTest {
-
+    /**
+     * Test method for {@link Geometries#findIntersections(Ray)}.
+     */
     @Test
     void testFindIntersections() {
         Sphere sphere = new Sphere(new Point(0, 0, 2), 1);

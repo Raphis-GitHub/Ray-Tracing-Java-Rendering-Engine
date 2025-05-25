@@ -13,6 +13,11 @@ public class Point {
      */
     public static final Point ZERO = new Point(0, 0, 0);
 
+    /**
+     * getter for the xyz field.
+     *
+     * @return an object of Double3 representing the xyz coordinates
+     */
     public Double3 getXyz() {
         return xyz;
     }

@@ -48,10 +48,20 @@ public class Ray {
         return "Ray [direction=" + direction + ", origin=" + origin + "]";
     }
 
+    /**
+     * Returns the origin point of the ray.
+     *
+     * @return The origin point of the ray.
+     */
     public Point origin() {
         return origin;
     }
 
+    /**
+     * Returns the direction vector of the ray.
+     *
+     * @return The direction vector of the ray.
+     */
     public Vector direction() {
         return direction;
     }
