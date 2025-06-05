@@ -2,10 +2,13 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
-import primitives.Util;
 import primitives.Vector;
 
+import java.util.LinkedList;
 import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Represents a cylinder in 3D space.
@@ -52,12 +55,12 @@ public class Cylinder extends Tube {
         double t = axisRay.direction().dotProduct(v);
 
         // Check if the point is on the bottom base (t ≈ 0)
-        if (Util.isZero(t)) {
+        if (isZero(t)) {
             return axisRay.direction().scale(-1); // Normal points opposite to the axis direction
         }
 
         // Check if the point is on the top base (t ≈ height)
-        if (Util.isZero(t - height)) {
+        if (isZero(t - height)) {
             return axisRay.direction(); // Normal points in the axis direction
         }
 
@@ -79,9 +82,48 @@ public class Cylinder extends Tube {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
-        //TODO: Implement the intersection logic for Cylinder
+        // Collect valid intersection points
+        List<Point> intersections = new LinkedList<>();
+
+        // 1. Check intersections with the cylinder sides
+        List<Point> tubeIntersections = super.findIntersections(ray);
+        if (tubeIntersections != null) {
+            for (Point p : tubeIntersections) {
+                double t = alignZero(axisRay.direction().dotProduct(p.subtract(axisRay.origin())));
+                if (t >= 0 && t <= height) {
+                    intersections.add(p);
+                }
+            }
+        }
+
+        // 2. Check intersections with caps (bottom at t=0, top at t=height)
+        Point[] capCenters = {
+                axisRay.origin(),                                           // bottom cap
+                axisRay.origin().add(axisRay.direction().scale(height))   // top cap
+        };
+
+        Vector[] capNormals = {
+                axisRay.direction().scale(-1),  // bottom cap normal (opposite to axis)
+                axisRay.direction()             // top cap normal (same as axis)
+        };
+
+        // Check both caps - didn't do for each loop to avoid code duplication
+        for (int i = 0; i < 2 && intersections.size() < 2; i++) {
+            double nv = alignZero(capNormals[i].dotProduct(ray.direction()));
+            if (!isZero(nv)) {
+                double t = alignZero(capNormals[i].dotProduct(capCenters[i].subtract(ray.origin()))) / nv;
+                if (t > 0) {
+                    Point p = ray.getPoint(t);
+                    if (alignZero(p.distanceSquared(capCenters[i]) - radiusSquared) <= 0) {
+                        intersections.add(p);
+                    }
+                }
+            }
+        }
+
+        // Return result based on number of intersections
+        return intersections.isEmpty() ? null :
+                intersections.size() == 1 ? List.of(intersections.get(0)) :
+                        List.of(intersections.get(0), intersections.get(1));
     }
-
-
 }

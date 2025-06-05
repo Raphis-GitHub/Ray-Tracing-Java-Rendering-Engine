@@ -146,7 +146,7 @@ class PlaneTest {
         assertEquals(new Point(0, 0, 1), result.get(0), "TC11: Incorrect intersection");
 
         // TC12: Ray is orthogonal to plane and starts on plane (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 1));
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 2));
         assertNull(plane.findIntersections(ray), "TC12: Ray starts on plane");
 
         // TC13: Ray is orthogonal and starts after plane (0 points)

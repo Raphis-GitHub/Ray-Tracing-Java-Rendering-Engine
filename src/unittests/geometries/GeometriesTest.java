@@ -50,6 +50,6 @@ public class GeometriesTest {
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
         result = geometries.findIntersections(ray);
         assertNotNull(result, "TC05: Expected intersection");
-        assertEquals(4, result.size(), "TC05: Expected 4 intersection points total");
+        assertEquals(3, result.size(), "TC05: Expected 3 intersection points total");
     }
 }

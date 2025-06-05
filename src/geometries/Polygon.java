@@ -6,6 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -94,17 +95,80 @@ public class Polygon extends Geometry {
     }
 
     /**
-     * Finds intersection points between the ray and the geometry.
-     * <p>
-     * If no intersections are found, the method returns {@code null} (not an empty list).
+     * Finds intersection points between the ray and the polygon.
+     * First checks intersection with the polygon's plane, then verifies
+     * if the intersection point is inside the polygon boundaries.
      *
      * @param ray the ray to test for intersection
      * @return a list of intersection points, or {@code null} if there are none
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        //TODO: Implement the intersection logic for Polygon
-        return null;
+        // First, find intersection with the polygon's plane
+        List<Point> planeIntersections = plane.findIntersections(ray);
+        if (planeIntersections == null) {
+            return null;
+        }
+
+        // Get the intersection point with the plane
+        Point p = planeIntersections.getFirst();
+        Vector v = ray.direction();
+
+        // Check if the point is inside the polygon using the same technique as Triangle
+        // For each edge, create a vector from vertex to point and check cross product
+        Vector[] normals = new Vector[size];
+
+        for (int i = 0; i < size; i++) {
+            // Get current vertex and next vertex (wrapping around)
+            Point vi = vertices.get(i);
+            Point viNext = vertices.get((i + 1) % size);
+
+            // Edge vector
+            Vector edge = viNext.subtract(vi);
+
+            // Vector from vertex to intersection point
+            Vector toPoint;
+            try {
+                toPoint = p.subtract(vi);
+            } catch (IllegalArgumentException e) {
+                // Point is on vertex → no intersection
+                return null;
+            }
+
+            // Calculate cross product to get normal
+            try {
+                normals[i] = edge.crossProduct(toPoint);
+            } catch (IllegalArgumentException e) {
+                // Cross product is zero → point is on edge → no intersection
+                return null;
+            }
+        }
+
+        // Check if all dot products have the same sign
+        double firstSign = alignZero(v.dotProduct(normals[0]));
+
+        // If first sign is zero, point is on edge
+        if (firstSign == 0) {
+            return null;
+        }
+
+        // Check all other normals
+        for (int i = 1; i < size; i++) {
+            double sign = alignZero(v.dotProduct(normals[i]));
+
+            // If sign is zero, point is on edge
+            if (sign == 0) {
+                return null;
+            }
+
+            // If signs don't match, point is outside
+            if ((firstSign > 0 && sign < 0) || (firstSign < 0 && sign > 0)) {
+                return null;
+            }
+        }
+
+        // All signs match → point is inside the polygon
+        return List.of(p);
     }
 
 

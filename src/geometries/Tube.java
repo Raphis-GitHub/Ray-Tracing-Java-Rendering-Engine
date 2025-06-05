@@ -6,6 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -57,7 +58,85 @@ public class Tube extends RadialGeometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        //TODO: Implement the intersection logic for the tube
+        Point p0 = ray.origin();
+        Vector v = ray.direction();
+
+        Point pa = axisRay.origin();
+        Vector va = axisRay.direction();
+
+        // Vector from axis origin to ray origin
+        Vector deltaP;
+        try {
+            deltaP = p0.subtract(pa);
+        } catch (IllegalArgumentException e) {
+            // Ray starts on the axis origin - special case
+            deltaP = null;
+        }
+
+        // Calculate helper vectors and scalars for the quadratic equation
+        // The tube equation: (P - Pa - t*Va)² - ((P - Pa - t*Va)·Va)² = r²
+        // Where P is a point on the ray: P = P0 + t*v
+
+        double vDotVa = v.dotProduct(va);
+        Vector vMinusProj = v;
+
+        // v - (v·va)*va (perpendicular component of v to axis)
+        if (!isZero(vDotVa)) {
+            vMinusProj = v.subtract(va.scale(vDotVa));
+        }
+
+        // Quadratic coefficients: at² + bt + c = 0
+        double a = vMinusProj.lengthSquared();
+
+        // If a ≈ 0, ray is parallel to axis
+        if (isZero(a)) {
+            return null;
+        }
+
+        double b = 0;
+        double c = -radiusSquared;
+
+        if (deltaP != null) {
+            double deltaPDotVa = deltaP.dotProduct(va);
+            Vector deltaPMinusProj = deltaP;
+
+            // deltaP - (deltaP·va)*va (perpendicular component of deltaP to axis)
+            if (!isZero(deltaPDotVa)) {
+                deltaPMinusProj = deltaP.subtract(va.scale(deltaPDotVa));
+            }
+
+            b = 2 * vMinusProj.dotProduct(deltaPMinusProj);
+            c = deltaPMinusProj.lengthSquared() - radiusSquared;
+        }
+
+        // Calculate discriminant
+        double discriminant = alignZero(b * b - 4 * a * c);
+
+        // No intersection if discriminant is negative
+        if (discriminant < 0) {
+            return null;
+        }
+
+        // Calculate the two possible t values
+        double sqrtDiscriminant = Math.sqrt(discriminant);
+        double t1 = alignZero((-b - sqrtDiscriminant) / (2 * a));
+        double t2 = alignZero((-b + sqrtDiscriminant) / (2 * a));
+
+        // Check which intersections are valid (t > 0)
+        if (t1 > 0 && t2 > 0) {
+            Point p1 = p0.add(v.scale(t1));
+            Point p2 = p0.add(v.scale(t2));
+            return List.of(p1, p2);
+        }
+
+        if (t1 > 0) {
+            return List.of(p0.add(v.scale(t1)));
+        }
+
+        if (t2 > 0) {
+            return List.of(p0.add(v.scale(t2)));
+        }
+
         return null;
     }
 

@@ -46,4 +46,8 @@ class TubeTest {
         Vector expected6 = new Vector(0.000001, 1, 0).normalize();
         assertEquals(expected6, tube.getNormal(p6), "Incorrect normal for near-axis diagonal");
     }
+
+    @Test
+    void findIntersections() {
+    }
 }

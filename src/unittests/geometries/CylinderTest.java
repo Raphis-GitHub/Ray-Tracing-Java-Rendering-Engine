@@ -50,4 +50,9 @@ class CylinderTest {
         Point p6 = new Point(1, 0, 5);
         assertEquals(new Vector(0, 0, 1), cylinder.getNormal(p6), "Incorrect normal at top edge");
     }
+
+    @Test
+    void findIntersections() {
+        //TODO: Implement findIntersections test for Cylinder
+    }
 }
