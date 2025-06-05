@@ -47,7 +47,11 @@ class TubeTest {
         assertEquals(expected6, tube.getNormal(p6), "Incorrect normal for near-axis diagonal");
     }
 
+    /**
+     * Test method for {@link Tube#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
+        //TODO: Implement findIntersections test for Tube
     }
 }
