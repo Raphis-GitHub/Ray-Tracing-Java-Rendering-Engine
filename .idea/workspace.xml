@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="change style settings + reformat of everything (Dan)">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/GeometriesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/GeometriesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="module-info" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Raphis-GitHub&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Raphis-GitHub/ISE5785_4760_2159.git&quot;,
+    &quot;accountId&quot;: &quot;6e99f8cc-aef7-4c8f-a9e7-144cb1b17e7d&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/primitives/Point.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2uoagi5okox1DiJipjRBW6gmHW5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in ISE5785_4760_2159.executor": "Run",
+    "JUnit.CylinderTest.executor": "Run",
+    "JUnit.CylinderTest.getNormal.executor": "Run",
+    "JUnit.CylinderTest.testFindIntersections.executor": "Run",
+    "JUnit.PlaneTest.executor": "Run",
+    "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
+    "JUnit.PointTest.executor": "Run",
+    "JUnit.PointTests.executor": "Run",
+    "JUnit.PointTests.testAdd.executor": "Run",
+    "JUnit.PolygonTests.executor": "Run",
+    "JUnit.SphereTest.executor": "Run",
+    "JUnit.SphereTest.getNormal.executor": "Debug",
+    "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
+    "JUnit.TubeTest.executor": "Run",
+    "JUnit.VectorTest.add.executor": "Run",
+    "JUnit.VectorTest.dotProduct.executor": "Run",
+    "JUnit.VectorTest.executor": "Run",
+    "JUnit.VectorTest.scale.executor": "Run",
+    "JUnit.all tests.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.preview.features.used": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries",
+    "last_opened_file_path": "C:/Users/raphs/.m2/repository/junit/junit/4.8/junit-4.8.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/raphs/IdeaProjects/untitled/src/test/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\geometries" />
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\geometries" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="geometries" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="geometries" />
+      <recent name="primitives" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in ISE5785_4760_2159">
+    <configuration name="All in ISE5785_4760_2159" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CylinderTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SphereTest.testFindIntersections_variousCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
+      <option name="METHOD_NAME" value="testFindIntersections_variousCases" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
+        <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
+        <item itemvalue="JUnit.SphereTest.testFindIntersections_variousCases" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="" />
+      <created>1742917494114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742917494114</updated>
+      <workItem from="1742917495042" duration="1349000" />
+      <workItem from="1742994666781" duration="2077000" />
+      <workItem from="1743063670706" duration="2532000" />
+      <workItem from="1743169933923" duration="237000" />
+      <workItem from="1743275118102" duration="662000" />
+      <workItem from="1743276042416" duration="1339000" />
+      <workItem from="1743319287372" duration="2201000" />
+      <workItem from="1743355417087" duration="1340000" />
+      <workItem from="1743356941047" duration="6067000" />
+      <workItem from="1743510504301" duration="10947000" />
+      <workItem from="1745489586194" duration="645000" />
+      <workItem from="1747033563502" duration="3020000" />
+      <workItem from="1747036755837" duration="1779000" />
+      <workItem from="1747918999583" duration="6351000" />
+      <workItem from="1748351257984" duration="1041000" />
+      <workItem from="1748361721121" duration="664000" />
+      <workItem from="1748958545373" duration="1145000" />
+      <workItem from="1748959785618" duration="200000" />
+      <workItem from="1748960020401" duration="818000" />
+      <workItem from="1749106255070" duration="5031000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1742994697200</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742994697200</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1742995129023</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742995129023</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1743063780612</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743063780612</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added add another getnormal for plane">
+      <option name="closed" value="true" />
+      <created>1743355361345</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743355361345</updated>
+    </task>
+    <task id="LOCAL-00005" summary="jdk swap">
+      <option name="closed" value="true" />
+      <created>1743356365016</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743356365016</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test">
+      <option name="closed" value="true" />
+      <created>1743357931468</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743357931468</updated>
+    </task>
+    <task id="LOCAL-00007" summary="built tests">
+      <option name="closed" value="true" />
+      <created>1743361323300</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743361323300</updated>
+    </task>
+    <task id="LOCAL-00008" summary="built tests">
+      <option name="closed" value="true" />
+      <created>1743361452024</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743361452024</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fixed to 21">
+      <option name="closed" value="true" />
+      <created>1743435238081</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743435238081</updated>
+    </task>
+    <task id="LOCAL-00010" summary="PUSH">
+      <option name="closed" value="true" />
+      <created>1743512579656</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743512579656</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Rename test methods and class for consistency&#10;&#10;Updated method names in PlaneTest to reflect their respective test purposes more clearly. Additionally, corrected PointTest class name to align with naming conventions and improve clarity.">
+      <option name="closed" value="true" />
+      <created>1743512771661</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743512771661</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added methods in test plane">
+      <option name="closed" value="true" />
+      <created>1743512853953</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743512853953</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add extensive unit tests for Vector class operations&#10;&#10;Added comprehensive equivalence partitioning (EP) and boundary value analysis (BVA) tests for constructors, addition, scaling, and dot product methods. These tests cover edge cases, extreme values, and invalid operations to ensure robust functionality and reliability of the Vector class.">
+      <option name="closed" value="true" />
+      <created>1743515633385</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1743515633385</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add comprehensive unit tests for vector operations&#10;&#10;Enhanced test coverage for `crossProduct`, `lengthSquared`, `length`, and `normalize` methods. Included EP and BVA test cases, covering typical, edge, and boundary scenarios to ensure robustness and correctness.">
+      <option name="closed" value="true" />
+      <created>1743516310781</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1743516310781</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Implement normal vector calculations for Tube, Cylinder, and Sphere&#10;&#10;Added `getNormal` method implementations to Tube, Cylinder, and Sphere classes, providing proper logic for calculating normal vectors at given surface points. Also, updated access modifiers in Ray class to allow access to origin and direction properties. Removed unnecessary JUnit Jupiter library configuration file.">
+      <option name="closed" value="true" />
+      <created>1743517258389</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1743517258389</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Implement normal vector calculations for Tube, Cylinder, and Sphere&#10;&#10;Added `getNormal` method implementations to Tube, Cylinder, and Sphere classes, providing proper logic for calculating normal vectors at given surface points. Also, updated access modifiers in Ray class to allow access to origin and direction properties. Removed unnecessary JUnit Jupiter library configuration file.">
+      <option name="closed" value="true" />
+      <created>1743517270365</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1743517270365</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Remove obsolete Main.java and enhance test documentation&#10;&#10;The Main.java file, which contained outdated test code, has been removed. Additionally, several unit tests were updated with detailed Javadoc comments to improve clarity and maintainability.">
+      <option name="closed" value="true" />
+      <created>1743518253183</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743518253183</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactor comments, imports, and formatting across files&#10;&#10;Improved code readability by refining comments, organizing imports, and normalizing formatting in multiple files. Updated Javadoc styles and ensured consistent spacing, indentation, and code alignment in different classes and test cases.">
+      <option name="closed" value="true" />
+      <created>1743518777395</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743518777395</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Improve code style with added Javadoc suppression&#10;&#10;Added a SuppressWarnings annotation for Javadoc-related warnings in the VectorTest class. This ensures a cleaner codebase by silencing non-critical warnings during compilation.">
+      <option name="closed" value="true" />
+      <created>1743519153414</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743519153414</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Improve code style with added Javadoc suppression&#10;&#10;Added a SuppressWarnings annotation for Javadoc-related warnings in the VectorTest class. This ensures a cleaner codebase by silencing non-critical warnings during compilation.">
+      <option name="closed" value="true" />
+      <created>1747034657754</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747034657754</updated>
+    </task>
+    <task id="LOCAL-00021" summary="redid files for this year">
+      <option name="closed" value="true" />
+      <created>1747034904813</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747034904813</updated>
+    </task>
+    <task id="LOCAL-00022" summary="redid files for this year">
+      <option name="closed" value="true" />
+      <created>1747035633359</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747035633359</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1) reformat all last time&#10;2) move JUNIT library to global maven location">
+      <option name="closed" value="true" />
+      <created>1747037110463</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747037110463</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Refactor geometries to improve code style and consistency">
+      <option name="closed" value="true" />
+      <created>1747919629357</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1747919629357</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest">
+      <option name="closed" value="true" />
+      <created>1748179688946</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1748179688946</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Enhance documentation by adding Javadoc comments for constructors and methods in Geometries, Point, Ray, and their respective test classes">
+      <option name="closed" value="true" />
+      <created>1748180040223</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1748180040223</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Implement intersection logic for Cylinder and Tube; add tests for findIntersections in Cylinder, Tube, and Polygon">
+      <option name="closed" value="true" />
+      <created>1749113217977</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749113217977</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation">
+      <option name="closed" value="true" />
+      <created>1749113370777</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1749113370777</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Refactor Cylinder and Tube classes; enhance unit tests for intersection logic and normal calculations">
+      <option name="closed" value="true" />
+      <created>1749116282567</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749116282567</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="refactor" />
+    <MESSAGE value="added add another getnormal for plane" />
+    <MESSAGE value="jdk swap" />
+    <MESSAGE value="test" />
+    <MESSAGE value="built tests" />
+    <MESSAGE value="fixed to 21" />
+    <MESSAGE value="PUSH" />
+    <MESSAGE value="Rename test methods and class for consistency&#10;&#10;Updated method names in PlaneTest to reflect their respective test purposes more clearly. Additionally, corrected PointTest class name to align with naming conventions and improve clarity." />
+    <MESSAGE value="added methods in test plane" />
+    <MESSAGE value="Add extensive unit tests for Vector class operations&#10;&#10;Added comprehensive equivalence partitioning (EP) and boundary value analysis (BVA) tests for constructors, addition, scaling, and dot product methods. These tests cover edge cases, extreme values, and invalid operations to ensure robust functionality and reliability of the Vector class." />
+    <MESSAGE value="Add comprehensive unit tests for vector operations&#10;&#10;Enhanced test coverage for `crossProduct`, `lengthSquared`, `length`, and `normalize` methods. Included EP and BVA test cases, covering typical, edge, and boundary scenarios to ensure robustness and correctness." />
+    <MESSAGE value="Implement normal vector calculations for Tube, Cylinder, and Sphere&#10;&#10;Added `getNormal` method implementations to Tube, Cylinder, and Sphere classes, providing proper logic for calculating normal vectors at given surface points. Also, updated access modifiers in Ray class to allow access to origin and direction properties. Removed unnecessary JUnit Jupiter library configuration file." />
+    <MESSAGE value="Remove obsolete Main.java and enhance test documentation&#10;&#10;The Main.java file, which contained outdated test code, has been removed. Additionally, several unit tests were updated with detailed Javadoc comments to improve clarity and maintainability." />
+    <MESSAGE value="Refactor comments, imports, and formatting across files&#10;&#10;Improved code readability by refining comments, organizing imports, and normalizing formatting in multiple files. Updated Javadoc styles and ensured consistent spacing, indentation, and code alignment in different classes and test cases." />
+    <MESSAGE value="Improve code style with added Javadoc suppression&#10;&#10;Added a SuppressWarnings annotation for Javadoc-related warnings in the VectorTest class. This ensures a cleaner codebase by silencing non-critical warnings during compilation." />
+    <MESSAGE value="redid files for this year" />
+    <MESSAGE value="1) reformat all last time&#10;2) move JUNIT library to global maven location" />
+    <MESSAGE value="Refactor geometries to improve code style and consistency" />
+    <MESSAGE value="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest" />
+    <MESSAGE value="Enhance documentation by adding Javadoc comments for constructors and methods in Geometries, Point, Ray, and their respective test classes" />
+    <MESSAGE value="Implement intersection logic for Cylinder and Tube; add tests for findIntersections in Cylinder, Tube, and Polygon" />
+    <MESSAGE value="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation" />
+    <MESSAGE value="Refactor Cylinder and Tube classes; enhance unit tests for intersection logic and normal calculations" />
+    <MESSAGE value="change style settings + reformat of everything (Dan)" />
+    <option name="LAST_COMMIT_MESSAGE" value="change style settings + reformat of everything (Dan)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
