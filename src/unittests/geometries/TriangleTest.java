@@ -1,9 +1,7 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -28,15 +26,13 @@ public class TriangleTest {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Ray intersects inside the triangle
-        Ray ray1 = new Ray(new Vector(0, -1, 1), new Point(0, 0.5, -1));
         Ray ray = new Ray(new Vector(0, 0, 1), new Point(0, 0.5, -1));
 
         List<Point> result = triangle.findIntersections(ray);
-        List<Point> result1 = triangle.findIntersections(ray1);
 
         assertNotNull(result, "TC01: Expected 1 intersection");
         assertEquals(1, result.size(), "TC01: Wrong number of points");
-        assertEquals(new Point(0, 0.5, 0), result.get(0), "TC01: Incorrect point");
+        assertEquals(new Point(0, 0.5, 0), result.getFirst(), "TC01: Incorrect point");
 
         // TC02: Ray intersects outside the triangle against edge
         ray = new Ray(new Vector(0, -1, 1), new Point(2, 1, -1));

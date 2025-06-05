@@ -1,9 +1,7 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -131,7 +129,7 @@ class PlaneTest {
         List<Point> result = plane.findIntersections(ray);
         assertNotNull(result, "TC01: Expected 1 intersection point");
         assertEquals(1, result.size(), "TC01: Wrong number of points");
-        assertEquals(new Point(0, 0, 1), result.get(0), "TC01: Incorrect intersection point");
+        assertEquals(new Point(0, 0, 1), result.getFirst(), "TC01: Incorrect intersection point");
 
         // TC02: Ray does not intersect the plane
         ray = new Ray(new Vector(0, 1, 0), new Point(0, 0, 0));
@@ -143,7 +141,7 @@ class PlaneTest {
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
         result = plane.findIntersections(ray);
         assertNotNull(result, "TC11: Expected 1 point");
-        assertEquals(new Point(0, 0, 1), result.get(0), "TC11: Incorrect intersection");
+        assertEquals(new Point(0, 0, 1), result.getFirst(), "TC11: Incorrect intersection");
 
         // TC12: Ray is orthogonal to plane and starts on plane (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 2));

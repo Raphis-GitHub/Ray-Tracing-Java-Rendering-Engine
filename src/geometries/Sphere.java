@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -60,11 +58,10 @@ public class Sphere extends RadialGeometry {
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.origin();
         Vector v = ray.direction();
-        Point o = this.center;
 
         Vector u;
         try {
-            u = o.subtract(p0);
+            u = this.center.subtract(p0);
         } catch (IllegalArgumentException e) {
             // The ray starts at the center of the sphere
             return List.of(p0.add(v.scale(radius)));
@@ -93,6 +90,5 @@ public class Sphere extends RadialGeometry {
 
         return null;
     }
-
 
 }

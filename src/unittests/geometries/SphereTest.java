@@ -1,20 +1,16 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 /**
  * unit tests for sphere
  */
 class SphereTest {
-
 
     /**
      * Test method for {@link Sphere#getNormal(Point)}.
@@ -50,6 +46,7 @@ class SphereTest {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
         Ray ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
         assertEquals(null, sphere.findIntersections(ray), "Ray outside sphere should return null");
+        //TODO
     }
 
     /**
@@ -115,6 +112,5 @@ class SphereTest {
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, 1));
         assertNull(sphere.findIntersections(ray), "TC16: Tangent, after");
     }
-
 
 }

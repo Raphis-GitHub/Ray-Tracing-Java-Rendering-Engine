@@ -1,13 +1,10 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
@@ -170,6 +167,5 @@ public class Polygon extends Geometry {
         // All signs match → point is inside the polygon
         return List.of(p);
     }
-
 
 }

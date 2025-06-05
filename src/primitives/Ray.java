@@ -37,7 +37,6 @@ public class Ray {
         return origin.add(direction.scale(t));
     }
 
-
     /**
      * Returns a string representation of the ray.
      *

@@ -1,13 +1,10 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Represents a geometric plane in 3D space.
@@ -101,10 +98,7 @@ public class Plane extends Geometry {
         if (isZero(nv)) return null;
 
         // Numerator: n · (Q0 - P0)
-        Point q0 = this.point;
-        double t = alignZero(n.dotProduct(q0.subtract(p0)));
-
-        t /= nv;
+        double t = alignZero(n.dotProduct(this.point.subtract(p0))) / nv;
 
         // If intersection is behind the ray's head
         if (t <= 0) return null;
@@ -112,6 +106,5 @@ public class Plane extends Geometry {
         // Calculate intersection point
         return List.of(p0.add(v.scale(t)));
     }
-
 
 }

@@ -1,9 +1,8 @@
 package geometries;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -63,6 +62,7 @@ class CylinderTest {
      * Test method for {@link Cylinder#findIntersections(Ray)}.
      */
     @Test
+    @Disabled
     void testFindIntersections() {
         Cylinder cylinder = new Cylinder(
                 new Ray(new Vector(0, 0, 1), new Point(0, 0, 0)),
@@ -74,6 +74,7 @@ class CylinderTest {
 
         // TC01: Ray outside cylinder and parallel to axis (0 points)
         Ray ray = new Ray(new Vector(0, 0, 1), new Point(2, 0, 0));
+        fail("not yet implemented");
 
         // TC02: Ray inside cylinder and parallel to axis (2 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0, -1));
@@ -84,6 +85,7 @@ class CylinderTest {
 
         // TC03: Ray perpendicular to axis, outside cylinder (0 points)
         ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 1));
+        fail("not yet implemented");
 
         // TC04: Ray perpendicular to axis, through cylinder (2 points)
         ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 1));

@@ -1,14 +1,11 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Represents a cylinder in 3D space.
@@ -34,7 +31,6 @@ public class Cylinder extends Tube {
         super(axisRay, radius);
         this.height = height;
     }
-
 
     /**
      * Returns the normal vector to the cylinder at the given point.

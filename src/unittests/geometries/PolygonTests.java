@@ -1,9 +1,7 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -57,17 +55,17 @@ class PolygonTests {
         assertThrows(IllegalArgumentException.class, //
                 () -> new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0),
                         new Point(0, 0.5, 0.5)),
-                "Constructed a polygon with vertix on a side");
+                "Constructed a polygon with vertex on a side");
 
         // TC11: Last point = first point
         assertThrows(IllegalArgumentException.class, //
                 () -> new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 0, 1)),
-                "Constructed a polygon with vertice on a side");
+                "Constructed a polygon with vertex on a side");
 
         // TC12: Co-located points
         assertThrows(IllegalArgumentException.class, //
                 () -> new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 1, 0)),
-                "Constructed a polygon with vertice on a side");
+                "Constructed a polygon with vertex on a side");
 
     }
 
@@ -106,7 +104,7 @@ class PolygonTests {
                 new Point(0, 2, 1)
         );
 
-        // Test with a pentagon for more complex cases
+        // Test with the pentagon for more complex cases
         Polygon pentagon = new Polygon(
                 new Point(1, 0, 0),
                 new Point(0.31, 0.95, 0),
@@ -122,7 +120,7 @@ class PolygonTests {
         List<Point> result = square.findIntersections(ray);
         assertNotNull(result, "TC01: Ray inside polygon should intersect");
         assertEquals(1, result.size(), "TC01: Wrong number of points");
-        assertEquals(new Point(1, 1, 1), result.get(0), "TC01: Wrong intersection point");
+        assertEquals(List.of(new Point(1, 1, 1)), result, "TC01: Wrong intersection point");
 
         // TC02: Ray outside polygon - against edge (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(3, 1, 0));
@@ -148,8 +146,7 @@ class PolygonTests {
         ray = new Ray(new Vector(0, 0, -1), new Point(1, 1, 2));
         result = square.findIntersections(ray);
         assertNotNull(result, "TC06: Ray perpendicular from above should intersect");
-        assertEquals(1, result.size(), "TC06: Wrong number of points");
-        assertEquals(new Point(1, 1, 1), result.get(0), "TC06: Wrong intersection point");
+        assertEquals(List.of(new Point(1, 1, 1)), result, "TC06: Wrong intersection point");
 
         // TC07: Ray starts after polygon (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(1, 1, 2));
@@ -188,22 +185,22 @@ class PolygonTests {
                 "TC22: Ray starting on edge should return null");
 
         // TC23: Ray starts on vertex (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 1));
-
+        //ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 1));
+        fail("not yet implemented");
         // **** Group: Special cases with pentagon
 
-        // TC31: Ray through center of pentagon (1 point)
+        // TC31: Ray through the center of the pentagon (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
         result = pentagon.findIntersections(ray);
         assertEquals(1, result.size(), "TC31: Wrong number of points");
-        assertEquals(new Point(0, 0, 0), result.get(0), "TC31: Wrong intersection point");
+        assertEquals(List.of(new Point(0, 0, 0)), result, "TC31: Wrong intersection point");
 
         // TC32: Ray near vertex but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.9, 0, -1));
         result = pentagon.findIntersections(ray);
         assertEquals(1, result.size(), "TC32: Wrong number of points");
 
-        // TC33: Ray near edge but inside (1 point)
+        // TC33: Ray near the edge but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0.5, -1));
         result = pentagon.findIntersections(ray);
         assertEquals(1, result.size(), "TC33: Wrong number of points");

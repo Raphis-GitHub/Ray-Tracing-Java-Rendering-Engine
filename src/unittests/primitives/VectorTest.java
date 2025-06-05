@@ -102,7 +102,6 @@ class VectorTest {
                 "Constructed a ZERO vector");
     }
 
-
     /**
      * Tests the {@link Vector#add(Vector)} method to ensure its correctness.
      */
@@ -176,7 +175,6 @@ class VectorTest {
 
         // EP Test Case 1: Dot product of two normal vectors
         assertEquals(32.0, V1.dotProduct(V2), DELTA, "Dot product of two normal vectors failed");
-
 
         // EP Test Case 2: Dot product of a vector with a negative vector
         assertEquals(-12.0, V1.dotProduct(V3), DELTA, "Dot product of a vector with a negative vector failed");

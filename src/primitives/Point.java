@@ -11,44 +11,8 @@ public class Point {
     /**
      * A constant representing the origin point (0, 0, 0).
      */
+
     public static final Point ZERO = new Point(0, 0, 0);
-
-    /**
-     * getter for the xyz field.
-     *
-     * @return an object of Double3 representing the xyz coordinates
-     */
-    public Double3 getXyz() {
-        return xyz;
-    }
-
-    /**
-     * getter for the X coordinate.
-     *
-     * @return the X coordinate value
-     */
-    public double getX() {
-        return xyz.d1();
-    }
-
-    /**
-     * getter for the Y coordinate.
-     *
-     * @return the Y coordinate value
-     */
-    public double getY() {
-        return xyz.d2();
-    }
-
-    /**
-     * getter for the Z coordinate.
-     *
-     * @return the Z coordinate value
-     */
-    public double getZ() {
-        return xyz.d3();
-    }
-
     /**
      * An object of Double3, obj xyz is a collection of 3 doubles
      * representing the xyz in a cartesian coordinate system.
@@ -121,13 +85,11 @@ public class Point {
         return Math.sqrt(distanceSquared(otherPoint));
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return obj instanceof Point other && xyz.equals(other.xyz);
     }
-
 
     @Override
     public String toString() {
