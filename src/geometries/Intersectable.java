@@ -2,12 +2,13 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+
 import java.util.List;
 
 /**
  * Intersectable is an interface for all geometric objects that can be intersected by a ray.
  * Each class that implements this interface must provide logic to find intersection points with a ray.
- *
+ * <p>
  * If no intersections exist — return null (not an empty list).
  *
  * @author Eytan

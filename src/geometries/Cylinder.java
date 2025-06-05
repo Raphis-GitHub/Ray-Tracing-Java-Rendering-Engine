@@ -66,7 +66,7 @@ public class Cylinder extends Tube {
 
         // For points on the side of the cylinder:
         // Find the closest point on the axis
-        Point closestPoint = axisRay.origin().add(axisRay.direction().scale(t));
+        Point closestPoint = axisRay.getPoint(t);
 
         // Calculate normal as vector from axis to surface
         return point.subtract(closestPoint).normalize();
@@ -107,8 +107,8 @@ public class Cylinder extends Tube {
                 axisRay.direction()             // top cap normal (same as axis)
         };
 
-        // Check both caps - didn't do for each loop to avoid code duplication
-        for (int i = 0; i < 2 && intersections.size() < 2; i++) {
+        // Check both caps
+        for (int i = 0; i < 2; i++) {
             double nv = alignZero(capNormals[i].dotProduct(ray.direction()));
             if (!isZero(nv)) {
                 double t = alignZero(capNormals[i].dotProduct(capCenters[i].subtract(ray.origin()))) / nv;

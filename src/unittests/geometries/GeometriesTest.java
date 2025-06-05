@@ -10,7 +10,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for Geometries.findIntersections
+ * Unit tests for Geometries class
+ *
+ * @author Raphael
  */
 public class GeometriesTest {
     /**
@@ -24,32 +26,36 @@ public class GeometriesTest {
 
         Geometries geometries = new Geometries(sphere, plane, triangle);
 
-        // ============ Boundary Values Tests ==============
+        // =============== Boundary Values Tests ==================
 
-        // TC01: Empty collection → null
+        // TC01: Empty collection (0 points)
         Geometries empty = new Geometries();
-        assertNull(empty.findIntersections(new Ray(new Vector(1, 0, 0), new Point(0, 0, 0))), "TC01: Expected null for empty collection");
+        assertNull(empty.findIntersections(new Ray(new Vector(1, 0, 0), new Point(0, 0, 0))),
+                "TC01: Empty collection should return null");
 
-        // TC02: No geometry intersects → null
+        // TC02: No geometry intersects (0 points)
         Ray ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));
-        assertNull(geometries.findIntersections(ray), "TC02: Expected null when no geometries intersect");
+        assertNull(geometries.findIntersections(ray),
+                "TC02: No geometries intersect should return null");
 
-        // TC03: One geometry intersects → list with 1 point
+        // TC03: Only one geometry intersects (2 points from sphere)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
         List<Point> result = new Geometries(sphere).findIntersections(ray);
-        assertNotNull(result, "TC03: Expected 1 intersection");
-        assertEquals(2, result.size(), "TC03: Expected 2 intersection points with sphere");
+        assertNotNull(result, "TC03: One geometry should intersect");
+        assertEquals(2, result.size(), "TC03: Wrong number of points");
 
-        // TC04: Some geometries intersect → return all
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
-        result = new Geometries(sphere, triangle).findIntersections(ray);
-        assertNotNull(result, "TC04: Expected intersection");
-        assertEquals(2, result.size(), "TC04: Expected 2 intersection points");
-
-        // TC05: All geometries intersect
+        // TC05: All geometries intersect (3 points total)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
         result = geometries.findIntersections(ray);
-        assertNotNull(result, "TC05: Expected intersection");
-        assertEquals(3, result.size(), "TC05: Expected 3 intersection points total");
+        assertNotNull(result, "TC05: All geometries should intersect");
+        assertEquals(3, result.size(), "TC05: Wrong number of points");
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC04: Several (but not all) geometries intersect (2 points)
+        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
+        result = new Geometries(sphere, triangle).findIntersections(ray);
+        assertNotNull(result, "TC04: Several geometries should intersect");
+        assertEquals(2, result.size(), "TC04: Wrong number of points");
     }
 }
