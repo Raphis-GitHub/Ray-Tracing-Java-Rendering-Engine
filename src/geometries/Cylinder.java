@@ -2,10 +2,10 @@ package geometries;
 
 import primitives.*;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-import static primitives.Util.*;
+import static primitives.Util.isZero;
 
 /**
  * Represents a cylinder in 3D space.
@@ -44,6 +44,7 @@ public class Cylinder extends Tube {
      */
     @Override
     public Vector getNormal(Point point) {
+
         // Calculate vector from cylinder's origin to the point
         Vector v = point.subtract(axisRay.origin());
 
@@ -78,48 +79,49 @@ public class Cylinder extends Tube {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        // Collect valid intersection points
-        List<Point> intersections = new LinkedList<>();
+        List<Point> intersections = new ArrayList<>();
 
-        // 1. Check intersections with the cylinder sides
-        List<Point> tubeIntersections = super.findIntersections(ray);
-        if (tubeIntersections != null) {
-            for (Point p : tubeIntersections) {
-                double t = alignZero(axisRay.direction().dotProduct(p.subtract(axisRay.origin())));
-                if (t >= 0 && t <= height) {
-                    intersections.add(p);
-                }
-            }
+        // Vector from the ray origin to the axis origin
+        Vector p0ToRayOrigin = ray.origin().subtract(axisRay.origin());
+        Vector axisDirection = axisRay.direction();
+
+        // Project the ray direction onto the axis direction (this is needed for the cylinder's axis)
+        double a = ray.direction().dotProduct(ray.direction()) - Math.pow(ray.direction().dotProduct(axisDirection), 2);
+        double b = 2 * (ray.direction().dotProduct(p0ToRayOrigin) - (ray.direction().dotProduct(axisDirection) * p0ToRayOrigin.dotProduct(axisDirection)));
+        double c = p0ToRayOrigin.dotProduct(p0ToRayOrigin) - Math.pow(p0ToRayOrigin.dotProduct(axisDirection), 2) - Math.pow(radius, 2);
+
+        // Solve the quadratic equation for intersection points
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant < 0) {
+            return intersections;  // No intersection
         }
 
-        // 2. Check intersections with caps (bottom at t=0, top at t=height)
-        Point[] capCenters = {
-                axisRay.origin(),                                           // bottom cap
-                axisRay.origin().add(axisRay.direction().scale(height))   // top cap
-        };
+        // Calculate the two solutions (the points where the ray intersects the infinite cylinder)
+        double t1 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        double t2 = (-b + Math.sqrt(discriminant)) / (2 * a);
 
-        Vector[] capNormals = {
-                axisRay.direction().scale(-1),  // bottom cap normal (opposite to axis)
-                axisRay.direction()             // top cap normal (same as axis)
-        };
+        // Calculate the intersection points for t1 and t2
+        Point p1 = ray.origin().add(ray.direction().scale(t1));
+        Point p2 = ray.origin().add(ray.direction().scale(t2));
 
-        // Check both caps
-        for (int i = 0; i < 2; i++) {
-            double nv = alignZero(capNormals[i].dotProduct(ray.direction()));
-            if (!isZero(nv)) {
-                double t = alignZero(capNormals[i].dotProduct(capCenters[i].subtract(ray.origin()))) / nv;
-                if (t > 0) {
-                    Point p = ray.getPoint(t);
-                    if (alignZero(p.distanceSquared(capCenters[i]) - radiusSquared) <= 0) {
-                        intersections.add(p);
-                    }
-                }
-            }
+        // Check if the intersection points are within the height of the cylinder
+        Vector p1ToAxis = p1.subtract(axisRay.origin());
+        Vector p2ToAxis = p2.subtract(axisRay.origin());
+        double projection1 = p1ToAxis.dotProduct(axisDirection);
+        double projection2 = p2ToAxis.dotProduct(axisDirection);
+
+        // Check if the points are within the valid height range of the cylinder
+        if (projection1 >= 0 && projection1 <= height) {
+            intersections.add(p1);
+        }
+        if (projection2 >= 0 && projection2 <= height) {
+            intersections.add(p2);
+        }
+        if (intersections.isEmpty()) {
+            return null; // No valid intersection points found
+        } else {
+            return intersections;
         }
 
-        // Return result based on number of intersections
-        return intersections.isEmpty() ? null :
-                intersections.size() == 1 ? List.of(intersections.get(0)) :
-                        List.of(intersections.get(0), intersections.get(1));
     }
 }

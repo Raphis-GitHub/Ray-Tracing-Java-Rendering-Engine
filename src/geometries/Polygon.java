@@ -116,19 +116,22 @@ public class Polygon extends Geometry {
         Vector[] normals = new Vector[size];
 
         for (int i = 0; i < size; i++) {
-            // Get current vertex and next vertex (wrapping around)
+            // In the loop, before the try-catch:
             Point vi = vertices.get(i);
             Point viNext = vertices.get((i + 1) % size);
 
-            // Edge vector
-            Vector edge = viNext.subtract(vi);
+            // Check if point equals vertex first
+            if (p.equals(vi)) {
+                return null; // Point on vertex → no intersection
+            }
 
-            // Vector from vertex to intersection point
-            Vector toPoint;
+            Vector edge = viNext.subtract(vi);
+            Vector toPoint = p.subtract(vi); // Now safe since we checked p != vi
+
             try {
-                toPoint = p.subtract(vi);
+                normals[i] = edge.crossProduct(toPoint);
             } catch (IllegalArgumentException e) {
-                // Point is on vertex → no intersection
+                // Cross product is zero → point is on edge → no intersection
                 return null;
             }
 

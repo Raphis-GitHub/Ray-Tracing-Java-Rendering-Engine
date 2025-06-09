@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.*;
@@ -57,7 +58,6 @@ public class Tube extends RadialGeometry {
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.origin();
         Vector v = ray.direction();
-
         Point pa = axisRay.origin();
         Vector va = axisRay.direction();
 
@@ -66,75 +66,76 @@ public class Tube extends RadialGeometry {
         try {
             deltaP = p0.subtract(pa);
         } catch (IllegalArgumentException e) {
-            // Ray starts on the axis origin - special case
+            // Ray starts at axis origin
             deltaP = null;
         }
 
-        // Calculate helper vectors and scalars for the quadratic equation
-        // The tube equation: (P - Pa - t*Va)² - ((P - Pa - t*Va)·Va)² = r²
-        // Where P is a point on the ray: P = P0 + t*v
+        // Check if ray direction is parallel to axis
+        double vDotVa = alignZero(v.dotProduct(va));
 
-        double vDotVa = v.dotProduct(va);
-        Vector vMinusProj = v;
-
-        // v - (v·va)*va (perpendicular component of v to axis)
-        if (!isZero(vDotVa)) {
-            vMinusProj = v.subtract(va.scale(vDotVa));
+        // Calculate perpendicular component of ray direction to axis
+        Vector vPerp;
+        if (isZero(vDotVa)) {
+            vPerp = v; // Ray direction is already perpendicular to axis
+        } else {
+            try {
+                vPerp = v.subtract(va.scale(vDotVa));
+            } catch (IllegalArgumentException e) {
+                // v is parallel to va (vPerp would be zero vector)
+                return null;
+            }
         }
 
-        // Quadratic coefficients: at² + bt + c = 0
-        double a = vMinusProj.lengthSquared();
+        // Quadratic coefficient a = ||vPerp||²
+        double a = vPerp.lengthSquared();
 
-        // If a ≈ 0, ray is parallel to axis
+        // If a ≈ 0, ray direction is parallel to axis (no intersection for infinite tube)
         if (isZero(a)) {
             return null;
         }
 
+        // Calculate b and c coefficients for quadratic equation at² + bt + c = 0
         double b = 0;
         double c = -radiusSquared;
 
         if (deltaP != null) {
-            double deltaPDotVa = deltaP.dotProduct(va);
-            Vector deltaPMinusProj = deltaP;
+            double deltaPDotVa = alignZero(deltaP.dotProduct(va));
 
-            // deltaP - (deltaP·va)*va (perpendicular component of deltaP to axis)
-            if (!isZero(deltaPDotVa)) {
-                deltaPMinusProj = deltaP.subtract(va.scale(deltaPDotVa));
+            // Calculate perpendicular component of deltaP to axis
+            Vector deltaPPerp;
+            if (isZero(deltaPDotVa)) {
+                deltaPPerp = deltaP; // deltaP is already perpendicular to axis
+            } else {
+                deltaPPerp = deltaP.subtract(va.scale(deltaPDotVa));
             }
 
-            b = 2 * vMinusProj.dotProduct(deltaPMinusProj);
-            c = deltaPMinusProj.lengthSquared() - radiusSquared;
+            b = 2 * alignZero(vPerp.dotProduct(deltaPPerp));
+            c = deltaPPerp.lengthSquared() - radiusSquared;
         }
 
-        // Calculate discriminant
+        // Solve quadratic equation
         double discriminant = alignZero(b * b - 4 * a * c);
 
-        // No intersection if discriminant is negative
         if (discriminant < 0) {
-            return null;
+            return null; // No real solutions
         }
 
-        // Calculate the two possible t values
-        double sqrtDiscriminant = Math.sqrt(discriminant);
-        double t1 = alignZero((-b - sqrtDiscriminant) / (2 * a));
-        double t2 = alignZero((-b + sqrtDiscriminant) / (2 * a));
+        double sqrtDisc = Math.sqrt(discriminant);
+        double t1 = alignZero((-b - sqrtDisc) / (2 * a));
+        double t2 = alignZero((-b + sqrtDisc) / (2 * a));
 
-        // Check which intersections are valid (t > 0)
-        if (t1 > 0 && t2 > 0) {
-            Point p1 = p0.add(v.scale(t1));
-            Point p2 = p0.add(v.scale(t2));
-            return List.of(p1, p2);
-        }
+        // Collect valid intersections (t > 0 and not duplicate)
+        List<Point> intersections = new LinkedList<>();
 
         if (t1 > 0) {
-            return List.of(p0.add(v.scale(t1)));
+            intersections.add(p0.add(v.scale(t1)));
         }
 
-        if (t2 > 0) {
-            return List.of(p0.add(v.scale(t2)));
+        if (t2 > 0 && !isZero(t2 - t1)) { // Avoid duplicate points when discriminant ≈ 0
+            intersections.add(p0.add(v.scale(t2)));
         }
 
-        return null;
+        return intersections.isEmpty() ? null : intersections;
     }
 
 }

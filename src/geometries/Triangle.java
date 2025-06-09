@@ -44,6 +44,11 @@ public class Triangle extends Polygon {
         Point v2 = vertices.get(1);
         Point v3 = vertices.get(2);
 
+        // Check if point is on any vertex first
+        if (p.equals(v1) || p.equals(v2) || p.equals(v3)) {
+            return null; // Point on vertex → no intersection
+        }
+
         Vector v1v2 = v2.subtract(v1);
         Vector v2v3 = v3.subtract(v2);
         Vector v3v1 = v1.subtract(v3);
@@ -54,7 +59,7 @@ public class Triangle extends Polygon {
             n2 = v2v3.crossProduct(p.subtract(v2));
             n3 = v3v1.crossProduct(p.subtract(v3));
         } catch (IllegalArgumentException e) {
-            // One of the vectors was ZERO => point is on edge or vertex → no intersection
+            // Point is on edge → no intersection
             return null;
         }
 
