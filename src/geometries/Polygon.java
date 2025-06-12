@@ -102,10 +102,8 @@ public class Polygon extends Geometry {
     @Override
     public List<Point> findIntersections(Ray ray) {
         // First, find intersection with the polygon's plane
-        List<Point> planeIntersections = plane.findIntersections(ray);
-        if (planeIntersections == null) {
-            return null;
-        }
+        var planeIntersections = plane.findIntersections(ray);
+        if (planeIntersections == null) return null;
 
         // Get the intersection point with the plane
         Point p = planeIntersections.getFirst();

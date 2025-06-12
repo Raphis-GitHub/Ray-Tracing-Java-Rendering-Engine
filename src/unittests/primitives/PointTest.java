@@ -19,7 +19,7 @@ class PointTest {
      * Test method for {@link Point#add(Vector)}.
      */
     @Test
-    void testAdd() {
+    void testAdd() {//todo
         assertEquals(new Point(5, 0, 8), new Point(1, 2, 3).add(new Vector(4, -2, 5)), "Point.add() basic addition failed");
         assertEquals(new Point(-1, -2, -3), new Point(0, 0, 0).add(new Vector(-1, -2, -3)), "Point.add() with negative values failed");
         assertEquals(Point.ZERO, new Point(1, -2, 3).add(new Vector(-1, 2, -3)), "Point.add() resulting in ZERO point failed");

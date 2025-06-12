@@ -50,8 +50,10 @@ public class Geometries implements Intersectable {
         for (Intersectable geo : geometries) {
             List<Point> temp = geo.findIntersections(ray);
             if (temp != null) {
-                if (result == null) result = new LinkedList<>();
-                result.addAll(temp);
+                if (result == null)
+                    result = new LinkedList<>(temp);
+                else
+                    result.addAll(temp);
             }
         }
 

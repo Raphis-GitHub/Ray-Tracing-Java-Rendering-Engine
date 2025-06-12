@@ -154,6 +154,8 @@ class PlaneTest {
         // TC14: Ray is in the plane (0 points)
         ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 1));
         assertNull(plane.findIntersections(ray), "TC14: Ray in the plane");
+        //TODO
+        //
     }
 
 }

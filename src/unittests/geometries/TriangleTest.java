@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for Triangle.findIntersections
  */
 public class TriangleTest {
+    //todo: add getnormal tests
 
     /**
      * Test method for {@link Triangle#findIntersections(Ray)}.

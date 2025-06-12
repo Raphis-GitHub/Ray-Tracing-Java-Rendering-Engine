@@ -65,6 +65,8 @@ public class Plane extends Geometry {
         return normal;
     }
 
+//todo: remove this method, it is not needed in Plane class
+
     /**
      * Returns the point on the plane.
      *
@@ -85,26 +87,23 @@ public class Plane extends Geometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point p0 = ray.origin();
-        Vector v = ray.direction();
-
-        // Plane normal
-        Vector n = this.normal;
+        Vector u;
+        try {
+            u = this.point.subtract(ray.origin());
+        } catch (IllegalArgumentException e) {
+            // Ray direction is zero, no intersection
+            return null;
+        }
 
         // Denominator: n · v
-        double nv = alignZero(n.dotProduct(v));
-
+        double nv = alignZero(normal.dotProduct(ray.direction()));
         // If ray is parallel to the plane or lies in the plane
         if (isZero(nv)) return null;
 
         // Numerator: n · (Q0 - P0)
-        double t = alignZero(n.dotProduct(this.point.subtract(p0))) / nv;
-
+        double t = alignZero(normal.dotProduct(u)) / nv;
         // If intersection is behind the ray's head
-        if (t <= 0) return null;
-
-        // Calculate intersection point
-        return List.of(p0.add(v.scale(t)));
+        return t <= 0 ? null : List.of(ray.getPoint(t));
     }
 
 }

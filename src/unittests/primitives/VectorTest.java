@@ -289,7 +289,34 @@ class VectorTest {
         // BVA Test Case 3: Length of a vector with mixed components
         assertEquals(Math.sqrt(2), V7.length(), DELTA, "Length calculation failed for mixed component vector");
     }
-    //TODO: add subctract for vector
+
+    /**
+     * Tests the {@link Vector#subtract(Vector)} method to ensure its correctness.
+     */
+    @Test
+    void subtract() {
+        // =================EP====================
+
+        // EP Test Case 1: Subtracting two vectors with positive values
+        assertEquals(new Vector(3, 3, 3), V2.subtract(V1), "Subtract operation failed for two positive vectors");
+
+        // EP Test Case 2: Subtracting a vector with a negative vector
+        assertEquals(new Vector(2, 3, 6), V1.subtract(V3), "Subtract operation failed when subtracting negative vector");
+
+        // EP Test Case 3: Subtracting a vector with large values
+        assertEquals(new Vector(-2e10, 2e10 + 1, -2e10), V5.subtract(V4), "Subtract operation failed for vectors with large values");
+
+        // =================BVA===================
+
+        // BVA Test Case 1: Subtracting two vectors that result in boundary values
+        assertEquals(new Vector(Double.MAX_VALUE - 1, Double.MAX_VALUE - 1, Double.MAX_VALUE - 1), V6.subtract(ONE), "Subtract operation failed when result should be near maximum boundary");
+
+        // BVA Test Case 2: Subtracting two vectors with very small values close to zero
+        assertEquals(new Vector(-2e-10 + 0.000001, -2e-10, -2e-10), V9.subtract(V8), "Subtract operation failed for very small values close to zero");
+
+        // BVA Test Case 3: Subtracting a vector to achieve near-zero results
+        assertEquals(new Vector(2e-10, -1e-10, -2e-10), V10.subtract(V11), "Subtract operation failed when achieving near-zero results");
+    }
 
     /**
      * Tests the {@link Vector#normalize()} method to ensure its correctness.
