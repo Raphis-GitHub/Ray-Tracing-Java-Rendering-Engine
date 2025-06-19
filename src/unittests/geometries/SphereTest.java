@@ -1,7 +1,9 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 
 import java.util.List;
 
@@ -19,34 +21,23 @@ class SphereTest {
     void getNormal() {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
 
-        // EP: point on +X axis
+        // TC01: point on +X axis
         assertEquals(new Vector(1, 0, 0), sphere.getNormal(new Point(1, 0, 0)), "Incorrect normal for point on +X axis");
 
-        // EP: point on -X axis
+        // TC02: point on -X axis
         assertEquals(new Vector(-1, 0, 0), sphere.getNormal(new Point(-1, 0, 0)), "Incorrect normal for point on -X axis");
 
-        // EP: point on +Y axis
+        // TC03: point on +Y axis
         assertEquals(new Vector(0, 1, 0), sphere.getNormal(new Point(0, 1, 0)), "Incorrect normal for point on +Y axis");
 
-        // EP: point on -Y axis
+        // TC04: point on -Y axis
         assertEquals(new Vector(0, -1, 0), sphere.getNormal(new Point(0, -1, 0)), "Incorrect normal for point on -Y axis");
 
-        // EP: point on +Z axis
+        // TC05: point on +Z axis
         assertEquals(new Vector(0, 0, 1), sphere.getNormal(new Point(0, 0, 1)), "Incorrect normal for point on +Z axis");
 
-        // EP: point on -Z axis
+        // TC06: point on -Z axis
         assertEquals(new Vector(0, 0, -1), sphere.getNormal(new Point(0, 0, -1)), "Incorrect normal for point on -Z axis");
-    }
-
-    /**
-     * Test method for {@link Sphere#findIntersections(Ray)}.
-     */
-    @Test
-    void testFindIntersections_noIntersection() {
-        Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
-        Ray ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
-        assertEquals(null, sphere.findIntersections(ray), "Ray outside sphere should return null");
-        //TODO: fix this test, fix comments as well and fix how its layed out
     }
 
     /**
@@ -54,7 +45,7 @@ class SphereTest {
      * Based on the example provided in lab instructions (EP + BVA).
      */
     @Test
-    void testFindIntersections_variousCases() {
+    void testFindIntersections() {
         Sphere sphere = new Sphere(new Point(1, 0, 0), 1);
 
         // ============ Equivalence Partitions Tests ==============
@@ -83,6 +74,12 @@ class SphereTest {
         assertNull(sphere.findIntersections(ray), "TC04: Ray starts after sphere");
 
         // =============== Boundary Values Tests ==================
+
+        // TC10: Ray starts at sphere and goes inside (0 point)
+
+        Sphere sphere1 = new Sphere(new Point(0, 0, 0), 1);
+        Ray ray1 = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
+        assertNull(sphere1.findIntersections(ray1), "Ray outside sphere should return null");
 
         // TC11: Ray starts at sphere and goes inside (1 point)
         ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));

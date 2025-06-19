@@ -9,9 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

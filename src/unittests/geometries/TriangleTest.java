@@ -1,7 +1,9 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 
 import java.util.List;
 
@@ -11,7 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for Triangle.findIntersections
  */
 public class TriangleTest {
-    //todo: add getnormal tests
+
+    /**
+     * Getnormal tests
+     * //TODO Add test cases
+     */
+    @Test
+    void testGetNormal() {
+    }
 
     /**
      * Test method for {@link Triangle#findIntersections(Ray)}.
