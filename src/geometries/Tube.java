@@ -106,6 +106,7 @@ public class Tube extends RadialGeometry {
             if (isZero(deltaPDotVa)) {
                 deltaPPerp = deltaP; // deltaP is already perpendicular to axis
             } else {
+                
                 deltaPPerp = deltaP.subtract(va.scale(deltaPDotVa));
             }
 

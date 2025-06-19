@@ -46,7 +46,7 @@ class SphereTest {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
         Ray ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
         assertEquals(null, sphere.findIntersections(ray), "Ray outside sphere should return null");
-        //TODO
+        //TODO: fix this test, fix comments as well and fix how its layed out
     }
 
     /**

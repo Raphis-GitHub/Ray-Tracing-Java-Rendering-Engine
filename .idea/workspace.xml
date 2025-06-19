@@ -7,19 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +47,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/geometries/Plane.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/primitives/Point.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" root0="SKIP_INSPECTION" />
@@ -67,7 +61,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -99,6 +93,7 @@
     &quot;JUnit.SphereTest.getNormal.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.SphereTest.testFindIntersections_variousCases.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.TubeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.VectorTest.add.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.VectorTest.dotProduct.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.VectorTest.executor&quot;: &quot;Run&quot;,
@@ -155,13 +150,29 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RayTest.testGetPoint">
+  <component name="RunManager" selected="JUnit.TubeTest.testFindIntersections">
     <configuration name="All in ISE5785_4760_2159" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CylinderTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,6 +188,22 @@
       <option name="PACKAGE_NAME" value="primitives" />
       <option name="MAIN_CLASS_NAME" value="primitives.RayTest" />
       <option name="METHOD_NAME" value="testGetPoint" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TubeTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -199,15 +226,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
       <item itemvalue="JUnit.RayTest.testGetPoint" />
+      <item itemvalue="JUnit.TubeTest.testFindIntersections" />
       <item itemvalue="JUnit.VectorTest.subtract" />
       <item itemvalue="JUnit.All in ISE5785_4760_2159" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TubeTest.testFindIntersections" />
+        <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
+        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
         <item itemvalue="JUnit.RayTest.testGetPoint" />
         <item itemvalue="JUnit.VectorTest.subtract" />
-        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +278,8 @@
       <workItem from="1748959785618" duration="200000" />
       <workItem from="1748960020401" duration="818000" />
       <workItem from="1749106255070" duration="5818000" />
-      <workItem from="1749421007083" duration="12726000" />
+      <workItem from="1749421007083" duration="17283000" />
+      <workItem from="1750345375610" duration="511000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -513,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749482009631</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy">
+      <option name="closed" value="true" />
+      <created>1749736795096</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1749736795096</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added add another getnormal for plane" />
     <MESSAGE value="jdk swap" />
     <MESSAGE value="test" />
     <MESSAGE value="built tests" />
@@ -556,7 +595,8 @@
     <MESSAGE value="change style settings + reformat of everything (Dan)" />
     <MESSAGE value="remove junit from working dir and some more cleaning" />
     <MESSAGE value="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases" />
+    <MESSAGE value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
