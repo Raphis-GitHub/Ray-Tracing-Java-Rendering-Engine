@@ -14,7 +14,6 @@ public class TriangleTest {
 
     /**
      * Getnormal tests
-     * //TODO Add test cases
      */
     @Test
     void testGetNormal() {
