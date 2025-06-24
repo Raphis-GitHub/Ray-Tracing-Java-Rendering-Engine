@@ -7,13 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern">
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Implement ray construction in Camera class; add intersection tests for Camera with geometries">
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +290,7 @@
       <workItem from="1749106255070" duration="5818000" />
       <workItem from="1749421007083" duration="17283000" />
       <workItem from="1750345375610" duration="511000" />
-      <workItem from="1750774076424" duration="4811000" />
+      <workItem from="1750774076424" duration="5266000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -585,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750419309084</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Implement ray construction in Camera class; add intersection tests for Camera with geometries">
+      <option name="closed" value="true" />
+      <created>1750780436978</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1750780436978</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="built tests" />
     <MESSAGE value="fixed to 21" />
     <MESSAGE value="PUSH" />
     <MESSAGE value="Rename test methods and class for consistency&#10;&#10;Updated method names in PlaneTest to reflect their respective test purposes more clearly. Additionally, corrected PointTest class name to align with naming conventions and improve clarity." />
@@ -628,7 +630,8 @@
     <MESSAGE value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
     <MESSAGE value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
     <MESSAGE value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
+    <MESSAGE value="Implement ray construction in Camera class; add intersection tests for Camera with geometries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement ray construction in Camera class; add intersection tests for Camera with geometries" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

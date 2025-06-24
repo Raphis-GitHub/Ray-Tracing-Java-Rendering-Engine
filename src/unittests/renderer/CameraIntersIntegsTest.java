@@ -8,8 +8,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests camera and geometry intersection counts.
+ */
 public class CameraIntersIntegsTest {
 
+    /**
+     * Tests camera-sphere intersections.
+     */
     @Test
     void testCameraIntersectionsWithSphere() throws CloneNotSupportedException {
 
@@ -48,6 +54,9 @@ public class CameraIntersIntegsTest {
         assertEquals(0, MakeIntersectionPixels(camera1, sphere5), "Sphere behind camera should have 0 intersection points");
     }
 
+    /**
+     * Tests camera-triangle intersections.
+     */
     @Test
     void testCameraIntersectionsWithTriangle() throws CloneNotSupportedException {
         //TC 01: Triangle is in front of the camera and is the size of a pixel
@@ -66,6 +75,9 @@ public class CameraIntersIntegsTest {
 
     }
 
+    /**
+     * Tests camera-plane intersections.
+     */
     @Test
     void testCameraIntersectionsWithPlane() throws CloneNotSupportedException {
         //TC 01: Plane is in front of the camera and orthogonal to the view plane
@@ -89,6 +101,9 @@ public class CameraIntersIntegsTest {
 
     }
 
+    /**
+     * Counts intersection points for all camera rays and a geometry.
+     */
     private double MakeIntersectionPixels(Camera camera, Geometry geometry) {
         int count = 0;
         for (int i = 0; i < 3; i++) {
