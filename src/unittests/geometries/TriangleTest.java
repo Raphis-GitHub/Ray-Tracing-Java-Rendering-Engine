@@ -1,9 +1,7 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -20,6 +18,21 @@ public class TriangleTest {
      */
     @Test
     void testGetNormal() {
+        Triangle triangle = new Triangle(
+                new Point(0, 1, 0),
+                new Point(1, 0, 0),
+                new Point(-1, 0, 0)
+        );
+
+        //TC01: Test the normal vector of the triangle
+        Vector normal = triangle.getNormal(new Point(0, 0, 0));
+        assertEquals(new Vector(0, 0, -1), normal, "Normal vector is incorrect");
+        //TC02: Test the normal vector at a point on the triangle
+        normal = triangle.getNormal(new Point(0, 0.5, 0));
+        assertEquals(new Vector(0, 0, -1), normal, "Normal vector at point on triangle is incorrect");
+        //TC03: Test the normal vector at a vertex of the triangle
+        normal = triangle.getNormal(new Point(0, 1, 0));
+        assertEquals(new Vector(0, 0, -1), normal, "Normal vector at vertex is incorrect");
     }
 
     /**

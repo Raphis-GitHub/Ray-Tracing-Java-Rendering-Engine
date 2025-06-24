@@ -7,8 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Implement ray construction in Camera class; add intersection tests for Camera with geometries">
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Camera class with detailed documentation; improve builder methods and add intersection tests for geometries">
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +47,9 @@
     <setting file="file://$PROJECT_DIR$/src/geometries/Plane.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/primitives/Point.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/renderer/Camera.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="CameraIntersIntegsTest" />
-    </enabled-run-configurations>
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -97,6 +94,7 @@
     "JUnit.SphereTest.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Debug",
     "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
+    "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TubeTest.executor": "Run",
     "JUnit.TubeTest.testFindIntersections.executor": "Run",
     "JUnit.VectorTest.add.executor": "Run",
@@ -156,7 +154,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CameraTest">
+  <component name="RunManager" selected="JUnit.TriangleTest.testGetNormal">
     <configuration name="CameraIntersIntegsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -219,7 +217,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TubeTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TriangleTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -228,8 +226,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
+      <option name="METHOD_NAME" value="testGetNormal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -240,15 +238,15 @@
       <item itemvalue="JUnit.CameraTest" />
       <item itemvalue="JUnit.CameraTest.testBuilder" />
       <item itemvalue="JUnit.CameraTest.testConstructRay" />
-      <item itemvalue="JUnit.TubeTest.testFindIntersections" />
+      <item itemvalue="JUnit.TriangleTest.testGetNormal" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TriangleTest.testGetNormal" />
         <item itemvalue="JUnit.CameraTest" />
         <item itemvalue="JUnit.CameraIntersIntegsTest" />
         <item itemvalue="JUnit.CameraTest.testConstructRay" />
         <item itemvalue="JUnit.CameraTest.testBuilder" />
-        <item itemvalue="JUnit.TubeTest.testFindIntersections" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +288,7 @@
       <workItem from="1749106255070" duration="5818000" />
       <workItem from="1749421007083" duration="17283000" />
       <workItem from="1750345375610" duration="511000" />
-      <workItem from="1750774076424" duration="5266000" />
+      <workItem from="1750774076424" duration="5758000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -588,7 +586,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750780436978</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Enhance Camera class with detailed documentation; improve builder pattern and ray construction method">
+      <option name="closed" value="true" />
+      <created>1750781075071</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1750781075071</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +612,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed to 21" />
     <MESSAGE value="PUSH" />
     <MESSAGE value="Rename test methods and class for consistency&#10;&#10;Updated method names in PlaneTest to reflect their respective test purposes more clearly. Additionally, corrected PointTest class name to align with naming conventions and improve clarity." />
     <MESSAGE value="added methods in test plane" />
@@ -631,7 +636,8 @@
     <MESSAGE value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
     <MESSAGE value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
     <MESSAGE value="Implement ray construction in Camera class; add intersection tests for Camera with geometries" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement ray construction in Camera class; add intersection tests for Camera with geometries" />
+    <MESSAGE value="Enhance Camera class with detailed documentation; improve builder methods and add intersection tests for geometries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance Camera class with detailed documentation; improve builder methods and add intersection tests for geometries" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
