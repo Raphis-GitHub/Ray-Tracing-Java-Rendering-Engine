@@ -15,6 +15,8 @@ public class CameraIntersIntegsTest {
 
     /**
      * Tests camera-sphere intersections.
+     *
+     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
     void testCameraIntersectionsWithSphere() throws CloneNotSupportedException {
@@ -56,6 +58,8 @@ public class CameraIntersIntegsTest {
 
     /**
      * Tests camera-triangle intersections.
+     *
+     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
     void testCameraIntersectionsWithTriangle() throws CloneNotSupportedException {
@@ -77,6 +81,8 @@ public class CameraIntersIntegsTest {
 
     /**
      * Tests camera-plane intersections.
+     *
+     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
     void testCameraIntersectionsWithPlane() throws CloneNotSupportedException {
@@ -103,6 +109,10 @@ public class CameraIntersIntegsTest {
 
     /**
      * Counts intersection points for all camera rays and a geometry.
+     *
+     * @param camera   the camera to use for ray construction
+     * @param geometry the geometry to check for intersections
+     * @return the total number of intersection points found
      */
     private double MakeIntersectionPixels(Camera camera, Geometry geometry) {
         int count = 0;

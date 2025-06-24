@@ -7,9 +7,17 @@ package primitives;
  * @author Raphael
  */
 public class Vector extends Point {
-
+    /**
+     * This vector has coordinates (1, 0, 0).
+     */
     public static final Vector AXIS_X = (new Vector(1, 0, 0));
+    /**
+     * This vector has coordinates (0, 1, 0).
+     */
     public static final Vector AXIS_Y = (new Vector(0, 1, 0));
+    /**
+     * This vector has coordinates (0, 0, 1).
+     */
     public static final Vector AXIS_Z = (new Vector(0, 0, 1));
 
     /**

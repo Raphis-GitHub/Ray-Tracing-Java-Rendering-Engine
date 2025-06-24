@@ -25,6 +25,8 @@ class CameraTest {
     /**
      * Test method for
      * {@link renderer.Camera#constructRay(int, int, int, int)}.
+     *
+     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
     void testConstructRay() throws CloneNotSupportedException {
@@ -64,6 +66,12 @@ class CameraTest {
 
     }
 
+    /**
+     * Test method for
+     * {@link renderer.Camera#constructRay(int, int, int, int)}.
+     *
+     * @throws CloneNotSupportedException if cloning fails
+     */
     @Test
     void testBuilder() throws CloneNotSupportedException {
         cameraBuilder.setVpSize(4, 4).setResolution(2, 2);
