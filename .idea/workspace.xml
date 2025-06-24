@@ -7,8 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add Camera class and corresponding unit tests; implement builder pattern for configuration">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern">
+      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +54,11 @@
     <setting file="file://$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="CameraIntersIntegsTest" />
+    </enabled-run-configurations>
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -75,6 +85,10 @@
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in ISE5785_4760_2159.executor": "Run",
+    "JUnit.CameraIntersIntegsTest.executor": "Run",
+    "JUnit.CameraTest.executor": "Run",
+    "JUnit.CameraTest.testBuilder.executor": "Run",
+    "JUnit.CameraTest.testConstructRay.executor": "Debug",
     "JUnit.CylinderTest.executor": "Run",
     "JUnit.CylinderTest.getNormal.executor": "Run",
     "JUnit.CylinderTest.testFindIntersections.executor": "Run",
@@ -147,44 +161,64 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TubeTest.testFindIntersections">
-    <configuration name="All in ISE5785_4760_2159" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CameraTest">
+    <configuration name="CameraIntersIntegsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.CameraIntersIntegsTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CameraTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.CameraTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CameraTest.testBuilder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.CameraTest" />
+      <option name="METHOD_NAME" value="testBuilder" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RayTest.testGetPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CameraTest.testConstructRay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="primitives.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.RayTest" />
-      <option name="METHOD_NAME" value="testGetPoint" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.CameraTest" />
+      <option name="METHOD_NAME" value="testConstructRay" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -206,36 +240,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorTest.subtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTest" />
-      <option name="METHOD_NAME" value="subtract" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
-      <item itemvalue="JUnit.RayTest.testGetPoint" />
+      <item itemvalue="JUnit.CameraIntersIntegsTest" />
+      <item itemvalue="JUnit.CameraTest" />
+      <item itemvalue="JUnit.CameraTest.testBuilder" />
+      <item itemvalue="JUnit.CameraTest.testConstructRay" />
       <item itemvalue="JUnit.TubeTest.testFindIntersections" />
-      <item itemvalue="JUnit.VectorTest.subtract" />
-      <item itemvalue="JUnit.All in ISE5785_4760_2159" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CameraTest" />
+        <item itemvalue="JUnit.CameraIntersIntegsTest" />
+        <item itemvalue="JUnit.CameraTest.testConstructRay" />
+        <item itemvalue="JUnit.CameraTest.testBuilder" />
         <item itemvalue="JUnit.TubeTest.testFindIntersections" />
-        <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
-        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
-        <item itemvalue="JUnit.RayTest.testGetPoint" />
-        <item itemvalue="JUnit.VectorTest.subtract" />
       </list>
     </recent_temporary>
   </component>
@@ -277,6 +295,7 @@
       <workItem from="1749106255070" duration="5818000" />
       <workItem from="1749421007083" duration="17283000" />
       <workItem from="1750345375610" duration="511000" />
+      <workItem from="1750774076424" duration="4811000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -558,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750350595501</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern">
+      <option name="closed" value="true" />
+      <created>1750419309084</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1750419309084</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="built tests" />
     <MESSAGE value="fixed to 21" />
     <MESSAGE value="PUSH" />
@@ -601,7 +627,8 @@
     <MESSAGE value="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases" />
     <MESSAGE value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
     <MESSAGE value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
+    <MESSAGE value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

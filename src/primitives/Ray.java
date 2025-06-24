@@ -66,4 +66,17 @@ public class Ray {
     public Vector direction() {
         return direction;
     }
+
+    /**
+     * Checks if this ray is equal to another object.
+     *
+     * @param obj the object to compare with
+     * @return true if the object is a Ray with the same head and direction, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return (obj instanceof Ray other) && origin.equals(other.origin) && direction.equals(other.direction);
+    }
+
 }
