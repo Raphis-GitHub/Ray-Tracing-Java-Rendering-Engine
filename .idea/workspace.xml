@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Remove TODO comment from getNormal tests in TriangleTest class" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add whitespace for improved readability in CameraIntersIntegsTest class">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +75,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.ALLTESTS.executor": "Run",
     "JUnit.All in ISE5785_4760_2159.executor": "Run",
     "JUnit.CameraIntersIntegsTest.executor": "Run",
     "JUnit.CameraTest.executor": "Run",
@@ -151,7 +154,20 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TriangleTest.testGetNormal">
+  <component name="RunManager" selected="JUnit.ALLTESTS">
+    <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
+      <module name="ISE5785_4760_2159" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CameraIntersIntegsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -231,6 +247,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.CameraIntersIntegsTest" />
       <item itemvalue="JUnit.CameraTest" />
       <item itemvalue="JUnit.CameraTest.testBuilder" />
@@ -285,7 +302,7 @@
       <workItem from="1749106255070" duration="5818000" />
       <workItem from="1749421007083" duration="17283000" />
       <workItem from="1750345375610" duration="511000" />
-      <workItem from="1750774076424" duration="6297000" />
+      <workItem from="1750774076424" duration="8584000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -607,7 +624,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750781347196</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Add detailed documentation for camera intersection tests and methods">
+      <option name="closed" value="true" />
+      <created>1750783471138</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1750783471138</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,8 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added methods in test plane" />
-    <MESSAGE value="Add extensive unit tests for Vector class operations&#10;&#10;Added comprehensive equivalence partitioning (EP) and boundary value analysis (BVA) tests for constructors, addition, scaling, and dot product methods. These tests cover edge cases, extreme values, and invalid operations to ensure robust functionality and reliability of the Vector class." />
     <MESSAGE value="Add comprehensive unit tests for vector operations&#10;&#10;Enhanced test coverage for `crossProduct`, `lengthSquared`, `length`, and `normalize` methods. Included EP and BVA test cases, covering typical, edge, and boundary scenarios to ensure robustness and correctness." />
     <MESSAGE value="Implement normal vector calculations for Tube, Cylinder, and Sphere&#10;&#10;Added `getNormal` method implementations to Tube, Cylinder, and Sphere classes, providing proper logic for calculating normal vectors at given surface points. Also, updated access modifiers in Ray class to allow access to origin and direction properties. Removed unnecessary JUnit Jupiter library configuration file." />
     <MESSAGE value="Remove obsolete Main.java and enhance test documentation&#10;&#10;The Main.java file, which contained outdated test code, has been removed. Additionally, several unit tests were updated with detailed Javadoc comments to improve clarity and maintainability." />
@@ -650,7 +673,9 @@
     <MESSAGE value="Enhance Camera class with detailed documentation; improve builder methods and add intersection tests for geometries" />
     <MESSAGE value="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class" />
     <MESSAGE value="Remove TODO comment from getNormal tests in TriangleTest class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove TODO comment from getNormal tests in TriangleTest class" />
+    <MESSAGE value="Add detailed documentation for camera intersection tests and methods" />
+    <MESSAGE value="Add whitespace for improved readability in CameraIntersIntegsTest class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add whitespace for improved readability in CameraIntersIntegsTest class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
