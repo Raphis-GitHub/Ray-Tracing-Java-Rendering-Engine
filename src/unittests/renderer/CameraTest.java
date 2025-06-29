@@ -1,12 +1,9 @@
 package renderer;
 
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing Camera Class
@@ -28,11 +25,9 @@ class CameraTest {
     /**
      * Test method for
      * {@link renderer.Camera#constructRay(int, int, int, int)}.
-     *
-     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
-    void testConstructRay() throws CloneNotSupportedException {
+    void testConstructRay() {
         cameraBuilder.setDirection(new Vector(0, 0, -1), new Vector(0, -1, 0));
         Camera camera1 = cameraBuilder.setVpSize(8, 8).build();
         Camera camera2 = cameraBuilder.setVpSize(6, 6).build();
@@ -72,11 +67,9 @@ class CameraTest {
     /**
      * Test method for
      * {@link renderer.Camera#constructRay(int, int, int, int)}.
-     *
-     * @throws CloneNotSupportedException if cloning fails
      */
     @Test
-    void testBuilder() throws CloneNotSupportedException {
+    void testBuilder() {
         cameraBuilder.setVpSize(4, 4).setResolution(2, 2);
 
         // ============ Equivalence Partitions Tests ==============

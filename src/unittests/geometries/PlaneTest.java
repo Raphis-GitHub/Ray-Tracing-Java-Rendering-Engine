@@ -23,14 +23,14 @@ class PlaneTest {
     @Test
     void testConstructorThreePoints() {
 
-        Point P0 = new Point(0, 0, 0);
-        Point P1 = new Point(1, 1, 1);
+        Point p0 = new Point(0, 0, 0);
+        Point p1 = new Point(1, 1, 1);
 
         //============================Equivalence Partitions Test==============================
         //TC01: Correct plane with three non-collinear points
         assertDoesNotThrow(() -> {
             Plane plane = new Plane(
-                    P0,
+                    p0,
                     new Point(1, 0, 0),
                     new Point(0, 1, 0)
             );
@@ -52,27 +52,27 @@ class PlaneTest {
 
         //TC11: First and second points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
-                        P0, P0, P1),
+                        p0, p0, p1),
                 "Plane constructor allowed first and second points to coincide");
 
         //TC12: First and third points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
-                        P0, P1, P0),
+                        p0, p1, p0),
                 "Plane constructor allowed first and third points to coincide");
 
         //TC13: Second and third points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
-                        P1, P0, P0),
+                        p1, p0, p0),
                 "Plane constructor allowed second and third points to coincide");
 
         //TC14: All points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
-                        P1, P1, P1),
+                        p1, p1, p1),
                 "Plane constructor allowed all points to coincide");
 
         //TC15: Points are collinear
         assertThrows(IllegalArgumentException.class, () -> new Plane(
-                        P0, P1, new Point(2, 2, 2)),
+                        p0, p1, new Point(2, 2, 2)),
                 "Plane constructor allowed collinear points");
     }
 
@@ -81,11 +81,11 @@ class PlaneTest {
      */
     @Test
     void testConstructorPointVector() {
-        Point P0 = new Point(0, 0, 0);
+        Point p0 = new Point(0, 0, 0);
         Vector normal = new Vector(0, 0, 1);
         //============================Equivalence Partitions Test==============================
         assertDoesNotThrow(() -> {
-            Plane plane = new Plane(P0, normal);
+            Plane plane = new Plane(p0, normal);
             //TC01: Ensure normal is set correctly
             assertEquals(1, plane.getNormal().length(), DELTA, "Normal vector is not normalized");
             //TC02: Ensure normal is perpendicular to the plane
@@ -98,19 +98,19 @@ class PlaneTest {
      */
     @Test
     void testGetNormal() {
-        Point P0 = new Point(0, 0, 1);
-        Point P1 = new Point(1, 0, 1);
-        Point P2 = new Point(0, 1, 1);
+        Point p0 = new Point(0, 0, 1);
+        Point p1 = new Point(1, 0, 1);
+        Point p2 = new Point(0, 1, 1);
 
-        Plane plane = new Plane(P0, P1, P2);
+        Plane plane = new Plane(p0, p1, p2);
         Vector normal = plane.getNormal(new Point(0, 0, 1));
         //============================Equivalence Partitions Test==============================
         //TC01: Check normal vector
         assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
 
         // Check orthogonality to two edges
-        Vector v1 = P1.subtract(P0);
-        Vector v2 = P2.subtract(P0);
+        Vector v1 = p1.subtract(p0);
+        Vector v2 = p2.subtract(p0);
         //TC02: Ensure normal is perpendicular to first edge
         assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
         assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");

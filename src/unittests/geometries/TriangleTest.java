@@ -17,6 +17,7 @@ public class TriangleTest {
      */
     @Test
     void testGetNormal() {
+        //todo: fix triangle
         Triangle triangle = new Triangle(
                 new Point(1, 0, 0),
                 new Point(0, 1, 0),
