@@ -25,6 +25,6 @@ public class ImageWriterTest {
             }
         }
 
-        imageWriter.writeToImage("testImageWithGrid");
+        imageWriter.writeToImage("test");
     }
 }
