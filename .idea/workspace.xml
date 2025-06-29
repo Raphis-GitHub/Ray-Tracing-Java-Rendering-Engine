@@ -7,12 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add Color and ImageWriter classes; implement color handling and image writing functionality">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Ray class; implement findClosestPoint method and improve unit tests">
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +100,7 @@
     "JUnit.RayTest.executor": "Run",
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
     "JUnit.RayTest.testGetPoint.executor": "Run",
+    "JUnit.RenderTests.executor": "Run",
     "JUnit.SphereTest.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Debug",
     "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
@@ -147,11 +149,11 @@
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\unittests\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\primitives" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
-      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\geometries" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -164,7 +166,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RayTest.testFindClosestPoint">
+  <component name="RunManager" selected="JUnit.RenderTests.renderTwoColorTest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -189,22 +191,6 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ImageWriterTest" />
       <option name="METHOD_NAME" value="testWriteImageWithGrid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PointTest.testSubtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.PointTest" />
-      <option name="METHOD_NAME" value="testSubtract" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -241,17 +227,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriangleTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RenderTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
-      <option name="METHOD_NAME" value="testGetNormal" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenderTests.renderTwoColorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="renderTwoColorTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -260,18 +261,18 @@
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.ImageWriterTest.testWriteImageWithGrid" />
-      <item itemvalue="JUnit.PointTest.testSubtract" />
       <item itemvalue="JUnit.RayTest" />
       <item itemvalue="JUnit.RayTest.testFindClosestPoint" />
-      <item itemvalue="JUnit.TriangleTest.testGetNormal" />
+      <item itemvalue="JUnit.RenderTests" />
+      <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
+        <item itemvalue="JUnit.RenderTests" />
         <item itemvalue="JUnit.RayTest.testFindClosestPoint" />
         <item itemvalue="JUnit.RayTest" />
         <item itemvalue="JUnit.ImageWriterTest.testWriteImageWithGrid" />
-        <item itemvalue="JUnit.PointTest.testSubtract" />
-        <item itemvalue="JUnit.TriangleTest.testGetNormal" />
       </list>
     </recent_temporary>
   </component>
@@ -676,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751214879033</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Refactor Ray class; implement findClosestPoint method and improve unit tests">
+      <option name="closed" value="true" />
+      <created>1751219125694</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1751219125694</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improve code style with added Javadoc suppression&#10;&#10;Added a SuppressWarnings annotation for Javadoc-related warnings in the VectorTest class. This ensures a cleaner codebase by silencing non-critical warnings during compilation." />
     <MESSAGE value="redid files for this year" />
     <MESSAGE value="1) reformat all last time&#10;2) move JUNIT library to global maven location" />
     <MESSAGE value="Refactor geometries to improve code style and consistency" />
@@ -719,7 +727,8 @@
     <MESSAGE value="Refactor Camera class; initialize fields and improve intersection test assertions" />
     <MESSAGE value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
     <MESSAGE value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
+    <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,6 +1,7 @@
 package renderer;
 
 import primitives.*;
+import scene.Scene;
 
 import java.util.MissingResourceException;
 
@@ -10,6 +11,10 @@ import static primitives.Util.*;
  * Camera class for rendering scenes.
  */
 public class Camera implements Cloneable {
+    private ImageWriter imageWriter;
+    private RayTracerBase rayTracer;
+    private int nX = 1;
+    private int nY = 1;
     /**
      * Camera position
      */
@@ -76,6 +81,56 @@ public class Camera implements Cloneable {
         return new Ray(pIJ.subtract(p0), p0);
     }
 
+    public Camera renderImage() {
+        for (int y = 0; y < nY; y++) {
+            for (int x = 0; x < nX; x++) {
+                castRay(x, y);
+            }
+        }
+        return this;
+    }
+
+    public Camera printGrid(int interval, Color color) {
+       /* if (imageWriter == null) {
+            throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
+        }
+        if (rayTracer == null) {
+            throw new MissingResourceException("RayTracerBase is not set", "Camera", "rayTracerBase");
+        } */
+
+        for (int i = 0; i < nX; i++) {
+            for (int j = 0; j < nY; j++) {
+                if (i % interval == 0 || j % interval == 0) {
+                    imageWriter.writePixel(i, j, color);
+                }
+            }
+        }
+        return this;
+    }
+
+    public Camera writeToImage(String fileName) {
+        /*if (imageWriter == null) {
+            throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
+        }*/
+        imageWriter.writeToImage(fileName);
+        return this;
+    }
+
+    /**
+     * Casts a ray through the specified pixel and writes the resulting color to the image.
+     *
+     * @param x the x index of the pixel (column)
+     * @param y the y index of the pixel (row)
+     */
+    private void castRay(int x, int y) {
+        // Construct the ray through the pixel
+        Ray ray = constructRay(nX, nY, x, y);
+        // Trace the ray to get the color
+        Color color = rayTracer.traceRay(ray);
+        // Write the color to the image
+        imageWriter.writePixel(x, y, color);
+    }
+
     @Override
     public Camera clone() {
         try {
@@ -93,6 +148,17 @@ public class Camera implements Cloneable {
          * Camera instance being built
          */
         private final Camera camera = new Camera();
+
+        public Builder setRayTracer(Scene scene, RayTracerType rayTracerType) {
+            switch (rayTracerType) {
+                case SIMPLE:
+                    camera.rayTracer = new SimpleRayTracer(scene);
+                    break;
+                default:
+                    camera.rayTracer = null;
+            }
+            return this;
+        }
 
         /**
          * Sets camera position.
@@ -180,8 +246,8 @@ public class Camera implements Cloneable {
          * @return Builder instance
          */
         public Builder setResolution(int nX, int nY) {
-            // This method is not implemented
-            // It could be used to set the resolution of the camera view
+            camera.nX = nX;
+            camera.nY = nY;
             return this;
         }
 
@@ -207,6 +273,16 @@ public class Camera implements Cloneable {
                 throw new MissingResourceException(MISSING, CAM, "height > 0");
             if (camera.distance <= 0)
                 throw new MissingResourceException(MISSING, CAM, "distance > 0");
+            if (camera.nX <= 0)
+                throw new MissingResourceException(MISSING, CAM, "nX > 0");
+            if (camera.nY <= 0)
+                throw new MissingResourceException(MISSING, CAM, "nY > 0");
+
+            camera.imageWriter = new ImageWriter(camera.nX, camera.nY);
+
+            if (camera.rayTracer == null) {
+                camera.rayTracer = new SimpleRayTracer(null);
+            }
 
             return camera.clone();
         }
