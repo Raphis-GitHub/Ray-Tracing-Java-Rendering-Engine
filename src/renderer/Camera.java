@@ -190,7 +190,6 @@ public class Camera implements Cloneable {
          * Checks for missing parameters and calculates right vector.
          *
          * @return Camera instance
-         * @throws MissingResourceException if required parameters are missing
          */
         public Camera build() {
             final String MISSING = "Missing rendering data";

@@ -4,7 +4,7 @@ import primitives.*;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
+import static primitives.Util.*;
 
 /**
  * Represents a triangle in 3D space.
@@ -28,50 +28,50 @@ public class Triangle extends Polygon {
      * Finds the intersection point between a ray and the triangle.
      * Returns null if the ray does not intersect the triangle
      * or if the intersection point is outside the triangle or on its edge.
+     * Moller-Trumbore intersection algorithm
      *
      * @param ray the ray to test
      * @return list with one intersection point or null
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        List<Point> planeIntersections = plane.findIntersections(ray);
-        if (planeIntersections == null) return null;
+        Point vertex0 = vertices.getFirst();
+        Point vertex1 = vertices.get(1);
+        Point vertex2 = vertices.get(2);
+        Vector edge1 = vertex1.subtract(vertex0);
+        Vector edge2 = vertex2.subtract(vertex0);
+        Vector h = ray.direction().crossProduct(edge2);
+        Vector s = ray.origin().subtract(vertex0);
+        Vector q = s.crossProduct(edge1);
+        double a, f, u, v;
+        a = alignZero(edge1.dotProduct(h));
 
-        Vector v = ray.direction();
-        Point p = planeIntersections.getFirst();
-
-        Point v1 = vertices.get(0);
-        Point v2 = vertices.get(1);
-        Point v3 = vertices.get(2);
-
-        // Check if point is on any vertex first
-        if (p.equals(v1) || p.equals(v2) || p.equals(v3)) {
-            return null; // Point on vertex → no intersection
+        if (isZero(a)) {
+            return null;    // This ray is parallel to this triangle.
         }
 
-        Vector v1v2 = v2.subtract(v1);
-        Vector v2v3 = v3.subtract(v2);
-        Vector v3v1 = v1.subtract(v3);
+        f = 1.0 / a;
+        u = f * (s.dotProduct(h));
 
-        Vector n1, n2, n3;
-        try {
-            n1 = v1v2.crossProduct(p.subtract(v1));
-            n2 = v2v3.crossProduct(p.subtract(v2));
-            n3 = v3v1.crossProduct(p.subtract(v3));
-        } catch (IllegalArgumentException e) {
-            // Point is on edge → no intersection
+        if (u <= 0.0 || u >= 1.0) {
             return null;
         }
 
-        double sign1 = alignZero(v.dotProduct(n1));
-        double sign2 = alignZero(v.dotProduct(n2));
-        double sign3 = alignZero(v.dotProduct(n3));
+        v = f * ray.direction().dotProduct(q);
 
-        if ((sign1 > 0 && sign2 > 0 && sign3 > 0) || (sign1 < 0 && sign2 < 0 && sign3 < 0)) {
-            return List.of(p);
+        if (v <= 0.0 || u + v >= 1.0) {
+            return null;
         }
 
-        return null;
+        // At this stage we can compute t to find out where the intersection point is on the line.
+        double t = f * edge2.dotProduct(q);
+        if (!isZero(t) && t > 0) // ray intersection
+        {
+            return plane.findIntersections(ray);
+        } else // This means that there is a line intersection but not a ray intersection.
+        {
+            return null;
+        }
     }
 
 }

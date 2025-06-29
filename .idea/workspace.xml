@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Camera class; initialize fields and improve intersection test assertions">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor camera intersection tests; simplify assertions and enhance documentation">
+      <change afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/ImageWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraIntersIntegsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CameraTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -654,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751195576828</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Refactor camera intersection tests; simplify assertions and enhance documentation">
+      <option name="closed" value="true" />
+      <created>1751199182504</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1751199182504</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove obsolete Main.java and enhance test documentation&#10;&#10;The Main.java file, which contained outdated test code, has been removed. Additionally, several unit tests were updated with detailed Javadoc comments to improve clarity and maintainability." />
     <MESSAGE value="Refactor comments, imports, and formatting across files&#10;&#10;Improved code readability by refining comments, organizing imports, and normalizing formatting in multiple files. Updated Javadoc styles and ensured consistent spacing, indentation, and code alignment in different classes and test cases." />
     <MESSAGE value="Improve code style with added Javadoc suppression&#10;&#10;Added a SuppressWarnings annotation for Javadoc-related warnings in the VectorTest class. This ensures a cleaner codebase by silencing non-critical warnings during compilation." />
     <MESSAGE value="redid files for this year" />
@@ -697,7 +706,8 @@
     <MESSAGE value="Add whitespace for improved readability in CameraIntersIntegsTest class" />
     <MESSAGE value=" Clean change list manager" />
     <MESSAGE value="Refactor Camera class; initialize fields and improve intersection test assertions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Camera class; initialize fields and improve intersection test assertions" />
+    <MESSAGE value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

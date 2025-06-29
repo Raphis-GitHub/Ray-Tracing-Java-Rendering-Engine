@@ -60,7 +60,7 @@ public class CameraIntersIntegsTest {
      */
     @Test
     void testCameraIntersectionsWithTriangle() {
-        //TC 01: Triangle is in front of the camera and is the size of a pixel
+        //========================Equivalence Partitions Tests========================
         Camera camera1 = Camera.getBuilder()
                 .setLocation(Point.ZERO)
                 .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
@@ -69,7 +69,7 @@ public class CameraIntersIntegsTest {
                 .setVpDistance(1)
                 .build();
 
-        // TC06: Small triangle in front of the camera
+        // TC01: Small triangle in front of the camera
         Triangle triangle1 = new Triangle(new Point(-1, -1, -2), new Point(1, -1, -2), new Point(0, 1, -2));
         assertPixelIntersections(1, camera1, triangle1);
         //TC 02: Triangle is in front of the camera and is the size of the view plane
