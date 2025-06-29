@@ -58,7 +58,7 @@ class PointTest {
 
         // TC03: Distance squared to the same point should be zero
         assertEquals(0, new Point(1, 2, 3).distanceSquared(new Point(1, 2, 3)), DELTA, "Distance squared to itself should be zero");
-    }
+    }//TODO: add BVA and EP partitions
 
     /**
      * Test method for {@link Point#distance(Point)}.

@@ -101,7 +101,6 @@ class PlaneTest {
         Plane plane = new Plane(P0, P1, P2);
         Vector normal = plane.getNormal(new Point(0, 0, 1));
 
-        // Check length is 1
         assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
 
         // Check orthogonality to two edges

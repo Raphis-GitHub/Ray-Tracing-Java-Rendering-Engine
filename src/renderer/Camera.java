@@ -4,7 +4,7 @@ import primitives.*;
 
 import java.util.MissingResourceException;
 
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Camera class for rendering scenes.
@@ -13,103 +13,37 @@ public class Camera implements Cloneable {
     /**
      * Camera position
      */
-    private Point p0;
+    private Point p0 = null;
     /**
      * Forward direction vector
      */
-    private Vector vTo;
+    private Vector vTo = null;
     /**
      * Up direction vector
      */
-    private Vector vUp;
+    private Vector vUp = null;
     /**
      * Right direction vector
      */
-    private Vector vRight;
+    private Vector vRight = null;
     /**
      * View plane width
      */
-    private double width;
+    private double width = 0;
     /**
      * View plane height
      */
-    private double height;
+    private double height = 0;
     /**
      * Distance to view plane
      */
-    private double distance;
-
-    /**
-     * Gets camera position.
-     *
-     * @return camera position
-     */
-    public Point getP0() {
-        return p0;
-    }
-
-    /**
-     * Gets forward direction vector.
-     *
-     * @return forward direction vector
-     */
-    public Vector getVTo() {
-        return vTo;
-    }
-
-    /**
-     * Gets up direction vector.
-     *
-     * @return up direction vector
-     */
-    public Vector getVUp() {
-        return vUp;
-    }
-
-    /**
-     * Gets right direction vector.
-     *
-     * @return right direction vector
-     */
-    public Vector getVRight() {
-        return vRight;
-    }
-
-    /**
-     * Gets view plane width.
-     *
-     * @return view plane width
-     */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-     * Gets view plane height.
-     *
-     * @return view plane height
-     */
-    public double getHeight() {
-        return height;
-    }
-
-    /**
-     * Gets distance to view plane.
-     *
-     * @return distance to the view plane
-     */
-    public double getDistance() {
-        return distance;
-    }
+    private double distance = 0;
 
     /**
      * Private constructor for Camera.
      * Initializes width, height, and distance to 0.
      */
     private Camera() {
-        height = 0;
-        width = 0;
-        distance = 0;
     }
 
     /**
@@ -128,22 +62,27 @@ public class Camera implements Cloneable {
      * @param nY number of rows (pixels) in view plane
      * @param j  pixel column index
      * @param i  pixel row index
-     * @return Ray from camera through the specified pixel
+     * @return ray from the camera through the specified pixel
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
         double xJ = (j - ((nX - 1) / 2.0)) * (width / nX);
         double yI = -(i - ((nY - 1) / 2.0)) * (height / nY);
 
         Point pIJ = this.p0.add(this.vTo.scale(distance));
-        if (!isZero(xJ)) {
-            pIJ = pIJ.add(vRight.scale(xJ));
-        }
-        if (!isZero(yI)) {
-            pIJ = pIJ.add(vUp.scale(yI));
-        }
+        if (!isZero(xJ)) pIJ = pIJ.add(vRight.scale(xJ));
+        if (!isZero(yI)) pIJ = pIJ.add(vUp.scale(yI));
+
         //add a checker for the point pIJ in case fo zero vector
-        Vector dir = pIJ.subtract(p0).normalize();
-        return new Ray(dir, p0);
+        return new Ray(pIJ.subtract(p0), p0);
+    }
+
+    @Override
+    public Camera clone() {
+        try {
+            return (Camera) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Must not happen, Camera is Cloneable", e);
+        }
     }
 
     /**
@@ -251,28 +190,26 @@ public class Camera implements Cloneable {
          * Checks for missing parameters and calculates right vector.
          *
          * @return Camera instance
-         * @throws MissingResourceException   if required parameters are missing
-         * @throws CloneNotSupportedException if cloning is not supported
+         * @throws MissingResourceException if required parameters are missing
          */
-        public Camera build() throws CloneNotSupportedException {
-            camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
-            camera.vUp = camera.vRight.crossProduct(camera.vTo).normalize();
+        public Camera build() {
             final String MISSING = "Missing rendering data";
             final String CAM = "Camera";
             if (camera.p0 == null)
                 throw new MissingResourceException(MISSING, CAM, "location");
             if (camera.vTo == null)
                 throw new MissingResourceException(MISSING, CAM, "vTo");
-            if (camera.vUp == null)
-                throw new MissingResourceException(MISSING, CAM, "vUp");
-            if (camera.width <= 0)
+            camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
+            camera.vUp = camera.vRight.crossProduct(camera.vTo).normalize();
+
+            if (alignZero(camera.width) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "width > 0");
             if (camera.height <= 0)
                 throw new MissingResourceException(MISSING, CAM, "height > 0");
             if (camera.distance <= 0)
                 throw new MissingResourceException(MISSING, CAM, "distance > 0");
-            return (Camera) camera.clone();
 
+            return camera.clone();
         }
     }
 }

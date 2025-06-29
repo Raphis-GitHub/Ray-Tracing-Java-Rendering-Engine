@@ -41,7 +41,7 @@ public class Vector extends Point {
      * @param xyz The Double3 object containing x, y, and z coordinates.
      * @throws IllegalArgumentException if attempting to create a zero vector.
      */
-    public Vector(Double3 xyz) {
+    Vector(Double3 xyz) {
         super(xyz);
         if (xyz.equals(Double3.ZERO)) {
             throw new IllegalArgumentException("You may not create a ZERO vector.");

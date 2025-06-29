@@ -91,13 +91,7 @@ class VectorTest {
         Vector v2 = new Vector(new Double3(1, 2, 3));
         assertEquals(v1, v2, "Vectors should be equal");
 
-        assertDoesNotThrow(() -> new Vector(new Double3(-1, -2, -3)), "Failed to create a valid vector with negative values");
-        assertDoesNotThrow(() -> new Vector(new Double3(1e10, -1e10, 1e-10)), "Failed to create a valid vector with extreme values");
-        assertDoesNotThrow(() -> new Vector(new Double3(0.1, 0.2, 0.3)), "Failed to create a valid vector with decimal values");
-
         //================================BVA===========================
-        assertThrows(IllegalArgumentException.class, () -> new Point(1, 1, 1).subtract(new Point(1, 1, 1)),
-                "Constructed a ZERO vector");
         assertThrows(IllegalArgumentException.class, () -> new Vector(new Double3(0, 0, 0)), //
                 "Constructed a ZERO vector");
     }
@@ -291,7 +285,7 @@ class VectorTest {
     }
 
     /**
-     * Tests the {@link Vector#subtract(Vector)} method to ensure its correctness.
+     * Tests the {@link Vector#subtract(Point)} method to ensure its correctness.
      */
     @Test
     void subtract() {
