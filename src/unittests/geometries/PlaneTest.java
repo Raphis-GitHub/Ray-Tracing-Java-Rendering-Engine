@@ -22,10 +22,12 @@ class PlaneTest {
      */
     @Test
     void testConstructorThreePoints() {
+
         Point P0 = new Point(0, 0, 0);
         Point P1 = new Point(1, 1, 1);
 
-        // Equivalence Partitions Test
+        //============================Equivalence Partitions Test==============================
+        //TC01: Correct plane with three non-collinear points
         assertDoesNotThrow(() -> {
             Plane plane = new Plane(
                     P0,
@@ -35,40 +37,40 @@ class PlaneTest {
 
             Vector normal = plane.getNormal();
 
-            // Ensure normal is perpendicular to at least two vectors on the plane
             Vector v1 = new Vector(1, 0, 0);
             Vector v2 = new Vector(0, 1, 0);
 
+            //TC02: Ensure normal is perpendicular to at least two vectors on the plane
             assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first vector");
             assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second vector");
 
-            // Ensure normal is normalized (length = 1)
+            //TC03: Ensure normal is normalized (length = 1)
             assertEquals(1, normal.length(), DELTA, "Normal vector is not normalized");
         }, "Plane constructor with three points failed");
 
-        // Boundary Values Tests - Collinear or coinciding points
+        //============================Boundary Values Tests==============================
 
-        // Case 1: First and second points coincide
+        //TC11: First and second points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
                         P0, P0, P1),
                 "Plane constructor allowed first and second points to coincide");
 
-        // Case 2: First and third points coincide
+        //TC12: First and third points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
                         P0, P1, P0),
                 "Plane constructor allowed first and third points to coincide");
 
-        // Case 3: Second and third points coincide
+        //TC13: Second and third points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
                         P1, P0, P0),
                 "Plane constructor allowed second and third points to coincide");
 
-        // Case 4: All points coincide
+        //TC14: All points coincide
         assertThrows(IllegalArgumentException.class, () -> new Plane(
                         P1, P1, P1),
                 "Plane constructor allowed all points to coincide");
 
-        // Case 5: Points are collinear
+        //TC15: Points are collinear
         assertThrows(IllegalArgumentException.class, () -> new Plane(
                         P0, P1, new Point(2, 2, 2)),
                 "Plane constructor allowed collinear points");
@@ -81,10 +83,12 @@ class PlaneTest {
     void testConstructorPointVector() {
         Point P0 = new Point(0, 0, 0);
         Vector normal = new Vector(0, 0, 1);
-
+        //============================Equivalence Partitions Test==============================
         assertDoesNotThrow(() -> {
             Plane plane = new Plane(P0, normal);
+            //TC01: Ensure normal is set correctly
             assertEquals(1, plane.getNormal().length(), DELTA, "Normal vector is not normalized");
+            //TC02: Ensure normal is perpendicular to the plane
             assertEquals(normal.normalize(), plane.getNormal(), "Plane constructor with point and vector failed to set normal correctly");
         }, "Plane constructor with point and vector threw an unexpected exception");
     }
@@ -100,15 +104,19 @@ class PlaneTest {
 
         Plane plane = new Plane(P0, P1, P2);
         Vector normal = plane.getNormal(new Point(0, 0, 1));
-
+        //============================Equivalence Partitions Test==============================
+        //TC01: Check normal vector
         assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
 
         // Check orthogonality to two edges
         Vector v1 = P1.subtract(P0);
         Vector v2 = P2.subtract(P0);
-
+        //TC02: Ensure normal is perpendicular to first edge
         assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
         assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
+        //============================Boundary Values Tests==============================
+        //TC11: Normal at a point on the plane
+        assertEquals(normal, plane.getNormal(new Point(0, 0, 1)), "Normal at a point on the plane is incorrect");
     }
 
     /**

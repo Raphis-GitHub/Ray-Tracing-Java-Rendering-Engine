@@ -22,7 +22,7 @@ public class TriangleTest {
                 new Point(0, 1, 0),
                 new Point(-1, 0, 0)
         );
-
+        // ============ Equivalence Partitions Tests ==============
         //TC01: Test the normal vector of the triangle
         Vector normal = triangle.getNormal(new Point(0, 0, 0));
         assertEquals(new Vector(0, 0, -1), normal, "Normal vector is incorrect");

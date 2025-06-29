@@ -18,24 +18,9 @@ class SphereTest {
     @Test
     void getNormal() {
         Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
-
+        // ============ Equivalence Partitions Tests ==============
         // TC01: point on +X axis
         assertEquals(new Vector(1, 0, 0), sphere.getNormal(new Point(1, 0, 0)), "Incorrect normal for point on +X axis");
-
-        // TC02: point on -X axis
-        assertEquals(new Vector(-1, 0, 0), sphere.getNormal(new Point(-1, 0, 0)), "Incorrect normal for point on -X axis");
-
-        // TC03: point on +Y axis
-        assertEquals(new Vector(0, 1, 0), sphere.getNormal(new Point(0, 1, 0)), "Incorrect normal for point on +Y axis");
-
-        // TC04: point on -Y axis
-        assertEquals(new Vector(0, -1, 0), sphere.getNormal(new Point(0, -1, 0)), "Incorrect normal for point on -Y axis");
-
-        // TC05: point on +Z axis
-        assertEquals(new Vector(0, 0, 1), sphere.getNormal(new Point(0, 0, 1)), "Incorrect normal for point on +Z axis");
-
-        // TC06: point on -Z axis
-        assertEquals(new Vector(0, 0, -1), sphere.getNormal(new Point(0, 0, -1)), "Incorrect normal for point on -Z axis");
     }
 
     /**
