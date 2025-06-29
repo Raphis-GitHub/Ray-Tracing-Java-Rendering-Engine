@@ -1,8 +1,13 @@
 package renderer;
 
-import geometries.*;
+import geometries.Geometry;
+import geometries.Plane;
+import geometries.Sphere;
+import geometries.Triangle;
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 
 import java.util.List;
 
@@ -14,9 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CameraIntersIntegsTest {
 
     /**
-     * Tests camera-sphere intersections.
-     *
-     * @throws CloneNotSupportedException if cloning fails
+     * EP01 to EP05: Equivalence Partitioning tests for camera-sphere intersections.
      */
     @Test
     void testCameraIntersectionsWithSphere() throws CloneNotSupportedException {
@@ -27,12 +30,11 @@ public class CameraIntersIntegsTest {
                 .setResolution(3, 3)
                 .setVpDistance(1)
                 .build();
-
-        //TC 01: Sphere is in front of the camera
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Sphere is in front of the camera
         Sphere sphere1 = new Sphere(new Point(0, 0, -3), 1);
         assertEquals(2, assertPixelIntersections(camera1, sphere1), "Sphere in front of camera should have 2 intersection points");
 
-        //TC 02: view plane is inside the sphere
         Camera camera_2_3_4_5 = Camera.getBuilder()
                 .setLocation(new Point(0, 0, 0.5))
                 .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
@@ -40,30 +42,29 @@ public class CameraIntersIntegsTest {
                 .setResolution(3, 3)
                 .setVpDistance(1)
                 .build();
+
+        // TC02: Camera is just outside a large sphere intersecting the view plane
         Sphere sphere2 = new Sphere(new Point(0, 0, -2.5), 2.5);
         assertEquals(18, assertPixelIntersections(camera_2_3_4_5, sphere2), "Camera inside sphere should have 18 intersection points");
 
-        //TC 03: View plane is inside the sphere
+        // TC03: View plane intersects a large sphere
         Sphere sphere3 = new Sphere(new Point(0, 0, -2), 2);
         assertEquals(10, assertPixelIntersections(camera_2_3_4_5, sphere3), "View plane inside sphere should have 10 intersection points");
 
-        //TC 04: Camera is inside the sphere
+        // TC04: Camera is inside a large sphere
         Sphere sphere4 = new Sphere(new Point(0, 0, -2), 4);
         assertEquals(9, assertPixelIntersections(camera_2_3_4_5, sphere4), "Camera inside sphere should have 9 intersection points");
 
-        //TC 05: Sphere is behind the camera
+        // TC05: Sphere is behind the camera
         Sphere sphere5 = new Sphere(new Point(0, 0, 1), 0.5);
         assertEquals(0, assertPixelIntersections(camera1, sphere5), "Sphere behind camera should have 0 intersection points");
     }
 
     /**
-     * Tests camera-triangle intersections.
-     *
-     * @throws CloneNotSupportedException if cloning fails
+     * TC06 to TC07: Equivalence Partitioning tests for camera-triangle intersections.
      */
     @Test
     void testCameraIntersectionsWithTriangle() {
-        //TC 01: Triangle is in front of the camera and is the size of a pixel
         Camera camera1 = Camera.getBuilder()
                 .setLocation(Point.ZERO)
                 .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
@@ -71,18 +72,18 @@ public class CameraIntersIntegsTest {
                 .setResolution(3, 3)
                 .setVpDistance(1)
                 .build();
+
+        // TC06: Small triangle in front of the camera
         Triangle triangle1 = new Triangle(new Point(-1, -1, -2), new Point(1, -1, -2), new Point(0, 1, -2));
         assertEquals(1, assertPixelIntersections(camera1, triangle1), "Triangle in front of camera should have 1 intersection point");
-        //TC 02: Triangle is in front of the camera and is the size of the view plane
-        Triangle triangle2 = new Triangle(new Point(0, 20, -2), new Point(1, -1, -2), new Point(-1, -1, -2));
-        assertEquals(2, assertPixelIntersections(camera1, triangle2), "Triangle in front of camera should have 3 intersection points");
 
+        // TC07: Large triangle in front of the camera
+        Triangle triangle2 = new Triangle(new Point(0, 20, -2), new Point(1, -1, -2), new Point(-1, -1, -2));
+        assertEquals(2, assertPixelIntersections(camera1, triangle2), "Triangle in front of camera should have 2 intersection points");
     }
 
     /**
-     * Tests camera-plane intersections.
-     *
-     * @throws CloneNotSupportedException if cloning fails
+     * TC01 to TC03: Boundary Value Analysis tests for camera-plane intersections.
      */
     @Test
     void testCameraIntersectionsWithPlane() throws CloneNotSupportedException {
@@ -94,17 +95,17 @@ public class CameraIntersIntegsTest {
                 .setVpDistance(1)
                 .build();
 
-        //TC 01: Plane is in front of the camera and orthogonal to the view plane
+        // =============== Boundary Values Tests ==================
+        // TC01: Plane orthogonal to the view plane
         assertPixelIntersections(9, camera, new Plane(new Point(0, 0, -2), new Vector(0, 0, -1)));
 
-        //TC 02: Plane is in front of the camera and has a different angle
+        // TC02: Plane with a moderate tilt angle
         Plane plane2 = new Plane(new Point(0, 0, -2), new Point(0, 5, -1.5), new Point(1, -20, -4));
         assertEquals(9, assertPixelIntersections(camera, plane2), "Plane in front of camera with different angle should have 9 intersection points");
 
-        //TC 03: Plane is in front of the camera and has a different angle
+        // TC03: Plane with a steeper tilt angle
         Plane plane3 = new Plane(new Point(0, 0, -2), new Point(0, 10, -1.5), new Point(1, 5, -4));
         assertEquals(6, assertPixelIntersections(camera, plane3), "Plane in front of camera with different angle should have 6 intersection points");
-
     }
 
     /**
