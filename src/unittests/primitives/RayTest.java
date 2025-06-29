@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for Ray.getPoint
@@ -33,15 +32,11 @@ public class RayTest {
     /**
      * Equivalence Partition:
      * TC01 - Point in the middle is the closest
-     * <p>
-     * Boundary Value Analysis:
-     * TC02 - Empty list (null result expected)
-     * TC03 - First point is closest
-     * TC04 - Last point is closest
      */
     @Test
     void testFindClosestPoint() {
         Ray ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));
+
         // ============ Equivalence Partitions Tests ==============
         // TC01: Middle point is closest
         List<Point> points1 = List.of(
@@ -49,7 +44,8 @@ public class RayTest {
                 new Point(2, 0, 0), // closest
                 new Point(10, 0, 0)
         );
-        assertNull(ray.findClosestPoint(points1), "TC01: Currently returns null (expected in stub)");
+        assertEquals(new Point(2, 0, 0), ray.findClosestPoint(points1),
+                "TC01: Should return the closest point (2,0,0)");
 
         // =============== Boundary Values Tests ==================
         // TC02: Empty list
@@ -58,18 +54,20 @@ public class RayTest {
 
         // TC03: First point is closest
         List<Point> points3 = List.of(
-                new Point(1, 0, 0),
+                new Point(1, 0, 0), // closest
                 new Point(3, 0, 0),
                 new Point(6, 0, 0)
         );
-        assertNull(ray.findClosestPoint(points3), "TC03: Stub returns null");
+        assertEquals(new Point(1, 0, 0), ray.findClosestPoint(points3),
+                "TC03: Should return the first/closest point (1,0,0)");
 
         // TC04: Last point is closest
         List<Point> points4 = List.of(
                 new Point(5, 0, 0),
                 new Point(7, 0, 0),
-                new Point(0.5, 0, 0)
+                new Point(0.5, 0, 0) // closest
         );
-        assertNull(ray.findClosestPoint(points4), "TC04: Stub returns null");
+        assertEquals(new Point(0.5, 0, 0), ray.findClosestPoint(points4),
+                "TC04: Should return the last/closest point (0.5,0,0)");
     }
 }

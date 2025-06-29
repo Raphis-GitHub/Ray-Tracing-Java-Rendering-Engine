@@ -80,9 +80,18 @@ public class Ray {
      * @return the closest point to the ray's origin, or null
      */
     public Point findClosestPoint(List<Point> points) {
-        return null;
+        if (points == null || points.isEmpty()) return null;
+        Point closestPoint = points.getFirst();
+        double minDistance = origin.distanceSquared(closestPoint);
+        for (Point point : points) {
+            double distance = origin.distanceSquared(point);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestPoint = point;
+            }
+        }
+        return closestPoint;
     }
-
 
     /**
      * Checks if this ray is equal to another object.
