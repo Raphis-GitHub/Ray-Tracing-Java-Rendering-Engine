@@ -76,6 +76,8 @@ final class ImageWriter {
     /**
      * Function writeToImage produces unoptimized png file of the image according
      * to pixel color matrix in the directory of the project
+     *
+     * @param imageName name of the image file to be created
      */
     void writeToImage(String imageName) {
         try {

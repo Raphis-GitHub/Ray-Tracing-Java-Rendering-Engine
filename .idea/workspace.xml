@@ -7,13 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Ray class; implement findClosestPoint method and improve unit tests">
-      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +96,7 @@
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
     "JUnit.RayTest.testGetPoint.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
+    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
     "JUnit.SphereTest.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Debug",
     "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
@@ -166,7 +162,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RenderTests.renderTwoColorTest">
+  <component name="RunManager" selected="JUnit.ALLTESTS">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -685,7 +681,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751219125694</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes">
+      <option name="closed" value="true" />
+      <created>1751222418424</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1751222418424</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,7 +707,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="redid files for this year" />
     <MESSAGE value="1) reformat all last time&#10;2) move JUNIT library to global maven location" />
     <MESSAGE value="Refactor geometries to improve code style and consistency" />
     <MESSAGE value="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest" />
@@ -728,7 +731,8 @@
     <MESSAGE value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
     <MESSAGE value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
     <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
+    <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

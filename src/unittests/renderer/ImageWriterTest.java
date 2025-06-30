@@ -3,8 +3,13 @@ package renderer;
 import org.junit.jupiter.api.Test;
 import primitives.Color;
 
+/**
+ * Unit tests for ImageWriter class.
+ */
 public class ImageWriterTest {
-
+    /**
+     * Test method for writing an image with a grid pattern.
+     */
     @Test
     public void testWriteImageWithGrid() {
         int width = 800;

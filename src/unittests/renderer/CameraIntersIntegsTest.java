@@ -110,6 +110,7 @@ public class CameraIntersIntegsTest {
      *
      * @param camera   the camera to use for ray construction
      * @param geometry the geometry to check for intersections
+     * @param expected the expected number of intersection points
      */
     private void assertPixelIntersections(int expected, Camera camera, Geometry geometry) {
         int count = 0;

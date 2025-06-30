@@ -3,7 +3,15 @@ package renderer;
 import primitives.*;
 import scene.Scene;
 
+/**
+ * Simple ray tracer that traces rays through a scene
+ */
 public class SimpleRayTracer extends RayTracerBase {
+    /**
+     * constructor returns super of scene
+     *
+     * @param scene the scene to trace rays in
+     */
     public SimpleRayTracer(Scene scene) {
         super(scene);
     }
@@ -22,6 +30,12 @@ public class SimpleRayTracer extends RayTracerBase {
         return calcColor(closestPoint);
     }
 
+    /**
+     * calculates color itensity
+     *
+     * @param p the point to calculate color at
+     * @return the color intesity
+     */
     private Color calcColor(Point p) {
         return scene.ambientLight.getIntensity();
     }

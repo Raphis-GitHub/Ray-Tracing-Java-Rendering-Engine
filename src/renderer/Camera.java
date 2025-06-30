@@ -11,9 +11,21 @@ import static primitives.Util.*;
  * Camera class for rendering scenes.
  */
 public class Camera implements Cloneable {
+    /**
+     * ImageWriter for writing the rendered image.
+     */
     private ImageWriter imageWriter;
+    /**
+     * RayTracerBase for tracing rays through the scene.
+     */
     private RayTracerBase rayTracer;
+    /**
+     * Number of columns (pixels) in the view plane.
+     */
     private int nX = 1;
+    /**
+     * Number of rows (pixels) in the view plane.
+     */
     private int nY = 1;
     /**
      * Camera position
@@ -81,6 +93,11 @@ public class Camera implements Cloneable {
         return new Ray(pIJ.subtract(p0), p0);
     }
 
+    /**
+     * Renders the image by casting rays through each pixel in the view plane.
+     *
+     * @return the Camera instance for method chaining
+     */
     public Camera renderImage() {
         for (int y = 0; y < nY; y++) {
             for (int x = 0; x < nX; x++) {
@@ -90,6 +107,13 @@ public class Camera implements Cloneable {
         return this;
     }
 
+    /**
+     * Prints a grid on the image with specified interval and color.
+     *
+     * @param interval the interval at which to print the grid lines
+     * @param color    the color of the grid lines
+     * @return the Camera instance for method chaining
+     */
     public Camera printGrid(int interval, Color color) {
        /* if (imageWriter == null) {
             throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
@@ -108,6 +132,12 @@ public class Camera implements Cloneable {
         return this;
     }
 
+    /**
+     * Writes the rendered image to a file.
+     *
+     * @param fileName the name of the file to write the image to
+     * @return the Camera instance for method chaining
+     */
     public Camera writeToImage(String fileName) {
         /*if (imageWriter == null) {
             throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
@@ -149,6 +179,13 @@ public class Camera implements Cloneable {
          */
         private final Camera camera = new Camera();
 
+        /**
+         * Sets the ray tracer for the camera.
+         *
+         * @param scene         the scene to be rendered
+         * @param rayTracerType the type of ray tracer to use
+         * @return Builder instance
+         */
         public Builder setRayTracer(Scene scene, RayTracerType rayTracerType) {
             switch (rayTracerType) {
                 case SIMPLE:
