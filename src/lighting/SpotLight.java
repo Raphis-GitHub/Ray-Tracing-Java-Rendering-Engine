@@ -12,10 +12,6 @@ public class SpotLight extends PointLight {
      * The direction of the spotlight.
      */
     private final Vector direction;
-    /**
-     * Narrow beam effect factor. A value greater than 1 makes the beam narrower.
-     * A value of 1 means no narrowing effect.
-     */
     private double narrowBeam = 1;
 
     /**
@@ -31,15 +27,12 @@ public class SpotLight extends PointLight {
     }
 
     /**
-     * Gets the direction of the spotlight.
+     * Sets the narrow beam effect for the spotlight.
      *
-     * @param narrowBeam the beam attention factor
-     * @return the normalized direction vector of the spotlight
+     * @param narrowBeam the narrow beam factor (1 for no effect, >1 for narrowing)
+     * @return the current SpotLight instance for method chaining
      */
     public SpotLight setNarrowBeam(double narrowBeam) {
-        if (narrowBeam < 1) {
-            throw new IllegalArgumentException("Narrow beam factor must be >= 1");
-        }
         this.narrowBeam = narrowBeam;
         return this;
     }
@@ -88,24 +81,32 @@ public class SpotLight extends PointLight {
      */
     @Override
     public Color getIntensity(Point p) {
+//
+//        if (narrowBeam <= 1) {
+//            Color pointIntensity = super.getIntensity(p);
+//            Vector l = getL(p);
+//            double factor = Math.max(0, direction.normalize().dotProduct(l));
+//            return pointIntensity.scale(factor);
+//        }
         // Get base intensity from PointLight (includes distance attenuation)
+        // Get the base point light intensity (includes distance attenuation)
         Color pointIntensity = super.getIntensity(p);
 
-        // Get the direction from light to point
-        Vector l = getL(p);
+        // Calculate the direction from the light source to the point
+        Vector lightToPoint = p.subtract(position).normalize();
 
-        // Calculate the cosine of the angle between light direction and vector to point
-        double cosAngle = direction.normalize().dotProduct(l);
+        // Calculate the cosine of the angle between light direction and light-to-point vector
+        // Both vectors should point in the same direction for maximum intensity
+        double cosAngle = direction.dotProduct(lightToPoint);
 
         // Apply directional factor (0 if pointing away, positive if within cone)
         double directionalFactor = Math.max(0, cosAngle);
-
-        // Apply narrow beam effect by raising to a power
+        //Apply narrow beam effect by raising to a power
         if (narrowBeam > 1) {
             directionalFactor = Math.pow(directionalFactor, narrowBeam);
         }
-
         return pointIntensity.scale(directionalFactor);
+
     }
 
 }

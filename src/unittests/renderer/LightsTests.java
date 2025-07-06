@@ -548,7 +548,7 @@ class LightsTests {
         // Very focused beam
         scene.lights.add(new SpotLight(new Color(400, 400, 400), new Point(60, 50, 0), new Vector(0, -1, -2))
                 .setKl(0.001).setKq(0.0001).setNarrowBeam(20));
-
+        scene.setAmbientLight(new AmbientLight(new Color(20, 20, 30)));
         Camera.getBuilder()
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .setLocation(new Point(0, 0, 1000))

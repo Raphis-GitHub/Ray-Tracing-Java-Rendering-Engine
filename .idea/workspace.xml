@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Remove unnecessary blank lines in CylinderTest.java">
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -320,23 +323,7 @@
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
       <workItem from="1751558051837" duration="18550000" />
-      <workItem from="1751815279981" duration="13764000" />
-    </task>
-    <task id="LOCAL-00010" summary="PUSH">
-      <option name="closed" value="true" />
-      <created>1743512579656</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1743512579656</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Rename test methods and class for consistency&#10;&#10;Updated method names in PlaneTest to reflect their respective test purposes more clearly. Additionally, corrected PointTest class name to align with naming conventions and improve clarity.">
-      <option name="closed" value="true" />
-      <created>1743512771661</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1743512771661</updated>
+      <workItem from="1751815279981" duration="14254000" />
     </task>
     <task id="LOCAL-00012" summary="added methods in test plane">
       <option name="closed" value="true" />
@@ -714,7 +701,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751842465727</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations">
+      <option name="closed" value="true" />
+      <created>1751842486207</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1751842486207</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Remove unnecessary blank lines in CylinderTest.java">
+      <option name="closed" value="true" />
+      <created>1751842547749</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1751842547749</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +735,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
     <MESSAGE value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
     <MESSAGE value="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern" />
     <MESSAGE value="Implement ray construction in Camera class; add intersection tests for Camera with geometries" />
@@ -757,7 +759,8 @@
     <MESSAGE value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
     <MESSAGE value="Add tolerance constant for floating point comparisons in TriangleTest" />
     <MESSAGE value="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
+    <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary blank lines in CylinderTest.java" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
