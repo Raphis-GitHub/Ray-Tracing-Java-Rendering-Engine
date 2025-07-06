@@ -7,29 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity">
+      <change afterPath="$PROJECT_DIR$/src/lighting/Light.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/AmbientLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/AmbientLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/PointTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/RayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/ImageWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/ImageWriterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +168,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TriangleTest.testGetNormal">
+  <component name="RunManager" selected="JUnit.RenderTests.renderMaterialTest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -213,22 +197,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RayTest.testFindClosestPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.RayTest" />
-      <option name="METHOD_NAME" value="testFindClosestPoint" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RenderTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -240,6 +208,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenderTests.renderMaterialTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="renderMaterialTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -278,19 +262,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.RenderTests.renderMaterialTest" />
       <item itemvalue="JUnit.ImageWriterTest" />
-      <item itemvalue="JUnit.RayTest.testFindClosestPoint" />
       <item itemvalue="JUnit.RenderTests" />
       <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
       <item itemvalue="JUnit.TriangleTest.testGetNormal" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RenderTests.renderMaterialTest" />
         <item itemvalue="JUnit.TriangleTest.testGetNormal" />
         <item itemvalue="JUnit.RenderTests" />
         <item itemvalue="JUnit.ImageWriterTest" />
         <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
-        <item itemvalue="JUnit.RayTest.testFindClosestPoint" />
       </list>
     </recent_temporary>
   </component>
@@ -334,7 +318,7 @@
       <workItem from="1750345375610" duration="511000" />
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
-      <workItem from="1751558051837" duration="8246000" />
+      <workItem from="1751558051837" duration="11292000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -720,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751268815792</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity">
+      <option name="closed" value="true" />
+      <created>1751793779186</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1751793779186</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,8 +730,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor geometries to improve code style and consistency" />
-    <MESSAGE value="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest" />
     <MESSAGE value="Enhance documentation by adding Javadoc comments for constructors and methods in Geometries, Point, Ray, and their respective test classes" />
     <MESSAGE value="Implement intersection logic for Cylinder and Tube; add tests for findIntersections in Cylinder, Tube, and Polygon" />
     <MESSAGE value="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation" />
@@ -763,7 +753,9 @@
     <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
     <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
     <MESSAGE value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
+    <MESSAGE value="Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
+    <MESSAGE value="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

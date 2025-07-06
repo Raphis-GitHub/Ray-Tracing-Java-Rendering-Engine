@@ -41,7 +41,9 @@ public class SimpleRayTracer extends RayTracerBase {
         }
         // Get the emission color of the intersected geometry
         Color objectColor = intersection.geometry.getEmission();
-        // Add the emission color to the ambient light at the intersection point
-        return scene.ambientLight.getIntensity().add(objectColor);
+        // Multiply ambient light intensity by the material's kA (attenuation factor)
+        Color ambient = scene.ambientLight.getIntensity().scale(intersection.geometry.getMaterial().kA);
+        // Add the emission color to the ambient component
+        return ambient.add(objectColor);
     }
 }
