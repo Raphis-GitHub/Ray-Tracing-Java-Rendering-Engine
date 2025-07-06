@@ -12,6 +12,11 @@ public class SpotLight extends PointLight {
      * The direction of the spotlight.
      */
     private final Vector direction;
+    /**
+     * Narrow beam effect factor. A value greater than 1 makes the beam narrower.
+     * A value of 1 means no narrowing effect.
+     */
+    private double narrowBeam = 1;
 
     /**
      * Constructs a SpotLight with the specified intensity, position, and direction.
@@ -23,6 +28,19 @@ public class SpotLight extends PointLight {
     public SpotLight(Color intensity, Point position, Vector direction) {
         super(intensity, position);
         this.direction = direction.normalize();
+    }
+
+    /**
+     * Gets the direction of the spotlight.
+     *
+     * @return the normalized direction vector of the spotlight
+     */
+    public SpotLight setNarrowBeam(double narrowBeam) {
+        if (narrowBeam < 1) {
+            throw new IllegalArgumentException("Narrow beam factor must be >= 1");
+        }
+        this.narrowBeam = narrowBeam;
+        return this;
     }
 
     /**
@@ -69,10 +87,24 @@ public class SpotLight extends PointLight {
      */
     @Override
     public Color getIntensity(Point p) {
+        // Get base intensity from PointLight (includes distance attenuation)
         Color pointIntensity = super.getIntensity(p);
+
+        // Get the direction from light to point
         Vector l = getL(p);
-        double factor = Math.max(0, direction.normalize().dotProduct(l));
-        return pointIntensity.scale(factor);
+
+        // Calculate the cosine of the angle between light direction and vector to point
+        double cosAngle = direction.normalize().dotProduct(l);
+
+        // Apply directional factor (0 if pointing away, positive if within cone)
+        double directionalFactor = Math.max(0, cosAngle);
+
+        // Apply narrow beam effect by raising to a power
+        if (narrowBeam > 1) {
+            directionalFactor = Math.pow(directionalFactor, narrowBeam);
+        }
+
+        return pointIntensity.scale(directionalFactor);
     }
 
 }

@@ -141,7 +141,7 @@ public class SimpleRayTracer extends RayTracerBase {
         intersection.lightDirection = lightSource.getL(intersection.point);
         intersection.lightDotProduct = Util.alignZero(intersection.normal.dotProduct(intersection.lightDirection));
 
-        // Check same side: both ray and light should be on same side of surface
-        return intersection.lightDotProduct * intersection.dotProduct > 0;
+        // Only check if surface faces the light
+        return intersection.lightDotProduct > 0;
     }
 }
