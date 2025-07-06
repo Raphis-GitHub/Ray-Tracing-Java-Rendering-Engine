@@ -7,16 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,76 +70,76 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.ALLTESTS.executor": "Run",
-    "JUnit.All in ISE5785_4760_2159.executor": "Run",
-    "JUnit.CameraIntersIntegsTest.executor": "Run",
-    "JUnit.CameraTest.executor": "Run",
-    "JUnit.CameraTest.testBuilder.executor": "Run",
-    "JUnit.CameraTest.testConstructRay.executor": "Debug",
-    "JUnit.CylinderTest.executor": "Run",
-    "JUnit.CylinderTest.getNormal.executor": "Run",
-    "JUnit.CylinderTest.testFindIntersections.executor": "Run",
-    "JUnit.ImageWriterTest.executor": "Run",
-    "JUnit.ImageWriterTest.testWriteImageWithGrid.executor": "Run",
-    "JUnit.LightsTests.epicLightShowTest.executor": "Run",
-    "JUnit.PlaneTest.executor": "Run",
-    "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
-    "JUnit.PointTest.executor": "Run",
-    "JUnit.PointTest.testSubtract.executor": "Run",
-    "JUnit.PointTests.executor": "Run",
-    "JUnit.PointTests.testAdd.executor": "Run",
-    "JUnit.PolygonTests.executor": "Run",
-    "JUnit.RayTest.executor": "Run",
-    "JUnit.RayTest.testFindClosestPoint.executor": "Run",
-    "JUnit.RayTest.testGetPoint.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderMaterialTest.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.SphereTest.executor": "Run",
-    "JUnit.SphereTest.getNormal.executor": "Debug",
-    "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
-    "JUnit.TriangleTest.testGetNormal.executor": "Run",
-    "JUnit.TubeTest.executor": "Run",
-    "JUnit.TubeTest.testFindIntersections.executor": "Run",
-    "JUnit.VectorTest.add.executor": "Run",
-    "JUnit.VectorTest.dotProduct.executor": "Run",
-    "JUnit.VectorTest.executor": "Run",
-    "JUnit.VectorTest.scale.executor": "Run",
-    "JUnit.VectorTest.subtract.executor": "Run",
-    "JUnit.all tests.executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries",
-    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/unittests/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/raphs/IdeaProjects/untitled/src/test/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.ALLTESTS.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in ISE5785_4760_2159.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraIntersIntegsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testConstructRay.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CylinderTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteImageWithGrid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.epicLightShowTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PointTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTest.testSubtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testAdd.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PolygonTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testGetPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderMaterialTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.getNormal.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections_variousCases.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.testGetNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.add.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.dotProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.scale.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.subtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.all tests.executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/unittests/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/raphs/IdeaProjects/untitled/src/test/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\unittests\renderer" />
@@ -329,15 +320,7 @@
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
       <workItem from="1751558051837" duration="18550000" />
-      <workItem from="1751815279981" duration="9230000" />
-    </task>
-    <task id="LOCAL-00005" summary="jdk swap">
-      <option name="closed" value="true" />
-      <created>1743356365016</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1743356365016</updated>
+      <workItem from="1751815279981" duration="9588000" />
     </task>
     <task id="LOCAL-00006" summary="test">
       <option name="closed" value="true" />
@@ -723,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751816072463</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests">
+      <option name="closed" value="true" />
+      <created>1751832548729</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1751832548729</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor Cylinder and Tube classes; enhance unit tests for intersection logic and normal calculations" />
     <MESSAGE value="change style settings + reformat of everything (Dan)" />
     <MESSAGE value="remove junit from working dir and some more cleaning" />
     <MESSAGE value="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases" />
@@ -766,7 +756,8 @@
     <MESSAGE value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
     <MESSAGE value="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management" />
     <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
+    <MESSAGE value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for Triangle.findIntersections
  */
 public class TriangleTest {
-
+    /**
+     * Tolerance for floating point comparisons
+     */
     private static final double DELTA = 1e-10;
 
     /**
