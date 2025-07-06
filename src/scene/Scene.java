@@ -15,7 +15,8 @@ public class Scene {
     /**
      * The background color of the scene.
      */
-    public Color background;
+    public Color background = Color.BLACK;
+    //TODO: check
     /**
      * The ambient light in the scene.
      */

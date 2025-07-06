@@ -86,7 +86,7 @@ public class Plane extends Geometry {
      * @return list of 1 intersection point, or {@code null} if there is none
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
         Vector u;
         try {
             u = this.point.subtract(ray.origin());
@@ -95,15 +95,13 @@ public class Plane extends Geometry {
             return null;
         }
 
-        // Denominator: n · v
-        double nv = alignZero(normal.dotProduct(ray.direction()));
-        // If ray is parallel to the plane or lies in the plane
+        double nv = normal.dotProduct(ray.direction());
         if (isZero(nv)) return null;
 
-        // Numerator: n · (Q0 - P0)
-        double t = alignZero(normal.dotProduct(u)) / nv;
-        // If intersection is behind the ray's head
-        return t <= 0 ? null : List.of(ray.getPoint(t));
+        double t = normal.dotProduct(u) / nv;
+        return alignZero(t) <= 0
+                ? null
+                : List.of(new Intersection(this, ray.getPoint(t)));
     }
 
 }

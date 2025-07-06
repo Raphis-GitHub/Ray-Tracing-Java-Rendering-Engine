@@ -1,6 +1,5 @@
 package geometries;
 
-import primitives.Point;
 import primitives.Ray;
 
 import java.util.*;
@@ -8,7 +7,7 @@ import java.util.*;
 /**
  * Geometries is a composite class that groups multiple intersectable geometries.
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
     /**
      * List of intersectable geometries.
      */
@@ -38,17 +37,11 @@ public class Geometries implements Intersectable {
         Collections.addAll(this.geometries, geometries);
     }
 
-    /**
-     * Adds a list of intersectable geometries to the collection.
-     *
-     * @param ray the list of intersectable geometries to add
-     */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
-
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
+        List<Intersection> result = null;
         for (Intersectable geo : geometries) {
-            List<Point> temp = geo.findIntersections(ray);
+            List<Intersection> temp = geo.calculateIntersections(ray);
             if (temp != null) {
                 if (result == null)
                     result = new LinkedList<>(temp);
@@ -56,7 +49,6 @@ public class Geometries implements Intersectable {
                     result.addAll(temp);
             }
         }
-
         return result;
     }
 }

@@ -1,7 +1,6 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * The Geometry interface represents geometric shapes.
@@ -9,7 +8,18 @@ import primitives.Vector;
  *
  * @author Raphael
  */
-public abstract class Geometry implements Intersectable {
+public abstract class Geometry extends Intersectable {
+    public Color getEmission() {
+        return emission;
+    }
+
+    public Geometry setEmission(Color emission) {
+        this.emission = emission;
+        return this;
+    }
+
+    protected Color emission = Color.BLACK;
+
     /**
      * Returns the normal vector to the geometry at a given point on the geometry's surface
      *

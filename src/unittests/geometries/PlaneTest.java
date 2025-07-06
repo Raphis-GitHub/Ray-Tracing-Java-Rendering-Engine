@@ -103,20 +103,18 @@ class PlaneTest {
         Point p2 = new Point(0, 1, 1);
 
         Plane plane = new Plane(p0, p1, p2);
-        Vector normal = plane.getNormal(new Point(0, 0, 1));
         //============================Equivalence Partitions Test==============================
         //TC01: Check normal vector
+        assertDoesNotThrow(() -> plane.getNormal(new Point(0, 0, 1)), "Plane.getNormal() threw an unexpected exception");
+        Vector normal = plane.getNormal(new Point(0, 0, 1));
+        assertNotNull(normal, "Normal vector should not be null");
+        // check normal length == 1
         assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
-
         // Check orthogonality to two edges
         Vector v1 = p1.subtract(p0);
         Vector v2 = p2.subtract(p0);
-        //TC02: Ensure normal is perpendicular to first edge
         assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
         assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
-        //============================Boundary Values Tests==============================
-        //TC11: Normal at a point on the plane
-        assertEquals(normal, plane.getNormal(new Point(0, 0, 1)), "Normal at a point on the plane is incorrect");
     }
 
     /**

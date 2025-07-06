@@ -55,13 +55,13 @@ public class Sphere extends RadialGeometry {
      * @return List of intersection points, or {@code null} if there are none
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
         Vector u;
         try {
             u = this.center.subtract(ray.origin());
         } catch (IllegalArgumentException e) {
             // The ray starts at the center of the sphere
-            return List.of(ray.getPoint(radius));
+            return List.of(new Intersection(this, ray.getPoint(radius)));
         }
 
         double tm = ray.direction().dotProduct(u);
@@ -69,14 +69,15 @@ public class Sphere extends RadialGeometry {
         double thSquared = radiusSquared - dSquared;
         if (alignZero(thSquared) <= 0) return null;
 
-        double th = alignZero(Math.sqrt(thSquared));
+        double th = Math.sqrt(thSquared);
 
         double t2 = alignZero(tm + th);
-        if (t2 <= 0) return null; // The second intersection point is behind the ray's origin
+        if (t2 <= 0) return null;
 
-        double t1 = alignZero(tm - th);
-        return t1 <= 0 ? List.of(ray.getPoint(t2))
-                : List.of(ray.getPoint(t1), ray.getPoint(t2));
+        double t1 = tm - th;
+        return alignZero(t1) <= 0
+                ? List.of(new Intersection(this, ray.getPoint(t2)))
+                : List.of(new Intersection(this, ray.getPoint(t1)), new Intersection(this, ray.getPoint(t2)));
     }
 
 }

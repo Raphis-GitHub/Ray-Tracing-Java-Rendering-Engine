@@ -34,44 +34,32 @@ public class Triangle extends Polygon {
      * @return list with one intersection point or null
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
         Point vertex0 = vertices.getFirst();
-        Point vertex1 = vertices.get(1);
-        Point vertex2 = vertices.get(2);
-        Vector edge1 = vertex1.subtract(vertex0);
-        Vector edge2 = vertex2.subtract(vertex0);
+        Vector edge1 = vertices.get(1).subtract(vertex0);
+        Vector edge2 = vertices.get(2).subtract(vertex0);
         Vector h = ray.direction().crossProduct(edge2);
         Vector s = ray.origin().subtract(vertex0);
         Vector q = s.crossProduct(edge1);
-        double a, f, u, v;
-        a = alignZero(edge1.dotProduct(h));
 
-        if (isZero(a)) {
+        double a = edge1.dotProduct(h);
+        if (isZero(a))
             return null;    // This ray is parallel to this triangle.
-        }
 
-        f = 1.0 / a;
-        u = f * (s.dotProduct(h));
-
-        if (u <= 0.0 || u >= 1.0) {
+        double f = 1.0 / a;
+        double u = f * (s.dotProduct(h));
+        if (alignZero(u) <= 0.0 || alignZero(u - 1) >= 0)
             return null;
-        }
 
-        v = f * ray.direction().dotProduct(q);
-
-        if (v <= 0.0 || u + v >= 1.0) {
+        double v = f * ray.direction().dotProduct(q);
+        if (alignZero(v) <= 0.0 || alignZero(u + v - 1) >= 0)
             return null;
-        }
 
-        // At this stage we can compute t to find out where the intersection point is on the line.
         double t = f * edge2.dotProduct(q);
-        if (!isZero(t) && t > 0) // ray intersection
-        {
-            return plane.findIntersections(ray);
-        } else // This means that there is a line intersection but not a ray intersection.
-        {
-            return null;
-        }
+        return (alignZero(t) <= 0)
+                ? null
+                : List.of(new Intersection(this, ray.getPoint(t)));
     }
 
 }
+

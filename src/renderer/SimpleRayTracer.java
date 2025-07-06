@@ -1,7 +1,11 @@
 package renderer;
 
-import primitives.*;
+import geometries.Intersectable.Intersection;
+import primitives.Color;
+import primitives.Ray;
 import scene.Scene;
+
+import java.util.List;
 
 /**
  * Simple ray tracer that traces rays through a scene
@@ -18,25 +22,26 @@ public class SimpleRayTracer extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
-        // Find intersections between the ray and the scene's geometries
-        var intersections = scene.geometries.findIntersections(ray);
-        // If no intersections, return the background color
-        if (intersections == null || intersections.isEmpty()) {
-            return scene.background;
-        }
-        // Find the closest intersection point to the ray's origin
-        Point closestPoint = ray.findClosestPoint(intersections);
-        // Return the color at this point using calcColor
-        return calcColor(closestPoint);
+        List<Intersection> intersections = scene.geometries.calculateIntersections(ray);
+        return intersections == null
+                ? scene.background
+                : calcColor(ray.findClosestIntersection(intersections), ray);
     }
 
     /**
-     * calculates color itensity
+     * calculates color intensity at an intersection
      *
-     * @param p the point to calculate color at
-     * @return the color intesity
+     * @param intersection the intersection to calculate color at
+     * @param ray          the ray that caused the intersection (optional, for future use)
+     * @return the color intensity
      */
-    private Color calcColor(Point p) {
-        return scene.ambientLight.getIntensity();
+    private Color calcColor(Intersection intersection, Ray ray) {
+        if (intersection == null) {
+            return scene.background;
+        }
+        // Get the emission color of the intersected geometry
+        Color objectColor = intersection.geometry.getEmission();
+        // Add the emission color to the ambient light at the intersection point
+        return scene.ambientLight.getIntensity().add(objectColor);
     }
 }

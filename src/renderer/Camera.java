@@ -99,11 +99,9 @@ public class Camera implements Cloneable {
      * @return the Camera instance for method chaining
      */
     public Camera renderImage() {
-        for (int y = 0; y < nY; y++) {
-            for (int x = 0; x < nX; x++) {
+        for (int y = 0; y < nY; y++)
+            for (int x = 0; x < nX; x++)
                 castRay(x, y);
-            }
-        }
         return this;
     }
 
@@ -115,20 +113,10 @@ public class Camera implements Cloneable {
      * @return the Camera instance for method chaining
      */
     public Camera printGrid(int interval, Color color) {
-       /* if (imageWriter == null) {
-            throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
-        }
-        if (rayTracer == null) {
-            throw new MissingResourceException("RayTracerBase is not set", "Camera", "rayTracerBase");
-        } */
-
-        for (int i = 0; i < nX; i++) {
-            for (int j = 0; j < nY; j++) {
-                if (i % interval == 0 || j % interval == 0) {
+        for (int i = 0; i < nX; i++)
+            for (int j = 0; j < nY; j++)
+                if (i % interval == 0 || j % interval == 0)
                     imageWriter.writePixel(i, j, color);
-                }
-            }
-        }
         return this;
     }
 
@@ -136,14 +124,9 @@ public class Camera implements Cloneable {
      * Writes the rendered image to a file.
      *
      * @param fileName the name of the file to write the image to
-     * @return the Camera instance for method chaining
      */
-    public Camera writeToImage(String fileName) {
-        /*if (imageWriter == null) {
-            throw new MissingResourceException("ImageWriter is not set", "Camera", "imageWriter");
-        }*/
+    public void writeToImage(String fileName) {
         imageWriter.writeToImage(fileName);
-        return this;
     }
 
     /**
@@ -187,13 +170,8 @@ public class Camera implements Cloneable {
          * @return Builder instance
          */
         public Builder setRayTracer(Scene scene, RayTracerType rayTracerType) {
-            switch (rayTracerType) {
-                case SIMPLE:
-                    camera.rayTracer = new SimpleRayTracer(scene);
-                    break;
-                default:
-                    camera.rayTracer = null;
-            }
+            if (rayTracerType == RayTracerType.SIMPLE)
+                camera.rayTracer = new SimpleRayTracer(scene);
             return this;
         }
 
@@ -306,13 +284,13 @@ public class Camera implements Cloneable {
 
             if (alignZero(camera.width) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "width > 0");
-            if (camera.height <= 0)
+            if (alignZero(camera.height) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "height > 0");
-            if (camera.distance <= 0)
+            if (alignZero(camera.distance) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "distance > 0");
-            if (camera.nX <= 0)
+            if (alignZero(camera.nX) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "nX > 0");
-            if (camera.nY <= 0)
+            if (alignZero(camera.nY) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "nY > 0");
 
             camera.imageWriter = new ImageWriter(camera.nX, camera.nY);

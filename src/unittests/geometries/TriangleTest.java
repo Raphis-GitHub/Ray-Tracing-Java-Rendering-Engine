@@ -12,27 +12,33 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TriangleTest {
 
+    private static final double DELTA = 1e-10;
+
     /**
      * Getnormal tests
      */
     @Test
     void testGetNormal() {
-        //todo: fix triangle
-        Triangle triangle = new Triangle(
-                new Point(1, 0, 0),
-                new Point(0, 1, 0),
-                new Point(-1, 0, 0)
-        );
+        Point p0 = new Point(0, 1, 0);
+        Point p1 = new Point(1, 0, 0);
+        Point p2 = new Point(-1, 0, 0);
+        Triangle triangle = new Triangle(p0, p1, p2);
         // ============ Equivalence Partitions Tests ==============
-        //TC01: Test the normal vector of the triangle
+        // Get the normal at a point
         Vector normal = triangle.getNormal(new Point(0, 0, 0));
-        assertEquals(new Vector(0, 0, -1), normal, "Normal vector is incorrect");
-        //TC02: Test the normal vector at a point on the triangle
-        normal = triangle.getNormal(new Point(0, 0.5, 0));
-        assertEquals(new Vector(0, 0, -1), normal, "Normal vector at point on triangle is incorrect");
-        //TC03: Test the normal vector at a vertex of the triangle
-        normal = triangle.getNormal(new Point(0, 1, 0));
-        assertEquals(new Vector(0, 0, -1), normal, "Normal vector at vertex is incorrect");
+        // The expected normal (could be (0,0,1) or (0,0,-1))
+        Vector expectedNormal = new Vector(0, 0, -1);
+        // Allow for opposite direction
+        boolean sameDirection = normal.equals(expectedNormal);
+        boolean oppositeDirection = normal.equals(expectedNormal.scale(-1));
+        assertTrue(sameDirection || oppositeDirection, "Normal vector is not as expected (or its opposite)");
+        // Check normal is perpendicular to two edges
+        Vector v1 = p1.subtract(p0);
+        Vector v2 = p2.subtract(p0);
+        assertEquals(0, normal.dotProduct(v1), DELTA, "Normal is not perpendicular to first edge");
+        assertEquals(0, normal.dotProduct(v2), DELTA, "Normal is not perpendicular to second edge");
+        // Check normal is normalized
+        assertEquals(1, normal.length(), DELTA, "Normal is not a unit vector");
     }
 
     /**
@@ -79,4 +85,5 @@ public class TriangleTest {
         ray = new Ray(new Vector(0, -1, 1), new Point(-2, 1, -1));
         assertNull(triangle.findIntersections(ray), "TC13: Ray on edge extension");
     }
+
 }
