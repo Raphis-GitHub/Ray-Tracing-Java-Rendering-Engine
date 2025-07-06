@@ -11,29 +11,77 @@ import java.util.List;
  * <p>
  * If no intersections exist — return null (not an empty list).
  *
- * @author Eytan & Raph
+ * @author Eytan and Raph
  */
 public abstract class Intersectable {
+    /**
+     * geoPoint
+     */
     public static class Intersection {
-        public Intersection(Geometry geometry, Point point
-        ) {
+        /**
+         * default constructor
+         *
+         * @param geometry body
+         * @param point    point of intersection
+         */
+        public Intersection(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
             this.material = geometry != null ? geometry.getMaterial() : null;
 
         }
 
+        /**
+         * Represents the material of the intersected geometry.
+         */
         public final Material material;
+
+        /**
+         * Represents the direction vector of the intersecting ray.
+         */
         public Vector direction;
+
+        /**
+         * Represents the normal vector at the intersection point.
+         */
         public Vector normal;
+
+        /**
+         * Represents the dot product of the normal vector and the ray direction.
+         */
         public double dotProduct;
+
+        /**
+         * Represents the light source affecting the intersection point.
+         */
         public LightSource lightSource;
+
+        /**
+         * Represents the direction vector of the light source.
+         */
         public Vector lightDirection;
+
+        /**
+         * Represents the dot product of the normal vector and the light direction.
+         */
         public double lightDotProduct;
 
+        /**
+         * Represents the geometry involved in the intersection.
+         */
         public Geometry geometry;
+
+        /**
+         * Represents the point of intersection.
+         */
         public Point point;
 
+        /**
+         * Checks if this intersection is equal to another object.
+         *
+         * @param obj the object to compare with
+         * @return true if the objects are equal, false otherwise
+         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;

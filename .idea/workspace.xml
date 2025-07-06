@@ -7,7 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add tolerance constant for floating point comparisons in TriangleTest">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/LightSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/LightSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -320,15 +331,7 @@
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
       <workItem from="1751558051837" duration="18550000" />
-      <workItem from="1751815279981" duration="9588000" />
-    </task>
-    <task id="LOCAL-00006" summary="test">
-      <option name="closed" value="true" />
-      <created>1743357931468</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1743357931468</updated>
+      <workItem from="1751815279981" duration="11315000" />
     </task>
     <task id="LOCAL-00007" summary="built tests">
       <option name="closed" value="true" />
@@ -714,7 +717,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751832548729</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Add tolerance constant for floating point comparisons in TriangleTest">
+      <option name="closed" value="true" />
+      <created>1751832840079</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1751832840079</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,8 +743,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change style settings + reformat of everything (Dan)" />
-    <MESSAGE value="remove junit from working dir and some more cleaning" />
     <MESSAGE value="Refactor intersection logic in Cylinder and Tube classes; improve unit tests for edge cases" />
     <MESSAGE value="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy" />
     <MESSAGE value="Add Camera class and corresponding unit tests; implement builder pattern for configuration" />
@@ -756,8 +765,10 @@
     <MESSAGE value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
     <MESSAGE value="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management" />
     <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/SimpleRayTracer.java&#10;#&#9;src/unittests/renderer/LightsTests.java" />
     <MESSAGE value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
+    <MESSAGE value="Add tolerance constant for floating point comparisons in TriangleTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add tolerance constant for floating point comparisons in TriangleTest" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

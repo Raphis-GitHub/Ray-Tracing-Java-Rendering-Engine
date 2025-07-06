@@ -31,11 +31,20 @@ public class Scene {
      */
     public Geometries geometries = new Geometries();
 
+    /**
+     * Sets the light sources in the scene.
+     *
+     * @param lightSources the list of light sources to set
+     * @return this Scene instance for method chaining
+     */
     public Scene setLightSources(List<LightSource> lightSources) {
         this.lights = lightSources;
         return this;
     }
 
+    /**
+     * List of light sources in the scene.
+     */
     public List<LightSource> lights = new LinkedList<>();
 
     /**

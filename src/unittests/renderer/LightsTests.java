@@ -437,6 +437,9 @@ class LightsTests {
                 .writeToImage("epicLightShow");
     }
 
+    /**
+     * Tests rendering a sphere with multiple light sources.
+     */
     @Test
     void testMultipleLightsSphere() {
         scene1.geometries.add(new Sphere(sphereCenter, SPHERE_RADIUS).setEmission(sphereColor).setMaterial(material));
@@ -452,6 +455,9 @@ class LightsTests {
                 .writeToImage("lightSphereMultipleLights");
     }
 
+    /**
+     * Tests rendering two triangles with multiple light sources.
+     */
     @Test
     void testMultipleLightsTriangles() {
         scene2.geometries.add(
@@ -503,4 +509,3 @@ class LightsTests {
 //                .writeToImage("lightTrianglesSpotNarrow");
 //    }
 }
-

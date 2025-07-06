@@ -98,6 +98,12 @@ public class Ray {
         return (obj instanceof Ray other) && origin.equals(other.origin) && direction.equals(other.direction);
     }
 
+    /**
+     * Finds the closest intersection from a list of intersections to the ray's origin.
+     *
+     * @param intersections list of intersections to check
+     * @return the closest intersection to the ray's origin, or null if the list is null
+     */
     public Intersection findClosestIntersection(List<Intersection> intersections) {
         if (intersections == null) return null;
 
