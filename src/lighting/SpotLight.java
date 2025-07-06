@@ -33,6 +33,7 @@ public class SpotLight extends PointLight {
     /**
      * Gets the direction of the spotlight.
      *
+     * @param narrowBeam the beam attention factor
      * @return the normalized direction vector of the spotlight
      */
     public SpotLight setNarrowBeam(double narrowBeam) {
