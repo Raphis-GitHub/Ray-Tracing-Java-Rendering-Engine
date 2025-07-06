@@ -233,35 +233,274 @@ class LightsTests {
                 .writeToImage("lightTrianglesSpot");
     }
 
+//    /**
+//     * Produce a picture of a sphere lighted by a narrow spotlight
+//     */
+//    @Test
+//    void sphereSpotSharp() {
+//        scene1.geometries.add(sphere);
+//        scene1.lights
+//                .add(new SpotLight(sphereLightColor, sphereLightPosition, new Vector(1, 1, -0.5)) //
+//                        .setKl(0.001).setKq(0.00004).setNarrowBeam(10));
+//
+//        camera1.setResolution(500, 500) //
+//                .build() //
+//                .renderImage() //
+//                .writeToImage("lightSphereSpotSharp");
+//    }
+//
+//    /**
+//     * Produce a picture of two triangles lighted by a narrow spotlight
+//     */
+//    @Test
+//    void trianglesSpotSharp() {
+//        scene2.geometries.add(triangle1, triangle2);
+//        scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection) //
+//                .setKl(0.001).setKq(0.00004).setNarrowBeam(10));
+//
+//        camera2.setResolution(500, 500) //
+//                .build() //
+//                .renderImage() //
+//                .writeToImage("lightTrianglesSpotSharp");
+//    }
+
     /**
-     * Produce a picture of a sphere lighted by a narrow spotlight
+     * Epic Light Show Test - Creates a dramatic scene with multiple spheres,
+     * triangular backdrop, and colorful lights from different directions
      */
     @Test
-    void sphereSpotSharp() {
-        scene1.geometries.add(sphere);
-        scene1.lights
-                .add(new SpotLight(sphereLightColor, sphereLightPosition, new Vector(1, 1, -0.5)) //
-                        .setKl(0.001).setKq(0.00004).setNarrowBeam(10));
+    void epicLightShowTest() {
+        Scene scene = new Scene("Epic Light Show")
+                .setBackground(new Color(5, 5, 15)) // Dark blue background
+                .setAmbientLight(new AmbientLight(new Color(20, 20, 30))); // Subtle ambient
 
-        camera1.setResolution(500, 500) //
-                .build() //
-                .renderImage() //
-                .writeToImage("lightSphereSpotSharp");
+        // Camera positioned for dramatic angle
+        Camera camera = Camera.getBuilder()
+                .setLocation(new Point(50, 50, 100))
+                .setDirection(new Point(0, 0, -50), new Vector(0, 1, 0))
+                .setVpSize(200, 200)
+                .setVpDistance(150)
+                .setResolution(2000, 2000)
+                .setRayTracer(scene, RayTracerType.SIMPLE)
+                .build();
+
+        // Materials for different effects
+        Material chrome = new Material()
+                .setKd(0.1).setKs(0.9).setShininess(100); // Highly reflective
+
+        Material goldMetal = new Material()
+                .setKd(0.3).setKs(0.8).setShininess(80);
+
+        Material plasticMatte = new Material()
+                .setKd(0.8).setKs(0.2).setShininess(20);
+
+        Material crystal = new Material()
+                .setKd(0.1).setKs(0.95).setShininess(200); // Super shiny
+
+        Material roughMetal = new Material()
+                .setKd(0.6).setKs(0.4).setShininess(40);
+
+        // Center stage - Large crystal sphere
+        scene.geometries.add(
+                new Sphere(new Point(0, 0, -50), 25)
+                        .setEmission(new Color(10, 10, 20)) // Slight blue glow
+                        .setMaterial(crystal)
+        );
+
+        // Orbiting spheres around the center
+        double radius = 60;
+        for (int i = 0; i < 6; i++) {
+            double angle = i * Math.PI / 3; // 60 degrees apart
+            double x = radius * Math.cos(angle);
+            double z = -50 + radius * Math.sin(angle);
+
+            Material mat;
+            Color emission;
+            double sphereRadius;
+
+            switch (i % 5) {
+                case 0:
+                    mat = chrome;
+                    emission = new Color(15, 5, 5); // Red tint
+                    sphereRadius = 12;
+                    break;
+                case 1:
+                    mat = goldMetal;
+                    emission = new Color(20, 15, 5); // Gold tint
+                    sphereRadius = 15;
+                    break;
+                case 2:
+                    mat = plasticMatte;
+                    emission = new Color(5, 15, 5); // Green tint
+                    sphereRadius = 10;
+                    break;
+                case 3:
+                    mat = crystal;
+                    emission = new Color(5, 5, 15); // Blue tint
+                    sphereRadius = 13;
+                    break;
+                default:
+                    mat = roughMetal;
+                    emission = new Color(15, 10, 15); // Purple tint
+                    sphereRadius = 11;
+            }
+
+            scene.geometries.add(
+                    new Sphere(new Point(x, 0, z), sphereRadius)
+                            .setEmission(emission)
+                            .setMaterial(mat),
+                    new Tube(new Ray(new Vector(0, 0, 1), new Point(1, 0, 5)), sphereRadius / 2)
+                            .setEmission(new Color(5, 5, 5))
+                            .setMaterial(mat), // Decorative tube connecting to center)
+                    new Cylinder(new Ray(new Vector(0, 1, 0), new Point(1, 0, 5)), sphereRadius / 3, 20)
+                            .setEmission(new Color(5, 100, 5))
+                            .setMaterial(crystal) // Decorative tube connecting to center)
+            );
+        }
+
+        // Floating spheres at different heights
+        scene.geometries.add(
+                new Sphere(new Point(-40, 30, -80), 8)
+                        .setEmission(new Color(25, 5, 25))
+                        .setMaterial(chrome),
+
+                new Sphere(new Point(40, -25, -30), 12)
+                        .setEmission(new Color(5, 25, 5))
+                        .setMaterial(goldMetal),
+
+                new Sphere(new Point(0, 40, -100), 10)
+                        .setEmission(new Color(5, 15, 25))
+                        .setMaterial(crystal)
+        );
+
+        // Geometric backdrop - Triangular panels
+        scene.geometries.add(
+                // Back wall triangles
+                new Triangle(new Point(-100, -60, -150), new Point(0, 60, -150), new Point(-100, 60, -150))
+                        .setEmission(new Color(5, 5, 5))
+                        .setMaterial(roughMetal),
+
+                new Triangle(new Point(-100, -60, -150), new Point(0, 60, -150), new Point(0, -60, -150))
+                        .setEmission(new Color(5, 5, 5))
+                        .setMaterial(roughMetal),
+
+                new Triangle(new Point(0, -60, -150), new Point(0, 60, -150), new Point(100, 60, -150))
+                        .setEmission(new Color(5, 5, 5))
+                        .setMaterial(roughMetal),
+
+                new Triangle(new Point(0, -60, -150), new Point(100, 60, -150), new Point(100, -60, -150))
+                        .setEmission(new Color(5, 5, 5))
+                        .setMaterial(roughMetal),
+
+                // Floor triangles
+                new Triangle(new Point(-150, -60, -150), new Point(150, -60, -150), new Point(0, -60, 50))
+                        .setEmission(new Color(3, 3, 8))
+                        .setMaterial(plasticMatte)
+        );
+
+        // EPIC LIGHTING SETUP - Multiple colored lights from different angles
+
+        // Primary key light - Warm white from upper left
+        scene.lights.add(new SpotLight(new Color(400, 350, 300),
+                new Point(-60, 80, 20),
+                new Vector(1, -1, -1))
+                .setKl(0.0001).setKq(0.000005));
+
+        // Dramatic red light from the right
+        scene.lights.add(new SpotLight(new Color(600, 100, 100),
+                new Point(80, 20, 30),
+                new Vector(-1, -0.2, -1))
+                .setKl(0.0001).setKq(0.00001));
+
+        // Cool blue light from below left
+        scene.lights.add(new PointLight(new Color(100, 200, 500),
+                new Point(-50, -40, 0))
+                .setKl(0.0002).setKq(0.00001));
+
+        // Green accent light from behind
+        scene.lights.add(new DirectionalLight(new Vector(0.3, 0.5, -1),
+                new Color(150, 400, 150)));
+
+        // Purple rim light from upper right
+        scene.lights.add(new SpotLight(new Color(300, 100, 400),
+                new Point(70, 60, -20),
+                new Vector(-1, -0.8, -0.5))
+                .setKl(0.0001).setKq(0.000008));
+
+        // Cyan fill light from front left
+        scene.lights.add(new PointLight(new Color(100, 400, 400),
+                new Point(-30, 20, 80))
+                .setKl(0.0003).setKq(0.00002));
+
+        // Render the epic scene
+        camera.renderImage()
+                .writeToImage("epicLightShow");
     }
 
-    /**
-     * Produce a picture of two triangles lighted by a narrow spotlight
-     */
     @Test
-    void trianglesSpotSharp() {
-        scene2.geometries.add(triangle1, triangle2);
-        scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection) //
-                .setKl(0.001).setKq(0.00004).setNarrowBeam(10));
+    void testMultipleLightsSphere() {
+        scene1.geometries.add(new Sphere(sphereCenter, SPHERE_RADIUS).setEmission(sphereColor).setMaterial(material));
 
-        camera2.setResolution(500, 500) //
+        scene1.lights.add(new PointLight(sphereLightColor, new Point(-50, -50, 25)).setKl(0.0005).setKq(0.0005));
+        scene1.lights.add(new SpotLight(sphereLightColor, new Point(-50, -50, 25), sphereLightDirection).setKl(0.0001).setKq(0.0001));
+        scene1.lights.add(new DirectionalLight(new Vector(1, 1, -0.5), sphereLightColor));
+
+        camera1 //
+                .setResolution(500, 500) //
                 .build() //
                 .renderImage() //
-                .writeToImage("lightTrianglesSpotSharp");
+                .writeToImage("lightSphereMultipleLights");
     }
 
+    @Test
+    void testMultipleLightsTriangles() {
+        scene2.geometries.add(
+                new Triangle(vertices[0], vertices[1], vertices[2]).setEmission(new Color(0, 0, 100)).setMaterial(material),
+                new Triangle(vertices[0], vertices[1], vertices[3]).setEmission(new Color(100, 0, 0)).setMaterial(material)
+        );
+
+        scene2.lights.add(new PointLight(trianglesLightColor, new Point(30, 10, -100)).setKl(0.0005).setKq(0.0005));
+        scene2.lights.add(new SpotLight(trianglesLightColor, new Point(30, 10, -100), new Vector(-2, -2, -1)).setKl(0.0001).setKq(0.0001));
+        scene2.lights.add(new DirectionalLight(new Vector(1, 1, -0.5), trianglesLightColor));
+
+        camera2 //
+                .setResolution(500, 500) //
+                .build() //
+                .renderImage() //
+                .writeToImage("lightTrianglesMultipleLights");
+    }
+//
+//    /**
+//     * Bonus test: Produce a picture of a sphere lighted by a narrow beam spotlight
+//     */
+//    @Test
+//    void sphereSpotNarrowBeam() {
+//        scene1.geometries.add(sphere);
+//        scene1.lights.add(new SpotLight(sphereLightColor, sphereLightPosition, sphereLightDirection)
+//                .setKl(0.001).setKq(0.0001)
+//                .setNarrowBeam(10)); // Narrow beam factor
+//
+//        camera1
+//                .setResolution(500, 500)
+//                .build()
+//                .renderImage()
+//                .writeToImage("lightSphereSpotNarrow");
+//    }
+//
+//    /**
+//     * Bonus test: Produce a picture of two triangles lighted by a narrow beam spotlight
+//     */
+//    @Test
+//    void trianglesSpotNarrowBeam() {
+//        scene2.geometries.add(triangle1, triangle2);
+//        scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection)
+//                .setKl(0.001).setKq(0.0001)
+//                .setNarrowBeam(10)); // Narrow beam factor
+//
+//        camera2.setResolution(500, 500)
+//                .build()
+//                .renderImage()
+//                .writeToImage("lightTrianglesSpotNarrow");
+//    }
 }
+

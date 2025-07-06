@@ -1,6 +1,5 @@
 package geometries;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 
@@ -64,217 +63,258 @@ class TubeTest {
      * Test method for {@link Tube#findIntersections(Ray)}.
      */
     @Test
-    @Disabled
     void testFindIntersections() {
-        // Main tube for most tests: axis along Z-direction, radius 1
-        Tube tube = new Tube(
-                new Ray(new Vector(0, 0, 1), new Point(0, 0, 0)),
-                1
-        );
+        Tube tube1 = new Tube(new Ray(new Vector(0, 1, 0), new Point(1, 0, 0)), 1d);
+        Vector vAxis = new Vector(0, 0, 1);
+        Tube tube2 = new Tube(new Ray(vAxis, new Point(1, 1, 1)), 1d);
+        Ray ray;
 
         // ============ Equivalence Partitions Tests ==============
+        // TC01: Ray's line is outside the tube (0 points)
+        ray = new Ray(new Vector(1, 1, 0), new Point(1, 1, 2));
+        assertNull(tube1.findIntersections(ray), "Must not be intersections");
 
-        // **** Group 1: Ray parallel to tube axis
+        // TC02: Ray's crosses the tube (2 points)
+        ray = new Ray(new Vector(2, 1, 1), new Point(0, 0, 0));
+        List<Point> result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
 
-        // TC01: Ray outside tube, parallel to axis (0 points)
-        Ray ray = new Ray(new Vector(0, 0, 1), new Point(2, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC01: Ray outside tube parallel to axis should return null");
-
-        // TC02: Ray inside tube, parallel to axis (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC02: Ray inside tube parallel to axis should return null");
-
-        // TC03: Ray on axis (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC03: Ray on axis should return null");
-
-        // **** Group 2: Ray perpendicular to tube axis
-
-        // TC11: Ray outside tube, perpendicular to axis, missing (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 1));
-        assertNull(tube.findIntersections(ray),
-                "TC11: Ray outside tube missing should return null");
-
-        // TC12: Ray outside tube, perpendicular, hitting tube (2 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 1));
-        List<Point> result = tube.findIntersections(ray);
-        assertNotNull(result, "TC12: Ray hitting tube should intersect");
-        assertEquals(2, result.size(), "TC12: Wrong number of points");
-        assertEquals(new Point(-1, 0, 1), result.get(0), "TC12: Wrong first point");
-        assertEquals(new Point(1, 0, 1), result.get(1), "TC12: Wrong second point");
-
-        // TC13: Ray inside tube, perpendicular to axis (1 point)
-        ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 1));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC13: Ray from inside should intersect");
-        assertEquals(1, result.size(), "TC13: Wrong number of points");
-        assertEquals(new Point(1, 0, 1), result.get(0), "TC13: Wrong intersection point");
-
-        // TC14: Ray starts after tube crossing, perpendicular (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(2, 0, 1));
-        assertNull(tube.findIntersections(ray),
-                "TC14: Ray starting after tube should return null");
-
-        // **** Group 3: Ray at angle to axis
-
-        // TC21: Ray outside, at angle, missing tube (0 points)
-        ray = new Ray(new Vector(1, 0, 1), new Point(-2, 2, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC21: Ray at angle missing tube should return null");
-
-        // TC22: Ray outside, at angle, intersecting tube (2 points)
-        ray = new Ray(new Vector(1, 0, 1), new Point(-2, 0, -2));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC22: Ray at angle should intersect");
-        assertEquals(2, result.size(), "TC22: Wrong number of points");
-
-        // TC23: Ray inside, at angle (1 point)
-        ray = new Ray(new Vector(1, 0, 1), new Point(0, 0, 0));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC23: Ray from inside at angle should intersect");
-        assertEquals(1, result.size(), "TC23: Wrong number of points");
-
-        // TC24: Ray starts near axis, goes out at angle (1 point)
-        ray = new Ray(new Vector(1, 0, 0), new Point(0.1, 0, 1));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC24: Ray from near axis should intersect");
-        assertEquals(1, result.size(), "TC24: Wrong number of points");
+        // TC03: Ray's starts within tube and crosses the tube (1 point)
+        ray = new Ray(new Vector(2, 1, 1), new Point(1, 0.5, 0.5));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
         // =============== Boundary Values Tests ==================
 
-        // **** Group: Ray starts on tube surface
+        // Ray's line is parallel to the axis (0 points)
+        // TC11: Ray is inside the tube (0 points)
+        ray = new Ray(vAxis, new Point(0.5, 0.5, 0.5));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
 
-        // TC31: Ray starts on surface, goes out perpendicular (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(1, 0, 1));
-        assertNull(tube.findIntersections(ray),
-                "TC31: Ray from surface going out should return null");
+        // TC12: Ray is outside the tube
+        ray = new Ray(vAxis, new Point(0.5, -0.5, 0.5));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
 
-        // TC32: Ray starts on surface, goes in perpendicular (1 point)
-        ray = new Ray(new Vector(-1, 0, 0), new Point(1, 0, 1));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC32: Ray from surface going in should intersect");
-        assertEquals(1, result.size(), "TC32: Wrong number of points");
-        assertEquals(new Point(-1, 0, 1), result.get(0), "TC32: Wrong intersection point");
+        // TC13: Ray is at the tube surface
+        ray = new Ray(vAxis, new Point(2, 1, 0.5));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
 
-        // TC33: Ray starts on surface, tangent perpendicular (0 points)
+        // TC14: Ray is inside the tube and starts against axis head
+        ray = new Ray(vAxis, new Point(0.5, 0.5, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC15: Ray is outside the tube and starts against axis head
+        ray = new Ray(vAxis, new Point(0.5, -0.5, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC16: Ray is at the tube surface and starts against axis head
+        ray = new Ray(vAxis, new Point(2, 1, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC17: Ray is inside the tube and starts at axis head
+        ray = new Ray(vAxis, new Point(1, 1, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // Ray is orthogonal but does not begin against the axis head
+        // TC21: Ray starts outside and the line is outside (0 points)
+        ray = new Ray(new Vector(1, 1, 0), new Point(0, 2, 2));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC23: Ray starts before (2 points)
+        ray = new Ray(new Vector(2, 1, 0), new Point(0, 0, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
+
+        // TC24: Ray starts at the surface and goes inside (1 point)
+        ray = new Ray(new Vector(2, 1, 0), new Point(0.4, 0.2, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC25: Ray starts inside (1 point)
+        ray = new Ray(new Vector(2, 1, 0), new Point(1, 0.5, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC26: Ray starts before and crosses the axis (2 points)
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, -1, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
+
+        // TC27: Ray starts inside and the line crosses the axis (1 point)
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC28: Ray starts at the surface and goes outside and the line crosses the axis (0 points)
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 2, 2));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
+
+        // TC29: Ray starts after and crosses the axis (0 points)
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 3, 2));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
+
+        // Ray is orthogonal to axis and begins against the axis head
+        // TC40: Ray starts outside and the line is outside (0 Points)
+        ray = new Ray(new Vector(1, 1, 0), new Point(0, 2, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC41: The line is tangent and the ray starts at the tube
+        ray = new Ray(new Vector(1, 0, 0), new Point(1, 2, 1));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC42: The line is tangent and the ray starts after the tube
+        ray = new Ray(new Vector(1, 0, 0), new Point(2, 2, 2));
+        assertNull(tube2.findIntersections(ray), "Must not be intersections");
+
+        // TC43: Ray starts before
+        ray = new Ray(new Vector(2, 1, 0), new Point(0, 0, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
+
+        // TC44: Ray starts at the surface and goes inside
+        ray = new Ray(new Vector(2, 1, 0), new Point(0.4, 0.2, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC45: Ray starts inside
+        ray = new Ray(new Vector(2, 1, 0), new Point(1, 0.5, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC46: Ray starts after
+        ray = new Ray(new Vector(2, 1, 0), new Point(4, 2, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
+
+        // TC47: Ray starts before and goes through the axis head
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, -1, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
+
+        // TC48: Ray starts at the surface and goes inside and goes through the axis head
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 0, 1));
-        assertNull(tube.findIntersections(ray),
-                "TC33: Tangent ray perpendicular should return null");
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC34: Ray starts on surface, goes out at angle (0 points)
-        ray = new Ray(new Vector(1, 0, 1), new Point(1, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC34: Ray from surface at angle out should return null");
+        // TC49: Ray starts inside and the line goes through the axis head
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC35: Ray starts on surface, goes in at angle (1 point)
-        ray = new Ray(new Vector(-1, 0, 1), new Point(1, 0, 0));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC35: Ray from surface at angle in should intersect");
-        assertEquals(1, result.size(), "TC35: Wrong number of points");
+        // TC50: Ray starts at the surface and the line goes outside and goes through
+        // the axis head
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 2, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // **** Group: Ray tangent to tube
+        // TC51: Ray starts after and the line goes through the axis head
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 3, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // TC41: Ray tangent to tube, outside (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC41: Ray tangent outside should return null");
+        // TC52: Ray start at the axis head
+        ray = new Ray(new Vector(0, 1, 0), new Point(1, 1, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC42: Ray tangent perpendicular to axis (0 points)
-        ray = new Ray(new Vector(0, 1, 0), new Point(1, 0, 1));
-        assertNull(tube.findIntersections(ray),
-                "TC42: Tangent ray perpendicular should return null");
+        // Ray's line is neither parallel nor orthogonal to the axis and begins against axis head
+        Point p0 = new Point(0, 2, 1);
+        // TC60: Ray's line is outside the tube
+        ray = new Ray(new Vector(1, 1, 1), p0);
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // TC43: Ray near-tangent at angle (0 points)
-        ray = new Ray(new Vector(0, 1, 1), new Point(1.001, 0, 0));
-        assertNull(tube.findIntersections(ray),
-                "TC43: Near-tangent ray at angle should return null");
+        // TC61: Ray's line crosses the tube and begins before
+        ray = new Ray(new Vector(2, -1, 1), p0);
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
 
-        // **** Group: Ray through axis
+        // TC62: Ray's line crosses the tube and begins at surface and goes inside
+        ray = new Ray(new Vector(2, -1, 1), new Point(0.4, 1.8, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC51: Ray through axis perpendicular (2 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 5));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC51: Ray through axis should intersect");
-        assertEquals(2, result.size(), "TC51: Wrong number of points");
-        assertEquals(new Point(-1, 0, 5), result.get(0), "TC51: Wrong first point");
-        assertEquals(new Point(1, 0, 5), result.get(1), "TC51: Wrong second point");
+        // TC63: Ray's line crosses the tube and begins inside
+        ray = new Ray(new Vector(2, -1, 1), new Point(1, 1.5, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC52: Ray through axis at angle (2 points)
-        ray = new Ray(new Vector(1, 0, 1), new Point(-1, 0, -1));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC52: Ray through axis at angle should intersect");
-        assertEquals(2, result.size(), "TC52: Wrong number of points");
+        // TC64: Ray's line crosses the tube and begins at the axis head
+        ray = new Ray(new Vector(0, 1, 1), new Point(1, 1, 1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // **** Group: Different tube orientations
+        // TC65: Ray's line crosses the tube and begins at surface and goes outside
+        ray = new Ray(new Vector(2, -1, 1), new Point(2, 1, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // TC61: Tube with axis along X direction
-        Tube tubeX = new Tube(
-                new Ray(new Vector(1, 0, 0), new Point(0, 0, 0)),
-                1
-        );
-        ray = new Ray(new Vector(0, 1, 0), new Point(5, -2, 0));
-        result = tubeX.findIntersections(ray);
-        assertNotNull(result, "TC61: Ray through X-axis tube should intersect");
-        assertEquals(2, result.size(), "TC61: Wrong number of points");
-        assertEquals(new Point(5, -1, 0), result.get(0), "TC61: Wrong first point");
-        assertEquals(new Point(5, 1, 0), result.get(1), "TC61: Wrong second point");
+        // TC66: Ray's line is tangent and begins before
+        ray = new Ray(new Vector(0, 2, 1), p0);
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // TC62: Tube with axis along Y direction
-        Tube tubeY = new Tube(
-                new Ray(new Vector(0, 1, 0), new Point(0, 0, 0)),
-                1
-        );
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 5, 0));
-        result = tubeY.findIntersections(ray);
-        assertNotNull(result, "TC62: Ray through Y-axis tube should intersect");
-        assertEquals(2, result.size(), "TC62: Wrong number of points");
-        assertEquals(new Point(-1, 5, 0), result.get(0), "TC62: Wrong first point");
-        assertEquals(new Point(1, 5, 0), result.get(1), "TC62: Wrong second point");
+        // TC67: Ray's line is tangent and begins at the tube surface
+        ray = new Ray(new Vector(1, 0, 1), new Point(1, 2, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // TC63: Tube with diagonal axis
-        Tube tubeDiag = new Tube(
-                new Ray(new Vector(1, 1, 1), new Point(0, 0, 0)),
-                1
-        );
-        ray = new Ray(new Vector(1, -1, 0), new Point(-2, 2, 0));
-        result = tubeDiag.findIntersections(ray);
-        assertNotNull(result, "TC63: Ray through diagonal tube should intersect");
+        // TC68: Ray's line is tangent and begins after
+        ray = new Ray(new Vector(1, 0, 1), new Point(2, 2, 1));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
 
-        // **** Group: Special numeric cases
+        // Group: Ray's line is neither parallel nor orthogonal to the axis and
+        // does not begin against axis head
+        double sqrt2 = Math.sqrt(2);
+        double denomSqrt2 = 1 / sqrt2;
+        double value1 = 1 - denomSqrt2;
 
-        // TC71: Very small radius tube
-        Tube smallTube = new Tube(
-                new Ray(new Vector(0, 0, 1), new Point(0, 0, 0)),
-                0.001
-        );
-        ray = new Ray(new Vector(1, 0, 0), new Point(-0.002, 0, 1));
-        result = smallTube.findIntersections(ray);
-        assertNotNull(result, "TC71: Ray through small tube should intersect");
-        assertEquals(2, result.size(), "TC71: Wrong number of points");
+        // TC70: Ray's crosses the tube and the axis
+        ray = new Ray(new Vector(1, 1, 1), new Point(0, 0, 2));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
 
-        // TC72: Very large radius tube
-        Tube largeTube = new Tube(
-                new Ray(new Vector(0, 0, 1), new Point(0, 0, 0)),
-                1000
-        );
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2000, 0, 1));
-        result = largeTube.findIntersections(ray);
-        assertNotNull(result, "TC72: Ray through large tube should intersect");
-        assertEquals(2, result.size(), "TC72: Wrong number of points");
+        // TC71: Ray's crosses the tube and the axis head
+        ray = new Ray(new Vector(1, 1, 1), new Point(0, 0, 0));
+        result = tube2.findIntersections(ray);
+        assertEquals(2, result.size(), "must be 2 intersections");
 
-        // TC73: Ray very close to being parallel to axis
-        ray = new Ray(new Vector(0.0001, 0, 1), new Point(0, 0, -10));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC73: Nearly parallel ray should intersect");
-        assertEquals(2, result.size(), "TC73: Wrong number of points");
+        // TC72: Ray's begins at the surface and goes inside
+        ray = new Ray(new Vector(1, 0, 1), new Point(value1, value1, 2 + value1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
 
-        // TC74: Ray very close to being tangent
-        ray = new Ray(new Vector(1, 0.0001, 0), new Point(-2, 0.9999, 1));
-        result = tube.findIntersections(ray);
-        assertNotNull(result, "TC74: Nearly tangent ray should intersect");
-        assertEquals(2, result.size(), "TC74: Wrong number of points");
+        // TC73: Ray's begins at the surface and goes inside crossing the axis
+        ray = new Ray(new Vector(1, 1, 1), new Point(value1, value1, 2 + value1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC74: Ray's begins at the surface and goes inside crossing the axis head
+        ray = new Ray(new Vector(1, 1, 1), new Point(value1, value1, value1));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC75: Ray's begins inside and the line crosses the axis
+        ray = new Ray(new Vector(1, 1, 1), new Point(0.5, 0.5, 2.5));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC76: Ray's begins inside and the line crosses the axis head
+        ray = new Ray(new Vector(1, 1, 1), new Point(0.5, 0.5, 0.5));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC77: Ray's begins at the axis
+        ray = new Ray(new Vector(1, 1, 1), new Point(1, 1, 3));
+        result = tube2.findIntersections(ray);
+        assertEquals(1, result.size(), "must be 1 intersection");
+
+        // TC78: Ray's begins at the surface and goes outside
+        ray = new Ray(new Vector(2, 1, 1), new Point(2, 1, 2));
+        result = tube2.findIntersections(ray);
+        assertNull(result, "Bad intersections");
     }
 }

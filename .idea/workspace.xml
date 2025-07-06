@@ -7,15 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic">
-      <change afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lighting/LightSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +94,7 @@
     "JUnit.CylinderTest.testFindIntersections.executor": "Run",
     "JUnit.ImageWriterTest.executor": "Run",
     "JUnit.ImageWriterTest.testWriteImageWithGrid.executor": "Run",
+    "JUnit.LightsTests.epicLightShowTest.executor": "Run",
     "JUnit.PlaneTest.executor": "Run",
     "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
     "JUnit.PointTest.executor": "Run",
@@ -190,7 +191,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ImageWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CylinderTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LightsTests.epicLightShowTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -199,8 +216,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ImageWriterTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="renderer.LightsTests" />
+      <option name="METHOD_NAME" value="epicLightShowTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,23 +254,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RenderTests.renderTwoColorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
-      <option name="METHOD_NAME" value="renderTwoColorTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TriangleTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TubeTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -261,8 +263,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
-      <option name="METHOD_NAME" value="testGetNormal" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -270,19 +272,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
+      <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
+      <item itemvalue="JUnit.TubeTest.testFindIntersections" />
       <item itemvalue="JUnit.RenderTests.renderMaterialTest" />
-      <item itemvalue="JUnit.ImageWriterTest" />
       <item itemvalue="JUnit.RenderTests" />
-      <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
-      <item itemvalue="JUnit.TriangleTest.testGetNormal" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RenderTests.renderMaterialTest" />
-        <item itemvalue="JUnit.TriangleTest.testGetNormal" />
+        <item itemvalue="JUnit.TubeTest.testFindIntersections" />
+        <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
+        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
         <item itemvalue="JUnit.RenderTests" />
-        <item itemvalue="JUnit.ImageWriterTest" />
-        <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
+        <item itemvalue="JUnit.RenderTests.renderMaterialTest" />
       </list>
     </recent_temporary>
   </component>
@@ -326,23 +328,8 @@
       <workItem from="1750345375610" duration="511000" />
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
-      <workItem from="1751558051837" duration="14559000" />
-    </task>
-    <task id="LOCAL-00003" summary="refactor">
-      <option name="closed" value="true" />
-      <created>1743063780612</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1743063780612</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added add another getnormal for plane">
-      <option name="closed" value="true" />
-      <created>1743355361345</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1743355361345</updated>
+      <workItem from="1751558051837" duration="18550000" />
+      <workItem from="1751815279981" duration="9230000" />
     </task>
     <task id="LOCAL-00005" summary="jdk swap">
       <option name="closed" value="true" />
@@ -720,7 +707,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751796742807</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management">
+      <option name="closed" value="true" />
+      <created>1751800183697</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1751800183698</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class">
+      <option name="closed" value="true" />
+      <created>1751816072463</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1751816072463</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,8 +741,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement intersection logic for Cylinder and Tube; add tests for findIntersections in Cylinder, Tube, and Polygon" />
-    <MESSAGE value="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation" />
     <MESSAGE value="Refactor Cylinder and Tube classes; enhance unit tests for intersection logic and normal calculations" />
     <MESSAGE value="change style settings + reformat of everything (Dan)" />
     <MESSAGE value="remove junit from working dir and some more cleaning" />
@@ -763,7 +764,9 @@
     <MESSAGE value="Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
     <MESSAGE value="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
     <MESSAGE value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
+    <MESSAGE value="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management" />
+    <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

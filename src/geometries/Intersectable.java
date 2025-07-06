@@ -1,7 +1,7 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
+import lighting.LightSource;
+import primitives.*;
 
 import java.util.List;
 
@@ -11,14 +11,25 @@ import java.util.List;
  * <p>
  * If no intersections exist — return null (not an empty list).
  *
- * @author Eytan
+ * @author Eytan & Raph
  */
 public abstract class Intersectable {
     public static class Intersection {
-        public Intersection(Geometry geometry, Point point) {
+        public Intersection(Geometry geometry, Point point
+        ) {
             this.geometry = geometry;
             this.point = point;
+            this.material = geometry != null ? geometry.getMaterial() : null;
+
         }
+
+        public final Material material;
+        public Vector direction;
+        public Vector normal;
+        public double dotProduct;
+        public LightSource lightSource;
+        public Vector lightDirection;
+        public double lightDotProduct;
 
         public Geometry geometry;
         public Point point;

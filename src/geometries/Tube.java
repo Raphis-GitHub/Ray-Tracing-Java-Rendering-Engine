@@ -61,45 +61,69 @@ public class Tube extends RadialGeometry {
         Point pa = axisRay.origin();
         Vector va = axisRay.direction();
 
+        // Handle ray origin relative to axis origin
         Vector deltaP;
         try {
             deltaP = p0.subtract(pa);
         } catch (IllegalArgumentException e) {
+            // Ray starts exactly at axis origin
             deltaP = null;
         }
 
+        // Calculate perpendicular component of ray direction
         double vDotVa = alignZero(v.dotProduct(va));
         Vector vPerp;
         if (isZero(vDotVa)) {
+            // Ray is perpendicular to axis
             vPerp = v;
         } else {
             try {
                 vPerp = v.subtract(va.scale(vDotVa));
             } catch (IllegalArgumentException e) {
+                // Ray is exactly parallel to axis - no side intersections
                 return null;
             }
         }
 
+        // Check if ray direction has any perpendicular component
         double a = vPerp.lengthSquared();
         if (isZero(a)) {
+            // Ray is exactly parallel to axis - no side intersections
             return null;
         }
 
+        // Initialize quadratic equation coefficients
         double b = 0;
         double c = -radiusSquared;
 
+        // Calculate coefficients when ray doesn't start at axis origin
         if (deltaP != null) {
             double deltaPDotVa = alignZero(deltaP.dotProduct(va));
             Vector deltaPPerp;
+
             if (isZero(deltaPDotVa)) {
+                // deltaP is perpendicular to axis
                 deltaPPerp = deltaP;
             } else {
-                deltaPPerp = deltaP.subtract(va.scale(deltaPDotVa));
+                try {
+                    deltaPPerp = deltaP.subtract(va.scale(deltaPDotVa));
+                } catch (IllegalArgumentException e) {
+                    // deltaP is exactly parallel to axis - ray starts on axis
+                    deltaPPerp = null;
+                }
             }
-            b = 2 * alignZero(vPerp.dotProduct(deltaPPerp));
-            c = deltaPPerp.lengthSquared() - radiusSquared;
+
+            if (deltaPPerp != null) {
+                b = 2 * alignZero(vPerp.dotProduct(deltaPPerp));
+                c = deltaPPerp.lengthSquared() - radiusSquared;
+            } else {
+                // Ray starts exactly on the axis
+                b = 0;
+                c = -radiusSquared;
+            }
         }
 
+        // Solve quadratic equation
         double discriminant = alignZero(b * b - 4 * a * c);
         if (discriminant < 0) {
             return null;
@@ -109,6 +133,7 @@ public class Tube extends RadialGeometry {
         double t1 = alignZero((-b - sqrtDisc) / (2 * a));
         double t2 = alignZero((-b + sqrtDisc) / (2 * a));
 
+        // Collect valid intersections
         List<Intersection> intersections = new LinkedList<>();
         if (t1 > 0) {
             intersections.add(new Intersection(this, p0.add(v.scale(t1))));

@@ -5,7 +5,7 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Represents a cylinder in 3D space.
@@ -81,36 +81,59 @@ public class Cylinder extends Tube {
     protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
         List<Intersection> intersections = new ArrayList<>();
 
-        // Vector from the ray origin to the axis origin
-        Vector p0ToRayOrigin = ray.origin().subtract(axisRay.origin());
+        Point axisOrigin = axisRay.origin();
         Vector axisDirection = axisRay.direction();
+        Point rayOrigin = ray.origin();
+        Vector rayDirection = ray.direction();
 
-        double a = ray.direction().dotProduct(ray.direction()) - Math.pow(ray.direction().dotProduct(axisDirection), 2);
-        double b = 2 * (ray.direction().dotProduct(p0ToRayOrigin) - (ray.direction().dotProduct(axisDirection) * p0ToRayOrigin.dotProduct(axisDirection)));
-        double c = p0ToRayOrigin.dotProduct(p0ToRayOrigin) - Math.pow(p0ToRayOrigin.dotProduct(axisDirection), 2) - Math.pow(radius, 2);
+        // === SIDE INTERSECTIONS ===
+        // Use tube intersection logic but filter by height bounds
+        List<Intersection> tubeIntersections = super.calculateIntersectionsHelper(ray);
+        if (tubeIntersections != null) {
+            for (Intersection intersection : tubeIntersections) {
+                Vector toPoint = intersection.point.subtract(axisOrigin);
+                double heightPos = alignZero(toPoint.dotProduct(axisDirection));
 
-        double discriminant = b * b - 4 * a * c;
-        if (discriminant < 0) {
-            return null;  // No intersection
+                // Only include if within cylinder height bounds
+                if (heightPos >= 0 && heightPos <= height) {
+                    intersections.add(intersection);
+                }
+            }
         }
 
-        double t1 = (-b - Math.sqrt(discriminant)) / (2 * a);
-        double t2 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        // === CAP INTERSECTIONS ===
+        double vDotAxis = alignZero(rayDirection.dotProduct(axisDirection));
 
-        Point p1 = ray.origin().add(ray.direction().scale(t1));
-        Point p2 = ray.origin().add(ray.direction().scale(t2));
+        if (!isZero(vDotAxis)) { // Ray not parallel to axis
 
-        Vector p1ToAxis = p1.subtract(axisRay.origin());
-        Vector p2ToAxis = p2.subtract(axisRay.origin());
-        double projection1 = p1ToAxis.dotProduct(axisDirection);
-        double projection2 = p2ToAxis.dotProduct(axisDirection);
+            // Bottom cap (at height = 0)
+            Vector rayToAxis = axisOrigin.subtract(rayOrigin);
+            double tBottom = alignZero(rayToAxis.dotProduct(axisDirection) / vDotAxis);
 
-        if (projection1 >= 0 && projection1 <= height) {
-            intersections.add(new Intersection(this, p1));
+            if (tBottom > 0) {
+                Point capPoint = ray.getPoint(tBottom);
+                double distanceSquared = axisOrigin.distanceSquared(capPoint);
+
+                if (alignZero(distanceSquared - radiusSquared) <= 0) {
+                    intersections.add(new Intersection(this, capPoint));
+                }
+            }
+
+            // Top cap (at height = this.height)
+            Point topCenter = axisOrigin.add(axisDirection.scale(height));
+            Vector rayToTopAxis = topCenter.subtract(rayOrigin);
+            double tTop = alignZero(rayToTopAxis.dotProduct(axisDirection) / vDotAxis);
+
+            if (tTop > 0) {
+                Point capPoint = ray.getPoint(tTop);
+                double distanceSquared = topCenter.distanceSquared(capPoint);
+
+                if (alignZero(distanceSquared - radiusSquared) <= 0) {
+                    intersections.add(new Intersection(this, capPoint));
+                }
+            }
         }
-        if (projection2 >= 0 && projection2 <= height) {
-            intersections.add(new Intersection(this, p2));
-        }
+
         return intersections.isEmpty() ? null : intersections;
     }
 }
