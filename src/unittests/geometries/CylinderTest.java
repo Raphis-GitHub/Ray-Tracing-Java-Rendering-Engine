@@ -69,7 +69,7 @@ class CylinderTest {
                 1,
                 2
         );
- 
+
 // ============ Equivalence Partitions Tests ==============
 
 // TC01: Ray outside cylinder and parallel to axis (0 points)
