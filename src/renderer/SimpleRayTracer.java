@@ -80,16 +80,26 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param intersection the intersection to calculate specular at
      * @return the specular component as Double3
      */
+    /**
+     * Calculates the specular component at the intersection point using the Phong model.
+     *
+     * @param intersection the intersection to calculate specular at
+     * @return the specular component as Double3
+     */
     private Double3 calcSpecular(Intersection intersection) {
         if (intersection == null || intersection.geometry == null || intersection.point == null || intersection.lightSource == null) {
             return Double3.ZERO;
         }
         Material material = intersection.geometry.getMaterial();
-        Vector v = intersection.direction.normalize(); // view direction
+
+        // FIXED: View direction should point FROM intersection TO camera (opposite of ray direction)
+        Vector v = intersection.direction.scale(-1).normalize(); // view direction (from point to camera)
         Vector n = intersection.normal.normalize();
         Vector l = intersection.lightDirection.normalize();
-        Vector r = l.subtract(n.scale(2 * l.dotProduct(n))).normalize(); // reflection direction
-        double vr = Math.max(0, v.scale(-1).dotProduct(r));
+        Vector r = n.scale(2 * l.dotProduct(n)).subtract(l).normalize(); // reflection direction
+
+        // Now we can use v.dotProduct(r) directly since v is the correct view direction
+        double vr = Math.max(0, v.dotProduct(r));
         if (Util.isZero(vr)) return Double3.ZERO;
         return material.kS.scale(Math.pow(vr, material.nSh));
     }
