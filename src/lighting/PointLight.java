@@ -84,7 +84,7 @@ public class PointLight extends Light implements LightSource {
      */
     @Override
     public Vector getL(Point point) {
-        return position.subtract(point).normalize(); // FROM surface TO light
+        return position.subtract(point).normalize();
 
     }
 

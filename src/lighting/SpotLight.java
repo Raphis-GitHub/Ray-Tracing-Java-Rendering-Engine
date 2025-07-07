@@ -85,10 +85,10 @@ public class SpotLight extends PointLight {
     @Override
     public Color getIntensity(Point p) {
 
-        // Get the base point light intensity (includes distance attenuation)
         Color pointIntensity = super.getIntensity(p);
 
         // Calculate the direction from the light source to the point
+        //maybe add try catch for subtract- unsure- ask dan
         Vector lightToPoint = p.subtract(position).normalize();
 
         // Calculate the cosine of the angle between light direction and light-to-point vector
