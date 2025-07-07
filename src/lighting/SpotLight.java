@@ -12,6 +12,9 @@ public class SpotLight extends PointLight {
      * The direction of the spotlight.
      */
     private final Vector direction;
+    /**
+     * The narrow beam effect factor.
+     */
     private double narrowBeam = 1;
 
     /**
@@ -81,14 +84,7 @@ public class SpotLight extends PointLight {
      */
     @Override
     public Color getIntensity(Point p) {
-//
-//        if (narrowBeam <= 1) {
-//            Color pointIntensity = super.getIntensity(p);
-//            Vector l = getL(p);
-//            double factor = Math.max(0, direction.normalize().dotProduct(l));
-//            return pointIntensity.scale(factor);
-//        }
-        // Get base intensity from PointLight (includes distance attenuation)
+
         // Get the base point light intensity (includes distance attenuation)
         Color pointIntensity = super.getIntensity(p);
 
