@@ -151,7 +151,7 @@ public class SimpleRayTracer extends RayTracerBase {
         intersection.lightDirection = lightSource.getL(intersection.point);
         intersection.lightDotProduct = alignZero(intersection.normal.dotProduct(intersection.lightDirection));
 
-        // Only check if surface faces the light
-        return intersection.lightDotProduct * intersection.lightDirection.dotProduct(intersection.normal) > 0;
+        // Only check if surface faces the light - im not sure how to fix this.....
+        return alignZero(intersection.lightDotProduct) > 0;
     }
 }
