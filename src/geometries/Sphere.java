@@ -70,14 +70,7 @@ public class Sphere extends RadialGeometry {
         if (alignZero(thSquared) <= 0) return null;
 
         double th = Math.sqrt(thSquared);
-
-        double t2 = alignZero(tm + th);
-        if (t2 <= 0) return null;
-
-        double t1 = tm - th;
-        return alignZero(t1) <= 0
-                ? List.of(new Intersection(this, ray.getPoint(t2)))
-                : List.of(new Intersection(this, ray.getPoint(t1)), new Intersection(this, ray.getPoint(t2)));
+        return getIntersections(ray, tm - th, tm + th);
     }
 
 }

@@ -157,10 +157,10 @@ class VectorTest {
         //TC02 2: Dot product of a vector with a negative vector
         assertEquals(-12.0, v1.dotProduct(v3), DELTA, "Dot product of a vector with a negative vector failed");
 
+        // =================BVA===================
+
         //TC03: Dot product of perpendicular vectors (result should be 0)
         assertEquals(0.0, v7.dotProduct(new Vector(1, 1, 0)), DELTA, "Dot product of perpendicular vectors failed");
-
-        // =================BVA===================
 
         // TC11: Dot product of parallel vectors (angle = 0)
         assertEquals(28.0, v1.dotProduct(new Vector(2, 4, 6)), DELTA, "Dot product failed for parallel vectors");

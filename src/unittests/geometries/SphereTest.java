@@ -40,17 +40,12 @@ class SphereTest {
         // TC02: Ray starts before and crosses the sphere (2 points)
         ray = new Ray(new Vector(3, 0, 0), new Point(-1, 0, 0));
         List<Point> result = sphere.findIntersections(ray);
-        assertNotNull(result, "TC02: Expected 2 intersection points");
-        assertEquals(2, result.size(), "TC02: Wrong number of points");
-        assertTrue(result.contains(new Point(0, 0, 0)), "TC02: Missing first expected point");
-        assertTrue(result.contains(new Point(2, 0, 0)), "TC02: Missing second expected point");
+        assertEquals(List.of(new Point(0, 0, 0), new Point(2, 0, 0)), result, "TC02: Missing first expected point");
 
         // TC03: Ray starts inside the sphere (1 point)
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 0));
         result = sphere.findIntersections(ray);
-        assertNotNull(result, "TC03: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC03: Wrong number of points");
-        assertEquals(new Point(1, 1, 0), result.getFirst(), "TC03: Intersection point incorrect");
+        assertEquals(List.of(new Point(1, 1, 0)), result, "TC03: Intersection point incorrect");
 
         // TC04: Ray starts after the sphere (0 points)
         ray = new Ray(new Vector(1, 0, 0), new Point(3, 0, 0));
@@ -68,7 +63,7 @@ class SphereTest {
         ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC11: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC11: Wrong number of points");
+        assertEquals(1, result.size(), "TC11: Wrong number of points"); // TODO fix it
 
         // TC12: Ray starts at sphere and goes outside (0 points)
         ray = new Ray(new Vector(-1, 0, 0), new Point(0, 0, 0));
@@ -78,7 +73,7 @@ class SphereTest {
         ray = new Ray(new Vector(1, 0, 0), new Point(1, 0, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC13: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC13: Wrong number of points");
+        assertEquals(1, result.size(), "TC13: Wrong number of points"); // TODO fix it
 
         // TC14: Ray is tangent and starts before (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, -1));

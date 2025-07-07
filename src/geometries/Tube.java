@@ -2,7 +2,6 @@ package geometries;
 
 import primitives.*;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.*;
@@ -70,7 +69,7 @@ public class Tube extends RadialGeometry {
             deltaP = null;
         }
 
-        // Calculate perpendicular component of ray direction
+        // Calculate perpendicular component of the ray direction
         double vDotVa = alignZero(v.dotProduct(va));
         Vector vPerp;
         if (isZero(vDotVa)) {
@@ -85,14 +84,8 @@ public class Tube extends RadialGeometry {
             }
         }
 
-        // Check if ray direction has any perpendicular component
-        double a = vPerp.lengthSquared();
-        if (isZero(a)) {
-            // Ray is exactly parallel to axis - no side intersections
-            return null;
-        }
-
         // Initialize quadratic equation coefficients
+        double a = vPerp.lengthSquared();
         double b = 0;
         double c = -radiusSquared;
 
@@ -114,35 +107,21 @@ public class Tube extends RadialGeometry {
             }
 
             if (deltaPPerp != null) {
-                b = 2 * alignZero(vPerp.dotProduct(deltaPPerp));
-                c = deltaPPerp.lengthSquared() - radiusSquared;
-            } else {
-                // Ray starts exactly on the axis
-                b = 0;
-                c = -radiusSquared;
+                b = 2 * vPerp.dotProduct(deltaPPerp);
+                c += deltaPPerp.lengthSquared();
             }
         }
 
         // Solve quadratic equation
         double discriminant = alignZero(b * b - 4 * a * c);
-        if (discriminant < 0) {
-            return null;
-        }
+        if (discriminant <= 0) return null;
 
         double sqrtDisc = Math.sqrt(discriminant);
-        double t1 = alignZero((-b - sqrtDisc) / (2 * a));
-        double t2 = alignZero((-b + sqrtDisc) / (2 * a));
-
-        // Collect valid intersections
-        List<Intersection> intersections = new LinkedList<>();
-        if (t1 > 0) {
-            intersections.add(new Intersection(this, p0.add(v.scale(t1))));
-        }
-        if (t2 > 0 && !isZero(t2 - t1)) {
-            intersections.add(new Intersection(this, p0.add(v.scale(t2))));
-        }
-
-        return intersections.isEmpty() ? null : intersections;
+        double a2 = 2 * a;
+        double t1 = (-b - sqrtDisc) / a2;
+        double t2 = (-b + sqrtDisc) / a2;
+        // t1 is always less than t2
+        return getIntersections(ray, t1, t2);
     }
 
 }

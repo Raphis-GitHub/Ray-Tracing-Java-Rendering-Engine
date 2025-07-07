@@ -1,5 +1,11 @@
 package geometries;
 
+import primitives.Ray;
+
+import java.util.List;
+
+import static primitives.Util.alignZero;
+
 /**
  * Abstract class representing radial geometric shapes.
  * Implements the Geometry interface.
@@ -26,5 +32,20 @@ public abstract class RadialGeometry extends Geometry {
     public RadialGeometry(double radius) {
         this.radius = radius;
         this.radiusSquared = radius * radius;
+    }
+
+    /**
+     * Calculates the intersection points between a ray and the radial geometry.
+     *
+     * @param ray the ray to check for intersection with the radial geometry
+     * @param t1  the lesser intersection distance from the ray's origin
+     * @param t2  the greater intersection distance from the ray's origin
+     * @return List of intersection points, or {@code null} if there are none
+     */
+    protected List<Intersection> getIntersections(Ray ray, double t1, double t2) {
+        if (alignZero(t2) <= 0) return null;
+        return alignZero(t1) <= 0
+                ? List.of(new Intersection(this, ray.getPoint(t2)))
+                : List.of(new Intersection(this, ray.getPoint(t1)), new Intersection(this, ray.getPoint(t2)));
     }
 }

@@ -18,18 +18,16 @@ public abstract class Intersectable {
      * geoPoint
      */
     public static class Intersection {
-        /**
-         * default constructor
-         *
-         * @param geometry body
-         * @param point    point of intersection
-         */
-        public Intersection(Geometry geometry, Point point) {
-            this.geometry = geometry;
-            this.point = point;
-            this.material = geometry != null ? geometry.getMaterial() : null;
 
-        }
+        /**
+         * Represents the geometry involved in the intersection.
+         */
+        public final Geometry geometry;
+
+        /**
+         * Represents the point of intersection.
+         */
+        public final Point point;
 
         /**
          * Represents the material of the intersected geometry.
@@ -57,7 +55,12 @@ public abstract class Intersectable {
         public LightSource lightSource;
 
         /**
-         * Represents the direction vector of the light source.
+         * Represents the direction vector from the light source.
+         */
+        public Vector lightToPoint;
+
+        /**
+         * Represents the direction vector to the light source.
          */
         public Vector lightDirection;
 
@@ -67,14 +70,16 @@ public abstract class Intersectable {
         public double lightDotProduct;
 
         /**
-         * Represents the geometry involved in the intersection.
+         * default constructor
+         *
+         * @param geometry body
+         * @param point    point of intersection
          */
-        public Geometry geometry;
-
-        /**
-         * Represents the point of intersection.
-         */
-        public Point point;
+        public Intersection(Geometry geometry, Point point) {
+            this.geometry = geometry;
+            this.point = point;
+            this.material = geometry != null ? geometry.getMaterial() : null;
+        }
 
         /**
          * Checks if this intersection is equal to another object.

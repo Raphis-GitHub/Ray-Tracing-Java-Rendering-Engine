@@ -2,6 +2,8 @@ package lighting;
 
 import primitives.*;
 
+import static primitives.Util.alignZero;
+
 /**
  * SpotLight class represents a spotlight in a scene.
  * It extends PointLight and adds a direction vector to define the spotlight's direction.
@@ -48,8 +50,7 @@ public class SpotLight extends PointLight {
      */
     @Override
     public SpotLight setKc(double kC) {
-        super.setKc(kC);
-        return this;
+        return (SpotLight) super.setKc(kC);
     }
 
     /**
@@ -60,8 +61,7 @@ public class SpotLight extends PointLight {
      */
     @Override
     public SpotLight setKl(double kL) {
-        super.setKl(kL);
-        return this;
+        return (SpotLight) super.setKl(kL);
     }
 
     /**
@@ -72,8 +72,7 @@ public class SpotLight extends PointLight {
      */
     @Override
     public SpotLight setKq(double kQ) {
-        super.setKq(kQ);
-        return this;
+        return (SpotLight) super.setKq(kQ);
     }
 
     /**
@@ -84,24 +83,14 @@ public class SpotLight extends PointLight {
      */
     @Override
     public Color getIntensity(Point p) {
-
-        Color pointIntensity = super.getIntensity(p);
-
-        // Calculate the direction from the light source to the point
-        //maybe add try catch for subtract- unsure- ask dan
-        Vector lightToPoint = p.subtract(position).normalize();
-
         // Calculate the cosine of the angle between light direction and light-to-point vector
         // Both vectors should point in the same direction for maximum intensity
-        double cosAngle = direction.dotProduct(lightToPoint);
+        double cosAngle = direction.dotProduct(getL(p));
+        if (alignZero(cosAngle) <= 0) return Color.BLACK;
 
-        // Apply directional factor (0 if pointing away, positive if within cone)
-        double directionalFactor = Math.max(0, cosAngle);
         //Apply narrow beam effect by raising to a power
-        if (narrowBeam > 1) {
-            directionalFactor = Math.pow(directionalFactor, narrowBeam);
-        }
-        return pointIntensity.scale(directionalFactor);
+        if (narrowBeam != 1) cosAngle = Math.pow(cosAngle, narrowBeam);
+        return super.getIntensity(p).scale(cosAngle);
 
     }
 

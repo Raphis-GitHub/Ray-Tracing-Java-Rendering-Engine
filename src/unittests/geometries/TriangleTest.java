@@ -60,10 +60,7 @@ public class TriangleTest {
         Ray ray = new Ray(new Vector(0, 0, 1), new Point(0, 0.5, -1));
 
         List<Point> result = triangle.findIntersections(ray);
-
-        assertNotNull(result, "TC01: Expected 1 intersection");
-        assertEquals(1, result.size(), "TC01: Wrong number of points");
-        assertEquals(new Point(0, 0.5, 0), result.getFirst(), "TC01: Incorrect point");
+        assertEquals(List.of(new Point(0, 0.5, 0)), result, "TC01: Incorrect point");
 
         // TC02: Ray intersects outside the triangle against edge
         ray = new Ray(new Vector(0, -1, 1), new Point(2, 1, -1));

@@ -288,16 +288,15 @@ public class Camera implements Cloneable {
                 throw new MissingResourceException(MISSING, CAM, "height > 0");
             if (alignZero(camera.distance) <= 0)
                 throw new MissingResourceException(MISSING, CAM, "distance > 0");
-            if (alignZero(camera.nX) <= 0)
-                throw new MissingResourceException(MISSING, CAM, "nX > 0");
-            if (alignZero(camera.nY) <= 0)
-                throw new MissingResourceException(MISSING, CAM, "nY > 0");
 
+            if (camera.nX <= 0)
+                throw new MissingResourceException(MISSING, CAM, "nX > 0");
+            if (camera.nY <= 0)
+                throw new MissingResourceException(MISSING, CAM, "nY > 0");
             camera.imageWriter = new ImageWriter(camera.nX, camera.nY);
 
-            if (camera.rayTracer == null) {
+            if (camera.rayTracer == null)
                 camera.rayTracer = new SimpleRayTracer(null);
-            }
 
             return camera.clone();
         }

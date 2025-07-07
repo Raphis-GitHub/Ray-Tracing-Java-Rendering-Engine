@@ -7,9 +7,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Fix light direction check in intersection calculation; improve comments for clarity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TubeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +190,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LightsTests.trianglesSpotNarrowBeam">
+  <component name="RunManager" selected="JUnit.LightsTests.epicLightShowTest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -182,6 +200,14 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in ISE5785_4760_2159" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,21 +260,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RenderTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TubeTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -267,19 +278,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.All in ISE5785_4760_2159" />
       <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
       <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
       <item itemvalue="JUnit.LightsTests.trianglesSpotNarrowBeam" />
       <item itemvalue="JUnit.TubeTest.testFindIntersections" />
-      <item itemvalue="JUnit.RenderTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
+        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
         <item itemvalue="JUnit.LightsTests.trianglesSpotNarrowBeam" />
         <item itemvalue="JUnit.TubeTest.testFindIntersections" />
         <item itemvalue="JUnit.CylinderTest.testFindIntersections" />
-        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
-        <item itemvalue="JUnit.RenderTests" />
       </list>
     </recent_temporary>
   </component>
@@ -324,15 +335,7 @@
       <workItem from="1750774076424" duration="14276000" />
       <workItem from="1751195453476" duration="1869000" />
       <workItem from="1751558051837" duration="18550000" />
-      <workItem from="1751815279981" duration="19167000" />
-    </task>
-    <task id="LOCAL-00017" summary="Remove obsolete Main.java and enhance test documentation&#10;&#10;The Main.java file, which contained outdated test code, has been removed. Additionally, several unit tests were updated with detailed Javadoc comments to improve clarity and maintainability.">
-      <option name="closed" value="true" />
-      <created>1743518253183</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1743518253183</updated>
+      <workItem from="1751815279981" duration="24150000" />
     </task>
     <task id="LOCAL-00018" summary="Refactor comments, imports, and formatting across files&#10;&#10;Improved code readability by refining comments, organizing imports, and normalizing formatting in multiple files. Updated Javadoc styles and ensured consistent spacing, indentation, and code alignment in different classes and test cases.">
       <option name="closed" value="true" />
@@ -718,7 +721,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751877327707</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fix light direction check in intersection calculation; improve comments for clarity">
+      <option name="closed" value="true" />
+      <created>1751878441479</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1751878441479</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +747,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class" />
     <MESSAGE value="Remove TODO comment from getNormal tests in TriangleTest class" />
     <MESSAGE value="Add detailed documentation for camera intersection tests and methods" />
     <MESSAGE value="Add whitespace for improved readability in CameraIntersIntegsTest class" />
@@ -761,7 +771,8 @@
     <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
     <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
     <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
+    <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix light direction check in intersection calculation; improve comments for clarity" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

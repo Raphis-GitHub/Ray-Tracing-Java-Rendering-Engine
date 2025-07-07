@@ -2,7 +2,7 @@ package lighting;
 
 import primitives.*;
 
-import static primitives.Util.isZero;
+import static primitives.Util.alignZero;
 
 /**
  * PointLight class represents a point light source in a scene.
@@ -13,9 +13,17 @@ public class PointLight extends Light implements LightSource {
      */
     protected final Point position;
     /**
-     * The constant, linear, and quadratic attenuation factors for the light.
+     * The constant attenuation factors for the light.
      */
-    private double kC = 1, kL = 0, kQ = 0;
+    private double kC = 1;
+    /**
+     * The linear attenuation factors for the light.
+     */
+    private double kL = 0;
+    /**
+     * The quadratic attenuation factors for the light.
+     */
+    private double kQ = 0;
 
     /**
      * Constructs a PointLight with the specified intensity and position.
@@ -35,6 +43,8 @@ public class PointLight extends Light implements LightSource {
      * @return the current PointLight instance for method chaining
      */
     public PointLight setKc(double kC) {
+        if (alignZero(kC) <= 0)
+            throw new IllegalArgumentException("kC must be positive");
         this.kC = kC;
         return this;
     }
@@ -46,6 +56,8 @@ public class PointLight extends Light implements LightSource {
      * @return the current PointLight instance for method chaining
      */
     public PointLight setKl(double kL) {
+        if (kL < 0)
+            throw new IllegalArgumentException("kL must be non-negative");
         this.kL = kL;
         return this;
     }
@@ -57,6 +69,8 @@ public class PointLight extends Light implements LightSource {
      * @return the current PointLight instance for method chaining
      */
     public PointLight setKq(double kQ) {
+        if (kQ < 0)
+            throw new IllegalArgumentException("kQ must be non-negative");
         this.kQ = kQ;
         return this;
     }
@@ -71,9 +85,7 @@ public class PointLight extends Light implements LightSource {
     public Color getIntensity(Point p) {
         double d = position.distance(p);
         double attenuationFactor = kC + kL * d + kQ * d * d;
-        return isZero(attenuationFactor)
-                ? intensity.scale(Double.POSITIVE_INFINITY)
-                : intensity.scale(1d / attenuationFactor);
+        return intensity.scale(1d / attenuationFactor);
     }
 
     /**
@@ -84,7 +96,7 @@ public class PointLight extends Light implements LightSource {
      */
     @Override
     public Vector getL(Point point) {
-        return position.subtract(point).normalize();
+        return point.subtract(position).normalize();
 
     }
 

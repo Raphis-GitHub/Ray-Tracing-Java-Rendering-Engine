@@ -120,8 +120,6 @@ class PolygonTests {
         // TC01: Ray intersects inside the polygon (1 point)
         Ray ray = new Ray(new Vector(0, 0, 1), new Point(1, 1, 0));
         List<Point> result = square.findIntersections(ray);
-        assertNotNull(result, "TC01: Ray inside polygon should intersect");
-        assertEquals(1, result.size(), "TC01: Wrong number of points");
         assertEquals(List.of(new Point(1, 1, 1)), result, "TC01: Wrong intersection point");
 
         // TC02: Ray outside polygon - against edge (0 points)
@@ -199,11 +197,11 @@ class PolygonTests {
         // TC32: Ray near vertex but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.9, 0, -1));
         result = pentagon.findIntersections(ray);
-        assertEquals(1, result.size(), "TC32: Wrong number of points");
+        assertEquals(1, result.size(), "TC32: Wrong number of points");// TODO: Check exact point
 
         // TC33: Ray near the edge but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0.5, -1));
         result = pentagon.findIntersections(ray);
-        assertEquals(1, result.size(), "TC33: Wrong number of points");
+        assertEquals(1, result.size(), "TC33: Wrong number of points");// TODO: Check exact point
     }
 }

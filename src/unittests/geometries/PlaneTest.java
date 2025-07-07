@@ -132,9 +132,7 @@ class PlaneTest {
         // TC01: Ray intersects the plane (1 point)
         Ray ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
         List<Point> result = plane.findIntersections(ray);
-        assertNotNull(result, "TC01: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC01: Wrong number of points");
-        assertEquals(new Point(0, 0, 1), result.getFirst(), "TC01: Incorrect intersection point");
+        assertEquals(List.of(new Point(0, 0, 1)), result, "TC01: Incorrect intersection point");
 
         // TC02: Ray does not intersect the plane
         ray = new Ray(new Vector(0, 1, 0), new Point(0, 0, 0));
@@ -145,8 +143,7 @@ class PlaneTest {
         // TC11: Ray is orthogonal to plane and starts before (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
         result = plane.findIntersections(ray);
-        assertNotNull(result, "TC11: Expected 1 point");
-        assertEquals(new Point(0, 0, 1), result.getFirst(), "TC11: Incorrect intersection");
+        assertEquals(List.of(new Point(0, 0, 1)), result, "TC11: Incorrect intersection");
 
         // TC12: Ray is orthogonal to plane and starts on plane (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 2));
