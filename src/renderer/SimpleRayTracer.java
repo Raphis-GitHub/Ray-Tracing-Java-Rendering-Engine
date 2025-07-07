@@ -7,7 +7,7 @@ import scene.Scene;
 
 import java.util.List;
 
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Simple ray tracer that traces rays through a scene
@@ -139,9 +139,9 @@ public class SimpleRayTracer extends RayTracerBase {
             return false;
         }
         intersection.lightDirection = lightSource.getL(intersection.point);
-        intersection.lightDotProduct = Util.alignZero(intersection.normal.dotProduct(intersection.lightDirection));
+        intersection.lightDotProduct = alignZero(intersection.normal.dotProduct(intersection.lightDirection));
 
         // Only check if surface faces the light
-        return intersection.lightDotProduct > 0;
+        return intersection.lightDotProduct * intersection.lightDirection.dotProduct(intersection.normal) > 0;
     }
 }
