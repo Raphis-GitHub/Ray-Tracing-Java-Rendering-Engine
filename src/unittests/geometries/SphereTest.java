@@ -63,7 +63,7 @@ class SphereTest {
         ray = new Ray(new Vector(1, 0, 0), new Point(0, 0, 0));
         result = sphere.findIntersections(ray);
         assertNotNull(result, "TC11: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC11: Wrong number of points"); // TODO fix it
+        assertEquals(List.of(new Point(2.0, 0.0, 0.0)), result, "TC11: Wrong points");
 
         // TC12: Ray starts at sphere and goes outside (0 points)
         ray = new Ray(new Vector(-1, 0, 0), new Point(0, 0, 0));
@@ -72,8 +72,7 @@ class SphereTest {
         // TC13: Ray starts at center (1 point)
         ray = new Ray(new Vector(1, 0, 0), new Point(1, 0, 0));
         result = sphere.findIntersections(ray);
-        assertNotNull(result, "TC13: Expected 1 intersection point");
-        assertEquals(1, result.size(), "TC13: Wrong number of points"); // TODO fix it
+        assertEquals(List.of(new Point(2.0, 0.0, 0.0)), result, "TC13: Wrong points");
 
         // TC14: Ray is tangent and starts before (0 points)
         ray = new Ray(new Vector(0, 0, 1), new Point(0, 1, -1));

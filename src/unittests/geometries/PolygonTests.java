@@ -197,11 +197,14 @@ class PolygonTests {
         // TC32: Ray near vertex but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.9, 0, -1));
         result = pentagon.findIntersections(ray);
+        System.out.println(result);
         assertEquals(1, result.size(), "TC32: Wrong number of points");// TODO: Check exact point
 
         // TC33: Ray near the edge but inside (1 point)
         ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0.5, -1));
         result = pentagon.findIntersections(ray);
+        System.out.println(result);
+
         assertEquals(1, result.size(), "TC33: Wrong number of points");// TODO: Check exact point
     }
 }
