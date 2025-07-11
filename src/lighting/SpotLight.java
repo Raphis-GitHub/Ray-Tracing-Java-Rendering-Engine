@@ -1,6 +1,8 @@
 package lighting;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Point;
+import primitives.Vector;
 
 import static primitives.Util.alignZero;
 
@@ -93,5 +95,11 @@ public class SpotLight extends PointLight {
         return super.getIntensity(p).scale(cosAngle);
 
     }
+
+    @Override
+    public double getDistance(Point point) {
+        return point.distance(position);
+    }
+
 
 }

@@ -23,6 +23,12 @@ public class SimpleRayTracer extends RayTracerBase {
         super(scene);
     }
 
+    /**
+     * Small offset to prevent self-shadowing when casting shadow rays.
+     */
+    private static final double DELTA = 0.1;
+
+
     @Override
     public Color traceRay(Ray ray) {
         List<Intersection> intersections = scene.geometries.calculateIntersections(ray);
@@ -55,6 +61,7 @@ public class SimpleRayTracer extends RayTracerBase {
         // Start with emission color
         Color color = intersection.geometry.getEmission();
         for (LightSource lightSource : scene.lights) {
+            if (!unshaded(intersection, lightSource)) continue; // Skip this light if the point is in shadow
             if (!setLightSource(intersection, lightSource)) continue;
 
             Color lightIntensity = lightSource.getIntensity(intersection.point);
@@ -122,4 +129,39 @@ public class SimpleRayTracer extends RayTracerBase {
         intersection.lightDirection = intersection.lightToPoint.scale(-1);
         return intersection.lightDotProduct * intersection.dotProduct > 0;
     }
+
+    /**
+     * Checks if a given intersection point is not shadowed (i.e., has a direct line of sight to the light source).
+     *
+     * @param intersection the intersection point on the geometry
+     * @param light        the light source
+     * @return true if the point is not shadowed, false otherwise
+     */
+    private boolean unshaded(Intersection intersection, LightSource light) {
+        // Vector from the point toward the light source
+        Vector lightDir = light.getL(intersection.point).normalize();
+
+        // Shift the starting point a bit away from the surface to avoid self-intersection
+        Point shadowRayOrigin = intersection.point.add(lightDir.scale(DELTA));
+
+        Ray shadowRay = new Ray(lightDir, shadowRayOrigin);
+
+        // Get all intersections of the shadow ray with the scene
+        List<Intersection> intersections = scene.geometries.calculateIntersections(shadowRay);
+
+        if (intersections == null) {
+            return true; // No blocking geometry
+        }
+
+        for (Intersection inter : intersections) {
+            // If the geometry blocks the light before it reaches the target point
+            if (inter.geometry != intersection.geometry) {
+                return false; // Blocked
+            }
+        }
+
+        return true; // No blocking geometry
+    }
+
+
 }
