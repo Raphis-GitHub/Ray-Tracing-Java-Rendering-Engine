@@ -77,12 +77,17 @@ class TubeTest {
         // TC02: Ray's crosses the tube (2 points)
         ray = new Ray(new Vector(2, 1, 1), new Point(0, 0, 0));
         List<Point> result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        List<Point> expected = List.of(
+                new Point(0.4, 0.2, 0.2),
+                new Point(2.0, 1.0, 1.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC03: Ray's starts within tube and crosses the tube (1 point)
         ray = new Ray(new Vector(2, 1, 1), new Point(1, 0.5, 0.5));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // =============== Boundary Values Tests ==================
 
@@ -123,27 +128,38 @@ class TubeTest {
         // TC23: Ray starts before (2 points)
         ray = new Ray(new Vector(2, 1, 0), new Point(0, 0, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(0.4, 0.2, 2.0),
+                new Point(2.0, 1.0, 2.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC24: Ray starts at the surface and goes inside (1 point)
         ray = new Ray(new Vector(2, 1, 0), new Point(0.4, 0.2, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 2.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC25: Ray starts inside (1 point)
         ray = new Ray(new Vector(2, 1, 0), new Point(1, 0.5, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 2.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC26: Ray starts before and crosses the axis (2 points)
         ray = new Ray(new Vector(0, 1, 0), new Point(1, -1, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(1.0, 0.0, 2.0),
+                new Point(1.0, 2.0, 2.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC27: Ray starts inside and the line crosses the axis (1 point)
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.0, 2.0, 2.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC28: Ray starts at the surface and goes outside and the line crosses the axis (0 points)
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 2, 2));
@@ -171,17 +187,23 @@ class TubeTest {
         // TC43: Ray starts before
         ray = new Ray(new Vector(2, 1, 0), new Point(0, 0, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(0.4, 0.2, 1.0),
+                new Point(2.0, 1.0, 1.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC44: Ray starts at the surface and goes inside
         ray = new Ray(new Vector(2, 1, 0), new Point(0.4, 0.2, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC45: Ray starts inside
         ray = new Ray(new Vector(2, 1, 0), new Point(1, 0.5, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC46: Ray starts after
         ray = new Ray(new Vector(2, 1, 0), new Point(4, 2, 1));
@@ -191,17 +213,23 @@ class TubeTest {
         // TC47: Ray starts before and goes through the axis head
         ray = new Ray(new Vector(0, 1, 0), new Point(1, -1, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(1.0, 0.0, 1.0),
+                new Point(1.0, 2.0, 1.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC48: Ray starts at the surface and goes inside and goes through the axis head
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 0, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.0, 2.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC49: Ray starts inside and the line goes through the axis head
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 0.5, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.0, 2.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC50: Ray starts at the surface and the line goes outside and goes through
         // the axis head
@@ -217,7 +245,8 @@ class TubeTest {
         // TC52: Ray start at the axis head
         ray = new Ray(new Vector(0, 1, 0), new Point(1, 1, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.0, 2.0, 1.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // Ray's line is neither parallel nor orthogonal to the axis and begins against axis head
         Point p0 = new Point(0, 2, 1);
@@ -229,22 +258,29 @@ class TubeTest {
         // TC61: Ray's line crosses the tube and begins before
         ray = new Ray(new Vector(2, -1, 1), p0);
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(0.4, 1.8, 1.2),
+                new Point(2.0, 1.0, 2.0)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC62: Ray's line crosses the tube and begins at surface and goes inside
         ray = new Ray(new Vector(2, -1, 1), new Point(0.4, 1.8, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 1.8));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC63: Ray's line crosses the tube and begins inside
         ray = new Ray(new Vector(2, -1, 1), new Point(1, 1.5, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(2.0, 1.0, 1.5));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC64: Ray's line crosses the tube and begins at the axis head
         ray = new Ray(new Vector(0, 1, 1), new Point(1, 1, 1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.0, 2.0, 2.0));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC65: Ray's line crosses the tube and begins at surface and goes outside
         ray = new Ray(new Vector(2, -1, 1), new Point(2, 1, 1));
@@ -275,42 +311,56 @@ class TubeTest {
         // TC70: Ray's crosses the tube and the axis
         ray = new Ray(new Vector(1, 1, 1), new Point(0, 0, 2));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(0.2928932188134525, 0.2928932188134525, 2.2928932188134525),
+                new Point(1.7071067811865475, 1.7071067811865475, 3.7071067811865475)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC71: Ray's crosses the tube and the axis head
         ray = new Ray(new Vector(1, 1, 1), new Point(0, 0, 0));
         result = tube2.findIntersections(ray);
-        assertEquals(2, result.size(), "must be 2 intersections");// TODO fix it
+        expected = List.of(
+                new Point(0.2928932188134525, 0.2928932188134525, 0.2928932188134525),
+                new Point(1.7071067811865475, 1.7071067811865475, 1.7071067811865475)
+        );
+        assertEquals(expected, result, "must be 2 intersections");
 
         // TC72: Ray's begins at the surface and goes inside
         ray = new Ray(new Vector(1, 0, 1), new Point(value1, value1, 2 + value1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865477, 0.29289321881345254, 3.707106781186548));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC73: Ray's begins at the surface and goes inside crossing the axis
         ray = new Ray(new Vector(1, 1, 1), new Point(value1, value1, 2 + value1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865475, 1.7071067811865475, 3.7071067811865475));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC74: Ray's begins at the surface and goes inside crossing the axis head
         ray = new Ray(new Vector(1, 1, 1), new Point(value1, value1, value1));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865475, 1.7071067811865475, 1.7071067811865475));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC75: Ray's begins inside and the line crosses the axis
         ray = new Ray(new Vector(1, 1, 1), new Point(0.5, 0.5, 2.5));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865475, 1.7071067811865475, 3.7071067811865475));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC76: Ray's begins inside and the line crosses the axis head
         ray = new Ray(new Vector(1, 1, 1), new Point(0.5, 0.5, 0.5));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865475, 1.7071067811865475, 1.7071067811865475));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC77: Ray's begins at the axis
         ray = new Ray(new Vector(1, 1, 1), new Point(1, 1, 3));
         result = tube2.findIntersections(ray);
-        assertEquals(1, result.size(), "must be 1 intersection");// TODO fix it
+        expected = List.of(new Point(1.7071067811865475, 1.7071067811865475, 3.7071067811865475));
+        assertEquals(expected, result, "must be 1 intersection");
 
         // TC78: Ray's begins at the surface and goes outside
         ray = new Ray(new Vector(2, 1, 1), new Point(2, 1, 2));
