@@ -7,26 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor reflection and shadow test classes; improve comments and code clarity">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor intersection calculations; add maxDistance parameter and disable specific tests">
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PlaneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/PolygonTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/TriangleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/ShadowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/ShadowTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,15 +346,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="6537000" />
-    </task>
-    <task id="LOCAL-00022" summary="redid files for this year">
-      <option name="closed" value="true" />
-      <created>1747035633359</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1747035633359</updated>
+      <workItem from="1752357443621" duration="6932000" />
     </task>
     <task id="LOCAL-00023" summary="1) reformat all last time&#10;2) move JUNIT library to global maven location">
       <option name="closed" value="true" />
@@ -758,7 +732,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752236915332</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Refactor intersection calculations; add maxDistance parameter and disable specific tests">
+      <option name="closed" value="true" />
+      <created>1752364472020</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1752364472020</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,9 +758,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add whitespace for improved readability in CameraIntersIntegsTest class" />
-    <MESSAGE value=" Clean change list manager" />
-    <MESSAGE value="Refactor Camera class; initialize fields and improve intersection test assertions" />
     <MESSAGE value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
     <MESSAGE value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
     <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
@@ -801,7 +780,10 @@
     <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
     <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
     <MESSAGE value="Update workspace configuration; modify test selections and improve comments for clarity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace configuration; modify test selections and improve comments for clarity" />
+    <MESSAGE value="1st stage 7" />
+    <MESSAGE value="Refactor reflection and shadow test classes; improve comments and code clarity" />
+    <MESSAGE value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -131,13 +131,32 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Checks if a given intersection point is not shadowed (i.e., has a direct line of sight to the light source).
+     * Uses the bonus solution with max distance parameter for better performance.
      *
      * @param intersection the intersection point on the geometry
      * @param light        the light source
      * @return true if the point is not shadowed, false otherwise
      */
     private boolean unshaded(Intersection intersection, LightSource light) {
-        //TODO HELP
+        Vector lightToPoint = light.getL(intersection.point);
+        Vector pointToLight = lightToPoint.scale(-1); // from point to light source
+
+        // Calculate the dot product to determine the direction of the delta offset
+        double lightDotProduct = intersection.normal.dotProduct(lightToPoint);
+        Vector delta = intersection.normal.scale(lightDotProduct < 0 ? DELTA : -DELTA);
+        Point rayOrigin = intersection.point.add(delta);
+
+        // Create shadow ray from the intersection point towards the light
+        Ray shadowRay = new Ray(pointToLight, rayOrigin);
+
+        // Get distance to light source
+        double lightDistance = light.getDistance(intersection.point);
+
+        // Use the bonus solution: only get intersections up to the light distance
+        List<Intersection> intersections = scene.geometries.calculateIntersections(shadowRay, lightDistance);
+
+        // If no intersections found within light distance, point is unshaded
+        return intersections == null;
     }
 
 }
