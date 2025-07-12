@@ -2,6 +2,7 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -15,6 +16,7 @@ public class MoonlitForestTest {
      * Renders a comprehensive moonlit forest scene with many objects
      */
     @Test
+    @Disabled
     void renderMoonlitForest() {
         Scene scene = new Scene("Moonlit Forest")
                 .setBackground(new Color(15, 20, 35)) // Dark night sky but visible

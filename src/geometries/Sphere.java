@@ -55,7 +55,7 @@ public class Sphere extends RadialGeometry {
      * @return List of intersection points, or {@code null} if there are none
      */
     @Override
-    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         Vector u;
         try {
             u = this.center.subtract(ray.origin());
@@ -70,7 +70,7 @@ public class Sphere extends RadialGeometry {
         if (alignZero(thSquared) <= 0) return null;
 
         double th = Math.sqrt(thSquared);
-        return getIntersections(ray, tm - th, tm + th);
+        return getIntersections(ray, tm - th, tm + th, maxDistance);
     }
 
 }

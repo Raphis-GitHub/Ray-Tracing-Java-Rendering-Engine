@@ -54,7 +54,7 @@ public class Tube extends RadialGeometry {
      * @return a list of intersection points, or {@code null} if there are none
      */
     @Override
-    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         Point p0 = ray.origin();
         Vector v = ray.direction();
         Point pa = axisRay.origin();
@@ -120,8 +120,6 @@ public class Tube extends RadialGeometry {
         double a2 = 2 * a;
         double t1 = (-b - sqrtDisc) / a2;
         double t2 = (-b + sqrtDisc) / a2;
-        // t1 is always less than t2
-        return getIntersections(ray, t1, t2);
+        return getIntersections(ray, t1, t2, maxDistance);
     }
-
 }

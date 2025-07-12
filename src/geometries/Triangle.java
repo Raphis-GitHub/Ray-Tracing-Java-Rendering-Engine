@@ -34,7 +34,7 @@ public class Triangle extends Polygon {
      * @return list with one intersection point or null
      */
     @Override
-    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         Point vertex0 = vertices.getFirst();
         Vector edge1 = vertices.get(1).subtract(vertex0);
         Vector edge2 = vertices.get(2).subtract(vertex0);
@@ -56,9 +56,9 @@ public class Triangle extends Polygon {
             return null;
 
         double t = f * edge2.dotProduct(q);
-        return (alignZero(t) <= 0)
-                ? null
-                : List.of(new Intersection(this, ray.getPoint(t)));
+        return (alignZero(t) > 0 && alignZero(t - maxDistance) <= 0)
+                ? List.of(new Intersection(this, ray.getPoint(t)))
+                : null;
     }
 
 }

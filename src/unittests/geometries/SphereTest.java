@@ -87,4 +87,25 @@ class SphereTest {
         assertNull(sphere.findIntersections(ray), "TC16: Tangent, after");
     }
 
+    /**
+     * Test method for {@link Sphere#calculateIntersectionsHelper(Ray, double)} IntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    void testFindIntersectionsWithMaxDistance() {
+        Sphere s = new Sphere(new Point(5, 3, 0), 2);
+        // ray starts at (0,4,0)
+        assertNull(s.findIntersections(new Ray(new Vector(1, 0, 0), new Point(0, 4, 0)), 2), "Ray start outside the sphere and doesn't intersect the sphere");
+        // ray starts at (2.5,3.5,0)
+        assertEquals(List.of(new Point(3.0635083268962915, 3.5, 0.0)), s.findIntersections(new Ray(new Vector(1, 0, 0), new Point(2.5, 3.5, 0)), 2), "Ray start outside the sphere and intersects the sphere");
+        // ray starts at (3.5,3,0)
+        assertNull(s.calculateIntersectionsHelper(new Ray(new Vector(1, 0, 0), new Point(3.5, 3, 0)), 2), "Ray start outside the sphere and intersects the sphere");
+        // ray starts at (5.5,2.5,0)
+        assertEquals(List.of(new Point(6.936491673103708, 2.5, 0.0)), s.findIntersections(new Ray(new Vector(1, 0, 0), new Point(5.5, 2.5, 0)), 2), "Ray start outside the sphere and intersects the sphere");
+        // ray starts at (6.5,1.5,0)
+        assertEquals(List.of(new Point(6.732050807568877, 2.0, 0.0)), s.findIntersections(new Ray(new Vector(1, 0, 0), new Point(6.5, 2, 0)), 2), "Ray start outside the sphere and intersects the sphere");
+        // ray starts at (9,1.5,0)
+        //TODO clean comments
+        assertNull(s.findIntersections(new Ray(new Vector(1, 0, 0), new Point(9, 1.5, 0)), 2), "Ray start outside the sphere and intersects the sphere");
+    }
+
 }

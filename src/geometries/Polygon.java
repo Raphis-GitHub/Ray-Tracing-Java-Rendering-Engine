@@ -2,9 +2,10 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import static primitives.Util.*;
+import static primitives.Util.isZero;
 
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
@@ -100,28 +101,45 @@ public class Polygon extends Geometry {
      * @return a list of Intersection objects, or {@code null} if there are none
      */
     @Override
-    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
-        // First, find intersection with the polygon's plane
-        var planeIntersections = plane.findIntersections(ray);
-        if (planeIntersections == null) return null;
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
+        List<Vector> edgeNormals = new LinkedList<>();
 
-        // Get the intersection point with the plane
-        Point p = planeIntersections.getFirst();
-        Vector v = ray.direction();
+        // Extract the origin and direction vector of the given ray
+        final Point rayOrigin = ray.origin();
+        final Vector rayDirection = ray.direction();
 
-        // Check if the point is inside the polygon using the same technique as Triangle
-        for (int i = 0; i < size; i++) {
-            Point vi = vertices.get(i);
-            Point viNext = vertices.get((i + 1) % size);
-            Vector edge1 = viNext.subtract(vi);
-            Vector edge2 = p.subtract(vi);
-            Vector cross = edge1.crossProduct(edge2);
-            double sign = cross.dotProduct(plane.getNormal(p));
-            if (alignZero(sign) < 0) {
+        // Compute a normal vector for each side of the polygon
+        Vector previousVector = vertices.getFirst().subtract(rayOrigin);
+        for (Point vertex : vertices.subList(1, size)) {
+            Vector currentVector = vertex.subtract(rayOrigin);
+            edgeNormals.add(previousVector.crossProduct(currentVector).normalize());
+            previousVector = currentVector;
+        }
+        // Handle the last side connecting the last and first vertices
+        edgeNormals.add(vertices.getLast().subtract(rayOrigin).crossProduct(vertices.getFirst().subtract(rayOrigin)).normalize());
+
+        // Check if the ray points to the same side for all edges
+        boolean isInitiallyPositive = rayDirection.dotProduct(edgeNormals.getFirst()) > 0;
+        for (Vector normal : edgeNormals) {
+            double dot = rayDirection.dotProduct(normal);
+            // If dot product is zero or the sign is inconsistent, no intersection
+            if (Util.isZero(dot) || (dot > 0 != isInitiallyPositive)) {
                 return null;
             }
         }
-        return List.of(new Intersection(this, p));
+
+        // Build a plane using the first three vertices of the polygon
+        Plane basePlane = new Plane(vertices.getFirst(), vertices.get(1), vertices.get(2));
+
+        List<Point> intersectionPoints = basePlane.findIntersections(ray, maxDistance);
+        if (intersectionPoints == null) {
+            return null; // No intersection with the plane
+        }
+
+        // Find intersection points between the ray and the constructed plane
+        return intersectionPoints.stream()
+                .map(point -> new Intersection(this, point))
+                .toList();
     }
 
 }

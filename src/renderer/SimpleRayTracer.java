@@ -28,7 +28,6 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private static final double DELTA = 0.1;
 
-
     @Override
     public Color traceRay(Ray ray) {
         List<Intersection> intersections = scene.geometries.calculateIntersections(ray);
@@ -138,30 +137,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return true if the point is not shadowed, false otherwise
      */
     private boolean unshaded(Intersection intersection, LightSource light) {
-        // Vector from the point toward the light source
-        Vector lightDir = light.getL(intersection.point).normalize();
-
-        // Shift the starting point a bit away from the surface to avoid self-intersection
-        Point shadowRayOrigin = intersection.point.add(lightDir.scale(DELTA));
-
-        Ray shadowRay = new Ray(lightDir, shadowRayOrigin);
-
-        // Get all intersections of the shadow ray with the scene
-        List<Intersection> intersections = scene.geometries.calculateIntersections(shadowRay);
-
-        if (intersections == null) {
-            return true; // No blocking geometry
-        }
-
-        for (Intersection inter : intersections) {
-            // If the geometry blocks the light before it reaches the target point
-            if (inter.geometry != intersection.geometry) {
-                return false; // Blocked
-            }
-        }
-
-        return true; // No blocking geometry
+        //TODO HELP
     }
-
 
 }

@@ -1,6 +1,5 @@
 package geometries;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 
@@ -96,115 +95,36 @@ class PolygonTests {
      * Test method for {@link Polygon#findIntersections(Ray)}.
      */
     @Test
-    @Disabled
-    void testFindIntersections() {
-        // Test with a square polygon for simplicity
-        Polygon square = new Polygon(
-                new Point(0, 0, 1),
-                new Point(2, 0, 1),
-                new Point(2, 2, 1),
-                new Point(0, 2, 1)
-        );
-
-        // Test with the pentagon for more complex cases
-        Polygon pentagon = new Polygon(
-                new Point(1, 0, 0),
-                new Point(0.31, 0.95, 0),
-                new Point(-0.81, 0.59, 0),
-                new Point(-0.81, -0.59, 0),
-                new Point(0.31, -0.95, 0)
-        );
-
+    public void testFindIntersections() {
+        Polygon poly = new Polygon(new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 0, 1));
+        Plane plane = new Plane(new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 0, 1));
         // ============ Equivalence Partitions Tests ==============
-
-        // TC01: Ray intersects inside the polygon (1 point)
-        Ray ray = new Ray(new Vector(0, 0, 1), new Point(1, 1, 0));
-        List<Point> result = square.findIntersections(ray);
-        assertEquals(List.of(new Point(1, 1, 1)), result, "TC01: Wrong intersection point");
-
-        // TC02: Ray outside polygon - against edge (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(3, 1, 0));
-        assertNull(square.findIntersections(ray),
-                "TC02: Ray outside against edge should return null");
-
-        // TC03: Ray outside polygon - against vertex (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(-1, -1, 0));
-        assertNull(square.findIntersections(ray),
-                "TC03: Ray outside against vertex should return null");
-
-        // TC04: Ray parallel to polygon plane (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(0, 1, 0.5));
-        assertNull(square.findIntersections(ray),
-                "TC04: Ray parallel to plane should return null");
-
-        // TC05: Ray in polygon plane (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(0, 1, 1));
-        assertNull(square.findIntersections(ray),
-                "TC05: Ray in plane should return null");
-
-        // TC06: Ray perpendicular to plane, starts above (1 point)
-        ray = new Ray(new Vector(0, 0, -1), new Point(1, 1, 2));
-        result = square.findIntersections(ray);
-        assertNotNull(result, "TC06: Ray perpendicular from above should intersect");
-        assertEquals(List.of(new Point(1, 1, 1)), result, "TC06: Wrong intersection point");
-
-        // TC07: Ray starts after polygon (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 1, 2));
-        assertNull(square.findIntersections(ray),
-                "TC07: Ray starting after polygon should return null");
-
+        // TC01: inside Polygon
+        assertEquals(List.of(new Point(1d / 3, 1d / 3, 1d / 3)), poly.findIntersections(new Ray(new Vector(-1, -1, -1), new Point(1, 1, 1))), "ERROR: bad intersect");
+        // TC02: in between poly rays outside poly
+        Ray ray = new Ray(new Vector(-1, -1, 0), new Point(0, 0, 2));
+        // first check if it is in Plane
+        assertEquals(List.of(new Point(-0.5, -0.5, 2)), plane.findIntersections(ray), "ERROR: wrong intersect with plane");
+        assertNull(poly.findIntersections(ray), "ERROR: intersect when shouldn't be");
+        // TC03: on other side of edge outside triangle
+        // first check if it is in the Plane
+        ray = new Ray(new Vector(1, 1, 0), new Point(0, 0, -1));
+        assertEquals(List.of(new Point(1, 1, -1)), plane.findIntersections(ray), "ERROR: wrong intersect with plane");
+        assertNull(poly.findIntersections(ray), "Bad intersection");
         // =============== Boundary Values Tests ==================
-
-        // **** Group: Ray intersects polygon boundary
-
-        // TC11: Ray intersects on edge (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 0, 0));
-        assertNull(square.findIntersections(ray),
-                "TC11: Ray on edge should return null");
-
-        // TC12: Ray intersects on vertex (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
-        assertNull(square.findIntersections(ray),
-                "TC12: Ray on vertex should return null");
-
-        // TC13: Ray on edge continuation (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(3, 0, 0));
-        assertNull(square.findIntersections(ray),
-                "TC13: Ray on edge continuation should return null");
-
-        // **** Group: Ray starts on polygon
-
-        // TC21: Ray starts inside polygon (1 point)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 1, 1));
-        assertNull(square.findIntersections(ray),
-                "TC21: Ray starting on polygon should return null");
-
-        // TC22: Ray starts on edge (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 0, 1));
-        assertNull(square.findIntersections(ray),
-                "TC22: Ray starting on edge should return null");
-
-        // TC23: Ray starts on vertex (0 points)
-        //ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 1));
-        fail("not yet implemented");
-        // **** Group: Special cases with pentagon
-
-        // TC31: Ray through the center of the pentagon (1 point)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
-        result = pentagon.findIntersections(ray);
-        assertEquals(List.of(new Point(0, 0, 0)), result, "TC31: Wrong intersection point");
-
-        // TC32: Ray near vertex but inside (1 point)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.9, 0, -1));
-        result = pentagon.findIntersections(ray);
-        System.out.println(result);
-        assertEquals(1, result.size(), "TC32: Wrong number of points");// TODO: Check exact point
-
-        // TC33: Ray near the edge but inside (1 point)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0.5, -1));
-        result = pentagon.findIntersections(ray);
-        System.out.println(result);
-
-        assertEquals(1, result.size(), "TC33: Wrong number of points");// TODO: Check exact point
+        // TC11: intersects on edge
+        ray = new Ray(new Vector(1, 1, 0), new Point(-1, -1, 0));
+        // check plane first
+        assertEquals(List.of(new Point(0.5, 0.5, 0)), plane.findIntersections(ray), "ERROR: Wrong intersection with plane");
+        assertNull(poly.findIntersections(ray), "ERROR: intersect where it shouldn't be");
+        // TC12: intersect on vertex
+        ray = new Ray(new Vector(1, 1, 0), new Point(-1, 0, 0));
+        // check plane first
+        assertEquals(List.of(new Point(0, 1, 0)), plane.findIntersections(ray), "ERROR: Wrong intersection with plane");
+        assertNull(poly.findIntersections(ray), "ERROR: intersect where it shouldn't be");
+        // TC13: intersect on edge continuation
+        ray = new Ray(new Vector(1, 1, 0), new Point(-2, 0, 0));
+        assertEquals(List.of(new Point(-0.5, 1.5, 0)), plane.findIntersections(ray), "ERROR: Wrong intersection with plane");
+        assertNull(poly.findIntersections(ray), "ERROR: intersect where it shouldn't be");
     }
 }

@@ -107,6 +107,11 @@ public abstract class Intersectable {
      * @param ray the ray to intersect with
      * @return a list of intersection points, or null if no intersections
      */
+    public final List<Point> findIntersections(Ray ray, double maxDistance) {
+        var list = calculateIntersections(ray, maxDistance);
+        return list == null ? null : list.stream().map(intersection -> intersection.point).toList();
+    }
+
     public final List<Point> findIntersections(Ray ray) {
         var list = calculateIntersections(ray);
         return list == null ? null : list.stream().map(intersection -> intersection.point).toList();
@@ -120,7 +125,7 @@ public abstract class Intersectable {
      * @param ray the ray to intersect with
      * @return a list of Intersection objects, or null if no intersections
      */
-    protected abstract List<Intersection> calculateIntersectionsHelper(Ray ray);
+    protected abstract List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance);
 
     /**
      * Calculates intersections between a ray and the geometry using the NVI pattern.
@@ -130,6 +135,10 @@ public abstract class Intersectable {
      * @return a list of Intersection objects, or null if no intersections
      */
     public final List<Intersection> calculateIntersections(Ray ray) {
-        return calculateIntersectionsHelper(ray);
+        return calculateIntersections(ray, Double.POSITIVE_INFINITY);
+    }
+
+    public final List<Intersection> calculateIntersections(Ray ray, double maxDistance) {
+        return calculateIntersectionsHelper(ray, maxDistance);
     }
 }

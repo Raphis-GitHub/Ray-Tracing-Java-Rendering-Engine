@@ -1,6 +1,5 @@
 package geometries;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 
@@ -59,142 +58,112 @@ class CylinderTest {
     }
 
     /**
-     * Test method for {@link Cylinder#findIntersections(Ray)}.
+     * Test method for{@link geometries.Cylinder#calculateIntersectionsHelper(primitives.Ray)}
      */
     @Test
-    @Disabled
-    void testFindIntersections() {
-        Cylinder cylinder = new Cylinder(
-                new Ray(new Vector(0, 0, 1), new Point(0, 0, 0)),
-                1,
-                2
-        );
+    void testCalculateIntersectionsHelper() {
+        Cylinder cylinder = new Cylinder(new Ray(Vector.AXIS_Z, new Point(2, 2, 0)), 1, 1);
+        final Point p220 = new Point(2, 2, 0);
+        final Point p011 = new Point(0, 1, 1);
+        final Point p11_1 = new Point(1, 1, -1);
+        final Point p110 = new Point(1, 1, 0);
+        final Point p112 = new Point(1, 1, 2);
+        final Point p1515_05 = new Point(1.5, 1.5, -0.5);
+        final Point p15150 = new Point(1.5, 1.5, 0);
+        final Point p151505 = new Point(1.5, 1.5, 0.5);
+        final Point p15152 = new Point(1.5, 1.5, 2);
+        final Point p1205 = new Point(1, 2, 0.5);
+        final Point p12_1 = new Point(1, 2, -1);
+        final Point p22_05 = new Point(2, 2, -0.5);
+        final Point p331 = new Point(3, 3, 1);
+        final Point p332 = new Point(3, 3, 2);
+        final Point p440 = new Point(4, 4, 0);
+        final Vector v001 = Vector.AXIS_Z;
+        final Vector v100 = Vector.AXIS_X;
+        final Vector v110 = new Vector(1, 1, 0);
+        final Vector v112 = new Vector(1, 1, 2);
+        final Vector v111 = new Vector(1, 1, 1);
+        final var exp04 = List.of(new Point(1.5, 1.5, 0), new Point(2, 2, 1));
+        final var exp21 = List.of(new Point(2.7071067811865475, 2.7071067811865475, 0.7071067811865475), p220);
+        final var exp22 = List.of(new Point(2.7071067811865475244008443621048490, 2.7071067811865475244008443621048490, 0.7071067811865475244008443621048490), new Point(2, 2, 0));
+        final var exp32 = List.of(new Point(2, 2, 1));
+        final var exp31 = List.of(new Point(1.2928932188134525, 1.2928932188134525, 0.2928932188134525), new Point(2, 2, 1));
+        final var exp43 = List.of(new Point(1.5, 1.5, 0), new Point(1.5, 1.5, 1));
+        final var exp44 = List.of(new Point(2, 2, 0), new Point(2, 2, 1));
+        final var exp51 = List.of(new Point(1.5, 2.5, 1));
+        final var exp52 = List.of(new Point(3, 2, 0.5));
+        final var exp53 = List.of(new Point(2.5, 2.5, 1));
+        final var exp54 = List.of(new Point(1.5, 1.5, 1));
+        // ============ Equivalence Partitions Tests ==============
 
-// ============ Equivalence Partitions Tests ==============
+        // Group 0: ray intersect the tube but not the cylinder - acute angle
+        //TC01 ray intersected in acute angle - over the cylinder (0 points)
+        assertNull(cylinder.findIntersections(new Ray(v111, p011)), "TC01 failed");
 
-// TC01: Ray outside cylinder and parallel to axis (0 points)
-        Ray ray = new Ray(new Vector(0, 0, 1), new Point(2, 0, 0));
-        assertNull(cylinder.findIntersections(ray),
-                "TC01: Ray outside cylinder parallel to axis should return null");
+        //TC02 ray intersected in acute angle  - over the cylinder (0 point)
+        assertNull(cylinder.findIntersections(new Ray(v111, p15152)), "TC02 failed");
 
-// TC02: Ray inside cylinder and parallel to axis (2 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0, -1));
-        List<Point> result = cylinder.findIntersections(ray);
-        assertEquals(2, result.size(), "TC02: Wrong number of points");
-        assertEquals(new Point(0.5, 0, 0), result.get(0), "TC02: Wrong first point");
-        assertEquals(new Point(0.5, 0, 2), result.get(1), "TC02: Wrong second point");
+        //TC03 ray intersected in acute angle but starts after the tube (0 points)
+        assertNull(cylinder.findIntersections(new Ray(v111, p440)), "TC03 failed");
 
-// TC03: Ray perpendicular to axis, misses cylinder (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 2, 1));
-        assertNull(cylinder.findIntersections(ray),
-                "TC03: Ray perpendicular to axis missing cylinder should return null");
+        //TC04 ray intersect the two bases in an acute angle
+        assertEquals(exp04, cylinder.findIntersections(new Ray(v112, p11_1)), "TC04 failed");
 
-// TC04: Ray perpendicular to axis, through cylinder (2 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 1));
-        result = cylinder.findIntersections(ray);
-        assertEquals(2, result.size(), "TC04: Wrong number of points");
-        assertEquals(new Point(-1, 0, 1), result.get(0), "TC04: Wrong first point");
-        assertEquals(new Point(1, 0, 1), result.get(1), "TC04: Wrong second point");
+        //Grope 1: ray intersect the tube in a straight angle, but not the cylinder
 
-// TC05: Ray at angle, intersects sides (2 points)
-        ray = new Ray(new Vector(1, 0, 1), new Point(-2, 0, -1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC05: Ray at angle should intersect");
-        assertEquals(2, result.size(), "TC05: Wrong number of points");
-        assertEquals(new Point(-1, 0, 0), result.get(0), "TC05: Wrong first point");
-        assertEquals(new Point(1, 0, 2), result.get(1), "TC05: Wrong second point");
+        //TC11 ray intersect the tube twice but is too high for the cylinder
+        assertNull(cylinder.findIntersections(new Ray(v110, p112)), "TC11 failed");
 
-// TC06: Ray at angle, intersects caps (2 points)
-        ray = new Ray(new Vector(0.5, 0, 1), new Point(-1, 0, -1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC06: Ray through caps should intersect");
-        assertEquals(2, result.size(), "TC06: Wrong number of points");
-        assertEquals(new Point(-0.5, 0, 0), result.get(0), "TC06: Wrong first point");
-        assertEquals(new Point(0.5, 0, 2), result.get(1), "TC06: Wrong second point");
+        //TC12 ray intersect the tube once but is too high for the cylinder
+        assertNull(cylinder.findIntersections(new Ray(v110, p15152)), "TC12 failed");
 
-// TC07: Ray inside cylinder at angle (1 point)
-        ray = new Ray(new Vector(1, 0, 1), new Point(0, 0, 1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC07: Ray from inside should intersect");
-        assertEquals(1, result.size(), "TC07: Wrong number of points");
-        assertEquals(new Point(1, 0, 2), result.get(0), "TC07: Wrong intersection point");
+        //Group 2: the ray (or its continuation) intersects the cylinder twice,
+        // once in one of the bases and once on the tube
+        // the first point is on the base
 
-// TC08: Ray starts after cylinder (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, 3));
-        assertNull(cylinder.findIntersections(ray),
-                "TC08: Ray starting after cylinder should return null");
+        //TC21 two intersection points
+        assertEquals(exp21, cylinder.findIntersections(new Ray(v111, p11_1)), "TC21 failed");
 
-// =============== Boundary Values Tests ==================
+        //TC22 one intersection point
+        assertEquals(exp22, cylinder.findIntersections(new Ray(v111, p1515_05)), "TC22 failed");
 
-// **** Group: Ray parallel to axis
+        //TC23 no intersection point
+        assertNull(cylinder.findIntersections(new Ray(v111, p331)), "TC23 failed");
 
-// TC11: Ray near cylinder surface parallel to axis (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1.001, 0, -1));
-        assertNull(cylinder.findIntersections(ray),
-                "TC11: Ray near surface parallel to axis should return null");
+        //Group 3: the ray (or its continuation) intersects the cylinder twice,
+        // once in one of the bases and once on the tube
+        // the first point is on the tube
 
-// TC12: Ray on axis (2 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0, 0, -1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC12: Ray on axis should intersect caps");
-        assertEquals(2, result.size(), "TC12: Wrong number of points");
-        assertEquals(new Point(0, 0, 0), result.get(0), "TC12: Wrong first cap point");
-        assertEquals(new Point(0, 0, 2), result.get(1), "TC12: Wrong second cap point");
+        //TC31 two intersection points
+        assertEquals(exp31, cylinder.findIntersections(new Ray(v111, p110)), "TC31 failed");
 
-// **** Group: Ray starts on cylinder
+        //TC32 one intersection point
+        assertEquals(exp32, cylinder.findIntersections(new Ray(v111, p151505)), "TC31 failed");
 
-// TC21: Ray starts on bottom cap, goes inside (1 point)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0, 0));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC21: Ray from bottom cap should intersect");
-        assertEquals(1, result.size(), "TC21: Wrong number of points");
-        assertEquals(new Point(0.5, 0, 2), result.get(0), "TC21: Wrong intersection point");
+        //TC23 no intersection point
+        assertNull(cylinder.findIntersections(new Ray(v111, p332)), "TC23 failed");
 
-// TC22: Ray starts on top cap, goes outside (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(0.5, 0, 2));
-        assertNull(cylinder.findIntersections(ray),
-                "TC22: Ray from top cap going out should return null");
+        // =============== Boundary Values Tests ==================
 
-// TC23: Ray starts on side, goes outside (0 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(1, 0, 1));
-        assertNull(cylinder.findIntersections(ray),
-                "TC23: Ray from side going out should return null");
+        //Grope 4: the same direction vector for the ray and the axis
 
-// TC24: Ray starts on side, goes inside (1 point)
-        ray = new Ray(new Vector(-1, 0, 0), new Point(1, 0, 1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC24: Ray from side going in should intersect");
-        assertEquals(1, result.size(), "TC24: Wrong number of points");
-        assertEquals(new Point(-1, 0, 1), result.get(0), "TC24: Wrong intersection point");
+        //TC41 ray is outside the cylinder
+        assertNull(cylinder.findIntersections(new Ray(v001, p11_1)), "TC41 failed");
+        //TC42 ray is on the cylinder
+        assertNull(cylinder.findIntersections(new Ray(v001, p12_1)), "TC41 failed");
+        //TC43 ray is inside the cylinder
+        assertEquals(exp43, cylinder.findIntersections(new Ray(v001, p1515_05)), "TC43 failed");
+        //TC44 ray is on the axis
+        assertEquals(exp44, cylinder.findIntersections(new Ray(v001, p22_05)), "TC44   failed");
 
-// **** Group: Ray tangent to cylinder
-
-// TC31: Ray tangent to side surface (0 points)
-        ray = new Ray(new Vector(0, 0, 1), new Point(1, 0, -1));
-        assertNull(cylinder.findIntersections(ray),
-                "TC31: Tangent ray should return null");
-
-// TC32: Ray tangent to cap edge (0 points)
-        ray = new Ray(new Vector(0, 1, 0), new Point(1, -2, 0));
-        assertNull(cylinder.findIntersections(ray),
-                "TC32: Ray tangent to cap edge should return null");
-
-// **** Group: Special cases
-
-// TC41: Ray through axis perpendicular to it (2 points)
-        ray = new Ray(new Vector(1, 0, 0), new Point(-2, 0, 1));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC41: Ray through axis should intersect");
-        assertEquals(2, result.size(), "TC41: Wrong number of points");
-        assertEquals(new Point(-1, 0, 1), result.get(0), "TC41: Wrong first point");
-        assertEquals(new Point(1, 0, 1), result.get(1), "TC41: Wrong second point");
-
-// TC42: Ray starts at cap center (1 point)
-        ray = new Ray(new Vector(1, 1, 1), new Point(0, 0, 0));
-        result = cylinder.findIntersections(ray);
-        assertNotNull(result, "TC42: Ray from cap center should intersect");
-        assertEquals(1, result.size(), "TC42: Wrong number of points");
-        double sqrt2 = Math.sqrt(2);
-        assertEquals(new Point(1 / sqrt2, 1 / sqrt2, 1 / sqrt2), result.get(0), "TC42: Wrong intersection point");
+        //Group 5: starts on the cylinder
+        //TC51 on the tube, acute angle
+        assertEquals(exp51, cylinder.findIntersections(new Ray(v111, p1205)), "TC51 failed");
+        //TC52 on the tube, straight angle
+        assertEquals(exp52, cylinder.findIntersections(new Ray(v100, p1205)), "TC52 failed");
+        //TC53 on the base, acute angle
+        assertEquals(exp53, cylinder.findIntersections(new Ray(v111, p15150)), "TC51 failed");
+        //TC54 on the base, straight angle
+        assertEquals(exp54, cylinder.findIntersections(new Ray(v001, p15150)), "TC54 failed");
     }
 }

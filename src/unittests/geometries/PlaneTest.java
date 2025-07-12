@@ -158,4 +158,22 @@ class PlaneTest {
         assertNull(plane.findIntersections(ray), "TC14: Ray in the plane");
     }
 
+    /**
+     * Test method for {@link Plane#calculateIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    void testIntersectionWithDistance() {
+        final Point p1 = new Point(0, 0, 2);
+        final Point p2 = new Point(0, 0, 1);
+        final Vector v = new Vector(0, 0, 1);
+        final Plane plane = new Plane(p2, v);
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: The distance between the ray intersection point and the ray's start point is more than the distance(0 points)
+        assertNull(plane.calculateIntersectionsHelper(new Ray(new Vector(0, 1, -1), p1), 1),
+                "Ray's intersection point is out of the distance");
+
+        // TC02: The distance between the ray intersection point and the ray's start point is less than the distance(1 point)
+        assertEquals(1, plane.calculateIntersectionsHelper(new Ray(new Vector(0, 1, -1), p1), 10).size(),
+                "Ray's intersection points is in the distance");
+    }
 }

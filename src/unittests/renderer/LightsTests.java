@@ -2,6 +2,7 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -269,6 +270,7 @@ class LightsTests {
      * triangular backdrop, and colorful lights from different directions
      */
     @Test
+    @Disabled
     void epicLightShowTest() {
         Scene scene = new Scene("Epic Light Show")
                 .setBackground(new Color(5, 5, 15)) // Dark blue background

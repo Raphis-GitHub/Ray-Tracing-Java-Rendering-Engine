@@ -85,4 +85,25 @@ public class TriangleTest {
         assertNull(triangle.findIntersections(ray), "TC13: Ray on edge extension");
     }
 
+    /**
+     * Test method for {@link Triangle#calculateIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    void testIntersectionWithDistance() {
+        Point p1 = new Point(1, 1, 0);
+        Point p2 = new Point(1, 0, 0);
+        Point p3 = new Point(0, 1, 0);
+        Triangle triangle = new Triangle(p1, p2, p3);
+
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: The distance between the ray intersection point and the ray's start point is more than the distance(0 points)
+        assertNull(triangle.findIntersections(
+                        new Ray(new Vector(-1, -1, -1), new Point(1.8, 1.8, 1)), 1),
+                "Ray's intersection point is out of the distance");
+
+        // TC02: The distance between the ray intersection point and the ray's start point is less than the distance(1 point)
+        assertEquals(1, triangle.findIntersections(new Ray(new Vector(-1, -1, -1), new Point(1.8, 1.8, 1)), 10).size(),
+                "Ray's intersection points is in the distance");
+    }
+
 }
