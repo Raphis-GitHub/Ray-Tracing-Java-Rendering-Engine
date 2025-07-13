@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor unshaded method; implement max distance parameter for shadow calculations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +189,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ALLTESTS">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -236,18 +235,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PolygonTests.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.PolygonTests" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -288,17 +286,17 @@
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
       <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
+      <item itemvalue="JUnit.ReflectionRefractionTests" />
       <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
       <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
-      <item itemvalue="JUnit.PolygonTests.testFindIntersections" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests" />
         <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
         <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
         <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
         <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
-        <item itemvalue="JUnit.PolygonTests.testFindIntersections" />
       </list>
     </recent_temporary>
   </component>
@@ -349,15 +347,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="10020000" />
-    </task>
-    <task id="LOCAL-00024" summary="Refactor geometries to improve code style and consistency">
-      <option name="closed" value="true" />
-      <created>1747919629357</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1747919629357</updated>
+      <workItem from="1752357443621" duration="10428000" />
     </task>
     <task id="LOCAL-00025" summary="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest">
       <option name="closed" value="true" />
@@ -743,7 +733,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752364686083</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Refactor unshaded method; implement max distance parameter for shadow calculations">
+      <option name="closed" value="true" />
+      <created>1752398678409</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1752398678409</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -4,12 +4,19 @@ import geometries.Intersectable.Intersection;
 
 import java.util.List;
 
+import static primitives.Util.isZero;
+
 /**
  * a Class Ray; Represents a ray in three-dimensional space, defined by a direction vector and an origin point.
  *
  * @author Raphael
  */
 public class Ray {
+    /**
+     * Small offset to prevent self-intersection when constructing secondary rays.
+     */
+    private static final double DELTA = 0.1;
+
     /**
      * Direction vector of the ray
      */
@@ -18,7 +25,7 @@ public class Ray {
     /**
      * Origin point of the ray
      */
-    final private Point origin; // Origin point of the ray
+    final private Point origin;
 
     /**
      * Constructs a Ray with the specified direction vector and origin point.
@@ -27,8 +34,23 @@ public class Ray {
      * @param origin    The origin point of the ray.
      */
     public Ray(Vector direction, Point origin) {
-        this.direction = direction.normalize(); // Normalize the direction vector
+        this.direction = direction.normalize();
         this.origin = origin;
+    }
+
+    /**
+     * Constructs a Ray with offset head point to avoid self-intersection.
+     * Used for shadow rays, reflection rays, and refraction rays.
+     *
+     * @param head      The point where the ray starts
+     * @param direction The direction vector of the ray
+     * @param normal    The normal vector at the intersection point
+     */
+    public Ray(Point head, Vector direction, Vector normal) {
+        this.direction = direction.normalize();
+        double nv = normal.dotProduct(direction);
+        Vector delta = normal.scale(isZero(nv) ? 0 : (nv > 0 ? DELTA : -DELTA));
+        this.origin = head.add(delta);
     }
 
     /**
@@ -43,16 +65,6 @@ public class Ray {
         } catch (IllegalArgumentException e) {
             return origin;
         }
-    }
-
-    /**
-     * Returns a string representation of the ray.
-     *
-     * @return The string representation of the ray.
-     */
-    @Override
-    public String toString() {
-        return "Ray [" + direction + "," + origin + "]";
     }
 
     /**
@@ -75,8 +87,6 @@ public class Ray {
 
     /**
      * Returns the closest point to the ray's origin from a list of points.
-     * <p>
-     * Current implementation: stub returning null.
      *
      * @param points list of points to check
      * @return the closest point to the ray's origin, or null
@@ -85,18 +95,6 @@ public class Ray {
         return points == null ? null
                 : findClosestIntersection(points.stream().map(p -> new Intersection(null, p))
                 .toList()).point;
-    }
-
-    /**
-     * Checks if this ray is equal to another object.
-     *
-     * @param obj the object to compare with
-     * @return true if the object is a Ray with the same head and direction, false otherwise
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        return (obj instanceof Ray other) && origin.equals(other.origin) && direction.equals(other.direction);
     }
 
     /**
@@ -118,5 +116,16 @@ public class Ray {
             }
         }
         return closest;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return (obj instanceof Ray other) && origin.equals(other.origin) && direction.equals(other.direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Ray [" + direction + "," + origin + "]";
     }
 }
