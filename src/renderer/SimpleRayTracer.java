@@ -132,27 +132,27 @@ public class SimpleRayTracer extends RayTracerBase {
         return ktr;
     }
 
-    /**
-     * Checks if a given intersection point is not shadowed (for binary shadow - keep as required by exercise)
-     *
-     * @param intersection the intersection point on the geometry
-     * @param light        the light source
-     * @return true if the point is not shadowed, false otherwise
-     */
-    private boolean unshaded(Intersection intersection, LightSource light) {
-        Vector lightToPoint = light.getL(intersection.point);
-        Vector pointToLight = lightToPoint.scale(-1);
-        Ray shadowRay = new Ray(intersection.point, pointToLight, intersection.normal);
-        double lightDistance = light.getDistance(intersection.point);
-        List<Intersection> intersections = scene.geometries.calculateIntersections(shadowRay, lightDistance);
-        if (intersections == null) return true;
-
-        for (Intersection i : intersections) {
-            if (!i.material.kT.lowerThan(MIN_CALC_COLOR_K)) continue; // transparent, does not block
-            return false; // blocked by non-transparent
-        }
-        return true;
-    }
+//    /**
+//     * Checks if a given intersection point is not shadowed (for binary shadow - keep as required by exercise)
+//     *
+//     * @param intersection the intersection point on the geometry
+//     * @param light        the light source
+//     * @return true if the point is not shadowed, false otherwise
+//     */
+//    private boolean unshaded(Intersection intersection, LightSource light) {
+//        Vector lightToPoint = light.getL(intersection.point);
+//        Vector pointToLight = lightToPoint.scale(-1);
+//        Ray shadowRay = new Ray(intersection.point, pointToLight, intersection.normal);
+//        double lightDistance = light.getDistance(intersection.point);
+//        List<Intersection> intersections = scene.geometries.calculateIntersections(shadowRay, lightDistance);
+//        if (intersections == null) return true;
+//
+//        for (Intersection i : intersections) {
+//            if (!i.material.kT.lowerThan(MIN_CALC_COLOR_K)) continue; // transparent, does not block
+//            return false; // blocked by non-transparent
+//        }
+//        return true;
+//    }
 
     /**
      * Calculates the diffusive component using Lambert's law.

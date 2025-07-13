@@ -1,9 +1,7 @@
 package renderer;
 
-import geometries.Sphere;
-import geometries.Triangle;
-import lighting.AmbientLight;
-import lighting.SpotLight;
+import geometries.*;
+import lighting.*;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -118,5 +116,81 @@ class ReflectionRefractionTests {
                 .build() //
                 .renderImage() //
                 .writeToImage("refractionShadow");
+    }
+
+    @Test
+    void testStage7Effects() {
+        Scene scene = new Scene("Stage 7 Effects Demo")
+                .setBackground(new Color(20, 30, 40))
+                .setAmbientLight(new AmbientLight(new Color(25, 25, 25)));
+        Camera camera = Camera.getBuilder()
+                .setLocation(new Point(0, 0, 1000))
+                .setDirection(Point.ZERO, Vector.AXIS_Y)
+                .setVpSize(200, 200)
+                .setVpDistance(1000)
+                .setResolution(600, 600)
+                .setRayTracer(scene, RayTracerType.SIMPLE)
+                .build();
+
+// Materials for different effects
+        Material reflective = new Material()
+                .setKd(0.2).setKs(0.8).setShininess(100)
+                .setKr(0.8); // Reflective only
+
+        Material transparent = new Material()
+                .setKd(0.1).setKs(0.3).setShininess(50)
+                .setKt(0.9); // Transparent only
+
+        Material semiTransparent = new Material()
+                .setKd(0.3).setKs(0.2).setShininess(30)
+                .setKt(0.5); // For partial shadows
+
+        Material opaque = new Material()
+                .setKd(0.7).setKs(0.3).setShininess(20);
+
+// 4 OBJECTS DEMONSTRATING ALL EFFECTS:
+
+// 1. REFLECTIVE SPHERE (shows reflection)
+        scene.geometries.add(
+                new Sphere(new Point(-50, 0, -150), 30)
+                        .setEmission(new Color(30, 30, 60))
+                        .setMaterial(reflective)
+        );
+
+// 2. TRANSPARENT CYLINDER (shows refraction/transparency)
+        scene.geometries.add(
+                new Cylinder(new Ray(Vector.AXIS_Y, new Point(50, -40, -120)), 20, 80)
+                        .setEmission(new Color(10, 40, 10))
+                        .setMaterial(transparent)
+        );
+
+// 3. SEMI-TRANSPARENT TRIANGLE (shows partial shadows)
+        scene.geometries.add(
+                new Triangle(new Point(-20, 60, -100), new Point(20, 60, -100), new Point(0, 100, -120))
+                        .setEmission(new Color(60, 20, 20))
+                        .setMaterial(semiTransparent)
+        );
+
+// 4. OPAQUE PLANE (receives shadows and reflections)
+        scene.geometries.add(
+                new Triangle(new Point(-150, -50, -200), new Point(150, -50, -200), new Point(150, -50, 50))
+                        .setEmission(new Color(40, 40, 40))
+                        .setMaterial(opaque),
+                new Triangle(new Point(-150, -50, -200), new Point(150, -50, 50), new Point(-150, -50, 50))
+                        .setEmission(new Color(40, 40, 40))
+                        .setMaterial(opaque)
+        );
+
+// LIGHTING
+        scene.lights.add(new SpotLight(new Color(800, 600, 400),
+                new Point(-80, 80, 100),
+                new Vector(1, -1, -2))
+                .setKl(0.0001).setKq(0.000005));
+
+        scene.lights.add(new PointLight(new Color(300, 400, 500),
+                new Point(80, 50, 0))
+                .setKl(0.0002).setKq(0.00001));
+
+        camera.renderImage().writeToImage("stage7EffectsDemo");
     }
 }
