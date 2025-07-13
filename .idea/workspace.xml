@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor intersection calculations; add maxDistance parameter and disable specific tests">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor unshaded method; implement max distance parameter for shadow calculations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,6 +100,7 @@
     "JUnit.LightsTests.epicLightShowTest.executor": "Run",
     "JUnit.LightsTests.trianglesSpotNarrowBeam.executor": "Run",
     "JUnit.MoonlitForestTest.executor": "Run",
+    "JUnit.MoonlitForestTest.renderMoonlitForest.executor": "Run",
     "JUnit.PlaneTest.executor": "Run",
     "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
     "JUnit.PlaneTest.testIntersectionWithDistance.executor": "Run",
@@ -217,17 +220,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaneTest.testIntersectionWithDistance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MoonlitForestTest.renderMoonlitForest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
-      <option name="METHOD_NAME" value="testIntersectionWithDistance" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.MoonlitForestTest" />
+      <option name="METHOD_NAME" value="renderMoonlitForest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -284,18 +287,18 @@
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
-      <item itemvalue="JUnit.PlaneTest.testIntersectionWithDistance" />
+      <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
       <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
       <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
       <item itemvalue="JUnit.PolygonTests.testFindIntersections" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
         <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
         <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
         <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
         <item itemvalue="JUnit.PolygonTests.testFindIntersections" />
-        <item itemvalue="JUnit.PlaneTest.testIntersectionWithDistance" />
       </list>
     </recent_temporary>
   </component>
@@ -346,15 +349,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="6932000" />
-    </task>
-    <task id="LOCAL-00023" summary="1) reformat all last time&#10;2) move JUNIT library to global maven location">
-      <option name="closed" value="true" />
-      <created>1747037110463</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1747037110463</updated>
+      <workItem from="1752357443621" duration="10020000" />
     </task>
     <task id="LOCAL-00024" summary="Refactor geometries to improve code style and consistency">
       <option name="closed" value="true" />
@@ -740,7 +735,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752364472020</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Refactor unshaded method; implement max distance parameter for shadow calculations">
+      <option name="closed" value="true" />
+      <created>1752364686083</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1752364686083</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +761,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor camera intersection tests; simplify assertions and enhance documentation" />
     <MESSAGE value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
     <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
     <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
@@ -783,7 +785,8 @@
     <MESSAGE value="1st stage 7" />
     <MESSAGE value="Refactor reflection and shadow test classes; improve comments and code clarity" />
     <MESSAGE value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
+    <MESSAGE value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -25,6 +25,8 @@ public class Material {
      * Default value is 0 (no shininess).
      */
     public int nSh = 0;
+    public Double3 kT = Double3.ZERO; // Transparency coefficient
+    public Double3 kR = Double3.ZERO; // Reflection coefficient
 
     /**
      * Default constructor for Material.
@@ -104,6 +106,27 @@ public class Material {
             throw new IllegalArgumentException("nSh must be non-negative");
         }
         this.nSh = nSh;
+        return this;
+
+    }
+
+    public Material setKt(Double3 kT) {
+        this.kT = kT;
+        return this;
+    }
+
+    public Material setKt(double kT) {
+        this.kT = new Double3(kT);
+        return this;
+    }
+
+    public Material setKr(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    public Material setKr(double kR) {
+        this.kR = new Double3(kR);
         return this;
     }
 
