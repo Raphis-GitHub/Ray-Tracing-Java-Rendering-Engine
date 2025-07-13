@@ -7,8 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor unshaded method; implement max distance parameter for shadow calculations">
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2">
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +111,7 @@
     "JUnit.RayTest.executor": "Run",
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
     "JUnit.RayTest.testGetPoint.executor": "Run",
+    "JUnit.ReflectionRefractionTests.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderMaterialTest.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
@@ -145,7 +145,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries",
-    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/geometries",
+    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/unittests/renderer",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -162,8 +162,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\geometries" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\unittests\renderer" />
+      <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\geometries" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\geometries" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
@@ -347,15 +347,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="10428000" />
-    </task>
-    <task id="LOCAL-00025" summary="Add TODOs for intersection logic in Cylinder, Polygon, and Tube classes; improve code formatting in SphereTest">
-      <option name="closed" value="true" />
-      <created>1748179688946</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1748179688946</updated>
+      <workItem from="1752357443621" duration="11635000" />
     </task>
     <task id="LOCAL-00026" summary="Enhance documentation by adding Javadoc comments for constructors and methods in Geometries, Point, Ray, and their respective test classes">
       <option name="closed" value="true" />
@@ -741,7 +733,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752398678409</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2">
+      <option name="closed" value="true" />
+      <created>1752400274298</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1752400274299</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +759,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Color and ImageWriter classes; implement color handling and image writing functionality" />
     <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
     <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
     <MESSAGE value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
@@ -784,7 +783,8 @@
     <MESSAGE value="Refactor reflection and shadow test classes; improve comments and code clarity" />
     <MESSAGE value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
     <MESSAGE value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
+    <MESSAGE value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
