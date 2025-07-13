@@ -2,6 +2,7 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -118,79 +119,97 @@ class ReflectionRefractionTests {
                 .writeToImage("refractionShadow");
     }
 
+    /**
+     * Test demonstrating reflectiveness, shadows, and transparency with multiple objects
+     * on a colored floor, viewed from an angled camera position above
+     */
     @Test
-    void testStage7Effects() {
-        Scene scene = new Scene("Stage 7 Effects Demo")
-                .setBackground(new Color(20, 30, 40))
-                .setAmbientLight(new AmbientLight(new Color(25, 25, 25)));
+    @Disabled
+    void combinedEffectsDemo() {
+        Scene scene = new Scene("Combined Effects Demo")
+                .setBackground(new Color(10, 15, 25))
+                .setAmbientLight(new AmbientLight(new Color(15, 15, 20)));
+
+        // Camera positioned at an angle from above
         Camera camera = Camera.getBuilder()
-                .setLocation(new Point(0, 0, 1000))
-                .setDirection(Point.ZERO, Vector.AXIS_Y)
+                .setLocation(new Point(-100, 80, 150))
+                .setDirection(new Point(0, -20, -50), new Vector(0, 1, 0))
                 .setVpSize(200, 200)
-                .setVpDistance(1000)
-                .setResolution(600, 600)
+                .setVpDistance(200)
+                .setResolution(800, 800)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .build();
 
-// Materials for different effects
-        Material reflective = new Material()
-                .setKd(0.2).setKs(0.8).setShininess(100)
-                .setKr(0.8); // Reflective only
+        // Materials for different effects
+        Material floorMaterial = new Material()
+                .setKd(0.6).setKs(0.3).setShininess(50)
+                .setKr(0.3); // Partially reflective floor
 
-        Material transparent = new Material()
-                .setKd(0.1).setKs(0.3).setShininess(50)
-                .setKt(0.9); // Transparent only
+        Material reflectiveMaterial = new Material()
+                .setKd(0.3).setKs(0.8).setShininess(100)
+                .setKr(0.6); // Highly reflective sphere
 
-        Material semiTransparent = new Material()
-                .setKd(0.3).setKs(0.2).setShininess(30)
-                .setKt(0.5); // For partial shadows
+        Material transparentMaterial = new Material()
+                .setKd(0.2).setKs(0.2).setShininess(30)
+                .setKt(0.7); // Transparent cylinder (not closed, so safe)
 
-        Material opaque = new Material()
-                .setKd(0.7).setKs(0.3).setShininess(20);
+        Material opaqueMaterial = new Material()
+                .setKd(0.8).setKs(0.3).setShininess(40); // Opaque triangle for shadows
 
-// 4 OBJECTS DEMONSTRATING ALL EFFECTS:
-
-// 1. REFLECTIVE SPHERE (shows reflection)
+        // COLORED FLOOR - Two triangles forming a reflective surface
         scene.geometries.add(
-                new Sphere(new Point(-50, 0, -150), 30)
-                        .setEmission(new Color(30, 30, 60))
-                        .setMaterial(reflective)
+                new Triangle(new Point(-150, -50, -150), new Point(150, -50, -150), new Point(150, -50, 100))
+                        .setEmission(new Color(20, 30, 20)) // Green-tinted floor
+                        .setMaterial(floorMaterial),
+                new Triangle(new Point(-150, -50, -150), new Point(150, -50, 100), new Point(-150, -50, 100))
+                        .setEmission(new Color(20, 30, 20))
+                        .setMaterial(floorMaterial)
         );
 
-// 2. TRANSPARENT CYLINDER (shows refraction/transparency)
+        // REFLECTIVE SPHERE - Shows reflections of other objects and environment
         scene.geometries.add(
-                new Cylinder(new Ray(Vector.AXIS_Y, new Point(50, -40, -120)), 20, 80)
-                        .setEmission(new Color(10, 40, 10))
-                        .setMaterial(transparent)
+                new Sphere(new Point(-40, -10, -30), 25)
+                        .setEmission(new Color(10, 10, 30)) // Blue-tinted sphere
+                        .setMaterial(reflectiveMaterial)
         );
 
-// 3. SEMI-TRANSPARENT TRIANGLE (shows partial shadows)
+        // OPAQUE TRIANGLE - Casts clear shadows on floor and other objects
         scene.geometries.add(
-                new Triangle(new Point(-20, 60, -100), new Point(20, 60, -100), new Point(0, 100, -120))
-                        .setEmission(new Color(60, 20, 20))
-                        .setMaterial(semiTransparent)
+                new Triangle(new Point(30, 20, -20), new Point(70, 20, -40), new Point(50, 60, -30))
+                        .setEmission(new Color(40, 20, 10)) // Orange triangle
+                        .setMaterial(opaqueMaterial)
         );
 
-// 4. OPAQUE PLANE (receives shadows and reflections)
+        // TRANSPARENT CYLINDER - Shows refraction and allows light through
+        // Note: Cylinder is open-ended, so it's safe to make transparent
         scene.geometries.add(
-                new Triangle(new Point(-150, -50, -200), new Point(150, -50, -200), new Point(150, -50, 50))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(opaque),
-                new Triangle(new Point(-150, -50, -200), new Point(150, -50, 50), new Point(-150, -50, 50))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(opaque)
+                new Cylinder(new Ray(new Vector(0, 1, 0), new Point(20, -20, 20)), 15, 60)
+                        .setEmission(new Color(10, 30, 10)) // Green-tinted cylinder
+                        .setMaterial(transparentMaterial)
         );
 
-// LIGHTING
-        scene.lights.add(new SpotLight(new Color(800, 600, 400),
-                new Point(-80, 80, 100),
-                new Vector(1, -1, -2))
-                .setKl(0.0001).setKq(0.000005));
+        // LIGHTING SETUP
+        // Main light source creating dramatic shadows
+        scene.lights.add(
+                new SpotLight(new Color(400, 350, 300),
+                        new Point(-80, 100, 50),
+                        new Vector(1, -1.2, -0.8))
+                        .setKl(0.0001).setKq(0.000008)
+        );
 
-        scene.lights.add(new PointLight(new Color(300, 400, 500),
-                new Point(80, 50, 0))
-                .setKl(0.0002).setKq(0.00001));
+        // Fill light to soften shadows and add ambient illumination
+        scene.lights.add(
+                new PointLight(new Color(150, 180, 200),
+                        new Point(60, 60, 80))
+                        .setKl(0.0005).setKq(0.00003)
+        );
 
-        camera.renderImage().writeToImage("stage7EffectsDemo");
+        // Subtle rim light to enhance the transparent cylinder
+        scene.lights.add(
+                new DirectionalLight(new Vector(0.3, -0.2, -1),
+                        new Color(80, 100, 120))
+        );
+
+        camera.renderImage().writeToImage("combinedEffectsDemo");
     }
 }

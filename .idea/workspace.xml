@@ -7,8 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2">
-      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="finished 7">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,9 @@
     "JUnit.RayTest.executor": "Run",
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
     "JUnit.RayTest.testGetPoint.executor": "Run",
+    "JUnit.ReflectionRefractionTests.combinedEffectsDemo.executor": "Run",
     "JUnit.ReflectionRefractionTests.executor": "Run",
+    "JUnit.ReflectionRefractionTests.testStage7Effects.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderMaterialTest.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
@@ -189,7 +193,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests">
+  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -203,23 +207,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTest.testCalculateIntersectionsHelper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="testCalculateIntersectionsHelper" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MoonlitForestTest.renderMoonlitForest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MoonlitForestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -229,7 +217,22 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.MoonlitForestTest" />
-      <option name="METHOD_NAME" value="renderMoonlitForest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MoonlitForestTest.renderEnhancedMoonlitForest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.MoonlitForestTest" />
+      <option name="METHOD_NAME" value="renderEnhancedMoonlitForest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -250,33 +253,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SphereTest.testFindIntersectionsWithMaxDistance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.combinedEffectsDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
-      <option name="METHOD_NAME" value="testFindIntersectionsWithMaxDistance" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="combinedEffectsDemo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriangleTest.testIntersectionWithDistance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.testStage7Effects" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
-      <option name="METHOD_NAME" value="testIntersectionWithDistance" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="testStage7Effects" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -284,19 +287,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
-      <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
-      <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
+      <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
       <item itemvalue="JUnit.ReflectionRefractionTests" />
-      <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
-      <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
+      <item itemvalue="JUnit.ReflectionRefractionTests.combinedEffectsDemo" />
+      <item itemvalue="JUnit.ReflectionRefractionTests.testStage7Effects" />
+      <item itemvalue="JUnit.MoonlitForestTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
+        <item itemvalue="JUnit.MoonlitForestTest" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.combinedEffectsDemo" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.testStage7Effects" />
         <item itemvalue="JUnit.ReflectionRefractionTests" />
-        <item itemvalue="JUnit.MoonlitForestTest.renderMoonlitForest" />
-        <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
-        <item itemvalue="JUnit.TriangleTest.testIntersectionWithDistance" />
-        <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
       </list>
     </recent_temporary>
   </component>
@@ -347,23 +350,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="11635000" />
-    </task>
-    <task id="LOCAL-00026" summary="Enhance documentation by adding Javadoc comments for constructors and methods in Geometries, Point, Ray, and their respective test classes">
-      <option name="closed" value="true" />
-      <created>1748180040223</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1748180040223</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Implement intersection logic for Cylinder and Tube; add tests for findIntersections in Cylinder, Tube, and Polygon">
-      <option name="closed" value="true" />
-      <created>1749113217977</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1749113217977</updated>
+      <workItem from="1752357443621" duration="13094000" />
     </task>
     <task id="LOCAL-00028" summary="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation">
       <option name="closed" value="true" />
@@ -741,7 +728,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752400274299</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="finished 7">
+      <option name="closed" value="true" />
+      <created>1752400414379</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1752400414379</updated>
+    </task>
+    <task id="LOCAL-00076" summary="finished 7">
+      <option name="closed" value="true" />
+      <created>1752400766082</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1752400766082</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +762,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor Ray class; implement findClosestPoint method and improve unit tests" />
     <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
     <MESSAGE value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
     <MESSAGE value="Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
@@ -784,7 +786,8 @@
     <MESSAGE value="Refactor intersection calculations; add maxDistance parameter and disable specific tests" />
     <MESSAGE value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
     <MESSAGE value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
+    <MESSAGE value="finished 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished 7" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
