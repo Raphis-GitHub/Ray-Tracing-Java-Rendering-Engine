@@ -282,7 +282,7 @@ class LightsTests {
                 .setDirection(new Point(0, 0, -50), new Vector(0, 1, 0))
                 .setVpSize(200, 200)
                 .setVpDistance(150)
-                .setResolution(5000, 5000)
+                .setResolution(500, 500)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .build();
 

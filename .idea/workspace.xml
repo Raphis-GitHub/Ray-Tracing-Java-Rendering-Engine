@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="finished 7">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/LightsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +100,7 @@
     "JUnit.LightsTests.epicLightShowTest.executor": "Run",
     "JUnit.LightsTests.trianglesSpotNarrowBeam.executor": "Run",
     "JUnit.MoonlitForestTest.executor": "Run",
+    "JUnit.MoonlitForestTest.renderEnhancedMoonlitForest.executor": "Run",
     "JUnit.MoonlitForestTest.renderMoonlitForest.executor": "Run",
     "JUnit.PlaneTest.executor": "Run",
     "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
@@ -193,7 +194,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
+  <component name="RunManager" selected="JUnit.SphereTest.testFindIntersectionsWithMaxDistance">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -203,6 +204,22 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LightsTests.epicLightShowTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.LightsTests" />
+      <option name="METHOD_NAME" value="epicLightShowTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -238,21 +255,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ReflectionRefractionTests.combinedEffectsDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -269,17 +271,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.testStage7Effects" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SphereTest.testFindIntersectionsWithMaxDistance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="renderer.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="testStage7Effects" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
+      <option name="METHOD_NAME" value="testFindIntersectionsWithMaxDistance" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -287,19 +289,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
-      <item itemvalue="JUnit.ReflectionRefractionTests" />
       <item itemvalue="JUnit.ReflectionRefractionTests.combinedEffectsDemo" />
-      <item itemvalue="JUnit.ReflectionRefractionTests.testStage7Effects" />
+      <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
       <item itemvalue="JUnit.MoonlitForestTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
+        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.MoonlitForestTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.combinedEffectsDemo" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.testStage7Effects" />
-        <item itemvalue="JUnit.ReflectionRefractionTests" />
       </list>
     </recent_temporary>
   </component>
@@ -350,15 +352,7 @@
       <workItem from="1752235081443" duration="2049000" />
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
-      <workItem from="1752357443621" duration="13094000" />
-    </task>
-    <task id="LOCAL-00028" summary="Add test method stubs for findIntersections in Cylinder, Polygon, and Tube; enhance documentation">
-      <option name="closed" value="true" />
-      <created>1749113370777</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1749113370777</updated>
+      <workItem from="1752357443621" duration="22761000" />
     </task>
     <task id="LOCAL-00029" summary="Refactor Cylinder and Tube classes; enhance unit tests for intersection logic and normal calculations">
       <option name="closed" value="true" />
@@ -744,7 +738,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752400766082</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects">
+      <option name="closed" value="true" />
+      <created>1752403513429</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1752403513429</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -762,7 +764,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes" />
     <MESSAGE value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
     <MESSAGE value="Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
     <MESSAGE value="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
@@ -787,7 +788,8 @@
     <MESSAGE value="Refactor unshaded method; implement max distance parameter for shadow calculations" />
     <MESSAGE value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
     <MESSAGE value="finished 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished 7" />
+    <MESSAGE value="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
