@@ -85,8 +85,9 @@ public class PointLight extends Light implements LightSource {
      */
     @Override
     public Color getIntensity(Point p) {
-        double d = position.distance(p);
-        double attenuationFactor = kC + kL * d + kQ * d * d;
+        double dSquared = position.distanceSquared(p);
+        double d = Math.sqrt(dSquared);
+        double attenuationFactor = kC + kL * d + kQ * dSquared;
         return intensity.scale(1d / attenuationFactor);
     }
 
@@ -102,6 +103,12 @@ public class PointLight extends Light implements LightSource {
 
     }
 
+    /**
+     * Calculates the distance from the point light to a given point.
+     *
+     * @param point the point to calculate distance to
+     * @return the distance from the light source to the given point
+     */
     @Override
     public double getDistance(Point point) {
         return point.distance(position);

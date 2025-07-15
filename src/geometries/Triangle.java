@@ -25,13 +25,13 @@ public class Triangle extends Polygon {
     }
 
     /**
-     * Finds the intersection point between a ray and the triangle.
+     * Finds the intersection point between a ray and the triangle using the Moller-Trumbore algorithm.
      * Returns null if the ray does not intersect the triangle
      * or if the intersection point is outside the triangle or on its edge.
-     * Moller-Trumbore intersection algorithm
      *
-     * @param ray the ray to test
-     * @return list with one intersection point or null
+     * @param ray the ray to test for intersection
+     * @param maxDistance the maximum distance to consider for intersections
+     * @return list with one intersection point or null if no intersection exists
      */
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {

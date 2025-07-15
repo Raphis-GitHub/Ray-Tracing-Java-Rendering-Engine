@@ -70,7 +70,9 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * Finds intersections of a ray with the cylinder.
+     * Calculates intersections between a ray and the cylinder including both curved sides and flat bases.
+     * The method first finds intersections with the infinite cylinder, then filters them by height,
+     * and finally checks for intersections with the bottom and top circular bases.
      *
      * @param ray         the ray to find intersections with
      * @param maxDistance the maximum distance to find intersections
@@ -79,7 +81,7 @@ public class Cylinder extends Tube {
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         // Initialize intersections list
-        List<Point> intersections = new LinkedList<>();
+        List<Point> intersections = new ArrayList<>();
 
         // Find intersections with the infinite cylinder
         Tube tube = new Tube(axisRay, radius);
@@ -134,7 +136,7 @@ public class Cylinder extends Tube {
         }
 
         // Return null if no valid intersections found
-        List<Intersection> geoPoints = new LinkedList<>();
+        List<Intersection> geoPoints = new ArrayList<>();
         for (Point p : intersections) {
             geoPoints.add(new Intersection(this, p));
         }

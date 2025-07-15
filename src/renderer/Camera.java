@@ -144,6 +144,13 @@ public class Camera implements Cloneable {
         imageWriter.writePixel(x, y, color);
     }
 
+    /**
+     * Creates a shallow copy of this Camera object.
+     * Uses the Object.clone() method to create a copy.
+     *
+     * @return a cloned Camera object
+     * @throws RuntimeException if cloning fails (should not happen)
+     */
     @Override
     public Camera clone() {
         try {
@@ -222,7 +229,7 @@ public class Camera implements Cloneable {
          */
         public Builder setDirection(Point target) {
             camera.vTo = target.subtract(camera.p0).normalize();
-            camera.vUp = new Vector(0, 1, 0); // Default up vector
+            camera.vUp = Vector.AXIS_Y; // Default up vector
             camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
             return this;
         }

@@ -2,7 +2,7 @@ package geometries;
 
 import primitives.*;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -87,22 +87,30 @@ public class Polygon extends Geometry {
         }
     }
 
+    /**
+     * Returns the normal vector of the polygon at any given point.
+     * Since the polygon is planar, the normal is the same everywhere on the polygon.
+     *
+     * @param point the point on the polygon (not used for calculation)
+     * @return the normal vector of the polygon
+     */
     @Override
     public Vector getNormal(Point point) {
         return plane.getNormal(point);
     }
 
     /**
-     * Finds intersection points between the ray and the polygon.
-     * First checks intersection with the polygon's plane, then verifies
-     * if the intersection point is inside the polygon boundaries.
+     * Calculates intersection points between a ray and the polygon.
+     * Uses the winding number algorithm to determine if the intersection point
+     * with the polygon's plane lies inside the polygon boundaries.
      *
      * @param ray the ray to test for intersection
+     * @param maxDistance the maximum distance to consider for intersections
      * @return a list of Intersection objects, or {@code null} if there are none
      */
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
-        List<Vector> edgeNormals = new LinkedList<>();
+        List<Vector> edgeNormals = new ArrayList<>();
 
         // Extract the origin and direction vector of the given ray
         final Point rayOrigin = ray.origin();

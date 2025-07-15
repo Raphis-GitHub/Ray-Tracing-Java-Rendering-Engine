@@ -104,7 +104,8 @@ public abstract class Intersectable {
     /**
      * Finds intersection points between a ray and the geometry.
      *
-     * @param ray the ray to intersect with
+     * @param ray         the ray to intersect with
+     * @param maxDistance the maxdstance to intersect with
      * @return a list of intersection points, or null if no intersections
      */
     public final List<Point> findIntersections(Ray ray, double maxDistance) {
@@ -112,6 +113,12 @@ public abstract class Intersectable {
         return list == null ? null : list.stream().map(intersection -> intersection.point).toList();
     }
 
+    /**
+     * Finds intersection points between a ray and the geometry.
+     *
+     * @param ray the ray to intersect with
+     * @return a list of intersection points, or null if no intersections
+     */
     public final List<Point> findIntersections(Ray ray) {
         var list = calculateIntersections(ray);
         return list == null ? null : list.stream().map(intersection -> intersection.point).toList();
@@ -122,7 +129,8 @@ public abstract class Intersectable {
      * According to NVI, this should be private, but Java does not allow private abstract methods.
      * Therefore, it is protected.
      *
-     * @param ray the ray to intersect with
+     * @param ray         the ray to intersect with
+     * @param maxDistance for calculations
      * @return a list of Intersection objects, or null if no intersections
      */
     protected abstract List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance);
@@ -138,6 +146,13 @@ public abstract class Intersectable {
         return calculateIntersections(ray, Double.POSITIVE_INFINITY);
     }
 
+    /**
+     * Calculates intersections between a ray and the geometry with a maximum distance constraint.
+     *
+     * @param ray         the ray to intersect with
+     * @param maxDistance the maximum distance to consider for intersections
+     * @return a list of Intersection objects, or null if no intersections
+     */
     public final List<Intersection> calculateIntersections(Ray ray, double maxDistance) {
         return calculateIntersectionsHelper(ray, maxDistance);
     }

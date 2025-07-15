@@ -20,8 +20,17 @@ public class SimpleRayTracer extends RayTracerBase {
      * Small offset to prevent self-shadowing when casting shadow rays.
      */
     private static final double DELTA = 0.1;
+    /**
+     * Maximum recursion level for color calculations (reflections/refractions).
+     */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * Minimum color calculation coefficient threshold.
+     */
     private static final double MIN_CALC_COLOR_K = 0.001;
+    /**
+     * Initial color calculation coefficient.
+     */
     private static final Double3 INITIAL_K = Double3.ONE;
 
     /**
@@ -33,6 +42,13 @@ public class SimpleRayTracer extends RayTracerBase {
         super(scene);
     }
 
+    /**
+     * Traces a ray through the scene and calculates the color at the intersection point.
+     * If no intersection is found, returns the scene's background color.
+     *
+     * @param ray the ray to trace
+     * @return the color at the intersection point or background color
+     */
     @Override
     public Color traceRay(Ray ray) {
         Intersection closest = findClosestIntersection(ray);

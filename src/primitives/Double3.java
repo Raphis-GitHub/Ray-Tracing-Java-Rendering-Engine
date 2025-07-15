@@ -34,6 +34,14 @@ public record Double3(double d1, double d2, double d3) {
         this(value, value, value);
     }
 
+    /**
+     * Checks if this Double3 object is equal to another object.
+     * Two Double3 objects are considered equal if their corresponding components
+     * are equal within the tolerance defined by isZero.
+     *
+     * @param obj the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -43,11 +51,23 @@ public record Double3(double d1, double d2, double d3) {
                 && isZero(d3 - other.d3);
     }
 
+    /**
+     * Returns a hash code for this Double3 object.
+     * The hash code is computed as the sum of the three components rounded to an integer.
+     *
+     * @return the hash code value for this Double3 object
+     */
     @Override
     public int hashCode() {
         return (int) Math.round(d1 + d2 + d3);
     }
 
+    /**
+     * Returns a string representation of this Double3 object.
+     * The format is (d1,d2,d3) where d1, d2, and d3 are the component values.
+     *
+     * @return a string representation of this Double3 object
+     */
     @Override
     public String toString() {
         return "(" + d1 + "," + d2 + "," + d3 + ")";

@@ -25,8 +25,16 @@ public class Material {
      * Default value is 0 (no shininess).
      */
     public int nSh = 0;
-    public Double3 kT = Double3.ZERO; // Transparency coefficient
-    public Double3 kR = Double3.ZERO; // Reflection coefficient
+    /**
+     * Transparency coefficient for the material.
+     * Controls how much light passes through the material.
+     */
+    public Double3 kT = Double3.ZERO;
+    /**
+     * Reflection coefficient for the material.
+     * Controls how much light is reflected by the material.
+     */
+    public Double3 kR = Double3.ZERO;
 
     /**
      * Default constructor for Material.
@@ -110,21 +118,45 @@ public class Material {
 
     }
 
+    /**
+     * Sets the transparency coefficient using a Double3 value.
+     *
+     * @param kT transparency coefficient as a Double3
+     * @return the current Material instance for method chaining
+     */
     public Material setKt(Double3 kT) {
         this.kT = kT;
         return this;
     }
 
+    /**
+     * Sets the transparency coefficient using a double value.
+     *
+     * @param kT transparency coefficient as a double
+     * @return the current Material instance for method chaining
+     */
     public Material setKt(double kT) {
         this.kT = new Double3(kT);
         return this;
     }
 
+    /**
+     * Sets the reflection coefficient using a Double3 value.
+     *
+     * @param kR reflection coefficient as a Double3
+     * @return the current Material instance for method chaining
+     */
     public Material setKr(Double3 kR) {
         this.kR = kR;
         return this;
     }
 
+    /**
+     * Sets the reflection coefficient using a double value.
+     *
+     * @param kR reflection coefficient as a double
+     * @return the current Material instance for method chaining
+     */
     public Material setKr(double kR) {
         this.kR = new Double3(kR);
         return this;

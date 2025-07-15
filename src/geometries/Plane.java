@@ -68,9 +68,10 @@ public class Plane extends Geometry {
     //note for Dan, according to your matzget, this method is shows up in your UML diagram, as such i left it in
 
     /**
-     * Returns the point on the plane.
+     * Returns the normal vector of the plane.
+     * This method provides access to the plane's normal vector without requiring a point parameter.
      *
-     * @return the point on the plane
+     * @return the normal vector of the plane
      */
     public Vector getNormal() {
         return normal;

@@ -11,7 +11,7 @@ public class Geometries extends Intersectable {
     /**
      * List of intersectable geometries.
      */
-    private final List<Intersectable> geometries = new LinkedList<>();
+    private final List<Intersectable> geometries = new ArrayList<>();
 
     /**
      * Default constructor for Geometries.
@@ -37,6 +37,14 @@ public class Geometries extends Intersectable {
         Collections.addAll(this.geometries, geometries);
     }
 
+    /**
+     * Calculates intersections between a ray and all geometries in the collection.
+     * Iterates through each geometry in the collection and aggregates all intersection points.
+     *
+     * @param ray the ray to test for intersections
+     * @param maxDistance the maximum distance to consider for intersections
+     * @return a list of all intersection points from all geometries, or null if no intersections
+     */
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         List<Intersection> result = null;
@@ -44,7 +52,7 @@ public class Geometries extends Intersectable {
             List<Intersection> temp = geo.calculateIntersections(ray, maxDistance);
             if (temp != null) {
                 if (result == null)
-                    result = new LinkedList<>(temp);
+                    result = new ArrayList<>(temp);
                 else
                     result.addAll(temp);
             }

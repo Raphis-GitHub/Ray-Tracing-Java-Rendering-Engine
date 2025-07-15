@@ -85,12 +85,25 @@ public class Point {
         return Math.sqrt(distanceSquared(otherPoint));
     }
 
+    /**
+     * Checks if this Point object is equal to another object.
+     * Two Point objects are considered equal if their xyz coordinates are equal.
+     *
+     * @param obj the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return obj instanceof Point other && xyz.equals(other.xyz);
     }
 
+    /**
+     * Returns a string representation of this Point object.
+     * The format is based on the underlying xyz Double3 representation.
+     *
+     * @return a string representation of this Point object
+     */
     @Override
     public String toString() {
         return "" + xyz;

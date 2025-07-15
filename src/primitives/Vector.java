@@ -36,7 +36,8 @@ public class Vector extends Point {
     }
 
     /**
-     * Constructs a Vector with the specified Double3 object.
+     * Package-private constructor for Vector using Double3 coordinates.
+     * This constructor is used internally by the Vector class and its subclasses.
      *
      * @param xyz The Double3 object containing x, y, and z coordinates.
      * @throws IllegalArgumentException if attempting to create a zero vector.

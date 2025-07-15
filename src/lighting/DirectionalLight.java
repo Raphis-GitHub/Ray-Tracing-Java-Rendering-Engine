@@ -46,6 +46,14 @@ public class DirectionalLight extends Light implements LightSource {
         return direction;
     }
 
+    /**
+     * Returns the distance from the directional light to a given point.
+     * Since directional lights are considered to be at infinite distance,
+     * this method always returns positive infinity.
+     *
+     * @param point the point to calculate distance to
+     * @return Double.POSITIVE_INFINITY
+     */
     @Override
     public double getDistance(Point point) {
         return Double.POSITIVE_INFINITY;

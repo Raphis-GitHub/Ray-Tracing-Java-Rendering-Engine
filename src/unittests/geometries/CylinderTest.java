@@ -58,7 +58,7 @@ class CylinderTest {
     }
 
     /**
-     * Test method for{@link geometries.Cylinder#calculateIntersectionsHelper(primitives.Ray)}
+     * Test method
      */
     @Test
     void testCalculateIntersectionsHelper() {

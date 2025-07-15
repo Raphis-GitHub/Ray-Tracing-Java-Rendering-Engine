@@ -38,9 +38,10 @@ public abstract class RadialGeometry extends Geometry {
     /**
      * Calculates the intersection points between a ray and the radial geometry.
      *
-     * @param ray the ray to check for intersection with the radial geometry
-     * @param t1  the lesser intersection distance from the ray's origin
-     * @param t2  the greater intersection distance from the ray's origin
+     * @param ray         the ray to check for intersection with the radial geometry
+     * @param t1          the lesser intersection distance from the ray's origin
+     * @param t2          the greater intersection distance from the ray's origin
+     * @param maxDistance the maximum distance to consider for intersections
      * @return List of intersection points, or {@code null} if there are none
      */
     protected List<Intersection> getIntersections(Ray ray, double t1, double t2, double maxDistance) {

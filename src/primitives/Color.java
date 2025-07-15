@@ -128,6 +128,12 @@ public class Color {
         return new Color(rgb.reduce(k));
     }
 
+    /**
+     * Returns a string representation of this Color object.
+     * The format is "rgb:" followed by the RGB values.
+     *
+     * @return a string representation of this Color object
+     */
     @Override
     public String toString() {
         return "rgb:" + rgb;

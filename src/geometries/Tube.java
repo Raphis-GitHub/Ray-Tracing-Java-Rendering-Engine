@@ -46,24 +46,23 @@ public class Tube extends RadialGeometry {
     }
 
     /**
-     * Finds intersection points between the ray and the geometry.
-     * <p>
-     * If no intersections are found, the method returns {@code null} (not an empty list).
+     * Calculates intersection points between a ray and the tube using quadratic equation solving.
+     * The method finds where the ray intersects the tube's curved surface by solving a quadratic
+     * equation derived from the tube's geometric properties.
      *
-     * @param ray the ray to test for intersection
+     * @param ray         the ray to test for intersection
+     * @param maxDistance the maximum distance to consider for intersections
      * @return a list of intersection points, or {@code null} if there are none
      */
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
-        Point p0 = ray.origin();
         Vector v = ray.direction();
-        Point pa = axisRay.origin();
         Vector va = axisRay.direction();
 
         // Handle ray origin relative to axis origin
         Vector deltaP;
         try {
-            deltaP = p0.subtract(pa);
+            deltaP = ray.origin().subtract(axisRay.origin());
         } catch (IllegalArgumentException e) {
             // Ray starts exactly at axis origin
             deltaP = null;
