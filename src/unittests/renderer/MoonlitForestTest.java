@@ -2,7 +2,6 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -16,7 +15,6 @@ public class MoonlitForestTest {
      * Renders an enhanced moonlit forest scene with stars and new visual effects
      */
     @Test
-    @Disabled
     void renderEnhancedMoonlitForest() {
         Scene scene = new Scene("Enhanced Moonlit Forest")
                 .setBackground(new Color(10, 15, 35)) // Darker sky for better star visibility

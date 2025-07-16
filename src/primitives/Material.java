@@ -110,9 +110,7 @@ public class Material {
      * @throws IllegalArgumentException if nSh is negative
      */
     public Material setShininess(int nSh) {
-        if (nSh < 0) {
-            throw new IllegalArgumentException("nSh must be non-negative");
-        }
+        if (nSh < 0) throw new IllegalArgumentException("nSh must be non-negative");
         this.nSh = nSh;
         return this;
 

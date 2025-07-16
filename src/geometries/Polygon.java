@@ -110,6 +110,9 @@ public class Polygon extends Geometry {
      */
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
+        var intersectionPoints = plane.calculateIntersections(ray, maxDistance);
+        if (intersectionPoints == null) return null; // No intersection with the plane
+
         List<Vector> edgeNormals = new ArrayList<>();
 
         // Extract the origin and direction vector of the given ray
@@ -131,23 +134,11 @@ public class Polygon extends Geometry {
         for (Vector normal : edgeNormals) {
             double dot = rayDirection.dotProduct(normal);
             // If dot product is zero or the sign is inconsistent, no intersection
-            if (Util.isZero(dot) || (dot > 0 != isInitiallyPositive)) {
-                return null;
-            }
-        }
-
-        // Build a plane using the first three vertices of the polygon
-        Plane basePlane = new Plane(vertices.getFirst(), vertices.get(1), vertices.get(2));
-
-        List<Point> intersectionPoints = basePlane.findIntersections(ray, maxDistance);
-        if (intersectionPoints == null) {
-            return null; // No intersection with the plane
+            if (isZero(dot) || (dot > 0 != isInitiallyPositive)) return null;
         }
 
         // Find intersection points between the ray and the constructed plane
-        return intersectionPoints.stream()
-                .map(point -> new Intersection(this, point))
-                .toList();
+        return List.of(new Intersection(this, intersectionPoints.getFirst().point));
     }
 
 }

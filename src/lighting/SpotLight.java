@@ -93,16 +93,5 @@ public class SpotLight extends PointLight {
         return super.getIntensity(p).scale(cosAngle);
 
     }
-
-    /**
-     * Calculates the distance from the spotlight to a given point.
-     *
-     * @param point the point to calculate distance to
-     * @return the distance from the light source to the given point
-     */
-    @Override
-    public double getDistance(Point point) {
-        return point.distance(position);
-    }
-
+    
 }

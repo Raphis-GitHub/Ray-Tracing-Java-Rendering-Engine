@@ -18,7 +18,7 @@ class CylinderTest {
      */
     @Test
     void testGetNormal() {
-        Ray axis = new Ray(new Vector(0, 0, 1), new Point(0, 0, 0));
+        Ray axis = new Ray(Vector.AXIS_Z, Point.ZERO);
         Cylinder cylinder = new Cylinder(axis, 1, 5);
 
         // ============ Equivalence Partitions Tests ==============
@@ -65,16 +65,16 @@ class CylinderTest {
         Cylinder cylinder = new Cylinder(new Ray(Vector.AXIS_Z, new Point(2, 2, 0)), 1, 1);
         final Point p220 = new Point(2, 2, 0);
         final Point p011 = new Point(0, 1, 1);
-        final Point p11_1 = new Point(1, 1, -1);
+        final Point p11m1 = new Point(1, 1, -1);
         final Point p110 = new Point(1, 1, 0);
         final Point p112 = new Point(1, 1, 2);
-        final Point p1515_05 = new Point(1.5, 1.5, -0.5);
+        final Point p1515m05 = new Point(1.5, 1.5, -0.5);
         final Point p15150 = new Point(1.5, 1.5, 0);
         final Point p151505 = new Point(1.5, 1.5, 0.5);
         final Point p15152 = new Point(1.5, 1.5, 2);
         final Point p1205 = new Point(1, 2, 0.5);
-        final Point p12_1 = new Point(1, 2, -1);
-        final Point p22_05 = new Point(2, 2, -0.5);
+        final Point p12m1 = new Point(1, 2, -1);
+        final Point p22m05 = new Point(2, 2, -0.5);
         final Point p331 = new Point(3, 3, 1);
         final Point p332 = new Point(3, 3, 2);
         final Point p440 = new Point(4, 4, 0);
@@ -107,7 +107,7 @@ class CylinderTest {
         assertNull(cylinder.findIntersections(new Ray(v111, p440)), "TC03 failed");
 
         //TC04 ray intersect the two bases in an acute angle
-        assertEquals(exp04, cylinder.findIntersections(new Ray(v112, p11_1)), "TC04 failed");
+        assertEquals(exp04, cylinder.findIntersections(new Ray(v112, p11m1)), "TC04 failed");
 
         //Grope 1: ray intersect the tube in a straight angle, but not the cylinder
 
@@ -122,10 +122,10 @@ class CylinderTest {
         // the first point is on the base
 
         //TC21 two intersection points
-        assertEquals(exp21, cylinder.findIntersections(new Ray(v111, p11_1)), "TC21 failed");
+        assertEquals(exp21, cylinder.findIntersections(new Ray(v111, p11m1)), "TC21 failed");
 
         //TC22 one intersection point
-        assertEquals(exp22, cylinder.findIntersections(new Ray(v111, p1515_05)), "TC22 failed");
+        assertEquals(exp22, cylinder.findIntersections(new Ray(v111, p1515m05)), "TC22 failed");
 
         //TC23 no intersection point
         assertNull(cylinder.findIntersections(new Ray(v111, p331)), "TC23 failed");
@@ -148,13 +148,13 @@ class CylinderTest {
         //Grope 4: the same direction vector for the ray and the axis
 
         //TC41 ray is outside the cylinder
-        assertNull(cylinder.findIntersections(new Ray(v001, p11_1)), "TC41 failed");
+        assertNull(cylinder.findIntersections(new Ray(v001, p11m1)), "TC41 failed");
         //TC42 ray is on the cylinder
-        assertNull(cylinder.findIntersections(new Ray(v001, p12_1)), "TC41 failed");
+        assertNull(cylinder.findIntersections(new Ray(v001, p12m1)), "TC41 failed");
         //TC43 ray is inside the cylinder
-        assertEquals(exp43, cylinder.findIntersections(new Ray(v001, p1515_05)), "TC43 failed");
+        assertEquals(exp43, cylinder.findIntersections(new Ray(v001, p1515m05)), "TC43 failed");
         //TC44 ray is on the axis
-        assertEquals(exp44, cylinder.findIntersections(new Ray(v001, p22_05)), "TC44   failed");
+        assertEquals(exp44, cylinder.findIntersections(new Ray(v001, p22m05)), "TC44   failed");
 
         //Group 5: starts on the cylinder
         //TC51 on the tube, acute angle

@@ -97,12 +97,12 @@ public class TriangleTest {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: The distance between the ray intersection point and the ray's start point is more than the distance(0 points)
-        assertNull(triangle.findIntersections(
+        assertNull(triangle.calculateIntersections(
                         new Ray(new Vector(-1, -1, -1), new Point(1.8, 1.8, 1)), 1),
                 "Ray's intersection point is out of the distance");
 
         // TC02: The distance between the ray intersection point and the ray's start point is less than the distance(1 point)
-        assertEquals(1, triangle.findIntersections(new Ray(new Vector(-1, -1, -1), new Point(1.8, 1.8, 1)), 10).size(),
+        assertEquals(1, triangle.calculateIntersections(new Ray(new Vector(-1, -1, -1), new Point(1.8, 1.8, 1)), 10).size(),
                 "Ray's intersection points is in the distance");
     }
 

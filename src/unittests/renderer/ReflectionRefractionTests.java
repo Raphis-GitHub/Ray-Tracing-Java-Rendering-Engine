@@ -2,7 +2,6 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -124,7 +123,6 @@ class ReflectionRefractionTests {
      * on a colored floor, viewed from an angled camera position above
      */
     @Test
-    @Disabled
     void combinedEffectsDemo() {
         Scene scene = new Scene("Combined Effects Demo")
                 .setBackground(new Color(10, 15, 25))

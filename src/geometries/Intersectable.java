@@ -62,7 +62,7 @@ public abstract class Intersectable {
         /**
          * Represents the direction vector to the light source.
          */
-        public Vector lightDirection;
+        public Vector pointToLight;
 
         /**
          * Represents the dot product of the normal vector and the light direction.
@@ -99,18 +99,6 @@ public abstract class Intersectable {
         public String toString() {
             return "Intersection{geometry=" + geometry + ", point=" + point + "}";
         }
-    }
-
-    /**
-     * Finds intersection points between a ray and the geometry.
-     *
-     * @param ray         the ray to intersect with
-     * @param maxDistance the maxdstance to intersect with
-     * @return a list of intersection points, or null if no intersections
-     */
-    public final List<Point> findIntersections(Ray ray, double maxDistance) {
-        var list = calculateIntersections(ray, maxDistance);
-        return list == null ? null : list.stream().map(intersection -> intersection.point).toList();
     }
 
     /**

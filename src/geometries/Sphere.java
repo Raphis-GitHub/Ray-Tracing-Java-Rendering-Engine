@@ -61,7 +61,8 @@ public class Sphere extends RadialGeometry {
             u = this.center.subtract(ray.origin());
         } catch (IllegalArgumentException e) {
             // The ray starts at the center of the sphere
-            return List.of(new Intersection(this, ray.getPoint(radius)));
+            return alignZero(radius - maxDistance) >= 0 ? null
+                    : List.of(new Intersection(this, ray.getPoint(radius)));
         }
 
         double tm = ray.direction().dotProduct(u);

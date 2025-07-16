@@ -100,7 +100,7 @@ public class Plane extends Geometry {
         if (isZero(nv)) return null;
 
         double t = normal.dotProduct(u) / nv;
-        return (alignZero(t) > 0 && alignZero(t - maxDistance) <= 0)
+        return (alignZero(t) > 0 && alignZero(t - maxDistance) < 0)
                 ? List.of(new Intersection(this, ray.getPoint(t)))
                 : null;
     }

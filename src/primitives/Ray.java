@@ -4,8 +4,6 @@ import geometries.Intersectable.Intersection;
 
 import java.util.List;
 
-import static primitives.Util.isZero;
-
 /**
  * a Class Ray; Represents a ray in three-dimensional space, defined by a direction vector and an origin point.
  *
@@ -43,13 +41,12 @@ public class Ray {
      * Used for shadow rays, reflection rays, and refraction rays.
      *
      * @param head      The point where the ray starts
-     * @param direction The direction vector of the ray
+     * @param direction The direction vector of the ray (must be normalized ahead)
      * @param normal    The normal vector at the intersection point
      */
     public Ray(Point head, Vector direction, Vector normal) {
-        this.direction = direction.normalize();
-        double nv = normal.dotProduct(direction);
-        Vector delta = normal.scale(isZero(nv) ? 0 : (nv > 0 ? DELTA : -DELTA));
+        this.direction = direction;
+        Vector delta = normal.scale(normal.dotProduct(direction) >= 0 ? DELTA : -DELTA);
         this.origin = head.add(delta);
     }
 

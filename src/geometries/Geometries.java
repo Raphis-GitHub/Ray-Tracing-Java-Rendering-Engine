@@ -52,7 +52,7 @@ public class Geometries extends Intersectable {
             List<Intersection> temp = geo.calculateIntersections(ray, maxDistance);
             if (temp != null) {
                 if (result == null)
-                    result = new ArrayList<>(temp);
+                    result = new LinkedList<>(temp);
                 else
                     result.addAll(temp);
             }

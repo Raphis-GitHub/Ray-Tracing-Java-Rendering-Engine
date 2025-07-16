@@ -13,9 +13,11 @@ import static primitives.Util.*;
  */
 public class Tube extends RadialGeometry {
     /**
-     * The central  axis ray of the tube.
+     * The central axis ray of the tube.
      */
     protected final Ray axisRay;
+    protected final Vector axisDirection;
+    protected final Point axisOrigin;
 
     /**
      * Constructs a tube with a central axis ray and radius.
@@ -26,6 +28,8 @@ public class Tube extends RadialGeometry {
     public Tube(Ray axisRay, double radius) {
         super(radius);
         this.axisRay = axisRay;
+        axisOrigin = axisRay.origin();
+        axisDirection = axisRay.direction();
     }
 
     /**
@@ -39,10 +43,8 @@ public class Tube extends RadialGeometry {
      */
     @Override
     public Vector getNormal(Point point) {
-        Point p0 = this.axisRay.origin();
-        double t = point.subtract(p0).dotProduct(axisRay.direction());
-        Point o = isZero(t) ? p0 : p0.add(axisRay.direction().scale(t));
-        return point.subtract(o).normalize();
+        double t = point.subtract(axisOrigin).dotProduct(axisDirection);
+        return point.subtract(axisRay.getPoint(t)).normalize();
     }
 
     /**
@@ -57,12 +59,12 @@ public class Tube extends RadialGeometry {
     @Override
     protected List<Intersection> calculateIntersectionsHelper(Ray ray, double maxDistance) {
         Vector v = ray.direction();
-        Vector va = axisRay.direction();
+        Vector va = axisDirection;
 
         // Handle ray origin relative to axis origin
         Vector deltaP;
         try {
-            deltaP = ray.origin().subtract(axisRay.origin());
+            deltaP = ray.origin().subtract(axisOrigin);
         } catch (IllegalArgumentException e) {
             // Ray starts exactly at axis origin
             deltaP = null;

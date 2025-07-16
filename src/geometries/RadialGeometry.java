@@ -3,7 +3,6 @@ package geometries;
 import primitives.Ray;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static primitives.Util.alignZero;
 
@@ -45,15 +44,14 @@ public abstract class RadialGeometry extends Geometry {
      * @return List of intersection points, or {@code null} if there are none
      */
     protected List<Intersection> getIntersections(Ray ray, double t1, double t2, double maxDistance) {
-        if (alignZero(t2) <= 0) return null;
-        return (alignZero(t1) <= 0
-                ? List.of(new Intersection(this, ray.getPoint(t2)))
-                : List.of(new Intersection(this, ray.getPoint(t1)), new Intersection(this, ray.getPoint(t2))))
-                .stream()
-                .filter(intersection -> alignZero(intersection.point.distanceSquared(ray.origin()) - maxDistance * maxDistance) <= 0)
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toList(),
-                        list -> list.isEmpty() ? null : list
-                ));
+        if (alignZero(t2) <= 0 || alignZero(t1 - maxDistance) >= 0) return null;
+
+        t1 = alignZero(t1);
+        if (alignZero(t2 - maxDistance) >= 0)
+            return t1 <= 0 ? null
+                    : List.of(new Intersection(this, ray.getPoint(t1)));
+        else
+            return t1 <= 0 ? List.of(new Intersection(this, ray.getPoint(t2)))
+                    : List.of(new Intersection(this, ray.getPoint(t1)), new Intersection(this, ray.getPoint(t2)));
     }
 }

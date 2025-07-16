@@ -56,7 +56,7 @@ public class Triangle extends Polygon {
             return null;
 
         double t = f * edge2.dotProduct(q);
-        return (alignZero(t) > 0 && alignZero(t - maxDistance) <= 0)
+        return (alignZero(t) > 0 && alignZero(t - maxDistance) < 0)
                 ? List.of(new Intersection(this, ray.getPoint(t)))
                 : null;
     }

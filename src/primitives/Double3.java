@@ -45,10 +45,10 @@ public record Double3(double d1, double d2, double d3) {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        return (obj instanceof Double3 other)
-                && isZero(d1 - other.d1)
-                && isZero(d2 - other.d2)
-                && isZero(d3 - other.d3);
+        return (obj instanceof Double3(double od1, double od2, double od3))
+                && isZero(d1 - od1)
+                && isZero(d2 - od2)
+                && isZero(d3 - od3);
     }
 
     /**
