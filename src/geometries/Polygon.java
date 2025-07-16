@@ -104,7 +104,7 @@ public class Polygon extends Geometry {
      * Uses the winding number algorithm to determine if the intersection point
      * with the polygon's plane lies inside the polygon boundaries.
      *
-     * @param ray the ray to test for intersection
+     * @param ray         the ray to test for intersection
      * @param maxDistance the maximum distance to consider for intersections
      * @return a list of Intersection objects, or {@code null} if there are none
      */

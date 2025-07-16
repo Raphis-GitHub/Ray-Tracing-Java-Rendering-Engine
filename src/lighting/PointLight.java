@@ -1,8 +1,6 @@
 package lighting;
 
-import primitives.Color;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
 
 import static primitives.Util.alignZero;
 
@@ -113,6 +111,5 @@ public class PointLight extends Light implements LightSource {
     public double getDistance(Point point) {
         return point.distance(position);
     }
-
 
 }

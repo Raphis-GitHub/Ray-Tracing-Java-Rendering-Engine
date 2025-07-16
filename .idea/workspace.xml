@@ -7,28 +7,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects">
-      <change afterPath="$PROJECT_DIR$/require-javadoc-2.0.0.jar" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add detailed Javadoc comments and refactor code for clarity across multiple classes">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/require-javadoc-2.0.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/LightSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/LightSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Double3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Double3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +201,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ALLTESTS">
+  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -315,8 +304,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
+        <item itemvalue="JUnit.LightsTests.epicLightShowTest" />
         <item itemvalue="JUnit.SphereTest.testFindIntersectionsWithMaxDistance" />
         <item itemvalue="JUnit.MoonlitForestTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.combinedEffectsDemo" />
@@ -371,15 +360,7 @@
       <workItem from="1752355288658" duration="224000" />
       <workItem from="1752355627003" duration="1683000" />
       <workItem from="1752357443621" duration="31177000" />
-      <workItem from="1752569714906" duration="328000" />
-    </task>
-    <task id="LOCAL-00030" summary="change style settings + reformat of everything (Dan)">
-      <option name="closed" value="true" />
-      <created>1749117422760</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1749117422760</updated>
+      <workItem from="1752569714906" duration="3563000" />
     </task>
     <task id="LOCAL-00031" summary="remove junit from working dir and some more cleaning">
       <option name="closed" value="true" />
@@ -765,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752513785908</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Add detailed Javadoc comments and refactor code for clarity across multiple classes">
+      <option name="closed" value="true" />
+      <created>1752582031235</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1752582031235</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +772,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments" />
     <MESSAGE value="Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
     <MESSAGE value="Phase - 1: Refactor intersection methods in geometries; update to return Intersection objects and improve code clarity" />
     <MESSAGE value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
@@ -808,7 +796,8 @@
     <MESSAGE value="Refactor ray and shadow calculations; improve code clarity and add new constructors; part 2" />
     <MESSAGE value="finished 7" />
     <MESSAGE value="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance Moonlit Forest scene; add stars, improved materials, and magical effects" />
+    <MESSAGE value="Add detailed Javadoc comments and refactor code for clarity across multiple classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add detailed Javadoc comments and refactor code for clarity across multiple classes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

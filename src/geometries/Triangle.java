@@ -29,7 +29,7 @@ public class Triangle extends Polygon {
      * Returns null if the ray does not intersect the triangle
      * or if the intersection point is outside the triangle or on its edge.
      *
-     * @param ray the ray to test for intersection
+     * @param ray         the ray to test for intersection
      * @param maxDistance the maximum distance to consider for intersections
      * @return list with one intersection point or null if no intersection exists
      */

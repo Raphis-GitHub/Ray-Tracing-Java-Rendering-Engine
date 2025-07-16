@@ -41,7 +41,7 @@ public class Geometries extends Intersectable {
      * Calculates intersections between a ray and all geometries in the collection.
      * Iterates through each geometry in the collection and aggregates all intersection points.
      *
-     * @param ray the ray to test for intersections
+     * @param ray         the ray to test for intersections
      * @param maxDistance the maximum distance to consider for intersections
      * @return a list of all intersection points from all geometries, or null if no intersections
      */
