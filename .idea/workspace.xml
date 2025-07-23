@@ -7,11 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic">
       <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/testFastDemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/testFastDemoScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +138,7 @@
     "JUnit.testFastDemoScene.executor": "Run",
     "JUnit.testFastDemoScene.fastDemoScene_OnlyDoF.executor": "Run",
     "JUnit.testFastDemoScene.tubeDepthOfFieldDemo.executor": "Run",
+    "JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF.executor": "Run",
     "Notification.DisplayName-DoNotAsk-com.intellij.ml.llm.plugin.alert": "JetBrains AI Assistant",
     "Notification.DoNotAsk-com.intellij.ml.llm.plugin.alert": "true",
     "OverrideImplement.generate.javadoc": "true",
@@ -202,7 +200,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF">
+  <component name="RunManager" selected="JUnit.testFastDemoScene.tubeDepthOfFieldDemo">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -299,8 +297,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
+        <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF" />
         <item itemvalue="JUnit.testFastDemoScene" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
@@ -357,15 +355,7 @@
       <workItem from="1752357443621" duration="31177000" />
       <workItem from="1752569714906" duration="13629000" />
       <workItem from="1752694851944" duration="403000" />
-      <workItem from="1753200956957" duration="13691000" />
-    </task>
-    <task id="LOCAL-00035" summary="Add Camera class and corresponding unit tests; implement builder pattern for configuration">
-      <option name="closed" value="true" />
-      <created>1750350595501</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1750350595501</updated>
+      <workItem from="1753200956957" duration="14493000" />
     </task>
     <task id="LOCAL-00036" summary="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern">
       <option name="closed" value="true" />
@@ -751,7 +741,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753310503469</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic">
+      <option name="closed" value="true" />
+      <created>1753311646468</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1753311646468</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +767,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management" />
     <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/SimpleRayTracer.java&#10;#&#9;src/unittests/renderer/LightsTests.java" />
     <MESSAGE value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
@@ -794,7 +791,8 @@
     <MESSAGE value="Refactor intersection methods and improve Javadoc comments for clarity in geometries" />
     <MESSAGE value="Add Blackboard class for flexible point generation in 3D space; implement Builder pattern and enhance Javadoc comments" />
     <MESSAGE value="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic" />
+    <MESSAGE value="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
