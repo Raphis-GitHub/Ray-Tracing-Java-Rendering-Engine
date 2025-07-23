@@ -175,13 +175,21 @@ public class Camera implements Cloneable {
 
             // Generate depth of field rays if enabled
             if (blackboard != null && blackboard.useDepthOfField()) {
-                Point focalPoint = aaRay.getPoint(focusPointDistance);
-                // Generate rays from different aperture positions to focal point
-                List<Ray> apertureRays = blackboard.constructRays(aaRay, 0, aperture);
+                // Calculate focal point along the primary ray (not AA ray)
+                Point focalPoint = primaryRay.getPoint(focusPointDistance);
+
+                // Generate aperture points around the camera position
+                List<Point> aperturePoints = blackboard.createAperturePoints(p0, vRight, vUp, aperture);
                 dofRays = new ArrayList<>();
-                for (Ray apertureRay : apertureRays) {
-                    Vector direction = focalPoint.subtract(apertureRay.origin()).normalize();
-                    dofRays.add(new Ray(direction, apertureRay.origin()));
+
+                for (Point aperturePoint : aperturePoints) {
+                    try {
+                        Vector direction = focalPoint.subtract(aperturePoint).normalize();
+                        dofRays.add(new Ray(direction, aperturePoint));
+                    } catch (IllegalArgumentException e) {
+                        // Skip if direction is zero (aperture point = focal point)
+                        dofRays.add(aaRay); // Use original ray as fallback
+                    }
                 }
             }
 

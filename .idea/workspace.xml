@@ -7,12 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add Blackboard class for flexible point generation in 3D space; implement Builder pattern and enhance Javadoc comments">
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/testFastDemoScene.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/testFastDemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/testFastDemoScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +140,7 @@
     "JUnit.geometries in ISE5785_4760_2159.executor": "Run",
     "JUnit.testFastDemoScene.executor": "Run",
     "JUnit.testFastDemoScene.fastDemoScene_OnlyDoF.executor": "Run",
+    "JUnit.testFastDemoScene.tubeDepthOfFieldDemo.executor": "Run",
     "Notification.DisplayName-DoNotAsk-com.intellij.ml.llm.plugin.alert": "JetBrains AI Assistant",
     "Notification.DoNotAsk-com.intellij.ml.llm.plugin.alert": "true",
     "OverrideImplement.generate.javadoc": "true",
@@ -202,7 +202,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF">
+  <component name="RunManager" selected="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -212,30 +212,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in ISE5785_4760_2159" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CylinderTest.testCalculateIntersectionsHelper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="testCalculateIntersectionsHelper" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -281,21 +257,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testFastDemoScene.tubeDepthOfFieldDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
+      <option name="METHOD_NAME" value="tubeDepthOfFieldDemo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
+      <option name="METHOD_NAME" value="tubeDepthOfFieldDemo_NoDoF" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.testFastDemoScene" />
       <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF" />
-      <item itemvalue="JUnit.All in ISE5785_4760_2159" />
-      <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
+      <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
+      <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
+        <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF" />
         <item itemvalue="JUnit.testFastDemoScene" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
-        <item itemvalue="JUnit.All in ISE5785_4760_2159" />
-        <item itemvalue="JUnit.CylinderTest.testCalculateIntersectionsHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -349,15 +357,7 @@
       <workItem from="1752357443621" duration="31177000" />
       <workItem from="1752569714906" duration="13629000" />
       <workItem from="1752694851944" duration="403000" />
-      <workItem from="1753200956957" duration="12867000" />
-    </task>
-    <task id="LOCAL-00034" summary="Refactor intersection logic in Geometries, Plane, and Sphere classes; enhance unit tests for improved accuracy">
-      <option name="closed" value="true" />
-      <created>1749736795096</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1749736795096</updated>
+      <workItem from="1753200956957" duration="13691000" />
     </task>
     <task id="LOCAL-00035" summary="Add Camera class and corresponding unit tests; implement builder pattern for configuration">
       <option name="closed" value="true" />
@@ -743,7 +743,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753302897296</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic">
+      <option name="closed" value="true" />
+      <created>1753310503468</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1753310503469</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,7 +769,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="phase - 2: Refactor AmbientLight and Geometry classes; introduce Material handling and enhance rendering logic" />
     <MESSAGE value="Phase - 3: up to 6(not including)Add DirectionalLight, PointLight, and SpotLight classes; implement Material handling and enhance Scene light source management" />
     <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/SimpleRayTracer.java&#10;#&#9;src/unittests/renderer/LightsTests.java" />
@@ -786,7 +793,8 @@
     <MESSAGE value="Add detailed Javadoc comments and refactor code for clarity across multiple classes" />
     <MESSAGE value="Refactor intersection methods and improve Javadoc comments for clarity in geometries" />
     <MESSAGE value="Add Blackboard class for flexible point generation in 3D space; implement Builder pattern and enhance Javadoc comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Blackboard class for flexible point generation in 3D space; implement Builder pattern and enhance Javadoc comments" />
+    <MESSAGE value="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

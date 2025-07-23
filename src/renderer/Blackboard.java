@@ -245,6 +245,35 @@ public class Blackboard implements Cloneable {
     }
 
     /**
+     * Creates aperture points for depth of field effect
+     * Points are generated in a plane perpendicular to the camera's view direction
+     */
+    public List<Point> createAperturePoints(Point cameraPosition, Vector vRight, Vector vUp, double apertureSize) {
+        List<Point> pointsList = new ArrayList<>();
+        pointsList.add(cameraPosition); // Include center point
+
+        if (apertureSize == 0) return pointsList;
+
+        double cellSize = apertureSize / gridSize;
+
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                double x, y;
+                if (useJitteredSampling) {
+                    x = (col + Math.random()) * cellSize - apertureSize;
+                    y = (row + Math.random()) * cellSize - apertureSize;
+                } else {
+                    x = (col + 0.5) * cellSize - apertureSize;
+                    y = (row + 0.5) * cellSize - apertureSize;
+                }
+                Point aperturePoint = cameraPosition.add(vRight.scale(x)).add(vUp.scale(y));
+                pointsList.add(aperturePoint);
+            }
+        }
+        return pointsList;
+    }
+
+    /**
      * Creates jittered points within grid cells, based on the base ray and center point.
      */
     private List<Point> createJitteredPoints(Ray baseRay, Point center, double size) {
