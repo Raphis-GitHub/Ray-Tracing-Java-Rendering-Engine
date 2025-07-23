@@ -26,7 +26,7 @@ public class MoonlitForestTest {
                 .setDirection(new Point(0, -5, -80), new Vector(0, 1, 0))
                 .setVpSize(300, 200)
                 .setVpDistance(100)
-                .setResolution(1600, 1000)
+                .setResolution(3200, 2000)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .build();
 
