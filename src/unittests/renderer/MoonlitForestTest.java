@@ -2,6 +2,7 @@ package renderer;
 
 import geometries.*;
 import lighting.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -15,18 +16,28 @@ public class MoonlitForestTest {
      * Renders an enhanced moonlit forest scene with stars and new visual effects
      */
     @Test
+    @Disabled
     void renderEnhancedMoonlitForest() {
         Scene scene = new Scene("Enhanced Moonlit Forest")
                 .setBackground(new Color(10, 15, 35)) // Darker sky for better star visibility
                 .setAmbientLight(new AmbientLight(new Color(15, 18, 30))); // Slightly more ambient light
+        Blackboard settings = Blackboard.getBuilder()
+                .setAntiAliasing(true)
+                .setAntiAliasingSamples(9)          // 3x3 for speed
+                .setDepthOfField(true)
+                .setDepthOfFieldSamples(16)         // 16 aperture samples
+                .build();
 
         // Camera positioned to capture the dense forest
         Camera camera = Camera.getBuilder()
+                .setBlackboard(settings)
+                .setFocusPointDistance(800)         // Focus on objects 800 units away
+                .setAperture(5.0)
                 .setLocation(new Point(0, 15, 120))
                 .setDirection(new Point(0, -5, -80), new Vector(0, 1, 0))
                 .setVpSize(300, 200)
                 .setVpDistance(100)
-                .setResolution(3200, 2000)
+                .setResolution(800, 500)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .build();
 

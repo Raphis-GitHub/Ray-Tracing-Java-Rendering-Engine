@@ -1,9 +1,10 @@
 package renderer;
 
 import primitives.*;
+import primitives.Vector;
 import scene.Scene;
 
-import java.util.MissingResourceException;
+import java.util.*;
 
 import static primitives.Util.*;
 
@@ -55,6 +56,20 @@ public class Camera implements Cloneable {
      * Distance to view plane
      */
     private double distance = 0;
+    /**
+     * Blackboard configuration for rendering improvements.
+     */
+    private Blackboard blackboard;
+
+    /**
+     * Focus point distance for depth of field effect.
+     */
+    private double focusPointDistance = 100;
+
+    /**
+     * Aperture size for depth of field effect.
+     */
+    private double aperture = 0.5;
 
     /**
      * Private constructor for Camera.
@@ -99,9 +114,18 @@ public class Camera implements Cloneable {
      * @return the Camera instance for method chaining
      */
     public Camera renderImage() {
-        for (int y = 0; y < nY; y++)
-            for (int x = 0; x < nX; x++)
+        int percentage = 0;
+        for (int y = 0; y < nY; y++) {
+            for (int x = 0; x < nX; x++) {
                 castRay(x, y);
+            }
+            int newPercentage = (int) ((y + 1) * 100.0 / nY);
+            if (newPercentage > percentage) {
+                percentage = newPercentage;
+                System.out.println("Rendering progress: " + percentage + "%");
+            }
+        }
+
         return this;
     }
 
@@ -131,17 +155,50 @@ public class Camera implements Cloneable {
 
     /**
      * Casts a ray through the specified pixel and writes the resulting color to the image.
-     *
-     * @param x the x index of the pixel (column)
-     * @param y the y index of the pixel (row)
+     * Supports anti-aliasing and depth of field if configured in blackboard.
      */
     private void castRay(int x, int y) {
-        // Construct the ray through the pixel
-        Ray ray = constructRay(nX, nY, x, y);
-        // Trace the ray to get the color
-        Color color = rayTracer.traceRay(ray);
-        // Write the color to the image
-        imageWriter.writePixel(x, y, color);
+        Ray primaryRay = constructRay(nX, nY, x, y);
+
+        // Generate anti-aliasing rays if enabled
+        List<Ray> aaRays = List.of(primaryRay);
+        if (blackboard != null && blackboard.useAntiAliasing()) {
+            double pixelSize = Math.max(width / nX, height / nY);
+            aaRays = blackboard.constructRays(primaryRay, distance, pixelSize);
+        }
+
+        Color finalColor = Color.BLACK;
+
+        // Process each anti-aliasing ray
+        for (Ray aaRay : aaRays) {
+            List<Ray> dofRays = List.of(aaRay);
+
+            // Generate depth of field rays if enabled
+            if (blackboard != null && blackboard.useDepthOfField()) {
+                Point focalPoint = aaRay.getPoint(focusPointDistance);
+                // Generate rays from different aperture positions to focal point
+                List<Ray> apertureRays = blackboard.constructRays(aaRay, 0, aperture);
+                dofRays = new ArrayList<>();
+                for (Ray apertureRay : apertureRays) {
+                    Vector direction = focalPoint.subtract(apertureRay.origin()).normalize();
+                    dofRays.add(new Ray(direction, apertureRay.origin()));
+                }
+            }
+
+            // Trace all depth of field rays and average their colors
+            Color aaColor = Color.BLACK;
+            for (Ray dofRay : dofRays) {
+                aaColor = aaColor.add(rayTracer.traceRay(dofRay));
+            }
+            aaColor = aaColor.reduce(dofRays.size());
+
+            finalColor = finalColor.add(aaColor);
+        }
+
+        // Average across all anti-aliasing samples
+        finalColor = finalColor.reduce(aaRays.size());
+
+        imageWriter.writePixel(x, y, finalColor);
     }
 
     /**
@@ -235,6 +292,30 @@ public class Camera implements Cloneable {
         }
 
         /**
+         * Sets the blackboard configuration.
+         */
+        public Builder setBlackboard(Blackboard blackboard) {
+            camera.blackboard = blackboard;
+            return this;
+        }
+
+        /**
+         * Sets the focus point distance for depth of field.
+         */
+        public Builder setFocusPointDistance(double focusPointDistance) {
+            camera.focusPointDistance = focusPointDistance;
+            return this;
+        }
+
+        /**
+         * Sets the aperture size for depth of field.
+         */
+        public Builder setAperture(double aperture) {
+            camera.aperture = aperture;
+            return this;
+        }
+
+        /**
          * Sets view plane size.
          *
          * @param width  view plane width
@@ -304,6 +385,11 @@ public class Camera implements Cloneable {
 
             if (camera.rayTracer == null)
                 camera.rayTracer = new SimpleRayTracer(null);
+
+            // Set default blackboard if none provided
+            if (camera.blackboard == null) {
+                camera.blackboard = Blackboard.getBuilder().build();
+            }
 
             return camera.clone();
         }

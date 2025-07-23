@@ -40,6 +40,20 @@ public class Blackboard implements Cloneable {
     private boolean blurryAndGlossy = false;
 
     /**
+     * Controls whether to use jittered sampling (random) or regular grid sampling.
+     */
+    private boolean useJitteredSampling = true;
+
+    /**
+     * Number of samples for anti-aliasing (instead of relying only on gridSize).
+     */
+    private int antiAliasingSamples = 9;
+
+    /**
+     * Number of samples for depth of field effect.
+     */
+    private int depthOfFieldSamples = 16;
+    /**
      * The size of the grid for point generation.
      * This is used to determine the number of points in a grid pattern.
      * Default is 10, which corresponds to a 10x10 grid.
@@ -128,6 +142,31 @@ public class Blackboard implements Cloneable {
         }
 
         /**
+         * Sets whether to use jittered sampling.
+         */
+        public Builder setUseJitteredSampling(boolean useJittered) {
+            blackboard.useJitteredSampling = useJittered;
+            return this;
+        }
+
+        /**
+         * Sets the number of anti-aliasing samples.
+         */
+        public Builder setAntiAliasingSamples(int samples) {
+            blackboard.antiAliasingSamples = samples;
+            blackboard.gridSize = (int) Math.ceil(Math.sqrt(samples));
+            return this;
+        }
+
+        /**
+         * Sets the number of depth of field samples.
+         */
+        public Builder setDepthOfFieldSamples(int samples) {
+            blackboard.depthOfFieldSamples = samples;
+            return this;
+        }
+
+        /**
          * Sets whether depth of field should be used.
          * If true, the rays will be generated in a way that simulates depth of field effects.
          * Default is false.
@@ -193,8 +232,14 @@ public class Blackboard implements Cloneable {
 
         List<Ray> resultRays = new LinkedList<>();
         for (Point point : localPoints) {
-            Vector direction = point.subtract(baseRay.origin()).normalize();
-            resultRays.add(new Ray(direction, baseRay.origin()));
+            try {
+                Vector direction = point.subtract(baseRay.origin()).normalize();
+                resultRays.add(new Ray(direction, baseRay.origin()));
+            } catch (IllegalArgumentException e) {
+                // Skip points that create zero vectors (point too close to origin)
+                // This can happen when sampling at the ray origin (distance = 0)
+            }
+
         }
         return resultRays;
     }
@@ -211,15 +256,19 @@ public class Blackboard implements Cloneable {
         Vector v = baseRay.direction();//fow
         Vector w = Vector.AXIS_Y.equals(v) ? Vector.AXIS_X : Vector.AXIS_Y.crossProduct(v).normalize();//right
         Vector u = v.crossProduct(w).normalize();//to
-        //might take from camera- refactor score 3/10
 
         double cellSize = size / gridSize;
 
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
-                double x = (col + Math.random()) * cellSize - size;
-                double y = (row + Math.random()) * cellSize - size;
-
+                double x, y;
+                if (useJitteredSampling) {
+                    x = (col + Math.random()) * cellSize - size;
+                    y = (row + Math.random()) * cellSize - size;
+                } else {
+                    x = (col + 0.5) * cellSize - size;
+                    y = (row + 0.5) * cellSize - size;
+                }
                 Point point = center.add(u.scale(x)).add(w.scale(y));
                 pointsList.add(point);
             }
@@ -253,6 +302,27 @@ public class Blackboard implements Cloneable {
      */
     public Boolean useBlurryAndGlossy() {
         return blurryAndGlossy;
+    }
+
+    /**
+     * Returns the number of anti-aliasing samples.
+     */
+    public int getAntiAliasingSamples() {
+        return antiAliasingSamples;
+    }
+
+    /**
+     * Returns the number of depth of field samples.
+     */
+    public int getDepthOfFieldSamples() {
+        return depthOfFieldSamples;
+    }
+
+    /**
+     * Returns whether jittered sampling is enabled.
+     */
+    public boolean getUseJitteredSampling() {
+        return useJitteredSampling;
     }
 
     /**
