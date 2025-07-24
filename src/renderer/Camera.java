@@ -159,7 +159,7 @@ public class Camera implements Cloneable {
      */
     private void castRay(int x, int y) {
         Ray primaryRay = constructRay(nX, nY, x, y);
-
+        //split into 3 functions!! - refacter score 7/10
         // Generate anti-aliasing rays if enabled
         List<Ray> aaRays = List.of(primaryRay);
         if (blackboard != null && blackboard.useAntiAliasing()) {

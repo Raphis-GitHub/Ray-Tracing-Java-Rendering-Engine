@@ -7,8 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Blackboard class to improve aperture point generation; update workspace configuration for enhanced testing options">
       <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +201,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.testFastDemoScene.tubeDepthOfFieldDemo">
+  <component name="RunManager" selected="JUnit.testFastDemoScene.fastdemoscene">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -210,22 +211,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MoonlitForestTest.renderEnhancedMoonlitForest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.MoonlitForestTest" />
-      <option name="METHOD_NAME" value="renderEnhancedMoonlitForest" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -250,6 +235,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
       <option name="METHOD_NAME" value="fastDemoScene_OnlyDoF" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testFastDemoScene.fastdemoscene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
+      <option name="METHOD_NAME" value="fastdemoscene" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -291,17 +292,17 @@
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.testFastDemoScene" />
       <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF" />
+      <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
       <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
       <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
-      <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyDoF" />
         <item itemvalue="JUnit.testFastDemoScene" />
-        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
       </list>
     </recent_temporary>
   </component>
@@ -355,15 +356,7 @@
       <workItem from="1752357443621" duration="31177000" />
       <workItem from="1752569714906" duration="13629000" />
       <workItem from="1752694851944" duration="403000" />
-      <workItem from="1753200956957" duration="14493000" />
-    </task>
-    <task id="LOCAL-00036" summary="Update workspace.xml to reflect addition of Camera class and unit tests; implement builder pattern">
-      <option name="closed" value="true" />
-      <created>1750419309084</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1750419309084</updated>
+      <workItem from="1753200956957" duration="16476000" />
     </task>
     <task id="LOCAL-00037" summary="Implement ray construction in Camera class; add intersection tests for Camera with geometries">
       <option name="closed" value="true" />
@@ -749,7 +742,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753311646468</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Refactor Blackboard class to improve aperture point generation; update workspace configuration for enhanced testing options">
+      <option name="closed" value="true" />
+      <created>1753312572273</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1753312572273</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,7 +768,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Phase bug!! Enhance intersection handling in SimpleRayTracer; add material and lighting calculations in Intersection class" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/SimpleRayTracer.java&#10;#&#9;src/unittests/renderer/LightsTests.java" />
     <MESSAGE value="Phae 3:Refactor intersection calculations in Cylinder and Tube classes; enhance lighting and material handling in SimpleRayTracer and related tests" />
     <MESSAGE value="Add tolerance constant for floating point comparisons in TriangleTest" />
@@ -792,7 +792,8 @@
     <MESSAGE value="Add Blackboard class for flexible point generation in 3D space; implement Builder pattern and enhance Javadoc comments" />
     <MESSAGE value="Enhance Blackboard class with jittered sampling, anti-aliasing, and depth of field features; update Camera class to utilize new settings and improve rendering logic" />
     <MESSAGE value="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance Blackboard class to create aperture points for depth of field; update Camera class to generate rays from aperture points and improve rendering logic" />
+    <MESSAGE value="Refactor Blackboard class to improve aperture point generation; update workspace configuration for enhanced testing options" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Blackboard class to improve aperture point generation; update workspace configuration for enhanced testing options" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

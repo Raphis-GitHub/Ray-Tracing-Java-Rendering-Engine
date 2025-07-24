@@ -4,10 +4,11 @@ import primitives.*;
 import primitives.Vector;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The Blackboard class is responsible for generating a set of points based on specified methods.
- * The points can be generated within a unit circle or a unit square based on the useCircle flag.
+ * The points can be generated within a unit square.
  * This class is designed to be used in conjunction with a Ray and a center Point,
  * allowing for flexible point generation in 3D space.
  * The class uses a Builder pattern for construction,
@@ -65,6 +66,10 @@ public class Blackboard implements Cloneable {
      * Default is 1, which corresponds to a unit circle or square of size 1x1.
      */
     private static final double DEFAULT_SIZE = 1;
+
+    private Vector cachedDirection = null;
+    private Vector cachedU = null;  // right vector
+    private Vector cachedW = null;  // up vector
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -244,6 +249,17 @@ public class Blackboard implements Cloneable {
         return resultRays;
     }
 
+    private void computeOrthogonalVectors(Vector direction) {
+        if (direction.equals(cachedDirection)) {
+            return; // Already cached
+        }
+
+        cachedDirection = direction;
+        cachedW = Vector.AXIS_Y.equals(direction) ? Vector.AXIS_X
+                : Vector.AXIS_Y.crossProduct(direction).normalize();
+        cachedU = direction.crossProduct(cachedW).normalize();
+    }
+
     /**
      * Creates aperture points for depth of field effect
      * Points are generated in a plane perpendicular to the camera's view direction
@@ -260,8 +276,8 @@ public class Blackboard implements Cloneable {
             for (int col = 0; col < gridSize; col++) {
                 double x, y;
                 if (useJitteredSampling) {
-                    x = (col + Math.random()) * cellSize - apertureSize;
-                    y = (row + Math.random()) * cellSize - apertureSize;
+                    x = (col + ThreadLocalRandom.current().nextDouble()) * cellSize - apertureSize;
+                    y = (row + ThreadLocalRandom.current().nextDouble()) * cellSize - apertureSize;
                 } else {
                     x = (col + 0.5) * cellSize - apertureSize;
                     y = (row + 0.5) * cellSize - apertureSize;
@@ -282,9 +298,10 @@ public class Blackboard implements Cloneable {
         pointsList.add(center);
         if (size == 0) return pointsList;
 
-        Vector v = baseRay.direction();//fow
-        Vector w = Vector.AXIS_Y.equals(v) ? Vector.AXIS_X : Vector.AXIS_Y.crossProduct(v).normalize();//right
-        Vector u = v.crossProduct(w).normalize();//to
+        Vector v = baseRay.direction();
+        computeOrthogonalVectors(v);
+        Vector u = cachedU;
+        Vector w = cachedW;
 
         double cellSize = size / gridSize;
 
@@ -292,8 +309,8 @@ public class Blackboard implements Cloneable {
             for (int col = 0; col < gridSize; col++) {
                 double x, y;
                 if (useJitteredSampling) {
-                    x = (col + Math.random()) * cellSize - size;
-                    y = (row + Math.random()) * cellSize - size;
+                    x = (col + ThreadLocalRandom.current().nextDouble()) * cellSize - size;
+                    y = (row + ThreadLocalRandom.current().nextDouble()) * cellSize - size;
                 } else {
                     x = (col + 0.5) * cellSize - size;
                     y = (row + 0.5) * cellSize - size;
