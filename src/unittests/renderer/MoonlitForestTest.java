@@ -23,16 +23,16 @@ public class MoonlitForestTest {
                 .setAmbientLight(new AmbientLight(new Color(15, 18, 30))); // Slightly more ambient light
         Blackboard settings = Blackboard.getBuilder()
                 .setAntiAliasing(true)
-                .setAntiAliasingSamples(9)          // 3x3 for speed
+                .setAntiAliasingSamples(11 * 11)          // 3x3 for speed
                 .setDepthOfField(true)
-                .setDepthOfFieldSamples(16)         // 16 aperture samples
+                .setDepthOfFieldSamples(64)         // 16 aperture samples
                 .build();
 
         // Camera positioned to capture the dense forest
         Camera camera = Camera.getBuilder()
                 .setBlackboard(settings)
-                .setFocusPointDistance(800)         // Focus on objects 800 units away
-                .setAperture(5.0)
+                .setFocusPointDistance(100)         // Focus on objects 800 units away
+                .setAperture(4)
                 .setLocation(new Point(0, 15, 120))
                 .setDirection(new Point(0, -5, -80), new Vector(0, 1, 0))
                 .setVpSize(300, 200)

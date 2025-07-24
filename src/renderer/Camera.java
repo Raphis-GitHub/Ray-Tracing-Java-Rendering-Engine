@@ -156,6 +156,9 @@ public class Camera implements Cloneable {
     /**
      * Casts a ray through the specified pixel and writes the resulting color to the image.
      * Supports anti-aliasing and depth of field if configured in blackboard.
+     *
+     * @param x the pixel column index
+     * @param y the pxel row index
      */
     private void castRay(int x, int y) {
         Ray primaryRay = constructRay(nX, nY, x, y);
@@ -301,6 +304,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the blackboard configuration.
+         *
+         * @param blackboard the blackboard to use for rendering improvements
+         * @return Builder instance
          */
         public Builder setBlackboard(Blackboard blackboard) {
             camera.blackboard = blackboard;
@@ -309,6 +315,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the focus point distance for depth of field.
+         *
+         * @param focusPointDistance distance to the focus point
+         * @return Builder instance
          */
         public Builder setFocusPointDistance(double focusPointDistance) {
             camera.focusPointDistance = focusPointDistance;
@@ -317,6 +326,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the aperture size for depth of field.
+         *
+         * @param aperture aperture size
+         * @return Builder instance
          */
         public Builder setAperture(double aperture) {
             camera.aperture = aperture;

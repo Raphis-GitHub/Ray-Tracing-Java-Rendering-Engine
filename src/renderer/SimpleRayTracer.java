@@ -143,6 +143,13 @@ public class SimpleRayTracer extends RayTracerBase {
         return true;
     }
 
+    /**
+     * Gets the intersections of the shadow ray with the scene geometries.
+     * The shadow ray is cast from the intersection point towards the light source.
+     *
+     * @param intersection the intersection point
+     * @return a list of intersections with the shadow ray, or null if no intersections found
+     */
     private List<Intersection> getShadowRayIntersections(Intersection intersection) {
         Ray shadowRay = new Ray(intersection.point, intersection.pointToLight, intersection.normal);
         return scene.geometries.calculateIntersections(shadowRay, intersection.lightSource.getDistance(intersection.point));

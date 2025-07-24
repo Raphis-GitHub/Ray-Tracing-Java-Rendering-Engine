@@ -7,9 +7,5 @@ public enum RayTracerType {
     /**
      * Simple (basic) ray tracer
      */
-    SIMPLE,
-    /**
-     * Ray tracer using regular grid
-     */
-    GRID
+    SIMPLE
 }

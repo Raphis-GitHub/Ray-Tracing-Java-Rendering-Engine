@@ -7,14 +7,20 @@ import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
 
+/**
+ * Tests for fast demo scene with various effects
+ */
 @Disabled
-public class testFastDemoScene {
+public class TestFastDemoScene {
 
     /**
      * Default constructor to satisfy JavaDoc generator
      */
-    testFastDemoScene() { /* to satisfy JavaDoc generator */ }
+    TestFastDemoScene() { /* to satisfy JavaDoc generator */ }
 
+    /**
+     * Test demonstrating a fast demo scene with various effects
+     */
     @Test
     void fastdemoscene() {
         Scene scene = new Scene("Fast Demo Scene")
@@ -117,6 +123,9 @@ public class testFastDemoScene {
 
 // COMPARISON TESTS: See the difference with/without effects
 
+    /**
+     * Test demonstrating the same scene without any effects
+     */
     @Test
     void fastDemoScene_NoEffects() {
         // Same scene, no AA or DoF for comparison
@@ -137,6 +146,9 @@ public class testFastDemoScene {
                 .writeToImage("fastDemoScene_NoEffects");
     }
 
+    /**
+     * Test demonstrating anti-aliasing only, no depth of field
+     */
     @Test
     void fastDemoScene_OnlyAA() {
         // Same scene, only anti-aliasing
@@ -144,7 +156,7 @@ public class testFastDemoScene {
 
         Blackboard onlyAA = Blackboard.getBuilder()
                 .setAntiAliasing(true)
-                .setAntiAliasingSamples(9)
+                .setAntiAliasingSamples(23 * 23)
                 .build();
 
         Camera.getBuilder()
@@ -152,7 +164,7 @@ public class testFastDemoScene {
                 .setDirection(new Point(0, 0, -600), Vector.AXIS_Y)
                 .setVpSize(200, 200)
                 .setVpDistance(1000)
-                .setResolution(400, 400)
+                .setResolution(600, 600)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
                 .setBlackboard(onlyAA)
                 .build()
@@ -160,6 +172,9 @@ public class testFastDemoScene {
                 .writeToImage("fastDemoScene_OnlyAA");
     }
 
+    /**
+     * Test demonstrating depth of field only, no anti-aliasing
+     */
     @Test
     void fastDemoScene_OnlyDoF() {
         // Same scene, only depth of field
@@ -186,6 +201,12 @@ public class testFastDemoScene {
     }
 
     // Helper method to create the same scene for comparison tests
+
+    /**
+     * Creates the demo scene with all objects and lights
+     *
+     * @return the created scene
+     */
     private Scene createDemoScene() {
         Scene scene = new Scene("Demo Scene")
                 .setBackground(new Color(20, 30, 50))
@@ -236,6 +257,9 @@ public class testFastDemoScene {
         return scene;
     }
 
+    /**
+     * Test demonstrating depth of field with a tube stretching into the distance
+     */
     @Test
     void tubeDepthOfFieldDemo() {
         Scene scene = new Scene("Tube DoF Demo")
@@ -333,7 +357,7 @@ public class testFastDemoScene {
                 .setAntiAliasing(true)
                 .setAntiAliasingSamples(9)          // 3x3 AA for smooth edges
                 .setDepthOfField(true)
-                .setDepthOfFieldSamples(25)         // 25 aperture samples for smooth blur
+                .setDepthOfFieldSamples(500)         // 25 aperture samples for smooth blur
                 .setUseJitteredSampling(true)       // Smoother sampling
                 .build();
 
@@ -354,6 +378,10 @@ public class testFastDemoScene {
     }
 
     // Comparison without DoF to see the difference
+
+    /**
+     * Test the same tube scene without depth of field
+     */
     @Test
     void tubeDepthOfFieldDemo_NoDoF() {
         Scene scene = new Scene("Tube No DoF")

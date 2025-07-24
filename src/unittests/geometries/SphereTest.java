@@ -102,7 +102,7 @@ class SphereTest {
         assertEquals(List.of(new Intersection(s, new Point(3.0635083268962915, 3.5, 0.0))), s.calculateIntersections(new Ray(new Vector(1, 0, 0), new Point(2.5, 3.5, 0)), 2), "TC02: Ray intersects sphere within max distance");
 
         // TC03: Ray intersects sphere but beyond max distance
-        assertNull(s.calculateIntersectionsHelper(new Ray(new Vector(1, 0, 0), new Point(3.5, 3, 0)), 2), "TC03: Ray intersects sphere but beyond max distance");
+        assertNull(s.calculateIntersections(new Ray(new Vector(1, 0, 0), new Point(3.5, 3, 0)), 2), "TC03: Ray intersects sphere but beyond max distance");
 
         // TC04: Ray intersects sphere within max distance from inside
         assertEquals(List.of(new Intersection(s, new Point(6.936491673103708, 2.5, 0.0))), s.calculateIntersections(new Ray(new Vector(1, 0, 0), new Point(5.5, 2.5, 0)), 2), "TC04: Ray intersects sphere within max distance from inside");

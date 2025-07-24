@@ -18,8 +18,19 @@ public class Cylinder extends Tube {
      * This value is immutable and defined during the construction of the cylinder.
      */
     private final double height;
+    /**
+     * The bottom base plane of the cylinder.
+     * This plane is defined by the axis origin and direction.
+     * It represents the circular base at the bottom of the cylinder.
+     */
     private final Plane bottomBase;
+    /**
+     * The top base plane of the cylinder.
+     */
     private final Plane topBase;
+    /**
+     * The center point of the top base of the cylinder.
+     */
     private final Point topCenter;
 
     /**

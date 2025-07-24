@@ -16,12 +16,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Blackboard implements Cloneable {
 
     /**
-     * Indicates whether to use soft shadows.
-     * If true, the rays will be generated in a way that simulates soft shadows.
-     * Default is false.
-     */
-    private boolean softShadows = false;
-    /**
      * Indicates whether to use anti-aliasing.
      * If true, the rays will be generated in a way that reduces aliasing artifacts.
      * Default is false.
@@ -33,12 +27,6 @@ public class Blackboard implements Cloneable {
      * Default is false.
      */
     private boolean depthOfField = false;
-    /**
-     * Indicates whether to use blurry and glossy effects.
-     * If true, the rays will be generated in a way that simulates blurry and glossy effects.
-     * Default is false.
-     */
-    private boolean blurryAndGlossy = false;
 
     /**
      * Controls whether to use jittered sampling (random) or regular grid sampling.
@@ -61,15 +49,17 @@ public class Blackboard implements Cloneable {
      */
     private int gridSize = 10;
     /**
-     * Default diameter/width/height for point generation.
-     * This is used to define the size of the area in which points are generated.
-     * Default is 1, which corresponds to a unit circle or square of size 1x1.
+     * Cached direction vector for orthogonal calculations.
      */
-    private static final double DEFAULT_SIZE = 1;
-
     private Vector cachedDirection = null;
-    private Vector cachedU = null;  // right vector
-    private Vector cachedW = null;  // up vector
+    /**
+     * Cached orthogonal vectors for the direction vector.
+     */
+    private Vector cachedU = null;
+    /**
+     * Cached up vector orthogonal to the direction vector.
+     */
+    private Vector cachedW = null;
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -109,31 +99,6 @@ public class Blackboard implements Cloneable {
         }
 
         /**
-         * Sets the grid size for the underlying blackboard configuration.
-         * The grid size determines the spacing between grid points in the blackboard.
-         *
-         * @param gridSize the size of the grid, represented as a double
-         * @return this Builder instance for method chaining
-         */
-        public Builder setGridSize(int gridSize) {
-            blackboard.gridSize = gridSize;
-            return this;
-        }
-
-        /**
-         * Sets whether soft shadows should be used.
-         * If true, the rays will be generated in a way that simulates soft shadows.
-         * Default is false.
-         *
-         * @param softShadows true to enable soft shadows, false to disable
-         * @return this Builder instance for method chaining
-         */
-        public Builder setSoftShadows(boolean softShadows) {
-            blackboard.softShadows = softShadows;
-            return this;
-        }
-
-        /**
          * Sets whether anti-aliasing should be used.
          * If true, the rays will be generated in a way that reduces aliasing artifacts.
          * Default is false.
@@ -148,6 +113,9 @@ public class Blackboard implements Cloneable {
 
         /**
          * Sets whether to use jittered sampling.
+         *
+         * @param useJittered true to enable jittered sampling, false for regular grid sampling
+         * @return builder instance
          */
         public Builder setUseJitteredSampling(boolean useJittered) {
             blackboard.useJitteredSampling = useJittered;
@@ -156,6 +124,9 @@ public class Blackboard implements Cloneable {
 
         /**
          * Sets the number of anti-aliasing samples.
+         *
+         * @param samples the number of samples to use for anti-aliasing
+         * @return builder instance
          */
         public Builder setAntiAliasingSamples(int samples) {
             blackboard.antiAliasingSamples = samples;
@@ -165,6 +136,9 @@ public class Blackboard implements Cloneable {
 
         /**
          * Sets the number of depth of field samples.
+         *
+         * @param samples the number of samples to use for depth of field
+         * @return builder instance
          */
         public Builder setDepthOfFieldSamples(int samples) {
             blackboard.depthOfFieldSamples = samples;
@@ -185,19 +159,6 @@ public class Blackboard implements Cloneable {
         }
 
         /**
-         * Sets whether to use blurry and glossy effects.
-         * If true, the rays will be generated in a way that simulates blurry and glossy effects.
-         * Default is false.
-         *
-         * @param blurryAndGlossy true to enable blurry and glossy effects, false to disable
-         * @return this Builder instance for method chaining
-         */
-        public Builder setBlurryAndGlossy(boolean blurryAndGlossy) {
-            blackboard.blurryAndGlossy = blurryAndGlossy;
-            return this;
-        }
-
-        /**
          * Builds the Blackboard instance with the specified configurations.
          * This method checks if the sender point is set and throws an exception if it is not.
          *
@@ -207,19 +168,6 @@ public class Blackboard implements Cloneable {
         public Blackboard build() {
             return blackboard.clone();
         }
-    }
-
-    /**
-     * Constructs rays from the generated points based on the specified base ray and center point.
-     * Uses a default radius size
-     * This method uses local variables to avoid thread safety issues.
-     *
-     * @param baseRay  the base ray used for direction calculation
-     * @param distance the center point around which rays are constructed
-     * @return a list of rays constructed from the generated points
-     */
-    public List<Ray> constructRays(Ray baseRay, double distance) {
-        return constructRays(baseRay, distance, DEFAULT_SIZE);
     }
 
     /**
@@ -249,6 +197,11 @@ public class Blackboard implements Cloneable {
         return resultRays;
     }
 
+    /**
+     * Computes orthogonal vectors based on the given direction vector.
+     *
+     * @param direction the direction vector to compute orthogonal vectors for
+     */
     private void computeOrthogonalVectors(Vector direction) {
         if (direction.equals(cachedDirection)) {
             return; // Already cached
@@ -263,6 +216,12 @@ public class Blackboard implements Cloneable {
     /**
      * Creates aperture points for depth of field effect
      * Points are generated in a plane perpendicular to the camera's view direction
+     *
+     * @param cameraPosition the position of the camera
+     * @param vRight         the right vector of the camera's view direction
+     * @param vUp            the up vector of the camera's view direction
+     * @param apertureSize   the size of the aperture
+     * @return a list of points representing the aperture
      */
     public List<Point> createAperturePoints(Point cameraPosition, Vector vRight, Vector vUp, double apertureSize) {
         List<Point> pointsList = new ArrayList<>();
@@ -291,6 +250,11 @@ public class Blackboard implements Cloneable {
 
     /**
      * Creates jittered points within grid cells, based on the base ray and center point.
+     *
+     * @param baseRay the base ray used for direction calculation
+     * @param center  center point of pixel
+     * @param size    the radius of the target zone
+     * @return a list of points generated in a jittered pattern
      */
     private List<Point> createJitteredPoints(Ray baseRay, Point center, double size) {
         List<Point> pointsList = new LinkedList<>();
@@ -323,14 +287,9 @@ public class Blackboard implements Cloneable {
     }
 
     /**
-     * Returns whether soft shadows are enabled.
-     */
-    public Boolean useSoftShadows() {
-        return softShadows;
-    }
-
-    /**
      * Returns whether anti-aliasing is enabled.
+     *
+     * @return true if anti-aliasing is used, false otherwise
      */
     public Boolean useAntiAliasing() {
         return antiAliasing;
@@ -338,35 +297,39 @@ public class Blackboard implements Cloneable {
 
     /**
      * Returns whether depth of field is enabled.
+     *
+     * @return true if depth of field is used, false otherwise
      */
     public Boolean useDepthOfField() {
         return depthOfField;
     }
 
     /**
-     * Returns whether blurry and glossy effects are enabled.
-     */
-    public Boolean useBlurryAndGlossy() {
-        return blurryAndGlossy;
-    }
-
-    /**
      * Returns the number of anti-aliasing samples.
+     *
+     * @return the number of samples used for anti-aliasing
      */
+    @SuppressWarnings("unused")
     public int getAntiAliasingSamples() {
         return antiAliasingSamples;
     }
 
     /**
      * Returns the number of depth of field samples.
+     *
+     * @return the number of samples used for depth of field
      */
+    @SuppressWarnings("unused")
     public int getDepthOfFieldSamples() {
         return depthOfFieldSamples;
     }
 
     /**
      * Returns whether jittered sampling is enabled.
+     *
+     * @return true if jittered sampling is used, false for regular grid sampling
      */
+    @SuppressWarnings("unused")
     public boolean getUseJitteredSampling() {
         return useJitteredSampling;
     }

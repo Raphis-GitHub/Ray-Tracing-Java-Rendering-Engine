@@ -15,7 +15,7 @@ public class Scene {
     /**
      * The name of the scene.
      */
-    public String name;
+    public final String name;
     /**
      * The background color of the scene.
      */
@@ -36,6 +36,7 @@ public class Scene {
      * @param lightSources the list of light sources to set
      * @return this Scene instance for method chaining
      */
+    @SuppressWarnings("unused")
     public Scene setLightSources(List<LightSource> lightSources) {
         this.lights = lightSources;
         return this;

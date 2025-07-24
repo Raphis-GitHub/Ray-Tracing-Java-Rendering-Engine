@@ -159,7 +159,7 @@ class PlaneTest {
     }
 
     /**
-     * Test method for {@link Plane#calculateIntersectionsHelper(Ray, double)}.
+     * Test method for {@link Plane#calculateIntersections(Ray, double)}.
      */
     @Test
     void testIntersectionWithDistance() {

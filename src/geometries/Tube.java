@@ -16,7 +16,13 @@ public class Tube extends RadialGeometry {
      * The central axis ray of the tube.
      */
     protected final Ray axisRay;
+    /**
+     * The direction vector of the tube's axis.
+     */
     protected final Vector axisDirection;
+    /**
+     * The origin point of the tube's axis.
+     */
     protected final Point axisOrigin;
 
     /**
