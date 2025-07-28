@@ -23,15 +23,15 @@ public class MoonlitForestTest {
                 .setAmbientLight(new AmbientLight(new Color(15, 18, 30))); // Slightly more ambient light
         Blackboard settings = Blackboard.getBuilder()
                 .setAntiAliasing(true)
-                .setAntiAliasingSamples(11 * 11)          // 3x3 for speed
-                .setDepthOfField(true)
-                .setDepthOfFieldSamples(64)         // 16 aperture samples
+                .setAntiAliasingSamples(17 * 17)          // 3x3 for speed
+                .setDepthOfField(false)
+                .setDepthOfFieldSamples(49)         // 16 aperture samples
                 .build();
 
         // Camera positioned to capture the dense forest
         Camera camera = Camera.getBuilder()
                 .setBlackboard(settings)
-                .setFocusPointDistance(100)         // Focus on objects 800 units away
+                .setFocusPointDistance(100)         // Focus on objects 100 units away
                 .setAperture(4)
                 .setLocation(new Point(0, 15, 120))
                 .setDirection(new Point(0, -5, -80), new Vector(0, 1, 0))
@@ -432,6 +432,6 @@ public class MoonlitForestTest {
 
         // Render the enhanced magical forest scene
         camera.renderImage()
-                .writeToImage("enhancedMoonlitForest");
+                .writeToImage("MoonlitForest-AA(300)");
     }
 }

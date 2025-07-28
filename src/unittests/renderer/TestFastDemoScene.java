@@ -355,9 +355,9 @@ public class TestFastDemoScene {
         // DEPTH OF FIELD SETTINGS
         Blackboard dofSettings = Blackboard.getBuilder()
                 .setAntiAliasing(true)
-                .setAntiAliasingSamples(9)          // 3x3 AA for smooth edges
-                .setDepthOfField(true)
-                .setDepthOfFieldSamples(500)         // 25 aperture samples for smooth blur
+                .setAntiAliasingSamples(64)          // 3x3 AA for smooth edges
+                .setDepthOfField(false)
+                .setDepthOfFieldSamples(32)         // 25 aperture samples for smooth blur
                 .setUseJitteredSampling(true)       // Smoother sampling
                 .build();
 
@@ -374,7 +374,7 @@ public class TestFastDemoScene {
                 .setAperture(12.0)                                    // Strong blur effect
                 .build()
                 .renderImage()
-                .writeToImage("tubeDepthOfFieldDemo");
+                .writeToImage("tubeDepthOfFieldDemo--optimaized- only AA64");
     }
 
     // Comparison without DoF to see the difference
