@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting">
-      <change beforePath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/DepthOfFieldEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/DepthOfFieldEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,101 +75,101 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.ALLTESTS.executor": "Run",
-    "JUnit.All in ISE5785_4760_2159.executor": "Run",
-    "JUnit.CameraIntersIntegsTest.executor": "Run",
-    "JUnit.CameraTest.executor": "Run",
-    "JUnit.CameraTest.testBuilder.executor": "Run",
-    "JUnit.CameraTest.testConstructRay.executor": "Debug",
-    "JUnit.CylinderTest.executor": "Run",
-    "JUnit.CylinderTest.getNormal.executor": "Run",
-    "JUnit.CylinderTest.testCalculateIntersectionsHelper.executor": "Debug",
-    "JUnit.CylinderTest.testFindIntersections.executor": "Run",
-    "JUnit.ImageWriterTest.executor": "Run",
-    "JUnit.ImageWriterTest.testWriteImageWithGrid.executor": "Run",
-    "JUnit.LightsTests.epicLightShowTest.executor": "Run",
-    "JUnit.LightsTests.trianglesSpotNarrowBeam.executor": "Run",
-    "JUnit.MoonlitForestTest.executor": "Run",
-    "JUnit.MoonlitForestTest.renderEnhancedMoonlitForest.executor": "Run",
-    "JUnit.MoonlitForestTest.renderMoonlitForest.executor": "Run",
-    "JUnit.PlaneTest.executor": "Run",
-    "JUnit.PlaneTest.testFindIntersections.executor": "Debug",
-    "JUnit.PlaneTest.testIntersectionWithDistance.executor": "Run",
-    "JUnit.PointTest.executor": "Run",
-    "JUnit.PointTest.testSubtract.executor": "Run",
-    "JUnit.PointTests.executor": "Run",
-    "JUnit.PointTests.testAdd.executor": "Run",
-    "JUnit.PolygonTests.executor": "Run",
-    "JUnit.PolygonTests.testFindIntersections.executor": "Run",
-    "JUnit.RayTest.executor": "Run",
-    "JUnit.RayTest.testFindClosestPoint.executor": "Run",
-    "JUnit.RayTest.testGetPoint.executor": "Run",
-    "JUnit.ReflectionRefractionTests.combinedEffectsDemo.executor": "Run",
-    "JUnit.ReflectionRefractionTests.executor": "Run",
-    "JUnit.ReflectionRefractionTests.testStage7Effects.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderMaterialTest.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.SphereTest.executor": "Run",
-    "JUnit.SphereTest.getNormal.executor": "Debug",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
-    "JUnit.SphereTest.testFindIntersectionsWithMaxDistance.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
-    "JUnit.TestFastDemoScene.tubeDepthOfFieldDemo.executor": "Run",
-    "JUnit.TriangleTest.testGetNormal.executor": "Run",
-    "JUnit.TriangleTest.testIntersectionWithDistance.executor": "Run",
-    "JUnit.TubeTest.executor": "Run",
-    "JUnit.TubeTest.testFindIntersections.executor": "Run",
-    "JUnit.VectorTest.add.executor": "Run",
-    "JUnit.VectorTest.dotProduct.executor": "Run",
-    "JUnit.VectorTest.executor": "Run",
-    "JUnit.VectorTest.scale.executor": "Run",
-    "JUnit.VectorTest.subtract.executor": "Run",
-    "JUnit.WoodlandSceneTest.executor": "Run",
-    "JUnit.all tests.executor": "Run",
-    "JUnit.geometries in ISE5785_4760_2159.executor": "Run",
-    "JUnit.testFastDemoScene.executor": "Run",
-    "JUnit.testFastDemoScene.fastDemoScene_OnlyAA.executor": "Run",
-    "JUnit.testFastDemoScene.fastDemoScene_OnlyDoF.executor": "Run",
-    "JUnit.testFastDemoScene.fastdemoscene.executor": "Run",
-    "JUnit.testFastDemoScene.tubeDepthOfFieldDemo.executor": "Run",
-    "JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF.executor": "Run",
-    "Notification.DisplayName-DoNotAsk-com.intellij.ml.llm.plugin.alert": "JetBrains AI Assistant",
-    "Notification.DoNotAsk-com.intellij.ml.llm.plugin.alert": "true",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "master",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries",
-    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/raphs/IdeaProjects/untitled/src/test/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.ALLTESTS.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in ISE5785_4760_2159.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraIntersIntegsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testConstructRay.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CylinderTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.testCalculateIntersectionsHelper.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CylinderTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteImageWithGrid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.epicLightShowTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesSpotNarrowBeam.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MoonlitForestTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MoonlitForestTest.renderEnhancedMoonlitForest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MoonlitForestTest.renderMoonlitForest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PlaneTest.testIntersectionWithDistance.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTest.testSubtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testAdd.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PolygonTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PolygonTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testGetPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.combinedEffectsDemo.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.testStage7Effects.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderMaterialTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.getNormal.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.testFindIntersectionsWithMaxDistance.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections_variousCases.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestFastDemoScene.tubeDepthOfFieldDemo.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.testGetNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.testIntersectionWithDistance.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.add.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.dotProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.scale.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.subtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WoodlandSceneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.all tests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.geometries in ISE5785_4760_2159.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.fastDemoScene_OnlyAA.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.fastDemoScene_OnlyDoF.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.fastdemoscene.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.tubeDepthOfFieldDemo.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF.executor&quot;: &quot;Run&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-com.intellij.ml.llm.plugin.alert&quot;: &quot;JetBrains AI Assistant&quot;,
+    &quot;Notification.DoNotAsk-com.intellij.ml.llm.plugin.alert&quot;: &quot;true&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/raphs/IdeaProjects/untitled/src/test/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\renderer" />
@@ -206,7 +207,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
+  <component name="RunManager" selected="JUnit.TestFastDemoScene.tubeDepthOfFieldDemo">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -310,8 +311,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.TestFastDemoScene.tubeDepthOfFieldDemo" />
+        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo_NoDoF" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
@@ -372,15 +373,8 @@
       <workItem from="1753366772488" duration="1941000" />
       <workItem from="1753373047921" duration="136000" />
       <workItem from="1753396948095" duration="32730000" />
-      <workItem from="1753703285264" duration="5496000" />
-    </task>
-    <task id="LOCAL-00045" summary="Add Color and ImageWriter classes; implement color handling and image writing functionality">
-      <option name="closed" value="true" />
-      <created>1751214879033</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1751214879033</updated>
+      <workItem from="1753703285264" duration="6990000" />
+      <workItem from="1753711204490" duration="2497000" />
     </task>
     <task id="LOCAL-00046" summary="Refactor Ray class; implement findClosestPoint method and improve unit tests">
       <option name="closed" value="true" />
@@ -766,7 +760,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753709303282</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera">
+      <option name="closed" value="true" />
+      <created>1753709534230</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1753709534230</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +786,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
     <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
     <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
     <MESSAGE value="Update workspace configuration; modify test selections and improve comments for clarity" />
@@ -809,7 +810,8 @@
     <MESSAGE value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
     <MESSAGE value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
     <MESSAGE value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
+    <MESSAGE value="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

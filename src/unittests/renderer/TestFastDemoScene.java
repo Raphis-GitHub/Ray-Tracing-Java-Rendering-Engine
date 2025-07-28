@@ -355,8 +355,8 @@ public class TestFastDemoScene {
         // DEPTH OF FIELD SETTINGS
         Blackboard dofSettings = Blackboard.getBuilder()
                 .setAntiAliasing(true)
-                .setAntiAliasingSamples(64)          // 3x3 AA for smooth edges
-                .setDepthOfField(false)
+                .setAntiAliasingSamples(32)          // 3x3 AA for smooth edges
+                .setDepthOfField(true)
                 .setDepthOfFieldSamples(32)         // 25 aperture samples for smooth blur
                 .setUseJitteredSampling(true)       // Smoother sampling
                 .build();

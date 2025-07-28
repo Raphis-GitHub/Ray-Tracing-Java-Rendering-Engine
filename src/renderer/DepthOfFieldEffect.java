@@ -20,13 +20,8 @@ public class DepthOfFieldEffect implements RenderEffect {
         List<Ray> allRays = new ArrayList<>();
         Point focalPoint = primaryRay.getPoint(camera.getFocusPointDistance());
 
-        int samples = camera.getBlackboard().getDepthOfFieldSamples();
-        int gridSize = (int) Math.ceil(Math.sqrt(samples));
-        boolean useJittered = camera.getBlackboard().getUseJitteredSampling();
-
-        List<Point> aperturePoints = PointGenerator.generateGridPoints(
-                camera.getP0(), camera.getVRight(), camera.getVUp(),
-                camera.getAperture(), gridSize, useJittered);
+        List<Point> aperturePoints = camera.getBlackboard().createAperturePoints(
+                camera.getP0(), camera.getVRight(), camera.getVUp(), camera.getAperture());
 
         for (Ray ray : rays) {
             for (Point aperturePoint : aperturePoints) {
