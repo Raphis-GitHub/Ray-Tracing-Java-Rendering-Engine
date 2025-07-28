@@ -62,6 +62,11 @@ public class Camera implements Cloneable {
     private Blackboard blackboard;
 
     /**
+     * List of render effects to apply during ray generation.
+     */
+    private List<RenderEffect> renderEffects = new ArrayList<>();
+
+    /**
      * Focus point distance for depth of field effect.
      */
     private double focusPointDistance = 100;
@@ -176,56 +181,14 @@ public class Camera implements Cloneable {
     private List<Ray> generateRays(Ray primaryRay) {
         List<Ray> rays = List.of(primaryRay);
 
-        // Apply each ray generation effect
-        rays = applyAntiAliasing(rays, primaryRay);
-        rays = applyDepthOfField(rays, primaryRay);
-        // Future effects like soft shadows can be added here without modifying existing code
-
-        return rays;
-    }
-
-    /**
-     * Applies anti-aliasing to the ray list if enabled.
-     *
-     * @param rays       the current list of rays
-     * @param primaryRay the primary ray through the pixel (for pixel size calculation)
-     * @return processed rays with anti-aliasing applied
-     */
-    private List<Ray> applyAntiAliasing(List<Ray> rays, Ray primaryRay) {
-        if (!blackboard.useAntiAliasing() || rays.size() != 1) {
-            return rays; // Only apply AA to single primary ray
-        }
-        double pixelSize = Math.max(width / nX, height / nY);
-        return blackboard.constructRays(primaryRay, distance, pixelSize);
-    }
-
-    /**
-     * Applies depth of field to the ray list if enabled.
-     *
-     * @param rays       the current list of rays
-     * @param primaryRay the primary ray for focal point calculation
-     * @return processed rays with depth of field applied
-     */
-    private List<Ray> applyDepthOfField(List<Ray> rays, Ray primaryRay) {
-        if (!blackboard.useDepthOfField()) {
-            return rays;
-        }
-
-        List<Ray> allRays = new ArrayList<>();
-        Point focalPoint = primaryRay.getPoint(focusPointDistance);
-        List<Point> aperturePoints = blackboard.createAperturePoints(p0, vRight, vUp, aperture);
-
-        for (Ray ray : rays) {
-            for (Point aperturePoint : aperturePoints) {
-                try {
-                    Vector direction = focalPoint.subtract(aperturePoint).normalize();
-                    allRays.add(new Ray(direction, aperturePoint));
-                } catch (IllegalArgumentException e) {
-                    allRays.add(ray);
-                }
+        // Apply each render effect
+        for (RenderEffect effect : renderEffects) {
+            if (effect.isEnabled(this)) {
+                rays = effect.applyEffect(rays, primaryRay, this);
             }
         }
-        return allRays;
+
+        return rays;
     }
 
     /**
@@ -240,22 +203,6 @@ public class Camera implements Cloneable {
             totalColor = totalColor.add(rayTracer.traceRay(ray));
         }
         return totalColor.reduce(rays.size());
-    }
-
-    /**
-     * Creates a shallow copy of this Camera object.
-     * Uses the Object.clone() method to create a copy.
-     *
-     * @return a cloned Camera object
-     * @throws RuntimeException if cloning fails (should not happen)
-     */
-    @Override
-    public Camera clone() {
-        try {
-            return (Camera) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Must not happen, Camera is Cloneable", e);
-        }
     }
 
     /**
@@ -340,6 +287,30 @@ public class Camera implements Cloneable {
          */
         public Builder setBlackboard(Blackboard blackboard) {
             camera.blackboard = blackboard;
+            return this;
+        }
+
+        /**
+         * Sets the render effects to apply during ray generation.
+         *
+         * @param effects the list of render effects
+         * @return Builder instance
+         */
+        @SuppressWarnings("unused")
+        public Builder setRenderEffects(List<RenderEffect> effects) {
+            camera.renderEffects = new ArrayList<>(effects);
+            return this;
+        }
+
+        /**
+         * Adds a render effect to the list of effects.
+         *
+         * @param effect the render effect to add
+         * @return Builder instance
+         */
+        @SuppressWarnings("unused")
+        public Builder addRenderEffect(RenderEffect effect) {
+            camera.renderEffects.add(effect);
             return this;
         }
 
@@ -441,7 +412,76 @@ public class Camera implements Cloneable {
                 camera.blackboard = Blackboard.getBuilder().build();
             }
 
+            // Initialize render effects
+            if (camera.renderEffects.isEmpty()) {
+                camera.renderEffects.add(new AntiAliasingEffect());
+                camera.renderEffects.add(new DepthOfFieldEffect());
+            }
+
             return camera.clone();
+        }
+    }
+
+    // Getter methods for render effects access
+    public Blackboard getBlackboard() {
+        return blackboard;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public int getNX() {
+        return nX;
+    }
+
+    public int getNY() {
+        return nY;
+    }
+
+    public Point getP0() {
+        return p0;
+    }
+
+    public Vector getVRight() {
+        return vRight;
+    }
+
+    public Vector getVUp() {
+        return vUp;
+    }
+
+    public double getFocusPointDistance() {
+        return focusPointDistance;
+    }
+
+    public double getAperture() {
+        return aperture;
+    }
+
+    /**
+     * Creates a shallow copy of this Camera object.
+     * Uses the Object.clone() method to create a copy.
+     *
+     * @return a cloned Camera object
+     * @throws RuntimeException if cloning fails (should not happen)
+     */
+    @Override
+    public Camera clone() {
+        try {
+            Camera cloned = (Camera) super.clone();
+            cloned.renderEffects = new ArrayList<>(this.renderEffects);
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Must not happen, Camera is Cloneable", e);
         }
     }
 }

@@ -11,20 +11,20 @@ import java.util.List;
  * Handles both regular and jittered sampling patterns.
  */
 public class PointGenerator {
-    
+
     /**
      * Generates grid points in a 2D plane.
      *
-     * @param center the center point of the grid
-     * @param uVector the first orthogonal vector (horizontal direction)
-     * @param vVector the second orthogonal vector (vertical direction)
-     * @param size the size/radius of the grid area
-     * @param gridSize the number of grid cells per dimension
+     * @param center      the center point of the grid
+     * @param uVector     the first orthogonal vector (horizontal direction)
+     * @param vVector     the second orthogonal vector (vertical direction)
+     * @param size        the size/radius of the grid area
+     * @param gridSize    the number of grid cells per dimension
      * @param useJittered whether to use jittered (random) or regular sampling
      * @return list of points including the center and grid points
      */
-    public static List<Point> generateGridPoints(Point center, Vector uVector, Vector vVector, 
-                                               double size, int gridSize, boolean useJittered) {
+    public static List<Point> generateGridPoints(Point center, Vector uVector, Vector vVector,
+                                                double size, int gridSize, boolean useJittered) {
         List<Point> pointsList = new ArrayList<>();
         pointsList.add(center); // Include center point
 
@@ -48,4 +48,5 @@ public class PointGenerator {
         }
         return pointsList;
     }
+
 }

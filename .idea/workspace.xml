@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add PointGenerator class for generating grid points with regular and jittered sampling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/PointGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/PointGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,23 +373,7 @@
       <workItem from="1753366772488" duration="1941000" />
       <workItem from="1753373047921" duration="136000" />
       <workItem from="1753396948095" duration="32730000" />
-      <workItem from="1753703285264" duration="658000" />
-    </task>
-    <task id="LOCAL-00040" summary="Remove TODO comment from getNormal tests in TriangleTest class">
-      <option name="closed" value="true" />
-      <created>1750781347196</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1750781347196</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Add detailed documentation for camera intersection tests and methods">
-      <option name="closed" value="true" />
-      <created>1750783471138</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1750783471138</updated>
+      <workItem from="1753703285264" duration="2723000" />
     </task>
     <task id="LOCAL-00042" summary=" Clean change list manager">
       <option name="closed" value="true" />
@@ -767,7 +751,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753692878154</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic">
+      <option name="closed" value="true" />
+      <created>1753704801823</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1753704801823</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Add PointGenerator class for generating grid points with regular and jittered sampling">
+      <option name="closed" value="true" />
+      <created>1753704877340</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1753704877340</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,8 +785,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
-    <MESSAGE value="Enhance SpotLight class documentation; clarify narrow beam effect and improve intensity calculation" />
     <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
     <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
     <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
@@ -810,7 +808,9 @@
     <MESSAGE value="Enhance test cases for Blackboard and Camera classes; update anti-aliasing and depth of field sample settings for improved rendering quality" />
     <MESSAGE value="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality" />
     <MESSAGE value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
+    <MESSAGE value="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic" />
+    <MESSAGE value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
