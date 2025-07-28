@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add PointGenerator class for generating grid points with regular and jittered sampling">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/PointGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/PointGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,15 +373,7 @@
       <workItem from="1753366772488" duration="1941000" />
       <workItem from="1753373047921" duration="136000" />
       <workItem from="1753396948095" duration="32730000" />
-      <workItem from="1753703285264" duration="2723000" />
-    </task>
-    <task id="LOCAL-00042" summary=" Clean change list manager">
-      <option name="closed" value="true" />
-      <created>1750859583766</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1750859583766</updated>
+      <workItem from="1753703285264" duration="5192000" />
     </task>
     <task id="LOCAL-00043" summary="Refactor Camera class; initialize fields and improve intersection test assertions">
       <option name="closed" value="true" />
@@ -767,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753704877340</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation">
+      <option name="closed" value="true" />
+      <created>1753706873051</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1753706873051</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +785,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
     <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
     <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
     <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
@@ -810,7 +809,8 @@
     <MESSAGE value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
     <MESSAGE value="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic" />
     <MESSAGE value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
+    <MESSAGE value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

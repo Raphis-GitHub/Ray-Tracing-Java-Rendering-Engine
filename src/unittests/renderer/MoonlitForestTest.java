@@ -22,7 +22,7 @@ public class MoonlitForestTest {
                 .setBackground(new Color(10, 15, 35)) // Darker sky for better star visibility
                 .setAmbientLight(new AmbientLight(new Color(15, 18, 30))); // Slightly more ambient light
         Blackboard settings = Blackboard.getBuilder()
-                .setAntiAliasing(true)
+                .setAntiAliasing(false)
                 .setAntiAliasingSamples(17 * 17)          // 3x3 for speed
                 .setDepthOfField(false)
                 .setDepthOfFieldSamples(49)         // 16 aperture samples
