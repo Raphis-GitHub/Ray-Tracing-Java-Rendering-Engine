@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting">
       <change beforePath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/AntiAliasingEffect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,23 +372,7 @@
       <workItem from="1753366772488" duration="1941000" />
       <workItem from="1753373047921" duration="136000" />
       <workItem from="1753396948095" duration="32730000" />
-      <workItem from="1753703285264" duration="5192000" />
-    </task>
-    <task id="LOCAL-00043" summary="Refactor Camera class; initialize fields and improve intersection test assertions">
-      <option name="closed" value="true" />
-      <created>1751195576828</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1751195576828</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Refactor camera intersection tests; simplify assertions and enhance documentation">
-      <option name="closed" value="true" />
-      <created>1751199182504</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1751199182504</updated>
+      <workItem from="1753703285264" duration="5496000" />
     </task>
     <task id="LOCAL-00045" summary="Add Color and ImageWriter classes; implement color handling and image writing functionality">
       <option name="closed" value="true" />
@@ -767,7 +750,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753706873051</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Refactor AntiAliasingEffect to apply effect only to single primary ray; update test to disable anti-aliasing">
+      <option name="closed" value="true" />
+      <created>1753709188592</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1753709188592</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting">
+      <option name="closed" value="true" />
+      <created>1753709303282</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1753709303282</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +784,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
     <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
     <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
     <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
@@ -810,7 +808,8 @@
     <MESSAGE value="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic" />
     <MESSAGE value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
     <MESSAGE value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
+    <MESSAGE value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

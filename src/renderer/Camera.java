@@ -110,7 +110,7 @@ public class Camera implements Cloneable {
         if (!isZero(yI)) pIJ = pIJ.add(vUp.scale(yI));
 
         //add a checker for the point pIJ in case fo zero vector
-        return new Ray(pIJ.subtract(p0), p0);
+        return new Ray(pIJ.subtract(p0).normalize(), p0);
     }
 
     /**
