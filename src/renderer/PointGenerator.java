@@ -24,7 +24,7 @@ public class PointGenerator {
      * @return list of points including the center and grid points
      */
     public static List<Point> generateGridPoints(Point center, Vector uVector, Vector vVector,
-                                                double size, int gridSize, boolean useJittered) {
+                                                 double size, int gridSize, boolean useJittered) {
         List<Point> pointsList = new ArrayList<>();
         pointsList.add(center); // Include center point
 

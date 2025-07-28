@@ -1,8 +1,6 @@
 package renderer;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,24 +10,24 @@ import java.util.List;
  * generating rays from multiple points on the aperture plane.
  */
 public class DepthOfFieldEffect implements RenderEffect {
-    
+
     @Override
     public List<Ray> applyEffect(List<Ray> rays, Ray primaryRay, Camera camera) {
         if (!isEnabled(camera)) {
             return rays;
         }
-        
+
         List<Ray> allRays = new ArrayList<>();
         Point focalPoint = primaryRay.getPoint(camera.getFocusPointDistance());
-        
+
         int samples = camera.getBlackboard().getDepthOfFieldSamples();
         int gridSize = (int) Math.ceil(Math.sqrt(samples));
         boolean useJittered = camera.getBlackboard().getUseJitteredSampling();
-        
+
         List<Point> aperturePoints = PointGenerator.generateGridPoints(
-            camera.getP0(), camera.getVRight(), camera.getVUp(), 
-            camera.getAperture(), gridSize, useJittered);
-        
+                camera.getP0(), camera.getVRight(), camera.getVUp(),
+                camera.getAperture(), gridSize, useJittered);
+
         for (Ray ray : rays) {
             for (Point aperturePoint : aperturePoints) {
                 try {
@@ -42,7 +40,7 @@ public class DepthOfFieldEffect implements RenderEffect {
         }
         return allRays;
     }
-    
+
     @Override
     public boolean isEnabled(Camera camera) {
         return camera.getBlackboard().useDepthOfField();

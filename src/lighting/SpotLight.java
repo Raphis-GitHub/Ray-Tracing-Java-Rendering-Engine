@@ -93,5 +93,5 @@ public class SpotLight extends PointLight {
         return super.getIntensity(p).scale(cosAngle);
 
     }
-    
+
 }
