@@ -154,62 +154,92 @@ public class Camera implements Cloneable {
     }
 
     /**
-     * Casts a ray through the specified pixel and writes the resulting color to the image.
-     * Supports anti-aliasing and depth of field if configured in blackboard.
+     * Casts rays through the specified pixel and writes the resulting color to the image.
      *
      * @param x the pixel column index
-     * @param y the pxel row index
+     * @param y the pixel row index
      */
     private void castRay(int x, int y) {
         Ray primaryRay = constructRay(nX, nY, x, y);
-        //split into 3 functions!! - refacter score 7/10
-        // Generate anti-aliasing rays if enabled
-        List<Ray> aaRays = List.of(primaryRay);
-        if (blackboard != null && blackboard.useAntiAliasing()) {
-            double pixelSize = Math.max(width / nX, height / nY);
-            aaRays = blackboard.constructRays(primaryRay, distance, pixelSize);
+        List<Ray> rays = generateRays(primaryRay);
+        Color finalColor = traceRays(rays);
+        imageWriter.writePixel(x, y, finalColor);
+    }
+
+    /**
+     * Generates rays for a pixel based on enabled effects.
+     * Processes rays through all enabled ray generation steps.
+     *
+     * @param primaryRay the main ray through the pixel center
+     * @return list of rays to trace for this pixel
+     */
+    private List<Ray> generateRays(Ray primaryRay) {
+        List<Ray> rays = List.of(primaryRay);
+
+        // Apply each ray generation effect
+        rays = applyAntiAliasing(rays, primaryRay);
+        rays = applyDepthOfField(rays, primaryRay);
+        // Future effects like soft shadows can be added here without modifying existing code
+
+        return rays;
+    }
+
+    /**
+     * Applies anti-aliasing to the ray list if enabled.
+     *
+     * @param rays       the current list of rays
+     * @param primaryRay the primary ray through the pixel (for pixel size calculation)
+     * @return processed rays with anti-aliasing applied
+     */
+    private List<Ray> applyAntiAliasing(List<Ray> rays, Ray primaryRay) {
+        if (!blackboard.useAntiAliasing() || rays.size() != 1) {
+            return rays; // Only apply AA to single primary ray
+        }
+        double pixelSize = Math.max(width / nX, height / nY);
+        return blackboard.constructRays(primaryRay, distance, pixelSize);
+    }
+
+    /**
+     * Applies depth of field to the ray list if enabled.
+     *
+     * @param rays       the current list of rays
+     * @param primaryRay the primary ray for focal point calculation
+     * @return processed rays with depth of field applied
+     */
+    private List<Ray> applyDepthOfField(List<Ray> rays, Ray primaryRay) {
+        if (!blackboard.useDepthOfField()) {
+            return rays;
         }
 
-        Color finalColor = Color.BLACK;
+        List<Ray> allRays = new ArrayList<>();
+        Point focalPoint = primaryRay.getPoint(focusPointDistance);
+        List<Point> aperturePoints = blackboard.createAperturePoints(p0, vRight, vUp, aperture);
 
-        // Process each anti-aliasing ray
-        for (Ray aaRay : aaRays) {
-            List<Ray> dofRays = List.of(aaRay);
-
-            // Generate depth of field rays if enabled
-            if (blackboard != null && blackboard.useDepthOfField()) {
-                // Calculate focal point along the primary ray (not AA ray)
-                Point focalPoint = primaryRay.getPoint(focusPointDistance);
-
-                // Generate aperture points around the camera position
-                List<Point> aperturePoints = blackboard.createAperturePoints(p0, vRight, vUp, aperture);
-                dofRays = new ArrayList<>();
-
-                for (Point aperturePoint : aperturePoints) {
-                    try {
-                        Vector direction = focalPoint.subtract(aperturePoint).normalize();
-                        dofRays.add(new Ray(direction, aperturePoint));
-                    } catch (IllegalArgumentException e) {
-                        // Skip if direction is zero (aperture point = focal point)
-                        dofRays.add(aaRay); // Use original ray as fallback
-                    }
+        for (Ray ray : rays) {
+            for (Point aperturePoint : aperturePoints) {
+                try {
+                    Vector direction = focalPoint.subtract(aperturePoint).normalize();
+                    allRays.add(new Ray(direction, aperturePoint));
+                } catch (IllegalArgumentException e) {
+                    allRays.add(ray);
                 }
             }
-
-            // Trace all depth of field rays and average their colors
-            Color aaColor = Color.BLACK;
-            for (Ray dofRay : dofRays) {
-                aaColor = aaColor.add(rayTracer.traceRay(dofRay));
-            }
-            aaColor = aaColor.reduce(dofRays.size());
-
-            finalColor = finalColor.add(aaColor);
         }
+        return allRays;
+    }
 
-        // Average across all anti-aliasing samples
-        finalColor = finalColor.reduce(aaRays.size());
-
-        imageWriter.writePixel(x, y, finalColor);
+    /**
+     * Traces all rays and computes the average color.
+     *
+     * @param rays the rays to trace
+     * @return the average color from all rays
+     */
+    private Color traceRays(List<Ray> rays) {
+        Color totalColor = Color.BLACK;
+        for (Ray ray : rays) {
+            totalColor = totalColor.add(rayTracer.traceRay(ray));
+        }
+        return totalColor.reduce(rays.size());
     }
 
     /**

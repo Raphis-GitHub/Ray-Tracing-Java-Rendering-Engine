@@ -222,28 +222,7 @@ public class Blackboard implements Cloneable {
      * @return a list of points including the center and grid points
      */
     private List<Point> generateGridPoints(Point center, Vector uVector, Vector vVector, double size) {
-        List<Point> pointsList = new ArrayList<>();
-        pointsList.add(center); // Include center point
-
-        if (size == 0) return pointsList;
-
-        double cellSize = size / gridSize;
-
-        for (int row = 0; row < gridSize; row++) {
-            for (int col = 0; col < gridSize; col++) {
-                double x, y;
-                if (useJitteredSampling) {
-                    x = (col + java.util.concurrent.ThreadLocalRandom.current().nextDouble()) * cellSize - size;
-                    y = (row + java.util.concurrent.ThreadLocalRandom.current().nextDouble()) * cellSize - size;
-                } else {
-                    x = (col + 0.5) * cellSize - size;
-                    y = (row + 0.5) * cellSize - size;
-                }
-                Point point = center.add(uVector.scale(x)).add(vVector.scale(y));
-                pointsList.add(point);
-            }
-        }
-        return pointsList;
+        return PointGenerator.generateGridPoints(center, uVector, vVector, size, gridSize, useJitteredSampling);
     }
 
     /**

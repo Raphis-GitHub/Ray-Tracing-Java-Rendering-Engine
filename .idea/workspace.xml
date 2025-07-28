@@ -7,11 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +149,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "extract.method.default.visibility": "private",
+    "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "master",
     "ignore.preview.features.used": "true",
     "ignore.virus.scanning.warn.message": "true",
@@ -166,7 +166,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -372,15 +372,8 @@
       <workItem from="1753200956957" duration="19826000" />
       <workItem from="1753366772488" duration="1941000" />
       <workItem from="1753373047921" duration="136000" />
-      <workItem from="1753396948095" duration="28980000" />
-    </task>
-    <task id="LOCAL-00039" summary="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class">
-      <option name="closed" value="true" />
-      <created>1750781323539</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1750781323539</updated>
+      <workItem from="1753396948095" duration="32730000" />
+      <workItem from="1753703285264" duration="658000" />
     </task>
     <task id="LOCAL-00040" summary="Remove TODO comment from getNormal tests in TriangleTest class">
       <option name="closed" value="true" />
@@ -766,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753368719509</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic">
+      <option name="closed" value="true" />
+      <created>1753692878153</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1753692878154</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +785,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
     <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
     <MESSAGE value="Enhance SpotLight class documentation; clarify narrow beam effect and improve intensity calculation" />
     <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
@@ -809,7 +809,8 @@
     <MESSAGE value="Refactor Blackboard class to optimize vector calculations and improve jittered sampling; update Camera class for enhanced ray casting" />
     <MESSAGE value="Enhance test cases for Blackboard and Camera classes; update anti-aliasing and depth of field sample settings for improved rendering quality" />
     <MESSAGE value="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality" />
+    <MESSAGE value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
