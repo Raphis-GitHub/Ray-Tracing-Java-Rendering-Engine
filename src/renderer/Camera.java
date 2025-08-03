@@ -5,6 +5,7 @@ import primitives.Vector;
 import scene.Scene;
 
 import java.util.*;
+import java.util.stream.*;
 
 import static primitives.Util.*;
 
@@ -77,6 +78,26 @@ public class Camera implements Cloneable {
     private double aperture = 0.5;
 
     /**
+     * Number of threads for multithreading.
+     */
+    private int threadsCount = 0;
+
+    /**
+     * Number of spare threads to keep available for the system.
+     */
+    private static final int SPARE_THREADS = 2;
+
+    /**
+     * Progress print interval for debugging.
+     */
+    private double printInterval = 0;
+
+    /**
+     * Pixel manager for thread-safe pixel processing.
+     */
+    private PixelManager pixelManager;
+
+    /**
      * Private constructor for Camera.
      * Initializes width, height, and distance to 0.
      */
@@ -119,19 +140,12 @@ public class Camera implements Cloneable {
      * @return the Camera instance for method chaining
      */
     public Camera renderImage() {
-        int percentage = 0;
-        for (int y = 0; y < nY; y++) {
-            for (int x = 0; x < nX; x++) {
-                castRay(x, y);
-            }
-            int newPercentage = (int) ((y + 1) * 100.0 / nY);
-            if (newPercentage > percentage) {
-                percentage = newPercentage;
-                System.out.println("Rendering progress: " + percentage + "%");
-            }
-        }
-
-        return this;
+        pixelManager = new PixelManager(nY, nX, printInterval);
+        return switch (threadsCount) {
+            case 0 -> renderImageNoThreads();
+            case -1 -> renderImageStream();
+            default -> renderImageRawThreads();
+        };
     }
 
     /**
@@ -169,6 +183,7 @@ public class Camera implements Cloneable {
         List<Ray> rays = generateRays(primaryRay);
         Color finalColor = traceRays(rays);
         imageWriter.writePixel(x, y, finalColor);
+        pixelManager.pixelDone();
     }
 
     /**
@@ -203,6 +218,50 @@ public class Camera implements Cloneable {
             totalColor = totalColor.add(rayTracer.traceRay(ray));
         }
         return totalColor.reduce(rays.size());
+    }
+
+    /**
+     * Renders image using parallel streams for multithreading.
+     *
+     * @return the Camera instance for method chaining
+     */
+    private Camera renderImageStream() {
+        IntStream.range(0, nY).parallel()
+            .forEach(i -> IntStream.range(0, nX).parallel()
+                .forEach(j -> castRay(j, i)));
+        return this;
+    }
+
+    /**
+     * Renders image with no threading (single-threaded).
+     *
+     * @return the Camera instance for method chaining
+     */
+    private Camera renderImageNoThreads() {
+        for (int i = 0; i < nY; ++i)
+            for (int j = 0; j < nX; ++j)
+                castRay(j, i);
+        return this;
+    }
+
+    /**
+     * Renders image using manual thread management.
+     *
+     * @return the Camera instance for method chaining
+     */
+    private Camera renderImageRawThreads() {
+        var threads = new LinkedList<Thread>();
+        while (threadsCount-- > 0)
+            threads.add(new Thread(() -> {
+                PixelManager.Pixel pixel;
+                while ((pixel = pixelManager.nextPixel()) != null)
+                    castRay(pixel.col(), pixel.row());
+            }));
+        for (var thread : threads) thread.start();
+        try {
+            for (var thread : threads) thread.join();
+        } catch (InterruptedException ignored) {}
+        return this;
     }
 
     /**
@@ -372,6 +431,36 @@ public class Camera implements Cloneable {
         public Builder setResolution(int nX, int nY) {
             camera.nX = nX;
             camera.nY = nY;
+            return this;
+        }
+
+        /**
+         * Sets multithreading configuration.
+         *
+         * @param threads number of threads to use (-2 for auto, -1 for streams, 0 for no threading, >0 for specific count)
+         * @return Builder instance
+         */
+        public Builder setMultithreading(int threads) {
+            if (threads < -3)
+                throw new IllegalArgumentException("Multithreading parameter must be -2 or higher");
+            if (threads == -2) {
+                int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+                camera.threadsCount = cores <= 2 ? 1 : cores;
+            } else
+                camera.threadsCount = threads;
+            return this;
+        }
+
+        /**
+         * Sets debug print interval for progress display.
+         *
+         * @param interval print interval percentage (0 to disable)
+         * @return Builder instance
+         */
+        public Builder setDebugPrint(double interval) {
+            if (interval < 0)
+                throw new IllegalArgumentException("Interval must be non-negative");
+            camera.printInterval = interval;
             return this;
         }
 
