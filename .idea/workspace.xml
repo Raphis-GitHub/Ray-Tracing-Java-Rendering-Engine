@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor workspace configuration; update last commit message and modify test settings for depth of field">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/DepthOfFieldEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/DepthOfFieldEffect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TestFastDemoScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/PointGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/PointGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,15 +373,11 @@
       <workItem from="1753373047921" duration="136000" />
       <workItem from="1753396948095" duration="32730000" />
       <workItem from="1753703285264" duration="6990000" />
-      <workItem from="1753711204490" duration="2497000" />
-    </task>
-    <task id="LOCAL-00046" summary="Refactor Ray class; implement findClosestPoint method and improve unit tests">
-      <option name="closed" value="true" />
-      <created>1751219125694</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1751219125694</updated>
+      <workItem from="1753711204490" duration="2520000" />
+      <workItem from="1753732370626" duration="779000" />
+      <workItem from="1753874148956" duration="213000" />
+      <workItem from="1753874743872" duration="214000" />
+      <workItem from="1753883366428" duration="664000" />
     </task>
     <task id="LOCAL-00047" summary="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes">
       <option name="closed" value="true" />
@@ -768,7 +763,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753709534230</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Refactor workspace configuration; update last commit message and modify test settings for depth of field">
+      <option name="closed" value="true" />
+      <created>1753731685087</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1753731685089</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -786,7 +789,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
     <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
     <MESSAGE value="Update workspace configuration; modify test selections and improve comments for clarity" />
     <MESSAGE value="1st stage 7" />
@@ -811,7 +813,8 @@
     <MESSAGE value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
     <MESSAGE value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
     <MESSAGE value="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera" />
+    <MESSAGE value="Refactor workspace configuration; update last commit message and modify test settings for depth of field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor workspace configuration; update last commit message and modify test settings for depth of field" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

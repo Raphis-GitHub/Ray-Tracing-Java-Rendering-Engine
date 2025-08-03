@@ -6,6 +6,8 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.concurrent.ThreadLocalRandom.current;
+
 /**
  * Simple utility class for generating points in 2D grids.
  * Handles both regular and jittered sampling patterns.
@@ -36,8 +38,8 @@ public class PointGenerator {
             for (int col = 0; col < gridSize; col++) {
                 double x, y;
                 if (useJittered) {
-                    x = (col + java.util.concurrent.ThreadLocalRandom.current().nextDouble()) * cellSize - size;
-                    y = (row + java.util.concurrent.ThreadLocalRandom.current().nextDouble()) * cellSize - size;
+                    x = (col + current().nextDouble()) * cellSize - size;
+                    y = (row + current().nextDouble()) * cellSize - size;
                 } else {
                     x = (col + 0.5) * cellSize - size;
                     y = (row + 0.5) * cellSize - size;
