@@ -114,7 +114,7 @@ class TeapotTest {
                 //.setMultithreading(2) // 13.6
                 //.setMultithreading(3) // 10.7
                 // .setMultithreading(4) // 10.7
-                // .setDebugPrint(1.0) //
+                // .setDebugPrint(1.0) // to print progress percentage
                 ;
     }
 
