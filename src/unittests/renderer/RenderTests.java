@@ -6,6 +6,9 @@ import lighting.AmbientLight;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
+import scene.SceneBuilder;
+
+import java.io.IOException;
 
 import static java.awt.Color.*;
 
@@ -134,23 +137,25 @@ class RenderTests {
 //         .printGrid(100, new Color(YELLOW)) //
 //         .writeToImage("xml render test");
 //   }
-//
-//   /** Test for JSON based scene - for bonus */
-//   @Test
-//   void basicRenderJson() {
-//      Scene scene = new Scene("Using Json");
-//      // enter XML file name and parse from JSON file into scene object instead of the
-//      // new Scene above,
-//      // Use the code you added in appropriate packages
-//      // ...
-//      // NB: unit tests is not the correct place to put XML parsing code
-//
-//      camera //
-//         .setRayTracer(scene, RayTracerType.SIMPLE) //
-//         .setResolution(1000, 1000) //
-//         .build() //
-//         .renderImage() //
-//         .printGrid(100, new Color(YELLOW)) //
-//         .writeToImage("xml render test");
-//   }
+
+    /**
+     * Test for JSON based scene - for bonus
+     */
+    @Test
+    void basicRenderJson() {
+        Scene scene;
+        try {
+            scene = SceneBuilder.CreateScene("jsonFiles/TwoColor.json");
+        } catch (IOException | org.json.simple.parser.ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        camera //
+                .setRayTracer(scene, RayTracerType.SIMPLE) //
+                .setResolution(1000, 1000) //
+                .build() //
+                .renderImage() //
+                .printGrid(100, new Color(YELLOW)) //
+                .writeToImage("json render test");
+    }
 }

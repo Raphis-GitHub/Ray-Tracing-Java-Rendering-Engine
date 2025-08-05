@@ -1,13 +1,19 @@
 package renderer;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.MissingResourceException;
+import java.util.stream.IntStream;
 
-import static primitives.Util.*;
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Camera class for rendering scenes.
@@ -227,8 +233,8 @@ public class Camera implements Cloneable {
      */
     private Camera renderImageStream() {
         IntStream.range(0, nY).parallel()
-            .forEach(i -> IntStream.range(0, nX).parallel()
-                .forEach(j -> castRay(j, i)));
+                .forEach(i -> IntStream.range(0, nX).parallel()
+                        .forEach(j -> castRay(j, i)));
         return this;
     }
 
@@ -260,7 +266,8 @@ public class Camera implements Cloneable {
         for (var thread : threads) thread.start();
         try {
             for (var thread : threads) thread.join();
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
         return this;
     }
 

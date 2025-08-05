@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Refactor PointGenerator to use ThreadLocalRandom for jittered sampling; improve code clarity">
-      <change afterPath="$PROJECT_DIR$/src/renderer/PixelManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Stage 5 (Bonus) - Json files">
+      <change afterPath="$PROJECT_DIR$/JsonFiles/TwoColor.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/SceneDescriptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scene/SceneBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISE5785_4760_2159.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ISE5785_4760_2159.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +43,20 @@
     &quot;assignee&quot;: &quot;Raphis-GitHub&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Raphis-GitHub/ISE5785_4760_2159.git&quot;,
-    &quot;accountId&quot;: &quot;6e99f8cc-aef7-4c8f-a9e7-144cb1b17e7d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Raphis-GitHub/ISE5785_4760_2159.git",
+    "accountId": "40f1b214-80d8-437c-9952-e5f098098271"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/src.zip!/java.desktop/java/awt/image/BufferedImage.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/351c13c3-6100-497b-9adc-ff9929cc9733_ISE5785_5900_6319-PR07.1.zip.733/ISE5785_5900_6319-PR07.1/src/geometries/Polygon.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/4271cc97-1566-4b6a-a30d-06822e148f1d_ISE5785_5900_6319-PR07.3.zip.f1d/ISE5785_5900_6319-PR07.3/src/geometries/Sphere.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/58490a15-5d43-465a-affa-bf2eb625ac9d_ISE5785_5900_6319-PR07.1.zip.c9d/ISE5785_5900_6319-PR07.1/src/geometries/Tube.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/744d7015-b024-451a-a965-623943e7c41c_ISE5785_5900_6319-PR07.1.zip.41c/ISE5785_5900_6319-PR07.1/src/geometries/Cylinder.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/9d8b0056-e286-4b40-904f-2ddee622b6f9_ISE5785_5900_6319-PR07.1.zip.6f9/ISE5785_5900_6319-PR07.1/src/geometries/Sphere.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/a32bc582-f3e9-4235-91c5-43099a8bdef1_ISE5785_5900_6319-PR07.3.zip.ef1/ISE5785_5900_6319-PR07.3/src/geometries/Tube.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/d5cc264c-610e-46c4-bfb7-d684390d9837_ISE5785_5900_6319-PR07.3.zip.837/ISE5785_5900_6319-PR07.3/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Plane.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/primitives/Point.java" root0="FORCE_HIGHLIGHTING" />
@@ -64,7 +72,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -113,6 +121,7 @@
     "JUnit.ReflectionRefractionTests.combinedEffectsDemo.executor": "Run",
     "JUnit.ReflectionRefractionTests.executor": "Run",
     "JUnit.ReflectionRefractionTests.testStage7Effects.executor": "Run",
+    "JUnit.RenderTests.basicRenderJson.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderMaterialTest.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
@@ -121,9 +130,6 @@
     "JUnit.SphereTest.testFindIntersections.executor": "Run",
     "JUnit.SphereTest.testFindIntersectionsWithMaxDistance.executor": "Run",
     "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
-    "JUnit.TeapotTest.executor": "Run",
-    "JUnit.TeapotTest.testTeapot1.executor": "Run",
-    "JUnit.TestFastDemoScene.tubeDepthOfFieldDemo.executor": "Run",
     "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TriangleTest.testIntersectionWithDistance.executor": "Run",
     "JUnit.TubeTest.executor": "Run",
@@ -153,13 +159,12 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "extract.method.default.visibility": "private",
-    "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "master",
     "ignore.preview.features.used": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/raphs/IdeaProjects/untitled/src/unittests/geometries",
-    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/renderer",
+    "last_opened_file_path": "C:/Users/raphs/IdeaProjects/ISE5785_4760_2159/src/unittests/renderer",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -170,24 +175,24 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
+    "settings.editor.selected.configurable": "actions.on.save",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\unittests\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\geometries" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
+      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\geometries" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eytan\IdeaProjects\ISE5785_4760_0661\JsonFiles" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\unittests\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\renderer" />
       <recent name="C:\Users\raphs\IdeaProjects\ISE5785_4760_2159\src\primitives" />
       <recent name="C:\Users\raphs\IdeaProjects\untitled\src\test" />
-      <recent name="C:\Users\raphs\IdeaProjects\untitled\src\primitives" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -204,14 +209,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="JUnit" />
-      </set>
-    </option>
-  </component>
-  <component name="RunManager" selected="JUnit.TeapotTest.testTeapot1">
+  <component name="RunManager" selected="JUnit.RenderTests.basicRenderJson">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -241,7 +239,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TeapotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RenderTests.basicRenderJson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -250,29 +248,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TeapotTest.testTeapot1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
-      <option name="METHOD_NAME" value="testTeapot1" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="basicRenderJson" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestFastDemoScene.tubeDepthOfFieldDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testFastDemoScene.fastDemoScene_OnlyAA" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -281,8 +264,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.TestFastDemoScene" />
-      <option name="METHOD_NAME" value="tubeDepthOfFieldDemo" />
+      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
+      <option name="METHOD_NAME" value="fastDemoScene_OnlyAA" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testFastDemoScene.fastdemoscene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
+      <option name="METHOD_NAME" value="fastdemoscene" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -306,27 +305,27 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
-      <item itemvalue="JUnit.TeapotTest" />
-      <item itemvalue="JUnit.TeapotTest.testTeapot1" />
-      <item itemvalue="JUnit.TestFastDemoScene.tubeDepthOfFieldDemo" />
+      <item itemvalue="JUnit.RenderTests.basicRenderJson" />
+      <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
+      <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
       <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TeapotTest.testTeapot1" />
-        <item itemvalue="JUnit.TeapotTest" />
-        <item itemvalue="JUnit.TestFastDemoScene.tubeDepthOfFieldDemo" />
-        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
+        <item itemvalue="JUnit.RenderTests.basicRenderJson" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
+        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
+        <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
+        <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -373,16 +372,88 @@
       <workItem from="1752569714906" duration="13629000" />
       <workItem from="1752694851944" duration="403000" />
       <workItem from="1753200956957" duration="19826000" />
-      <workItem from="1753366772488" duration="1941000" />
-      <workItem from="1753373047921" duration="136000" />
-      <workItem from="1753396948095" duration="32730000" />
-      <workItem from="1753703285264" duration="6990000" />
-      <workItem from="1753711204490" duration="2520000" />
-      <workItem from="1753732370626" duration="779000" />
-      <workItem from="1753874148956" duration="213000" />
-      <workItem from="1753874743872" duration="214000" />
-      <workItem from="1753883366428" duration="664000" />
-      <workItem from="1754226786697" duration="3218000" />
+      <workItem from="1753366772488" duration="967000" />
+      <workItem from="1754396455031" duration="3520000" />
+    </task>
+    <task id="LOCAL-00038" summary="Enhance Camera class with detailed documentation; improve builder pattern and ray construction method">
+      <option name="closed" value="true" />
+      <created>1750781075071</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1750781075071</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class">
+      <option name="closed" value="true" />
+      <created>1750781323539</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1750781323539</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Remove TODO comment from getNormal tests in TriangleTest class">
+      <option name="closed" value="true" />
+      <created>1750781347196</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1750781347196</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Add detailed documentation for camera intersection tests and methods">
+      <option name="closed" value="true" />
+      <created>1750783471138</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1750783471138</updated>
+    </task>
+    <task id="LOCAL-00042" summary=" Clean change list manager">
+      <option name="closed" value="true" />
+      <created>1750859583766</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1750859583766</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Refactor Camera class; initialize fields and improve intersection test assertions">
+      <option name="closed" value="true" />
+      <created>1751195576828</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1751195576828</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Refactor camera intersection tests; simplify assertions and enhance documentation">
+      <option name="closed" value="true" />
+      <created>1751199182504</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1751199182504</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Add Color and ImageWriter classes; implement color handling and image writing functionality">
+      <option name="closed" value="true" />
+      <created>1751214879033</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1751214879033</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Refactor Ray class; implement findClosestPoint method and improve unit tests">
+      <option name="closed" value="true" />
+      <created>1751219125694</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1751219125694</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Implement Camera rendering functionality; add RayTracerBase and SimpleRayTracer classes">
+      <option name="closed" value="true" />
+      <created>1751222418424</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1751222418424</updated>
     </task>
     <task id="LOCAL-00048" summary="Enhance documentation in AmbientLight, Camera, Color, ImageWriter, RayTracerBase, RayTracerType, Scene, and SimpleRayTracer classes; add missing Javadoc comments">
       <option name="closed" value="true" />
@@ -696,87 +767,7 @@
       <option name="project" value="LOCAL" />
       <updated>1753356464468</updated>
     </task>
-    <task id="LOCAL-00087" summary="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality">
-      <option name="closed" value="true" />
-      <created>1753368719509</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1753368719509</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic">
-      <option name="closed" value="true" />
-      <created>1753692878153</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1753692878154</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic">
-      <option name="closed" value="true" />
-      <created>1753704801823</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1753704801823</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Add PointGenerator class for generating grid points with regular and jittered sampling">
-      <option name="closed" value="true" />
-      <created>1753704877340</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1753704877340</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation">
-      <option name="closed" value="true" />
-      <created>1753706873051</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1753706873051</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Refactor AntiAliasingEffect to apply effect only to single primary ray; update test to disable anti-aliasing">
-      <option name="closed" value="true" />
-      <created>1753709188592</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1753709188592</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting">
-      <option name="closed" value="true" />
-      <created>1753709303282</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1753709303282</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera">
-      <option name="closed" value="true" />
-      <created>1753709534230</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1753709534230</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Refactor workspace configuration; update last commit message and modify test settings for depth of field">
-      <option name="closed" value="true" />
-      <created>1753731685087</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1753731685089</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Refactor PointGenerator to use ThreadLocalRandom for jittered sampling; improve code clarity">
-      <option name="closed" value="true" />
-      <created>1754227099007</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1754227099022</updated>
-    </task>
-    <option name="localTasksCounter" value="97" />
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -794,6 +785,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
+    <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
+    <MESSAGE value="Enhance SpotLight class documentation; clarify narrow beam effect and improve intensity calculation" />
+    <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
+    <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
+    <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
+    <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
+    <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
     <MESSAGE value="Update workspace configuration; modify test selections and improve comments for clarity" />
     <MESSAGE value="1st stage 7" />
     <MESSAGE value="Refactor reflection and shadow test classes; improve comments and code clarity" />
@@ -810,16 +809,8 @@
     <MESSAGE value="Refactor Blackboard class to improve aperture point generation; update workspace configuration for enhanced testing options" />
     <MESSAGE value="Refactor Blackboard class to optimize vector calculations and improve jittered sampling; update Camera class for enhanced ray casting" />
     <MESSAGE value="Enhance test cases for Blackboard and Camera classes; update anti-aliasing and depth of field sample settings for improved rendering quality" />
-    <MESSAGE value="Refactor Blackboard class to remove unused shadow and blurry effects; enhance documentation and improve Camera class configuration for rendering quality" />
-    <MESSAGE value="Refactor Blackboard class to introduce a grid point generation method; streamline aperture point creation and jittered sampling logic" />
-    <MESSAGE value="Refactor Blackboard and Camera classes to streamline ray generation; introduce a method for grid point generation and enhance ray tracing logic" />
-    <MESSAGE value="Add PointGenerator class for generating grid points with regular and jittered sampling" />
-    <MESSAGE value="Add AntiAliasingEffect and DepthOfFieldEffect classes; integrate render effects into Camera for enhanced ray generation" />
-    <MESSAGE value="Refactor DepthOfFieldEffect and PointGenerator for improved clarity; streamline method parameters and formatting" />
-    <MESSAGE value="Refactor AntiAliasingEffect to apply effect only to single primary ray; normalize ray direction in Camera" />
-    <MESSAGE value="Refactor workspace configuration; update last commit message and modify test settings for depth of field" />
-    <MESSAGE value="Refactor PointGenerator to use ThreadLocalRandom for jittered sampling; improve code clarity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor PointGenerator to use ThreadLocalRandom for jittered sampling; improve code clarity" />
+    <MESSAGE value="Stage 5 (Bonus) - Json files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stage 5 (Bonus) - Json files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
