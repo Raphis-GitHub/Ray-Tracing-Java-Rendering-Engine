@@ -8,20 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +204,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
+  <component name="RunManager" selected="JUnit.CBRTest.testCBRPerformance">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -321,8 +308,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
+        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.RenderTests.basicRenderJson" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
@@ -382,14 +369,6 @@
       <workItem from="1753200956957" duration="19826000" />
       <workItem from="1753366772488" duration="967000" />
       <workItem from="1754396455031" duration="3520000" />
-    </task>
-    <task id="LOCAL-00038" summary="Enhance Camera class with detailed documentation; improve builder pattern and ray construction method">
-      <option name="closed" value="true" />
-      <created>1750781075071</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1750781075071</updated>
     </task>
     <task id="LOCAL-00039" summary="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class">
       <option name="closed" value="true" />
@@ -775,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753356464468</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic">
+      <option name="closed" value="true" />
+      <created>1754557940258</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1754557940258</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
