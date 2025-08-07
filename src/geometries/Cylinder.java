@@ -136,4 +136,36 @@ public class Cylinder extends Tube {
                         List.of(new Intersection(this, point1), new Intersection(this, point2));
     }
 
+    /**
+     * Calculates the bounding box for this cylinder.
+     * Creates a conservative box around the cylinder's two circular bases.
+     *
+     * @return the bounding box for this cylinder
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+        // Get coordinates of bottom and top centers
+        double bottomX = axisOrigin.getX();
+        double bottomY = axisOrigin.getY();
+        double bottomZ = axisOrigin.getZ();
+
+        double topX = topCenter.getX();
+        double topY = topCenter.getY();
+        double topZ = topCenter.getZ();
+
+        // Find min/max coordinates of the two centers
+        double minX = Math.min(bottomX, topX);
+        double minY = Math.min(bottomY, topY);
+        double minZ = Math.min(bottomZ, topZ);
+        double maxX = Math.max(bottomX, topX);
+        double maxY = Math.max(bottomY, topY);
+        double maxZ = Math.max(bottomZ, topZ);
+
+        // Expand by radius in all directions to create conservative bounding box
+        return new BoundingBox(
+                minX - radius, minY - radius, minZ - radius,
+                maxX + radius, maxY + radius, maxZ + radius
+        );
+    }
+
 }

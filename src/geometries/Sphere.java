@@ -74,4 +74,22 @@ public class Sphere extends RadialGeometry {
         return getIntersections(ray, tm - th, tm + th, maxDistance);
     }
 
+    /**
+     * Calculates the bounding box for this sphere.
+     * The bounding box extends from center ± radius in all directions.
+     *
+     * @return the bounding box for this sphere
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+        double centerX = center.getX();
+        double centerY = center.getY();
+        double centerZ = center.getZ();
+
+        return new BoundingBox(
+                centerX - radius, centerY - radius, centerZ - radius,
+                centerX + radius, centerY + radius, centerZ + radius
+        );
+    }
+
 }

@@ -101,20 +101,21 @@ class TeapotTest {
         scene.lights.add(new PointLight(new Color(500, 500, 500), new Point(100, 0, -100)).setKq(0.000001));
 
         return Camera.getBuilder() //
-                .setResolution(1000, 1000) //
+                //.setResolution(1000, 1000) //
+                .setResolution(2000, 2000)
                 // .setResolution(1, 1) //
                 .setRayTracer(scene, RayTracerType.SIMPLE) //
                 .setLocation(new Point(0, 0, -1000)).setDirection(Point.ZERO, Vector.AXIS_Y) //
                 .setVpDistance(1000).setVpSize(200, 200) //
                 // .setMultithreading(-3) // fail - paging file size
-                .setMultithreading(-2) // 9.3
-                // .setMultithreading(-1) // 9.6
+                //.setMultithreading(-2) // 9.3
+                .setMultithreading(-1) // 9.6
                 //.setMultithreading(0) // 25
                 // .setMultithreading(1) // 25.8
                 //.setMultithreading(2) // 13.6
                 //.setMultithreading(3) // 10.7
                 // .setMultithreading(4) // 10.7
-                // .setDebugPrint(1.0) // to print progress percentage
+                //.setDebugPrint(1.0) // to print progress percentage
                 ;
     }
 

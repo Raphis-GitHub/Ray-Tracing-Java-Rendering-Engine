@@ -129,4 +129,15 @@ public class Tube extends RadialGeometry {
         double t2 = (-b + sqrtDisc) / a2;
         return getIntersections(ray, t1, t2, maxDistance);
     }
+
+    /**
+     * Calculates the bounding box for this tube.
+     * Since tubes extend infinitely along their axis, they cannot have a finite bounding box.
+     *
+     * @return null (tubes are infinite and cannot be bounded)
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+        return null; // Tubes are infinite along their axis - no bounding box possible
+    }
 }

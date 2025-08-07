@@ -65,8 +65,6 @@ public class Plane extends Geometry {
         return normal;
     }
 
-    //note for Dan, according to your matzget, this method is shows up in your UML diagram, as such i left it in
-
     /**
      * Returns the normal vector of the plane.
      * This method provides access to the plane's normal vector without requiring a point parameter.
@@ -103,6 +101,17 @@ public class Plane extends Geometry {
         return (alignZero(t) > 0 && alignZero(t - maxDistance) < 0)
                 ? List.of(new Intersection(this, ray.getPoint(t)))
                 : null;
+    }
+
+    /**
+     * Calculates the bounding box for this plane.
+     * Since planes are infinite, they cannot have a finite bounding box.
+     *
+     * @return null (planes are infinite and cannot be bounded)
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+        return null; // Planes are infinite - no bounding box possible
     }
 
 }

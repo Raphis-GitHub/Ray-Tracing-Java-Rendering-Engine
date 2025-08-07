@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.BoundingBox;
 import primitives.Ray;
 
 import java.util.*;
@@ -58,5 +59,33 @@ public class Geometries extends Intersectable {
             }
         }
         return result;
+    }
+
+    /**
+     * Calculates the bounding box for this collection of geometries.
+     * The bounding box is the union of all non-null bounding boxes of the contained geometries.
+     * If any geometry has a null bounding box (infinite geometry), the entire collection
+     * is considered unbounded and returns null.
+     *
+     * @return the union bounding box of all geometries, or null if any geometry is infinite
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+        if (geometries.isEmpty()) {
+            return null;
+        }
+        
+        // Collect all bounding boxes
+        BoundingBox[] boxes = new BoundingBox[geometries.size()];
+        for (int i = 0; i < geometries.size(); i++) {
+            boxes[i] = geometries.get(i).getBoundingBox();
+            // If any geometry is infinite (null bounding box), entire collection is unbounded
+            if (boxes[i] == null) {
+                return null;
+            }
+        }
+        
+        // Return union of all bounding boxes
+        return BoundingBox.union(boxes);
     }
 }

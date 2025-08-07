@@ -7,14 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Stage 5 (Bonus) - Json files">
-      <change afterPath="$PROJECT_DIR$/JsonFiles/TwoColor.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/parser/SceneDescriptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scene/SceneBuilder.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISE5785_4760_2159.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ISE5785_4760_2159.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/RenderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,12 +50,12 @@
     &quot;assignee&quot;: &quot;Raphis-GitHub&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Raphis-GitHub/ISE5785_4760_2159.git",
-    "accountId": "40f1b214-80d8-437c-9952-e5f098098271"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Raphis-GitHub/ISE5785_4760_2159.git&quot;,
+    &quot;accountId&quot;: &quot;40f1b214-80d8-437c-9952-e5f098098271&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Temp/351c13c3-6100-497b-9adc-ff9929cc9733_ISE5785_5900_6319-PR07.1.zip.733/ISE5785_5900_6319-PR07.1/src/geometries/Polygon.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Temp/4271cc97-1566-4b6a-a30d-06822e148f1d_ISE5785_5900_6319-PR07.3.zip.f1d/ISE5785_5900_6319-PR07.3/src/geometries/Sphere.java" root0="FORCE_HIGHLIGHTING" />
@@ -91,6 +98,7 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.ALLTESTS.executor": "Run",
     "JUnit.All in ISE5785_4760_2159.executor": "Run",
+    "JUnit.CBRTest.testCBRPerformance.executor": "Run",
     "JUnit.CameraIntersIntegsTest.executor": "Run",
     "JUnit.CameraTest.executor": "Run",
     "JUnit.CameraTest.testBuilder.executor": "Run",
@@ -209,7 +217,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RenderTests.basicRenderJson">
+  <component name="RunManager" selected="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -219,6 +227,22 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CBRTest.testCBRPerformance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.CBRTest" />
+      <option name="METHOD_NAME" value="testCBRPerformance" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -271,22 +295,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testFastDemoScene.fastdemoscene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
-      <option name="METHOD_NAME" value="fastdemoscene" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="testFastDemoScene.tubeDepthOfFieldDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
@@ -305,19 +313,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
       <item itemvalue="JUnit.RenderTests.basicRenderJson" />
       <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
-      <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
       <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
+        <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
         <item itemvalue="JUnit.RenderTests.basicRenderJson" />
         <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
-        <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
-        <item itemvalue="JUnit.testFastDemoScene.fastdemoscene" />
       </list>
     </recent_temporary>
   </component>
@@ -785,7 +793,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance documentation for lighting and geometry classes; improve method descriptions and parameter annotations" />
     <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
     <MESSAGE value="Enhance SpotLight class documentation; clarify narrow beam effect and improve intensity calculation" />
     <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
@@ -810,7 +817,8 @@
     <MESSAGE value="Refactor Blackboard class to optimize vector calculations and improve jittered sampling; update Camera class for enhanced ray casting" />
     <MESSAGE value="Enhance test cases for Blackboard and Camera classes; update anti-aliasing and depth of field sample settings for improved rendering quality" />
     <MESSAGE value="Stage 5 (Bonus) - Json files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stage 5 (Bonus) - Json files" />
+    <MESSAGE value="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

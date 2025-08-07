@@ -1,19 +1,14 @@
 package renderer;
 
-import primitives.Color;
-import primitives.Point;
-import primitives.Ray;
+import geometries.Intersectable;
+import primitives.*;
 import primitives.Vector;
 import scene.Scene;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.MissingResourceException;
+import java.util.*;
 import java.util.stream.IntStream;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
  * Camera class for rendering scenes.
@@ -455,6 +450,18 @@ public class Camera implements Cloneable {
                 camera.threadsCount = cores <= 2 ? 1 : cores;
             } else
                 camera.threadsCount = threads;
+            return this;
+        }
+
+        /**
+         * Enables or disables Conservative Boundary Region (CBR) optimization.
+         * CBR provides significant performance improvements through early ray rejection using bounding boxes.
+         *
+         * @param enabled true to enable CBR (default), false to disable
+         * @return Builder instance
+         */
+        public Builder setCBR(boolean enabled) {
+            Intersectable.setCBREnabled(enabled);
             return this;
         }
 

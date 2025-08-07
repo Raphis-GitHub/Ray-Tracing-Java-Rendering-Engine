@@ -10,10 +10,23 @@ import java.util.List;
  * Each class that implements this interface must provide logic to find intersection points with a ray.
  * <p>
  * If no intersections exist — return null (not an empty list).
+ * <p>
+ * Implements Conservative Boundary Region (CBR) optimization using bounding boxes for fast ray rejection.
  *
  * @author Eytan and Raph
  */
 public abstract class Intersectable {
+    
+    /**
+     * Global flag to enable/disable Conservative Boundary Region (CBR) optimization.
+     * When disabled, all intersection calculations proceed directly without bounding box checks.
+     */
+    private static boolean cbrEnabled = true;
+    
+    /**
+     * Cached bounding box for this geometry (lazy initialization with thread safety).
+     */
+    protected volatile BoundingBox boundingBox;
     /**
      * geoPoint
      */
@@ -102,6 +115,51 @@ public abstract class Intersectable {
     }
 
     /**
+     * Calculates the bounding box for this geometry.
+     * Returns null for infinite geometries (Plane, Tube).
+     * 
+     * @return the bounding box for this geometry, or null if infinite
+     */
+    protected abstract BoundingBox calculateBoundingBox();
+
+    /**
+     * Gets the bounding box for this geometry using thread-safe lazy initialization.
+     * Uses double-checked locking pattern for optimal performance in multithreaded environments.
+     * 
+     * @return the bounding box for this geometry, or null if infinite
+     */
+    public BoundingBox getBoundingBox() {
+        if (boundingBox == null) {
+            synchronized (this) {
+                if (boundingBox == null) {
+                    boundingBox = calculateBoundingBox();
+                }
+            }
+        }
+        return boundingBox;
+    }
+
+    /**
+     * Enables or disables Conservative Boundary Region (CBR) optimization globally.
+     * When enabled (default), rays are tested against bounding boxes for early rejection.
+     * When disabled, all intersection calculations proceed directly without CBR checks.
+     * 
+     * @param enabled true to enable CBR, false to disable
+     */
+    public static void setCBREnabled(boolean enabled) {
+        cbrEnabled = enabled;
+    }
+
+    /**
+     * Returns whether Conservative Boundary Region (CBR) optimization is currently enabled.
+     * 
+     * @return true if CBR is enabled, false if disabled
+     */
+    public static boolean isCBREnabled() {
+        return cbrEnabled;
+    }
+
+    /**
      * Finds intersection points between a ray and the geometry.
      *
      * @param ray the ray to intersect with
@@ -136,12 +194,22 @@ public abstract class Intersectable {
 
     /**
      * Calculates intersections between a ray and the geometry with a maximum distance constraint.
+     * Implements Conservative Boundary Region (CBR) optimization for early ray rejection when enabled.
      *
      * @param ray         the ray to intersect with
      * @param maxDistance the maximum distance to consider for intersections
      * @return a list of Intersection objects, or null if no intersections
      */
     public final List<Intersection> calculateIntersections(Ray ray, double maxDistance) {
+        // CBR CHECK - Conservative Boundary Region optimization for early rejection (if enabled)
+        if (cbrEnabled) {
+            BoundingBox bbox = getBoundingBox();
+            if (bbox != null && !bbox.intersect(ray, maxDistance)) {
+                return null; // Ray doesn't hit bounding box - early rejection
+            }
+        }
+        
+        // Proceed to actual intersection calculation
         return calculateIntersectionsHelper(ray, maxDistance);
     }
 }

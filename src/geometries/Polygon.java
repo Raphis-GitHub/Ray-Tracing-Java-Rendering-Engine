@@ -141,4 +141,38 @@ public class Polygon extends Geometry {
         return List.of(new Intersection(this, intersectionPoints.getFirst().point));
     }
 
+    /**
+     * Calculates the bounding box for this polygon.
+     * The bounding box is determined by the minimum and maximum coordinates of all vertices.
+     *
+     * @return the bounding box for this polygon
+     */
+    @Override
+    protected BoundingBox calculateBoundingBox() {
+
+        Point firstVertex = vertices.getFirst();
+        double minX = firstVertex.getX();
+        double minY = firstVertex.getY();
+        double minZ = firstVertex.getZ();
+        double maxX = minX;
+        double maxY = minY;
+        double maxZ = minZ;
+
+        // Find min/max coordinates among all vertices
+        for (Point vertex : vertices) {
+            double x = vertex.getX();
+            double y = vertex.getY();
+            double z = vertex.getZ();
+
+            minX = Math.min(minX, x);
+            minY = Math.min(minY, y);
+            minZ = Math.min(minZ, z);
+            maxX = Math.max(maxX, x);
+            maxY = Math.max(maxY, y);
+            maxZ = Math.max(maxZ, z);
+        }
+
+        return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
+    }
+
 }

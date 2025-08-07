@@ -136,11 +136,6 @@ public class Vector extends Point {
         return obj instanceof Vector other && super.equals(other);
     }
 
-    /**
-     * Returns a string representation of this Vector.
-     *
-     * @return The string representation of the Vector.
-     */
     @Override
     public String toString() {
         return "->" + super.toString();
