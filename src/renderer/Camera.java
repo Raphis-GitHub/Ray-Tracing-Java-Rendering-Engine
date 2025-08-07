@@ -471,6 +471,7 @@ public class Camera implements Cloneable {
          * @param interval print interval percentage (0 to disable)
          * @return Builder instance
          */
+        @SuppressWarnings("unused")
         public Builder setDebugPrint(double interval) {
             if (interval < 0)
                 throw new IllegalArgumentException("Interval must be non-negative");

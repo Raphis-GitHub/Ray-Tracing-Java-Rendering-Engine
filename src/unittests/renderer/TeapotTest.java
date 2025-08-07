@@ -39,10 +39,39 @@ class TeapotTest {
      * 10 Teapot tests with CBR
      */
     @Test
-    @Disabled
     void testTeapot2() {
         for (int i = 10; i > 0; --i) {
             teapot2();
+        }
+    }
+
+    /**
+     * 10 Teapot tests with CBR
+     */
+    @Test
+    void testTeapot2_MT_CBR() {
+        for (int i = 10; i > 0; --i) {
+            teapot2_MT_CBR();
+        }
+    }
+
+    /**
+     * 10 Teapot tests with CBR
+     */
+    @Test
+    void testTeapot2_MT() {
+        for (int i = 10; i > 0; --i) {
+            teapot2_MT();
+        }
+    }
+
+    /**
+     * 10 Teapot tests with CBR
+     */
+    @Test
+    void testTeapot2_CBR() {
+        for (int i = 10; i > 0; --i) {
+            teapot2_CBR();
         }
     }
 
@@ -60,9 +89,40 @@ class TeapotTest {
     /**
      * Teapot with CBR
      */
+    void teapot2_MT_CBR() {
+        prepareTeapot().setMultithreading(-1) //
+                //.enableCBR() //
+                .setCBR(true)
+                .build() //
+                .renderImage() //
+                .printGrid(50, new Color(YELLOW)) //
+                .writeToImage("teapot2");
+    }
+
     void teapot2() {
         prepareTeapot() //
                 //.enableCBR() //
+                .setCBR(false)
+                .build() //
+                .renderImage() //
+                .printGrid(50, new Color(YELLOW)) //
+                .writeToImage("teapot2");
+    }
+
+    void teapot2_MT() {
+        prepareTeapot().setMultithreading(-1) //
+                //.enableCBR() //
+                .setCBR(false)
+                .build() //
+                .renderImage() //
+                .printGrid(50, new Color(YELLOW)) //
+                .writeToImage("teapot2");
+    }
+
+    void teapot2_CBR() {
+        prepareTeapot() //
+                //.enableCBR() //
+                .setCBR(true)
                 .build() //
                 .renderImage() //
                 .printGrid(50, new Color(YELLOW)) //
@@ -102,14 +162,14 @@ class TeapotTest {
 
         return Camera.getBuilder() //
                 //.setResolution(1000, 1000) //
-                .setResolution(2000, 2000)
+                .setResolution(1000, 1000)
                 // .setResolution(1, 1) //
                 .setRayTracer(scene, RayTracerType.SIMPLE) //
                 .setLocation(new Point(0, 0, -1000)).setDirection(Point.ZERO, Vector.AXIS_Y) //
                 .setVpDistance(1000).setVpSize(200, 200) //
                 // .setMultithreading(-3) // fail - paging file size
                 //.setMultithreading(-2) // 9.3
-                .setMultithreading(-1) // 9.6
+                //.setMultithreading(-1) // 9.6
                 //.setMultithreading(0) // 25
                 // .setMultithreading(1) // 25.8
                 //.setMultithreading(2) // 13.6

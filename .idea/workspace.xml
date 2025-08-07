@@ -7,8 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic">
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +127,8 @@
     "JUnit.SphereTest.testFindIntersections.executor": "Run",
     "JUnit.SphereTest.testFindIntersectionsWithMaxDistance.executor": "Run",
     "JUnit.SphereTest.testFindIntersections_variousCases.executor": "Run",
+    "JUnit.TeapotTest.executor": "Run",
+    "JUnit.TeapotTest.testTeapot2.executor": "Run",
     "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TriangleTest.testIntersectionWithDistance.executor": "Run",
     "JUnit.TubeTest.executor": "Run",
@@ -204,7 +208,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CBRTest.testCBRPerformance">
+  <component name="RunManager" selected="JUnit.TeapotTest">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -266,7 +270,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testFastDemoScene.fastDemoScene_OnlyAA" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TeapotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -275,14 +279,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
-      <option name="METHOD_NAME" value="fastDemoScene_OnlyAA" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testFastDemoScene.tubeDepthOfFieldDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TeapotTest.testTeapot2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -291,8 +294,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.testFastDemoScene" />
-      <option name="METHOD_NAME" value="tubeDepthOfFieldDemo" />
+      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
+      <option name="METHOD_NAME" value="testTeapot2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -301,18 +304,18 @@
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
       <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
+      <item itemvalue="JUnit.TeapotTest" />
+      <item itemvalue="JUnit.TeapotTest.testTeapot2" />
       <item itemvalue="JUnit.RenderTests.basicRenderJson" />
-      <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
-      <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TeapotTest" />
+        <item itemvalue="JUnit.TeapotTest.testTeapot2" />
         <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
         <item itemvalue="JUnit.RenderTests.basicRenderJson" />
-        <item itemvalue="JUnit.testFastDemoScene.tubeDepthOfFieldDemo" />
-        <item itemvalue="JUnit.testFastDemoScene.fastDemoScene_OnlyAA" />
       </list>
     </recent_temporary>
   </component>
@@ -369,14 +372,6 @@
       <workItem from="1753200956957" duration="19826000" />
       <workItem from="1753366772488" duration="967000" />
       <workItem from="1754396455031" duration="3520000" />
-    </task>
-    <task id="LOCAL-00039" summary="Refactor Plane and Triangle tests; enhance normal vector tests for Triangle class">
-      <option name="closed" value="true" />
-      <created>1750781323539</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1750781323539</updated>
     </task>
     <task id="LOCAL-00040" summary="Remove TODO comment from getNormal tests in TriangleTest class">
       <option name="closed" value="true" />
@@ -762,7 +757,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754557940258</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests">
+      <option name="closed" value="true" />
+      <created>1754560229046</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1754560229046</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -780,7 +783,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove unnecessary blank lines in CylinderTest.java" />
     <MESSAGE value="Enhance SpotLight class documentation; clarify narrow beam effect and improve intensity calculation" />
     <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
     <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
@@ -805,7 +807,8 @@
     <MESSAGE value="Enhance test cases for Blackboard and Camera classes; update anti-aliasing and depth of field sample settings for improved rendering quality" />
     <MESSAGE value="Stage 5 (Bonus) - Json files" />
     <MESSAGE value="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic" />
+    <MESSAGE value="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
