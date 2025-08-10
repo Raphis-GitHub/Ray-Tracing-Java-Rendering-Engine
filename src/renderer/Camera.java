@@ -317,6 +317,35 @@ public class Camera implements Cloneable {
         }
 
         /**
+         * Moves the camera by a given offset vector from its current position.
+         */
+        public Builder moveBy(Vector offset) {
+            if (camera.p0 == null) {
+                throw new IllegalStateException("Camera position must be set before moving");
+            }
+            camera.p0 = camera.p0.add(offset);
+            return this;
+        }
+        //TODO: write a test for the 3 functions.
+
+        /**
+         * Points the camera to look at a specific target point with a given up vector.
+         */
+        public Builder lookAt(Point target, Vector up) {
+            if (camera.p0 == null) {
+                throw new IllegalStateException("Camera position must be set before setting direction");
+            }
+            return setDirection(target, up);
+        }
+
+        /**
+         * Points the camera to look at a specific target point with default up vector (0,1,0).
+         */
+        public Builder lookAt(Point target) {
+            return lookAt(target, Vector.AXIS_Y);
+        }
+
+        /**
          * Sets direction using target point and up vector.
          *
          * @param target target point
