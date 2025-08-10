@@ -76,6 +76,17 @@ public class SpotLight extends PointLight {
     }
 
     /**
+     * Sets the radius of the light source for soft shadows.
+     *
+     * @param radius the radius of the light source (0 for point source)
+     * @return the current SpotLight instance for method chaining
+     */
+    @Override
+    public SpotLight setRadius(double radius) {
+        return (SpotLight) super.setRadius(radius);
+    }
+
+    /**
      * Calculates the vector from the spotlight to a given point.
      *
      * @param p the point at which the intensity is calculated

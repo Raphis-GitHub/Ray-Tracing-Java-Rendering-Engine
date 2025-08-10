@@ -16,17 +16,18 @@ import java.util.List;
  * @author Eytan and Raph
  */
 public abstract class Intersectable {
-    
+
     /**
      * Global flag to enable/disable Conservative Boundary Region (CBR) optimization.
      * When disabled, all intersection calculations proceed directly without bounding box checks.
      */
     private static boolean cbrEnabled = true;
-    
+
     /**
      * Cached bounding box for this geometry (lazy initialization with thread safety).
      */
     protected volatile BoundingBox boundingBox;
+
     /**
      * geoPoint
      */
@@ -45,7 +46,7 @@ public abstract class Intersectable {
         /**
          * Represents the material of the intersected geometry.
          */
-        public final Material material;
+        public Material material;
 
         /**
          * Represents the direction vector of the intersecting ray.
@@ -117,7 +118,7 @@ public abstract class Intersectable {
     /**
      * Calculates the bounding box for this geometry.
      * Returns null for infinite geometries (Plane, Tube).
-     * 
+     *
      * @return the bounding box for this geometry, or null if infinite
      */
     protected abstract BoundingBox calculateBoundingBox();
@@ -125,7 +126,7 @@ public abstract class Intersectable {
     /**
      * Gets the bounding box for this geometry using thread-safe lazy initialization.
      * Uses double-checked locking pattern for optimal performance in multithreaded environments.
-     * 
+     *
      * @return the bounding box for this geometry, or null if infinite
      */
     public BoundingBox getBoundingBox() {
@@ -143,7 +144,7 @@ public abstract class Intersectable {
      * Enables or disables Conservative Boundary Region (CBR) optimization globally.
      * When enabled (default), rays are tested against bounding boxes for early rejection.
      * When disabled, all intersection calculations proceed directly without CBR checks.
-     * 
+     *
      * @param enabled true to enable CBR, false to disable
      */
     public static void setCBREnabled(boolean enabled) {
@@ -152,7 +153,7 @@ public abstract class Intersectable {
 
     /**
      * Returns whether Conservative Boundary Region (CBR) optimization is currently enabled.
-     * 
+     *
      * @return true if CBR is enabled, false if disabled
      */
     public static boolean isCBREnabled() {
@@ -208,7 +209,7 @@ public abstract class Intersectable {
                 return null; // Ray doesn't hit bounding box - early rejection
             }
         }
-        
+
         // Proceed to actual intersection calculation
         return calculateIntersectionsHelper(ray, maxDistance);
     }

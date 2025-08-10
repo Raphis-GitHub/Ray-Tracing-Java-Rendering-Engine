@@ -9,8 +9,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Blackboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Blackboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +127,10 @@
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderMaterialTest.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
+    "JUnit.SoftShadowsDebugTest.executor": "Run",
+    "JUnit.SoftShadowsDebugTest.testSoftShadowsOn.executor": "Run",
+    "JUnit.SoftShadowsSimpleTest.executor": "Run",
+    "JUnit.SoftShadowsSimpleTest.testBasicSoftShadows.executor": "Run",
     "JUnit.SphereTest.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Debug",
     "JUnit.SphereTest.testFindIntersections.executor": "Run",
@@ -208,7 +217,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TeapotTest">
+  <component name="RunManager" selected="JUnit.SoftShadowsSimpleTest.testBasicSoftShadows">
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -218,22 +227,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CBRTest.testCBRPerformance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.CBRTest" />
-      <option name="METHOD_NAME" value="testCBRPerformance" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -254,7 +247,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RenderTests.basicRenderJson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SoftShadowsDebugTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -263,29 +256,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
-      <option name="METHOD_NAME" value="basicRenderJson" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TeapotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
+      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsDebugTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TeapotTest.testTeapot2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SoftShadowsDebugTest.testSoftShadowsOn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -294,8 +271,39 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.TeapotTest" />
-      <option name="METHOD_NAME" value="testTeapot2" />
+      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsDebugTest" />
+      <option name="METHOD_NAME" value="testSoftShadowsOn" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftShadowsSimpleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsSimpleTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftShadowsSimpleTest.testBasicSoftShadows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsSimpleTest" />
+      <option name="METHOD_NAME" value="testBasicSoftShadows" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -303,19 +311,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ALLTESTS" />
-      <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
-      <item itemvalue="JUnit.TeapotTest" />
-      <item itemvalue="JUnit.TeapotTest.testTeapot2" />
-      <item itemvalue="JUnit.RenderTests.basicRenderJson" />
+      <item itemvalue="JUnit.SoftShadowsDebugTest" />
+      <item itemvalue="JUnit.SoftShadowsDebugTest.testSoftShadowsOn" />
+      <item itemvalue="JUnit.SoftShadowsSimpleTest" />
+      <item itemvalue="JUnit.SoftShadowsSimpleTest.testBasicSoftShadows" />
       <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TeapotTest" />
-        <item itemvalue="JUnit.TeapotTest.testTeapot2" />
-        <item itemvalue="JUnit.CBRTest.testCBRPerformance" />
+        <item itemvalue="JUnit.SoftShadowsSimpleTest.testBasicSoftShadows" />
+        <item itemvalue="JUnit.SoftShadowsDebugTest.testSoftShadowsOn" />
+        <item itemvalue="JUnit.SoftShadowsSimpleTest" />
+        <item itemvalue="JUnit.SoftShadowsDebugTest" />
         <item itemvalue="JUnit.MoonlitForestTest.renderEnhancedMoonlitForest" />
-        <item itemvalue="JUnit.RenderTests.basicRenderJson" />
       </list>
     </recent_temporary>
   </component>

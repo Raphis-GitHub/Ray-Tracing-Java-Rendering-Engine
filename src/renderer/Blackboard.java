@@ -28,6 +28,13 @@ public class Blackboard implements Cloneable {
     private boolean depthOfField = false;
 
     /**
+     * Indicates whether to use soft shadows.
+     * If true, area light sources will generate multiple shadow rays for soft shadows.
+     * Default is false.
+     */
+    private boolean softShadows = false;
+
+    /**
      * Controls whether to use jittered sampling (random) or regular grid sampling.
      */
     private boolean useJitteredSampling = true;
@@ -41,6 +48,12 @@ public class Blackboard implements Cloneable {
      * Number of samples for depth of field effect.
      */
     private int depthOfFieldSamples = 16;
+
+    /**
+     * Number of samples for soft shadows effect.
+     * Each shadow ray generates this many sample rays from the light source area.
+     */
+    private int softShadowSamples = 81;
     /**
      * The size of the grid for point generation.
      * This is used to determine the number of points in a grid pattern.
@@ -154,6 +167,32 @@ public class Blackboard implements Cloneable {
          */
         public Builder setDepthOfField(boolean depthOfField) {
             blackboard.depthOfField = depthOfField;
+            return this;
+        }
+
+        /**
+         * Sets whether soft shadows should be used.
+         * If true, area light sources will generate multiple shadow rays for soft shadows.
+         * Default is false.
+         *
+         * @param softShadows true to enable soft shadows, false to disable
+         * @return this Builder instance for method chaining
+         */
+        public Builder setSoftShadows(boolean softShadows) {
+            blackboard.softShadows = softShadows;
+            return this;
+        }
+
+        /**
+         * Sets the number of soft shadow samples.
+         *
+         * @param samples the number of samples to use for soft shadows (minimum 50)
+         * @return builder instance
+         */
+        public Builder setSoftShadowSamples(int samples) {
+            if (samples < 50)
+                throw new IllegalArgumentException("Soft shadow samples must be at least 50");
+            blackboard.softShadowSamples = samples;
             return this;
         }
 
@@ -302,6 +341,24 @@ public class Blackboard implements Cloneable {
     @SuppressWarnings("unused")
     public boolean getUseJitteredSampling() {
         return useJitteredSampling;
+    }
+
+    /**
+     * Returns whether soft shadows is enabled.
+     *
+     * @return true if soft shadows is used, false otherwise
+     */
+    public boolean useSoftShadows() {
+        return softShadows;
+    }
+
+    /**
+     * Returns the number of soft shadow samples.
+     *
+     * @return the number of samples used for soft shadows
+     */
+    public int getSoftShadowSamples() {
+        return softShadowSamples;
     }
 
     /**

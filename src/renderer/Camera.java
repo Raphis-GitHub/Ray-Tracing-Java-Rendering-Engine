@@ -283,8 +283,11 @@ public class Camera implements Cloneable {
          * @return Builder instance
          */
         public Builder setRayTracer(Scene scene, RayTracerType rayTracerType) {
-            if (rayTracerType == RayTracerType.SIMPLE)
+            if (rayTracerType == RayTracerType.SIMPLE) {
                 camera.rayTracer = new SimpleRayTracer(scene);
+                // Set camera reference immediately if possible
+                ((SimpleRayTracer) camera.rayTracer).setCamera(camera);
+            }
             return this;
         }
 
@@ -516,10 +519,16 @@ public class Camera implements Cloneable {
                 camera.blackboard = Blackboard.getBuilder().build();
             }
 
+            // Set camera reference in SimpleRayTracer for soft shadow support
+            if (camera.rayTracer instanceof SimpleRayTracer) {
+                ((SimpleRayTracer) camera.rayTracer).setCamera(camera);
+            }
+
             // Initialize render effects
             if (camera.renderEffects.isEmpty()) {
                 camera.renderEffects.add(new AntiAliasingEffect());
                 camera.renderEffects.add(new DepthOfFieldEffect());
+                // Note: Soft shadows are handled directly in SimpleRayTracer lighting calculation
             }
 
             return camera.clone();

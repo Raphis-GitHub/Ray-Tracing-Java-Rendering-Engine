@@ -2,9 +2,11 @@ package renderer;
 
 import geometries.Intersectable.Intersection;
 import lighting.LightSource;
+import lighting.PointLight;
 import primitives.*;
 import scene.Scene;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -28,12 +30,28 @@ public class SimpleRayTracer extends RayTracerBase {
     private static final Double3 INITIAL_K = Double3.ONE;
 
     /**
+     * Camera reference for accessing blackboard configuration.
+     */
+    private Camera camera = null;
+
+    /**
      * Constructor returns super of scene
      *
      * @param scene the scene to trace rays in
      */
     public SimpleRayTracer(Scene scene) {
         super(scene);
+    }
+
+    /**
+     * Sets the camera reference for accessing soft shadow configuration.
+     *
+     * @param camera the camera instance
+     * @return this SimpleRayTracer instance for method chaining
+     */
+    public SimpleRayTracer setCamera(Camera camera) {
+        this.camera = camera;
+        return this;
     }
 
     /**
@@ -87,7 +105,7 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the local lighting effects (diffuse + specular) with transparency support.
+     * Calculates the local lighting effects (diffuse + specular) with soft shadow support.
      *
      * @param intersection the intersection to calculate color at
      * @return the resulting color from local effects
@@ -96,7 +114,21 @@ public class SimpleRayTracer extends RayTracerBase {
         Color color = intersection.geometry.getEmission();
         for (LightSource lightSource : scene.lights) {
             if (!setLightSource(intersection, lightSource)) continue;
-            Double3 ktr = transparency(intersection);
+
+            // Calculate transparency (hard or soft shadows)
+            Double3 ktr;
+            if (camera != null && camera.getBlackboard().useSoftShadows() && lightSource instanceof PointLight pointLight) {
+                if (pointLight.getRadius() > 0) {
+                    // Use soft shadow transparency calculation with safety fallbacks
+                    ktr = calcSoftShadowTransparency(intersection, pointLight);
+                } else {
+                    // Hard shadows (radius = 0)
+                    ktr = transparency(intersection);
+                }
+            } else {
+                // Standard hard shadow calculation
+                ktr = transparency(intersection);
+            }
             if (!ktr.lowerThan(MIN_CALC_COLOR_K)) {
                 Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                 Double3 diffusive = calcDiffusive(intersection);
@@ -108,13 +140,136 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the transparency factor for partial shadows.
+     * Calculates soft shadow transparency by sampling multiple shadow rays to an area light source.
+     * Implementation follows the "Average ktr from all shadow rays" approach from the course material.
+     *
+     * @param intersection the intersection point where we're calculating shadows
+     * @param areaLight    the area light source (PointLight or SpotLight with radius > 0)
+     * @return averaged transparency factor representing soft shadow effect
+     */
+    private Double3 calcSoftShadowTransparency(Intersection intersection, PointLight areaLight) {
+        // Step 1: Generate sample points on the area light source
+        List<Point> lightSamplePoints = generateAreaLightSamplePoints(areaLight);
+
+        // Step 2: Cast shadow rays to each sample point and average the transparency
+        return averageTransparencyFromSampleRays(intersection, lightSamplePoints);
+    }
+
+    /**
+     * Generates evenly distributed sample points across the area light source surface.
+     * Creates a grid pattern scaled by the light's radius.
+     *
+     * @param areaLight the area light source with radius > 0
+     * @return list of sample points representing the light source area
+     */
+    private List<Point> generateAreaLightSamplePoints(PointLight areaLight) {
+        //TODO: check for cod ereuse
+        double radius = areaLight.getRadius();
+        Point lightCenter = areaLight.getPosition();
+        int totalSamples = camera.getBlackboard().getSoftShadowSamples();
+        int gridSize = (int) Math.ceil(Math.sqrt(totalSamples));
+
+        List<Point> samplePoints = new ArrayList<>();
+
+        // Generate grid of points from (-radius, -radius) to (+radius, +radius)
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                // Map grid indices to [-1, +1] range
+                double u = (gridSize == 1) ? 0 : (2.0 * i / (gridSize - 1) - 1.0);
+                double v = (gridSize == 1) ? 0 : (2.0 * j / (gridSize - 1) - 1.0);
+
+                // Scale by radius to get actual offsets
+                double dx = u * radius;
+                double dy = v * radius;
+
+                // Create sample point (offset in XY plane from light center)
+                Point samplePoint = new Point(
+                        lightCenter.getX() + dx,
+                        lightCenter.getY() + dy,
+                        lightCenter.getZ()
+                );
+                samplePoints.add(samplePoint);
+
+                if (samplePoints.size() >= totalSamples) return samplePoints;
+            }
+        }
+        return samplePoints;
+    }
+
+    /**
+     * Casts shadow rays to each light sample point and calculates average transparency.
+     * Each ray contributes equally to the final soft shadow factor.
+     *
+     * @param intersection      the surface point being shaded
+     * @param lightSamplePoints sample points on the area light source
+     * @return averaged transparency (0 = full shadow, 1 = no shadow)
+     */
+    private Double3 averageTransparencyFromSampleRays(Intersection intersection, List<Point> lightSamplePoints) {
+        Double3 totalTransparency = Double3.ZERO;
+        int validSamples = 0;
+
+        for (Point lightSamplePoint : lightSamplePoints) {
+            Double3 rayTransparency = calculateSingleShadowRayTransparency(intersection, lightSamplePoint);
+            totalTransparency = totalTransparency.add(rayTransparency);
+            validSamples++;
+        }
+
+        // Return average transparency (soft shadow factor)
+        return validSamples > 0 ? totalTransparency.scale(1.0 / validSamples) : transparency(intersection);
+    }
+
+    /**
+     * Calculates transparency for a single shadow ray from intersection to light sample point.
+     * Handles under-horizon conditions and blocking geometry.
+     *
+     * @param intersection     the surface intersection point
+     * @param lightSamplePoint a specific point on the area light source
+     * @return transparency factor for this individual shadow ray
+     */
+    private Double3 calculateSingleShadowRayTransparency(Intersection intersection, Point lightSamplePoint) {
+        try {
+            // Calculate direction from surface to this light sample point
+            Vector lightDirection = lightSamplePoint.subtract(intersection.point).normalize();
+            double dotProduct = alignZero(intersection.normal.dotProduct(lightDirection));
+
+            // Check under-horizon condition: is light sample behind the surface?
+            if (dotProduct <= 0) {
+                return Double3.ZERO; // Light sample is behind surface = full shadow
+            }
+
+            // Cast shadow ray from surface to light sample point
+            Ray shadowRay = new Ray(intersection.point, lightDirection, intersection.normal);
+            double distance = lightSamplePoint.distance(intersection.point);
+            var blockingObjects = scene.geometries.calculateIntersections(shadowRay, distance);
+
+            // Calculate accumulated transparency through all blocking objects
+            Double3 rayTransparency = Double3.ONE;
+            if (blockingObjects != null && !blockingObjects.isEmpty()) {
+                for (Intersection blockingObject : blockingObjects) {
+                    rayTransparency = rayTransparency.product(blockingObject.material.kT);
+                    // Early exit if ray is completely blocked
+                    if (rayTransparency.lowerThan(MIN_CALC_COLOR_K)) {
+                        return Double3.ZERO;
+                    }
+                }
+            }
+            return rayTransparency;
+
+        } catch (IllegalArgumentException e) {
+            // Handle edge cases (e.g., light sample too close to intersection)
+            return Double3.ZERO;
+        }
+    }
+
+    /**
+     * Calculates the transparency factor for partial shadows (standard hard shadows).
      * Returns the accumulated transparency of all objects between the intersection point and light source.
      *
      * @param intersection the intersection point
      * @return accumulated transparency factor (Double3.ONE = no shadow, Double3.ZERO = complete shadow)
      */
     private Double3 transparency(Intersection intersection) {
+        // Standard hard shadow calculation (soft shadows handled in calcSoftShadowLighting)
         var intersections = getShadowRayIntersections(intersection);
         if (intersections == null) return Double3.ONE; // no blocking objects
 
