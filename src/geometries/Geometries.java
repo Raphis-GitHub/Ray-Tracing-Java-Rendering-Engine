@@ -39,6 +39,16 @@ public class Geometries extends Intersectable {
     }
 
     /**
+     * Gets the list of geometries in this collection.
+     * Used by GeometryHierarchyBuilderMedian for automatic hierarchy construction.
+     *
+     * @return an unmodifiable view of the geometries list
+     */
+    public List<Intersectable> getGeometries() {
+        return geometries;
+    }
+
+    /**
      * Calculates intersections between a ray and all geometries in the collection.
      * Iterates through each geometry in the collection and aggregates all intersection points.
      *
@@ -74,7 +84,7 @@ public class Geometries extends Intersectable {
         if (geometries.isEmpty()) {
             return null;
         }
-        
+
         // Collect all bounding boxes
         BoundingBox[] boxes = new BoundingBox[geometries.size()];
         for (int i = 0; i < geometries.size(); i++) {
@@ -84,7 +94,7 @@ public class Geometries extends Intersectable {
                 return null;
             }
         }
-        
+
         // Return union of all bounding boxes
         return BoundingBox.union(boxes);
     }

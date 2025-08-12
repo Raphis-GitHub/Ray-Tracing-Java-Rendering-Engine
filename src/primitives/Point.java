@@ -41,6 +41,33 @@ public class Point {
     }
 
     /**
+     * Gets the X coordinate of this point.
+     * 
+     * @return the X coordinate
+     */
+    public double getX() {
+        return xyz.d1();
+    }
+    
+    /**
+     * Gets the Y coordinate of this point.
+     * 
+     * @return the Y coordinate
+     */
+    public double getY() {
+        return xyz.d2();
+    }
+    
+    /**
+     * Gets the Z coordinate of this point.
+     * 
+     * @return the Z coordinate
+     */
+    public double getZ() {
+        return xyz.d3();
+    }
+
+    /**
      * a method that takes in a vector and adds it to the point. it uses add function from Double3
      *
      * @param obj Vector used for addition
@@ -96,18 +123,6 @@ public class Point {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return obj instanceof Point other && xyz.equals(other.xyz);
-    }
-
-    public double getX() {
-        return xyz.d1();
-    }
-
-    public double getY() {
-        return xyz.d2();
-    }
-
-    public double getZ() {
-        return xyz.d3();
     }
 
     /**

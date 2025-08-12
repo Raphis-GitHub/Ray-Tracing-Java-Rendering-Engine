@@ -110,6 +110,36 @@ public class BoundingBox {
     }
 
     /**
+     * Gets the minimum X coordinate.
+     */
+    public double getMinX() { return minX; }
+    
+    /**
+     * Gets the maximum X coordinate.
+     */
+    public double getMaxX() { return maxX; }
+    
+    /**
+     * Gets the minimum Y coordinate.
+     */
+    public double getMinY() { return minY; }
+    
+    /**
+     * Gets the maximum Y coordinate.
+     */
+    public double getMaxY() { return maxY; }
+    
+    /**
+     * Gets the minimum Z coordinate.
+     */
+    public double getMinZ() { return minZ; }
+    
+    /**
+     * Gets the maximum Z coordinate.
+     */
+    public double getMaxZ() { return maxZ; }
+
+    /**
      * Creates a union of multiple bounding boxes.
      */
     public static BoundingBox union(BoundingBox... boxes) {
