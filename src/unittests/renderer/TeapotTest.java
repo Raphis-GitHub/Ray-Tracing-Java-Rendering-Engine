@@ -49,9 +49,9 @@ class TeapotTest {
      * 10 Teapot tests with CBR
      */
     @Test
-    void testTeapot2_MT_CBR() {
+    void testTeapot2_MT_BVH() {
         for (int i = 10; i > 0; --i) {
-            teapot2_MT_CBR();
+            teapot2_MT_BVH();
         }
     }
 
@@ -71,7 +71,7 @@ class TeapotTest {
     @Test
     void testTeapot2_CBR() {
         for (int i = 10; i > 0; --i) {
-            teapot2_CBR();
+            teapot2_BVH();
         }
     }
 
@@ -89,7 +89,8 @@ class TeapotTest {
     /**
      * Teapot with CBR
      */
-    void teapot2_MT_CBR() {
+    void teapot2_MT_BVH() {
+        GeometryHierarchyBuilderMedian.setBVHEnabled(true);
         prepareTeapot().setMultithreading(-1) //
                 //.enableCBR() //
                 .setCBR(true)
@@ -100,6 +101,7 @@ class TeapotTest {
     }
 
     void teapot2() {
+        GeometryHierarchyBuilderMedian.setBVHEnabled(false);
         prepareTeapot() //
                 //.enableCBR() //
                 .setCBR(false)
@@ -110,6 +112,7 @@ class TeapotTest {
     }
 
     void teapot2_MT() {
+        GeometryHierarchyBuilderMedian.setBVHEnabled(false);
         prepareTeapot().setMultithreading(-1) //
                 //.enableCBR() //
                 .setCBR(false)
@@ -119,7 +122,8 @@ class TeapotTest {
                 .writeToImage("teapot2");
     }
 
-    void teapot2_CBR() {
+    void teapot2_BVH() {
+        GeometryHierarchyBuilderMedian.setBVHEnabled(true);
         prepareTeapot() //
                 //.enableCBR() //
                 .setCBR(true)
@@ -167,6 +171,12 @@ class TeapotTest {
                 .setRayTracer(scene, RayTracerType.SIMPLE) //
                 .setLocation(new Point(0, 0, -1000)).setDirection(Point.ZERO, Vector.AXIS_Y) //
                 .setVpDistance(1000).setVpSize(200, 200) //
+                .setBlackboard(Blackboard.getBuilder() //)
+                        .setSoftShadows(false) // Soft shadows OF
+                        .setUseJitteredSampling(true)
+                        .setAntiAliasing(true)
+                        .setAntiAliasingSamples(36)
+                        .build()) //
                 // .setMultithreading(-3) // fail - paging file size
                 //.setMultithreading(-2) // 9.3
                 //.setMultithreading(-1) // 9.6

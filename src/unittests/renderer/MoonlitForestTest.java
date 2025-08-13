@@ -42,6 +42,7 @@ public class MoonlitForestTest {
                 .setVpDistance(100)
                 .setResolution(800, 500)
                 .setRayTracer(scene, RayTracerType.SIMPLE)
+                .setMultithreading(-1)
                 .build();
 
         // ===== ENHANCED MATERIALS WITH NEW EFFECTS =====
@@ -381,36 +382,40 @@ public class MoonlitForestTest {
                 new Color(100, 110, 130) // Brighter cool moonlight
         ));
 
-        // Direct light from the moon itself
+        // Direct light from the moon itself (area light for soft shadows)
         scene.lights.add(new PointLight(
                 new Color(150, 160, 170),
                 new Point(-80, 80, -180)) // Moon's position
                 .setKl(0.0001).setKq(0.000001)
+                .setRadius(15) // Large area light for soft shadows
         );
 
-        // Colorful moonbeam filtering through trees
+        // Colorful moonbeam filtering through trees (area light)
         scene.lights.add(new SpotLight(
                 new Color(80, 90, 120), // Cool blue moonbeam
                 new Point(-30, 60, 30),
                 new Vector(0.3, -1, -0.2))
                 .setKl(0.0005).setKq(0.00005)
                 .setNarrowBeam(6)
+                .setRadius(8) // Medium area light for soft shadows
         );
 
-        // Magical purple light
+        // Magical purple light (area light)
         scene.lights.add(new SpotLight(
                 new Color(90, 60, 120), // Purple magical light
                 new Point(50, 70, -40),
                 new Vector(-0.4, -1, 0.3))
                 .setKl(0.0005).setKq(0.00005)
                 .setNarrowBeam(8)
+                .setRadius(10) // Area light for magical soft shadows
         );
 
-        // Warm amber glow from magical crystals
+        // Warm amber glow from magical crystals (area light)
         scene.lights.add(new PointLight(
                 new Color(80, 90, 60), // Warm amber
                 new Point(-25, -10, 5))
                 .setKl(0.002).setKq(0.0002)
+                .setRadius(5) // Small area light for crystal glow soft shadows
         );
 
         // Atmospheric fill light with slight color variation
@@ -420,17 +425,19 @@ public class MoonlitForestTest {
                 .setKl(0.001).setKq(0.00008)
         );
 
-        // Additional colored accent lights
+        // Additional colored accent lights (area lights)
         scene.lights.add(new PointLight(
                 new Color(60, 80, 50), // Green forest glow
                 new Point(-60, 20, 40))
                 .setKl(0.003).setKq(0.0003)
+                .setRadius(6) // Area light for forest ambiance
         );
 
         scene.lights.add(new PointLight(
                 new Color(70, 50, 90), // Purple mystical glow
                 new Point(40, 25, -30))
                 .setKl(0.003).setKq(0.0003)
+                .setRadius(7) // Area light for mystical glow
         );
 
         // Render the enhanced magical forest scene

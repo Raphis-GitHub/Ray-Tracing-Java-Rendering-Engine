@@ -7,10 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Implement soft shadows feature with adjustable parameters; add tests for soft shadows functionality">
-      <change afterPath="$PROJECT_DIR$/src/unittests/renderer/BVHStage2Test.java" afterDir="false" />
+    <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/GeometryHierarchyBuilderMedian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/GeometryHierarchyBuilderMedian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/BVHStage2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/BVHStage2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +41,16 @@
     &quot;assignee&quot;: &quot;Raphis-GitHub&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Raphis-GitHub/ISE5785_4760_2159.git&quot;,
-    &quot;accountId&quot;: &quot;40f1b214-80d8-437c-9952-e5f098098271&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Raphis-GitHub/ISE5785_4760_2159.git",
+    "accountId": "6e99f8cc-aef7-4c8f-a9e7-144cb1b17e7d"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/351c13c3-6100-497b-9adc-ff9929cc9733_ISE5785_5900_6319-PR07.1.zip.733/ISE5785_5900_6319-PR07.1/src/geometries/Polygon.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/4271cc97-1566-4b6a-a30d-06822e148f1d_ISE5785_5900_6319-PR07.3.zip.f1d/ISE5785_5900_6319-PR07.3/src/geometries/Sphere.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/58490a15-5d43-465a-affa-bf2eb625ac9d_ISE5785_5900_6319-PR07.1.zip.c9d/ISE5785_5900_6319-PR07.1/src/geometries/Tube.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/744d7015-b024-451a-a965-623943e7c41c_ISE5785_5900_6319-PR07.1.zip.41c/ISE5785_5900_6319-PR07.1/src/geometries/Cylinder.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/9d8b0056-e286-4b40-904f-2ddee622b6f9_ISE5785_5900_6319-PR07.1.zip.6f9/ISE5785_5900_6319-PR07.1/src/geometries/Sphere.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/a32bc582-f3e9-4235-91c5-43099a8bdef1_ISE5785_5900_6319-PR07.3.zip.ef1/ISE5785_5900_6319-PR07.3/src/geometries/Tube.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/d5cc264c-610e-46c4-bfb7-d684390d9837_ISE5785_5900_6319-PR07.3.zip.837/ISE5785_5900_6319-PR07.3/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/geometries/GeometryHierarchyBuilderMedian.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Plane.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/geometries/Triangle.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/primitives/Point.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/renderer/Camera.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/unittests/geometries/CylinderTest.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/unittests/primitives/VectorTest.java" root0="SKIP_INSPECTION" />
@@ -83,11 +78,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BVHDemo.executor": "Run",
+    "Application.BVHStage2CManualTest.executor": "Run",
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.ALLTESTS.executor": "Run",
     "JUnit.All in ISE5785_4760_2159.executor": "Run",
+    "JUnit.BVHPerformanceTest.executor": "Run",
+    "JUnit.BVHPerformanceTest.test3_NoBVH_Multithreading.executor": "Run",
+    "JUnit.BVHPerformanceTest.test4_BVH_Multithreading.executor": "Run",
     "JUnit.BVHStage2Test.executor": "Run",
+    "JUnit.BVHStage2Test.performanceComparison.executor": "Run",
     "JUnit.CBRTest.testCBRPerformance.executor": "Run",
     "JUnit.CameraIntersIntegsTest.executor": "Run",
     "JUnit.CameraTest.executor": "Run",
@@ -213,7 +214,33 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BVHStage2Test">
+  <component name="RunManager" selected="JUnit.BVHPerformanceTest">
+    <configuration name="BVHDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="renderer.BVHDemo" />
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BVHStage2CManualTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="renderer.BVHStage2CManualTest" />
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ALLTESTS" type="JUnit" factoryName="JUnit">
       <module name="ISE5785_4760_2159" />
       <option name="PACKAGE_NAME" value="" />
@@ -223,6 +250,21 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BVHPerformanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5785_4760_2159" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.BVHPerformanceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,7 +284,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SoftShadowsDebugTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BVHStage2Test.performanceComparison" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5785_4760_2159" />
       <extension name="coverage">
         <pattern>
@@ -251,82 +293,36 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsDebugTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SoftShadowsDebugTest.testSoftShadowsOn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsDebugTest" />
-      <option name="METHOD_NAME" value="testSoftShadowsOn" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SoftShadowsSimpleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsSimpleTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SoftShadowsSimpleTest.testBasicSoftShadows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5785_4760_2159" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.SoftShadowsSimpleTest" />
-      <option name="METHOD_NAME" value="testBasicSoftShadows" />
+      <option name="MAIN_CLASS_NAME" value="renderer.BVHStage2Test" />
+      <option name="METHOD_NAME" value="performanceComparison" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.BVHDemo" />
+      <item itemvalue="Application.BVHStage2CManualTest" />
       <item itemvalue="JUnit.ALLTESTS" />
+      <item itemvalue="JUnit.BVHPerformanceTest" />
+      <item itemvalue="JUnit.BVHStage2Test.performanceComparison" />
       <item itemvalue="JUnit.BVHStage2Test" />
-      <item itemvalue="JUnit.SoftShadowsDebugTest" />
-      <item itemvalue="JUnit.SoftShadowsDebugTest.testSoftShadowsOn" />
-      <item itemvalue="JUnit.SoftShadowsSimpleTest" />
-      <item itemvalue="JUnit.SoftShadowsSimpleTest.testBasicSoftShadows" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BVHPerformanceTest" />
         <item itemvalue="JUnit.BVHStage2Test" />
-        <item itemvalue="JUnit.SoftShadowsSimpleTest.testBasicSoftShadows" />
-        <item itemvalue="JUnit.SoftShadowsDebugTest.testSoftShadowsOn" />
-        <item itemvalue="JUnit.SoftShadowsSimpleTest" />
-        <item itemvalue="JUnit.SoftShadowsDebugTest" />
+        <item itemvalue="Application.BVHDemo" />
+        <item itemvalue="Application.BVHStage2CManualTest" />
+        <item itemvalue="JUnit.BVHStage2Test.performanceComparison" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -375,22 +371,7 @@
       <workItem from="1753200956957" duration="19826000" />
       <workItem from="1753366772488" duration="967000" />
       <workItem from="1754396455031" duration="3520000" />
-    </task>
-    <task id="LOCAL-00041" summary="Add detailed documentation for camera intersection tests and methods">
-      <option name="closed" value="true" />
-      <created>1750783471138</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1750783471138</updated>
-    </task>
-    <task id="LOCAL-00042" summary=" Clean change list manager">
-      <option name="closed" value="true" />
-      <created>1750859583766</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1750859583766</updated>
+      <workItem from="1755017129636" duration="13823000" />
     </task>
     <task id="LOCAL-00043" summary="Refactor Camera class; initialize fields and improve intersection test assertions">
       <option name="closed" value="true" />
@@ -768,7 +749,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754844414478</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="implmentd camera move bonus + stage 2 of minp2">
+      <option name="closed" value="true" />
+      <created>1754848180410</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1754848180410</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo">
+      <option name="closed" value="true" />
+      <created>1755031277596</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1755031277596</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,15 +776,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance SpotLight class documentation; add narrow beam effect factor and improve intensity calculation" />
-    <MESSAGE value="Refactor PointLight and SpotLight classes; improve comments and code clarity" />
     <MESSAGE value="Fix view direction calculation in specular component; update comments for clarity - bugs where some faces dont get lit still exist" />
     <MESSAGE value="Fix light direction check in intersection calculation; improve comments for clarity" />
     <MESSAGE value="Refactor Camera, DirectionalLight, and Light classes; improve comments and code clarity" />
@@ -811,7 +818,9 @@
     <MESSAGE value="Enhance geometry classes with bounding box calculations; implement Conservative Boundary Region (CBR) optimization in intersection logic" />
     <MESSAGE value="Add BoundingBox class for ray-box intersection; implement CBR optimization and related tests" />
     <MESSAGE value="Implement soft shadows feature with adjustable parameters; add tests for soft shadows functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement soft shadows feature with adjustable parameters; add tests for soft shadows functionality" />
+    <MESSAGE value="implmentd camera move bonus + stage 2 of minp2" />
+    <MESSAGE value="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

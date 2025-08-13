@@ -103,12 +103,11 @@ public class BVHStage2Test {
                 .build()
                 .renderImage();
         long flatTime = System.currentTimeMillis() - startTime;
-
+        startTime = System.currentTimeMillis();
         // Test Stage 2-B (Hierarchical)
         Scene scene2 = createBaseScene();
         scene2.setGeometries(createManualHierarchy());
 
-        startTime = System.currentTimeMillis();
         Camera.getBuilder()
                 .setLocation(new Point(0, 15, 120))
                 .setDirection(new Point(0, -5, -80), Vector.AXIS_Y)
