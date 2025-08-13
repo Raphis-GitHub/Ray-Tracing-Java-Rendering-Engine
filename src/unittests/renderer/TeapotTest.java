@@ -100,6 +100,9 @@ class TeapotTest {
                 .writeToImage("teapot2");
     }
 
+    /**
+     * teapot wiht none
+     */
     void teapot2() {
         GeometryHierarchyBuilderMedian.setBVHEnabled(false);
         prepareTeapot() //
@@ -111,6 +114,9 @@ class TeapotTest {
                 .writeToImage("teapot2");
     }
 
+    /**
+     * Teapot with CBR
+     */
     void teapot2_MT() {
         GeometryHierarchyBuilderMedian.setBVHEnabled(false);
         prepareTeapot().setMultithreading(-1) //
@@ -122,6 +128,9 @@ class TeapotTest {
                 .writeToImage("teapot2");
     }
 
+    /**
+     * teapot with bvh
+     */
     void teapot2_BVH() {
         GeometryHierarchyBuilderMedian.setBVHEnabled(true);
         prepareTeapot() //

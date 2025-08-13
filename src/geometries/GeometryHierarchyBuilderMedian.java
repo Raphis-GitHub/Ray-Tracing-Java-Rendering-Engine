@@ -249,7 +249,6 @@ public class GeometryHierarchyBuilderMedian {
     /**
      * Determines the optimal axis (X, Y, or Z) for splitting the given objects
      * using a simple median split heuristic.
-     * <p>
      *
      * @param objects list of ObjectInfo to analyze for splitting
      * @return the best axis index (0=X, 1=Y, 2=Z) for splitting,
@@ -329,8 +328,17 @@ public class GeometryHierarchyBuilderMedian {
      * Wrapper class that encapsulates geometry objects with their spatial information.
      */
     private static class ObjectInfo {
+        /**
+         * The geometry object being wrapped.
+         */
         final Intersectable geometry;
+        /**
+         * The bounding box of the geometry, used for spatial partitioning.
+         */
         final BoundingBox boundingBox;
+        /**
+         * The centroid of the bounding box, used for median split calculations.
+         */
         final Point centroid;
 
         /**

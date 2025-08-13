@@ -181,6 +181,11 @@ public class BVHPerformanceTest {
 
     // Helper methods
 
+    /**
+     * Creates a complex scene with multiple light sources and geometries
+     *
+     * @return the constructed Scene object
+     */
     private Scene createMassiveTestScene() {
         Scene scene = new Scene("BVH Performance Test Scene")
                 .setBackground(new Color(10, 15, 25))
@@ -218,6 +223,11 @@ public class BVHPerformanceTest {
         return scene;
     }
 
+    /**
+     * Adds a variety of geometries to the scene for performance testing.
+     *
+     * @param geometries the collection of geometries to which the test objects will be added
+     */
     private void addMassiveTestObjects(Geometries geometries) {
         // Add 200+ objects in various spatial distributions
         addSphereField(geometries, 50);      // 50 spheres in grid
@@ -231,6 +241,12 @@ public class BVHPerformanceTest {
         // Total: ~225 finite objects (no infinite objects)
     }
 
+    /**
+     * Adds a grid of spheres to the scene.
+     *
+     * @param geometries the collection of geometries to which the spheres will be added
+     * @param count      number of spheres to add
+     */
     private void addSphereField(Geometries geometries, int count) {
         int gridSize = (int) Math.ceil(Math.sqrt(count));
         double spacing = 15;
@@ -254,6 +270,12 @@ public class BVHPerformanceTest {
         }
     }
 
+    /**
+     * Adds a specified number of random spheres to the scene.
+     *
+     * @param geometries the collection of geometries to which the spheres will be added
+     * @param count      number of random spheres to add
+     */
     private void addRandomSpheres(Geometries geometries, int count) {
         for (int i = 0; i < count; i++) {
             double x = (Math.random() - 0.5) * 150;
@@ -270,6 +292,15 @@ public class BVHPerformanceTest {
         }
     }
 
+    /**
+     * Adds a cluster of spheres around a center point.
+     *
+     * @param geometries the collection of geometries to which the spheres will be added
+     * @param centerX    the X coordinate of the center of the cluster
+     * @param centerY    the y coordinate of the center of the cluster
+     * @param centerZ    the Z coordinate of the center of the cluster
+     * @param count      number of spheres in the cluster
+     */
     private void addSphereCluster(Geometries geometries, double centerX, double centerY, double centerZ, int count) {
         for (int i = 0; i < count; i++) {
             double x = centerX + (Math.random() - 0.5) * 25;
@@ -286,6 +317,12 @@ public class BVHPerformanceTest {
         }
     }
 
+    /**
+     * Adds small pyramid-like triangle structures to the scene.
+     *
+     * @param geometries the collection of geometries to which the structures will be added
+     * @param count      the number of triangle structures to add
+     */
     private void addTriangleStructures(Geometries geometries, int count) {
         for (int i = 0; i < count; i++) {
             double baseX = (Math.random() - 0.5) * 120;
@@ -312,6 +349,12 @@ public class BVHPerformanceTest {
         }
     }
 
+    /**
+     * Adds a mix of polygons and cylinders to the scene.
+     *
+     * @param geometries the collection of geometries to which the mixed geometries will be added
+     * @param count      number of mixed geometries to add
+     */
     private void addMixedGeometries(Geometries geometries, int count) {
         for (int i = 0; i < count; i++) {
             double x = (Math.random() - 0.5) * 100;
@@ -341,47 +384,5 @@ public class BVHPerformanceTest {
                         .setEmission(emission).setMaterial(material));
             }
         }
-    }
-
-    private long measureRenderTime(Scene scene, int multithreading, String testName) {
-        System.out.printf("Running %s...\n", testName);
-
-        long startTime = System.currentTimeMillis();
-
-        Camera.getBuilder()
-                .setLocation(new Point(0, 30, 200))
-                .setDirection(new Point(0, 0, 0), Vector.AXIS_Y)
-                .setVpSize(300, 200)
-                .setVpDistance(150)
-                .setResolution(400, 300)  // Smaller resolution for faster testing
-                .setRayTracer(scene, RayTracerType.SIMPLE)
-                .setCBR(true)
-                .setMultithreading(multithreading)
-                .setBlackboard(Blackboard.getBuilder()
-                        .setAntiAliasing(true)
-                        .setAntiAliasingSamples(81)  // 9x9 grid for high quality
-                        .setUseJitteredSampling(true)  // Jittered sampling for smoother anti-aliasing
-                        .build())
-                .build()
-                .renderImage()
-                .writeToImage("BVH_Perf_" + testName.replace(" ", "_").replace(",", ""));
-
-        long endTime = System.currentTimeMillis();
-        long duration = endTime - startTime;
-        System.out.printf("%s completed in %d ms\n\n", testName, duration);
-
-        return duration;
-    }
-
-    private int countTotalObjects(Geometries geometries) {
-        int count = 0;
-        for (Intersectable geo : geometries.getGeometries()) {
-            if (geo instanceof Geometries) {
-                count += countTotalObjects((Geometries) geo);
-            } else {
-                count++;
-            }
-        }
-        return count;
     }
 }

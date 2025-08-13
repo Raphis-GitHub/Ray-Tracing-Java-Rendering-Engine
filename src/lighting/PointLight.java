@@ -24,9 +24,9 @@ public class PointLight extends Light implements LightSource {
      * The quadratic attenuation factors for the light.
      */
     private double kQ = 0;
-    
+
     /**
-     * The radius of the light source for soft shadows. 
+     * The radius of the light source for soft shadows.
      * When 0, the light acts as a point source (hard shadows).
      * When > 0, the light is treated as an area source (soft shadows).
      */

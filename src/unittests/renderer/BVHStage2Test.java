@@ -137,6 +137,8 @@ public class BVHStage2Test {
     /**
      * Creates the base scene with lighting and materials
      * This scene will be used for both flat and hierarchical tests
+     *
+     * @return Scene - the base scene with ambient light and lights
      */
     private Scene createBaseScene() {
         Scene scene = new Scene("BVH Test Scene")
@@ -166,6 +168,8 @@ public class BVHStage2Test {
     /**
      * Creates the manual hierarchy by strategically grouping objects
      * Strategy: Group by spatial proximity and ray intersection likelihood
+     *
+     * @return Geometries - the top-level geometries collection
      */
     private Geometries createManualHierarchy() {
         // STRATEGY: Create spatial clusters that rays are likely to hit together
@@ -330,6 +334,8 @@ public class BVHStage2Test {
 
     /**
      * Adds all objects to a geometry collection in flat structure (for Stage 1)
+     *
+     * @param geometries The collection to add objects to
      */
     private void addAllObjects(Geometries geometries) {
         // Add the same objects as in manual hierarchy, but all flat
@@ -462,6 +468,8 @@ public class BVHStage2Test {
 
     /**
      * Adds stars to the given geometry collection
+     *
+     * @param geometries The collection to add stars to
      */
     private void addStarsToGeometry(Geometries geometries) {
         // Add a subset of stars (reduced for performance)
@@ -489,26 +497,57 @@ public class BVHStage2Test {
     }
 
     // Material creation helper methods
+
+    /**
+     * Creates materials for various objects in the scene
+     *
+     * @return Material for tree bark
+     */
     private Material createBarkMaterial() {
         return new Material().setKd(0.6).setKs(0.1).setShininess(8);
     }
 
+    /**
+     * Creates a material for leaves
+     *
+     * @return Material for leaves
+     */
     private Material createLeavesMaterial() {
         return new Material().setKd(0.7).setKs(0.2).setShininess(15);
     }
 
+    /**
+     * Creates a material for rocks
+     *
+     * @return Material for rocks
+     */
     private Material createRockMaterial() {
         return new Material().setKd(0.5).setKs(0.4).setShininess(30).setKr(0.3);
     }
 
+    /**
+     * Creates a material for moss
+     *
+     * @return Material for moss
+     */
     private Material createMossMaterial() {
         return new Material().setKd(0.8).setKs(0.05).setShininess(5);
     }
 
+    /**
+     * Creates a material for dead wood
+     *
+     * @return Material for dead wood
+     */
     private Material createDeadWoodMaterial() {
         return new Material().setKd(0.6).setKs(0.1).setShininess(3);
     }
 
+    /**
+     * Creates a material for crystal formations
+     *
+     * @return Material for crystal formations
+     */
     private Material createCrystalMaterial() {
         return new Material().setKd(0.1).setKs(0.9).setShininess(100).setKt(0.7).setKr(0.3);
     }

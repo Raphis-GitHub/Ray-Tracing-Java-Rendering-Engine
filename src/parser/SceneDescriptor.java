@@ -1,24 +1,19 @@
 package parser;
 
 import geometries.*;
-import lighting.DirectionalLight;
-import lighting.LightSource;
-import lighting.PointLight;
-import lighting.SpotLight;
+import lighting.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import primitives.*;
+import primitives.Vector;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * JsonScene is a utility class that provides methods to create a Scene object from a JSON file.
  * It parses the JSON data and constructs the corresponding geometries, lights, and other scene elements.
  */
 public class SceneDescriptor {
-
 
     /**
      * Parses a JSON array of lights and returns a list of LightSource objects.
@@ -69,12 +64,24 @@ public class SceneDescriptor {
         return spotLight;
     }
 
+    /**
+     * Parses a JSON object representing a directional light and returns a DirectionalLight object.
+     *
+     * @param lightObj the JSON object representing the directional light
+     * @return a DirectionalLight object constructed from the JSON data
+     */
     private static LightSource parseDirectionalLight(JSONObject lightObj) {
         Color color = parseColor((String) lightObj.get("color"));
         Vector direction = parseVector((String) lightObj.get("direction"));
         return new DirectionalLight(direction, color);
     }
 
+    /**
+     * Parses a JSON object representing a point light and returns a PointLight object.
+     *
+     * @param lightObj the JSON object representing the point light
+     * @return a PointLight object constructed from the JSON data
+     */
     private static LightSource parsePointLight(JSONObject lightObj) {
         Color color = parseColor((String) lightObj.get("color"));
         Point position = parsePoint((String) lightObj.get("position"));
@@ -119,6 +126,7 @@ public class SceneDescriptor {
      * Parses a JSON array of geometries and returns a Geometries object.
      *
      * @param geometriesArray the JSON array containing the geometries
+     * @param materials       the JSON array containing the materials
      * @return a Geometries object constructed from the JSON data
      */
     public static Geometries parseGeometries(JSONArray geometriesArray, JSONArray materials) {

@@ -10,11 +10,45 @@ import static primitives.Util.alignZero;
  * @author Eytan and Raph
  */
 public class BoundingBox {
-    private final double minX, minY, minZ;
-    private final double maxX, maxY, maxZ;
+    /**
+     * Minimum X coordinate of the bounding box.
+     */
+    private final double minX;
+
+    /**
+     * Minimum Y coordinate of the bounding box.
+     */
+    private final double minY;
+
+    /**
+     * Minimum Z coordinate of the bounding box.
+     */
+    private final double minZ;
+
+    /**
+     * Maximum X coordinate of the bounding box.
+     */
+    private final double maxX;
+
+    /**
+     * Maximum Y coordinate of the bounding box.
+     */
+    private final double maxY;
+
+    /**
+     * Maximum Z coordinate of the bounding box.
+     */
+    private final double maxZ;
 
     /**
      * Constructs a bounding box with the specified minimum and maximum coordinates.
+     *
+     * @param minX the minimum X coordinate
+     * @param minY the minimum Y coordinate
+     * @param minZ the minimum Z coordinate
+     * @param maxX the maximum X coordinate
+     * @param maxY the maximum Y coordinate
+     * @param maxZ the maximum Z coordinate
      */
     public BoundingBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
         this.minX = minX;
@@ -27,6 +61,9 @@ public class BoundingBox {
 
     /**
      * Constructs a bounding box from two corner points.
+     *
+     * @param min the minimum corner point
+     * @param max the maximum corner point
      */
     public BoundingBox(Point min, Point max) {
         // Inline coordinate extraction for efficiency
@@ -41,6 +78,10 @@ public class BoundingBox {
     /**
      * Tests if a ray intersects with this bounding box using optimized slab method.
      * Focuses on the optimizations that actually matter in Java.
+     *
+     * @param ray         the ray to test for intersection
+     * @param maxDistance the maximum distance to consider for intersection
+     * @return true if the ray intersects the bounding box, false otherwise
      */
     public boolean intersect(Ray ray, double maxDistance) {
         // Extract coordinates once - avoid repeated method calls
@@ -111,36 +152,63 @@ public class BoundingBox {
 
     /**
      * Gets the minimum X coordinate.
+     *
+     * @return the minimum X coordinate
      */
-    public double getMinX() { return minX; }
-    
+    public double getMinX() {
+        return minX;
+    }
+
     /**
      * Gets the maximum X coordinate.
+     *
+     * @return the maximum X coordinate
      */
-    public double getMaxX() { return maxX; }
-    
+    public double getMaxX() {
+        return maxX;
+    }
+
     /**
      * Gets the minimum Y coordinate.
+     *
+     * @return the minimum Y coordinate
      */
-    public double getMinY() { return minY; }
-    
+    public double getMinY() {
+        return minY;
+    }
+
     /**
      * Gets the maximum Y coordinate.
+     *
+     * @return the maximum Y coordinate
      */
-    public double getMaxY() { return maxY; }
-    
+    public double getMaxY() {
+        return maxY;
+    }
+
     /**
      * Gets the minimum Z coordinate.
+     *
+     * @return the minimum Z coordinate
      */
-    public double getMinZ() { return minZ; }
-    
+    public double getMinZ() {
+        return minZ;
+    }
+
     /**
      * Gets the maximum Z coordinate.
+     *
+     * @return the maximum Z coordinate
      */
-    public double getMaxZ() { return maxZ; }
+    public double getMaxZ() {
+        return maxZ;
+    }
 
     /**
      * Creates a union of multiple bounding boxes.
+     *
+     * @param boxes the bounding boxes to union
+     * @return a new BoundingBox that encompasses all provided boxes,
      */
     public static BoundingBox union(BoundingBox... boxes) {
         if (boxes == null || boxes.length == 0) {

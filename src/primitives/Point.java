@@ -42,25 +42,25 @@ public class Point {
 
     /**
      * Gets the X coordinate of this point.
-     * 
+     *
      * @return the X coordinate
      */
     public double getX() {
         return xyz.d1();
     }
-    
+
     /**
      * Gets the Y coordinate of this point.
-     * 
+     *
      * @return the Y coordinate
      */
     public double getY() {
         return xyz.d2();
     }
-    
+
     /**
      * Gets the Z coordinate of this point.
-     * 
+     *
      * @return the Z coordinate
      */
     public double getZ() {

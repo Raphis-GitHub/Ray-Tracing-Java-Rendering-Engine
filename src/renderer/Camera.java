@@ -318,6 +318,9 @@ public class Camera implements Cloneable {
 
         /**
          * Moves the camera by a given offset vector from its current position.
+         *
+         * @param offset the offset vector to move the camera
+         * @return Builder instance
          */
         public Builder moveBy(Vector offset) {
             if (camera.p0 == null) {
@@ -330,6 +333,10 @@ public class Camera implements Cloneable {
 
         /**
          * Points the camera to look at a specific target point with a given up vector.
+         *
+         * @param target target point
+         * @param up     up direction vector
+         * @return Builder instance
          */
         public Builder lookAt(Point target, Vector up) {
             if (camera.p0 == null) {
@@ -340,6 +347,9 @@ public class Camera implements Cloneable {
 
         /**
          * Points the camera to look at a specific target point with default up vector (0,1,0).
+         *
+         * @param target target point
+         * @return Builder instance
          */
         public Builder lookAt(Point target) {
             return lookAt(target, Vector.AXIS_Y);
@@ -565,46 +575,102 @@ public class Camera implements Cloneable {
     }
 
     // Getter methods for render effects access
+
+    /**
+     * Gets the list of render effects applied to this camera.
+     *
+     * @return unmodifiable list of render effects
+     */
     public Blackboard getBlackboard() {
         return blackboard;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public double getWidth() {
         return width;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public double getHeight() {
         return height;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public double getDistance() {
         return distance;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public int getNX() {
         return nX;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public int getNY() {
         return nY;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public Vector getVRight() {
         return vRight;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public Vector getVUp() {
         return vUp;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public double getFocusPointDistance() {
         return focusPointDistance;
     }
 
+    /**
+     * Getters for camera properties
+     *
+     * @return the respective property values
+     */
     public double getAperture() {
         return aperture;
     }

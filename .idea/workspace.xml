@@ -10,8 +10,12 @@
     <list default="true" id="ee4030eb-224a-49c0-9639-9eabc09f09c3" name="Changes" comment="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/GeometryHierarchyBuilderMedian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/GeometryHierarchyBuilderMedian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SceneDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SceneDescriptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/BoundingBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/BoundingBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/BVHPerformanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/BVHPerformanceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/renderer/BVHStage2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/BVHStage2Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/MoonlitForestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/renderer/CBRTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/CBRTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/renderer/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -371,15 +375,7 @@
       <workItem from="1753200956957" duration="19826000" />
       <workItem from="1753366772488" duration="967000" />
       <workItem from="1754396455031" duration="3520000" />
-      <workItem from="1755017129636" duration="13823000" />
-    </task>
-    <task id="LOCAL-00043" summary="Refactor Camera class; initialize fields and improve intersection test assertions">
-      <option name="closed" value="true" />
-      <created>1751195576828</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1751195576828</updated>
+      <workItem from="1755017129636" duration="15420000" />
     </task>
     <task id="LOCAL-00044" summary="Refactor camera intersection tests; simplify assertions and enhance documentation">
       <option name="closed" value="true" />
@@ -765,7 +761,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755031277596</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Add automatic hierarchy building for BVH using median split algorithm; include tests and demo">
+      <option name="closed" value="true" />
+      <created>1755070309199</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1755070309199</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

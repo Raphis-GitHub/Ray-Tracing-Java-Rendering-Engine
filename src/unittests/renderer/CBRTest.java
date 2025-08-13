@@ -11,6 +11,10 @@ import scene.Scene;
 import static java.lang.Math.pow;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the CBR (Composite Bounding Region) implementation in the renderer.
+ * This includes performance tests, bounding box calculations, and CBR toggle functionality.
+ */
 public class CBRTest {
 
     /**
