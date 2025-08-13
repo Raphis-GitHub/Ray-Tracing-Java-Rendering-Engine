@@ -6,7 +6,6 @@ import lighting.PointLight;
 import primitives.*;
 import scene.Scene;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -157,43 +156,17 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Generates evenly distributed sample points across the area light source surface.
-     * Creates a grid pattern scaled by the light's radius.
+     * Uses PointGenerator to create a grid pattern scaled by the light's radius.
      *
      * @param areaLight the area light source with radius > 0
      * @return list of sample points representing the light source area
      */
     private List<Point> generateAreaLightSamplePoints(PointLight areaLight) {
-        //TODO: check for cod ereuse
         double radius = areaLight.getRadius();
         Point lightCenter = areaLight.getPosition();
         int totalSamples = camera.getBlackboard().getSoftShadowSamples();
         int gridSize = (int) Math.ceil(Math.sqrt(totalSamples));
-
-        List<Point> samplePoints = new ArrayList<>();
-
-        // Generate grid of points from (-radius, -radius) to (+radius, +radius)
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                // Map grid indices to [-1, +1] range
-                double u = (gridSize == 1) ? 0 : (2.0 * i / (gridSize - 1) - 1.0);
-                double v = (gridSize == 1) ? 0 : (2.0 * j / (gridSize - 1) - 1.0);
-
-                // Scale by radius to get actual offsets
-                double dx = u * radius;
-                double dy = v * radius;
-
-                // Create sample point (offset in XY plane from light center)
-                Point samplePoint = new Point(
-                        lightCenter.getX() + dx,
-                        lightCenter.getY() + dy,
-                        lightCenter.getZ()
-                );
-                samplePoints.add(samplePoint);
-
-                if (samplePoints.size() >= totalSamples) return samplePoints;
-            }
-        }
-        return samplePoints;
+        return PointGenerator.generateGridPoints(lightCenter, Vector.AXIS_X, Vector.AXIS_Y, radius, gridSize, camera.getBlackboard().getUseJitteredSampling());
     }
 
     /**

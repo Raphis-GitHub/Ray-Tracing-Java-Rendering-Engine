@@ -329,7 +329,6 @@ public class Camera implements Cloneable {
             camera.p0 = camera.p0.add(offset);
             return this;
         }
-        //TODO: write a test for the 3 functions.
 
         /**
          * Points the camera to look at a specific target point with a given up vector.

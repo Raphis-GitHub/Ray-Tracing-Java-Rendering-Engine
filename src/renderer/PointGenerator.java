@@ -23,12 +23,12 @@ public class PointGenerator {
      * @param size        the size/radius of the grid area
      * @param gridSize    the number of grid cells per dimension
      * @param useJittered whether to use jittered (random) or regular sampling
-     * @return list of points including the center and grid points
+     * @return list of grid points (center point excluded)
      */
     public static List<Point> generateGridPoints(Point center, Vector uVector, Vector vVector,
                                                  double size, int gridSize, boolean useJittered) {
         List<Point> pointsList = new ArrayList<>();
-        pointsList.add(center); // Include center point
+        // Note: Center point is NOT included - only sample points around it
 
         if (size == 0) return pointsList;
 
