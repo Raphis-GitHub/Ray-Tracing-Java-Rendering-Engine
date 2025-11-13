@@ -571,7 +571,7 @@ Material mirror = new Material()
 
 ## 📄 License
 
-This project was developed as part of advanced coursework in Software Engineering and Computer Graphics. Code is available for educational reference and portfolio demonstration.
+This project was developed as an Advanced showcase of Software Engineering and Computer Graphics. Code is available for educational reference and portfolio demonstration.
 
 ---
 
