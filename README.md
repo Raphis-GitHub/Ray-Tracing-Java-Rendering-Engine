@@ -1,6 +1,6 @@
 # 🎨 Advanced Ray Tracer with Photorealistic Rendering
 
-[![Java](https://img.shields.io/badge/Java-22-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-21-red.svg)](https://www.oracle.com/java/)
 [![Software Engineering](https://img.shields.io/badge/SE-SOLID%20%7C%20RDD-blue.svg)]()
 [![Performance](https://img.shields.io/badge/Optimization-BVH%20%7C%20Multithreading-green.svg)]()
 
@@ -263,7 +263,7 @@ For each pixel:
 
 ## 🛠️ Technical Stack
 
-- **Language**: Java 17
+- **Language**: Java 21
 - **Build Tool**: Maven/Gradle
 - **Testing**: JUnit 5
 - **Documentation**: JavaDoc
