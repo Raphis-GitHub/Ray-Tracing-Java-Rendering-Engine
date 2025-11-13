@@ -6,7 +6,8 @@
 
 A sophisticated ray tracing engine built from scratch in Java, featuring advanced rendering techniques, photorealistic effects, and enterprise-grade software architecture. This project demonstrates mastery of computer graphics algorithms, design patterns, and performance optimization techniques.
 
----
+---<img width="800" height="500" alt="enhancedMoonlitForest" src="https://github.com/user-attachments/assets/27f8bb18-bdef-4c8a-aa03-c5fed338ff48" />
+
 
 ## 🎯 Project Highlights
 
